@@ -1,3 +1,3 @@
 # nexus_coord_transform（ROS2）
 
-职责：维护 `map`、相机、UWB 和无人机机体坐标系，发布 ROS2 `tf2` 变换。ROS1 侧仍使用 `tf`，跨 bridge 时按接口表转换。所有外参必须关联标定运行编号，并显式记录 NED/ENU 与轴向转换。
+职责：维护 `map`、相机、UWB、无人机 `base_link` 和外部目标 `target_link` 坐标系，发布 ROS2 `tf2` 变换并把目标观测转换为目标世界坐标。ROS1 侧仍使用 `tf`，跨信息通道时按接口表转换。所有外参必须关联标定运行编号，并显式记录 NED/ENU、轴向以及 UWB 标签安装对象。

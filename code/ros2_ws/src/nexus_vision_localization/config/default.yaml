@@ -1,0 +1,7 @@
+nexus_vision_localization:
+  ros__parameters:
+    marker_size_m: 0.0
+    camera_frame: camera
+    target_prefix: target
+    dictionary: DICT_4X4_50
+    default_confidence: 0.0

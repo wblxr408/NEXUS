@@ -1,0 +1,30 @@
+Panels:
+  - Class: rviz_common/Displays
+    Name: Displays
+Visualization Manager:
+  Class: ""
+  Displays:
+    - Class: rviz_default_plugins/Grid
+      Name: Grid
+      Plane: XY
+      Reference Frame: map
+    - Class: rviz_default_plugins/Odometry
+      Name: Platform Odom
+      Topic: /nexus/fcu/odom
+    - Class: rviz_default_plugins/Marker
+      Name: Vision Target Observation
+      Topic: /nexus/viz/target_observation
+    - Class: rviz_default_plugins/Marker
+      Name: Final Target Pose
+      Topic: /nexus/viz/target_pose
+    - Class: rviz_default_plugins/TF
+      Name: Coordinate Frames
+  Global Options:
+    Fixed Frame: map
+  Tools:
+    - Class: rviz_default_plugins/Interact
+    - Class: rviz_default_plugins/Select
+  Views:
+    Current:
+      Class: rviz_default_plugins/Orbit
+      Distance: 10

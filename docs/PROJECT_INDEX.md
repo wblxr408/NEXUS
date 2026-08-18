@@ -13,6 +13,7 @@
 
 ## 不可混淆的边界
 
+- `docs/decisions/2026-08-18_ADR-002_target-localization-scope.md`：当前赛题对象与验收边界；被定位对象是无人机之外的目标，优先级高于旧规划中把目标位姿等同于无人机位姿或默认回传飞控的表述。
 - `docs/无人机高精度目标定位项目规划 (2).md`：按幻思资料修订后的规划，不等于完成情况。
 - `docs/module-map (1).html`：开源模块选型参考，使用前仍需记录版本、许可证和实际验证结果。
 - `docs/figures/`：沙盘参考图片，不是测量真值。
@@ -27,6 +28,18 @@
 4. 每次实验的输入、命令、结果：`experiments/runs/`。
 5. 可提交结论：`docs/records/evidence-index.md` 和 `defense/`。
 
+硬件到货前实施计划：`docs/2026-08-18_plan_pre_hardware_work.md`。该计划只覆盖文档/接口、ROS2 骨架、离线工具和传输契约，不产生硬件或精度结论。
+
+## 已确定的项目边界
+
+- 无人机是传感器、通信和计算平台，被定位对象是无人机之外的目标。
+- ROS1 Noetic + 官方 `fcu_core` 是幻思硬件兼容层；ROS2 Humble 是赛题要求的二次自研层。
+- 两侧必须建立显式信息通道，但 ROS2 结果回传飞控不是首版必选项。
+- 视觉输入、目标世界坐标和真值测量由项目自定义。
+- 最终验收以 PPT 和有实验来源的演示视频为主，不要求现场实时飞行。
+
+完整决定见 `docs/decisions/2026-08-18_ADR-002_target-localization-scope.md`。
+
 ## 当前未决项
 
-相机数量、视觉输入接口、时间同步方式、bridge 部署方式和最终融合实现仍需通过决策记录确认；Mcontroller V7、FanciSwarm UWB 四基站、UM982、ROS Noetic/fcu_core 与 ROS2 Humble 的分层角色已确定。在确认前使用 `TBD`，不得在代码中写死。
+目标的物理形态与运动状态、UWB 标签安装对象、相机视角与数量、视觉输入接口、时间同步方式、跨 ROS 信息通道、真值测量方法和最终融合实现仍需通过决策记录确认；Mcontroller V7、FanciSwarm UWB 四基站、UM982、ROS Noetic/fcu_core 与 ROS2 Humble 的分层角色已确定。在确认前使用 `TBD`，不得在代码中写死。

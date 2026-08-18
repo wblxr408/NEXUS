@@ -265,10 +265,11 @@
 <body>
 <div class="wrap">
 
-  <div class="hero">
-    <div class="eyebrow">module sourcing map v3 / FanciSwarm硬件适配版 · 5cm精度冲刺</div>
-    <h1>能拿来就拿来，<span class="accent">自己只写"缝合"那部分</span></h1>
-    <p class="lede">
+	  <div class="hero">
+	    <div class="eyebrow">module sourcing map v3 / FanciSwarm硬件适配版 · 5cm精度冲刺</div>
+	    <h1>能拿来就拿来，<span class="accent">自己只写"缝合"那部分</span></h1>
+	    <p class="lede"><b>范围决定：</b>被定位对象是无人机之外的目标，无人机作为传感器、通信和计算平台。ROS1/官方 fcu_core 只承担硬件兼容，ROS2 输出目标世界坐标并完成比较、转换、评估和演示；视觉回传飞控仅为可选扩展。目标/UWB 标签安装和相机视角待硬件到货后确认，详见 ADR-002。</p>
+	    <p class="lede">
       结合幻思 FanciSwarm / Mcontroller V7 官方资料修订：UWB 由四基站和机载 DWM1000 标签组成，位置在飞控端分布式解算；
       ROS1 Noetic（Ubuntu 20.04）只负责官方 fcu_core 硬件兼容，ROS2 Humble（Ubuntu 22.04）负责项目算法与应用，
       两侧通过 bridge 连接；视觉只在确认原始图像接口后接入。外部多相机仍是 5cm 冲刺路线，但不再作为未经验证的前置条件。下面按双 ROS 分层列出可适配工程的模块，
@@ -286,8 +287,8 @@
     <div class="diagram-title">system data flow — 系统数据流</div>
     <div class="flow" style="grid-template-columns:repeat(6,1fr); min-width:940px;">
       <div class="flow-col">
-        <div class="node src">FanciSwarm UWB ×4<br>(机载DWM1000标签)</div>
-        <div class="node src">外部/机载视觉<br>(接口确认后启用)</div>
+        <div class="node src">FanciSwarm UWB /<br>飞行平台状态<br>(消息语义待确认)</div>
+        <div class="node src">外部目标视觉输入<br>(接口确认后启用)</div>
       </div>
       <div class="arrow">→</div>
       <div class="flow-col">
@@ -307,7 +308,7 @@
       <div class="arrow">→</div>
       <div class="flow-col">
         <div class="node build">坐标标定 + tf2<br>统一世界坐标系<br>(沙盘地标定标)<br><em>(自己写)</em></div>
-        <div class="node adapt">视觉位姿回传<br>(motion_001<br>进入飞控位置环)</div>
+        <div class="node adapt">目标世界坐标<br>(/nexus/target/pose<br>ROS2赛题主输出)</div>
         <div class="node build">自适应权重 /<br>遮挡降级状态机<br><em>(自己写)</em></div>
       </div>
       <div class="arrow">→</div>
@@ -389,7 +390,7 @@
           <span class="repo-name">mprib/caliscope</span>
           <span class="tag adapt"><span class="dot"></span>需适配 · 关键模块</span>
         </div>
-        <p><b>条件性使用</b>：自动求解多相机内外参并把2D观测三角测量成3D坐标。只有确认沙盘相机能输出原始帧、时间戳和内参后才接入；输出接到 ROS2 `tf2`，再经 bridge 映射为 ROS1 `motion_001`，不是直接接管飞控。</p>
+        <p><b>条件性使用</b>：自动求解多相机内外参并把2D目标观测三角测量成3D坐标。只有确认沙盘相机能输出原始帧、时间戳和内参后才接入；输出接到 ROS2 `tf2` 并形成 `/nexus/target/pose`，不默认回传飞控。</p>
         <div class="card-foot"><a class="link-btn" href="https://github.com/mprib/caliscope" target="_blank">github.com/mprib/caliscope</a></div>
       </div>
 
@@ -429,7 +430,7 @@
       <span class="layer-num">03</span>
       <h2>融合算法 &amp; 参考架构层</h2>
     </div>
-    <p class="layer-desc">融合部分的核心建议：先把幻思飞控内置 UWB/光流/EKF 当作飞行基线，ROS 端通过 `motion_001` 做视觉位姿回传和误差评估；只有实测证明需要时才增加轻量自适应修正。</p>
+    <p class="layer-desc">融合部分的核心建议：先分清无人机平台位姿、UWB目标观测和视觉目标观测，在 ROS2 中输出目标世界坐标并完成误差评估；只有实测证明需要时才增加轻量自适应修正，不替换幻思飞控闭环。</p>
     <div class="cards">
 
       <div class="card">
@@ -455,7 +456,7 @@
           <span class="repo-name">mfurkannargul/drone-...-uwb-camera</span>
           <span class="tag adapt"><span class="dot"></span>强参考 · 需要移植</span>
         </div>
-        <p>一个 ROS1 + OpenCV 的 UWB/视觉融合参考。当前幻思硬件链路仍以 ROS1 为主，但项目融合模块放在 ROS2；可参考其话题组织，必须以 bridge 后接口及 `fcu_core` 的 `odom_global_001`、`motion_001` 为准。</p>
+        <p>一个 ROS1 + OpenCV 的 UWB/视觉融合参考。当前幻思硬件链路仍以 ROS1 为主，但项目目标定位模块放在 ROS2；只参考其话题组织，实际必须区分 `fcu_core` 的平台状态与项目 `/nexus/target/pose`。</p>
         <div class="card-foot"><a class="link-btn" href="https://github.com/mfurkannargul/drone-localization-ros-opencv-extended-kalman-filter-uwb-sensor-onboard-camera" target="_blank">查看仓库 →</a></div>
       </div>
 
@@ -464,7 +465,7 @@
           <span class="repo-name">ASIG-X/SFUISE2</span>
           <span class="tag build"><span class="dot"></span>进阶参考 · 难度较高</span>
         </div>
-        <p>复杂优化框架不作为四周主线。若官方 UWB + 视觉回传已经稳定，再把它作为论文/后续研究参考。</p>
+        <p>复杂优化框架不作为首版主线。若 UWB/平台状态、视觉目标观测和目标世界坐标链路已经稳定，再把它作为论文或后续研究参考。</p>
         <div class="card-foot"><a class="link-btn" href="https://github.com/ASIG-X/SFUISE2" target="_blank">github.com/ASIG-X/SFUISE2</a></div>
       </div>
 
@@ -473,7 +474,7 @@
           <span class="repo-name">RobotWebTools/rosbridge_suite</span>
           <span class="tag direct"><span class="dot"></span>可直接迁移</span>
         </div>
-        <p>使用 ROS2 分支或直接读取 `ros2 bag`，把 bridge 后的飞控位置、视觉位姿和误差指标暴露给浏览器。前端页面自己写，通信层不重复造协议。</p>
+        <p>使用 ROS2 分支或直接读取 `ros2 bag`，把飞行平台位置、视觉目标观测、目标世界坐标和误差指标暴露给浏览器。前端页面自己写，通信层不重复造协议。</p>
         <div class="card-foot"><a class="link-btn" href="https://github.com/RobotWebTools/rosbridge_suite" target="_blank">github.com/RobotWebTools/rosbridge_suite</a></div>
       </div>
 
@@ -503,11 +504,11 @@
       </div>
       <div class="build-item">
         <span class="name">自适应融合权重</span>
-        <span class="why">先实现视觉位姿质量评估和 `motion_001` 回传；只有基线实测不足时，才增加根据视觉重投影误差/UWB位置残差调整权重的轻量修正。</span>
+        <span class="why">先实现目标视觉观测质量评估和 `/nexus/target/pose`；只有单源基线实测不足时，才增加根据视觉重投影误差/UWB目标观测残差调整权重的轻量修正。</span>
       </div>
       <div class="build-item">
         <span class="name">遮挡/NLOS 降级状态机</span>
-        <span class="why">视觉丢失时保持幻思飞控 UWB/光流基线；视觉恢复时再回传修正。状态切换只写最小可演示逻辑，不重复实现飞控安全保护。</span>
+        <span class="why">视觉丢失或 UWB 目标观测异常时，明确降低对应观测置信度并保持目标输出语义连续。状态切换只写最小可演示逻辑，不重复实现飞控安全保护。</span>
       </div>
       <div class="build-item">
         <span class="name">Web Dashboard 前端页面</span>
@@ -519,7 +520,7 @@
       </div>
       <div class="build-item">
         <span class="name">全系统集成 launch 文件</span>
-        <span class="why">把 ROS1 `fcu_core`、bridge、ROS2视觉、坐标转换、回传、可视化串成两侧 launch 和参数配置，这是把"缝合"落到工程上的最后一步。</span>
+        <span class="why">把 ROS1 `fcu_core`、跨 ROS 信息通道、ROS2目标视觉、坐标转换、目标输出和可视化串成两侧 launch 与参数配置；飞控回传只作为可选启动项。</span>
       </div>
     </div>
   </section>

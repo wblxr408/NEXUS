@@ -1,0 +1,5 @@
+nexus_fusion_localization:
+  ros__parameters:
+    target_frame: map
+    max_age_ms: 250.0
+    uwb_topic: /nexus/uwb/target_observation

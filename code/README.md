@@ -1,5 +1,7 @@
 # 代码与 ROS 工作空间
 
+实现对象以 `../docs/decisions/2026-08-18_ADR-002_target-localization-scope.md` 为准：无人机是平台，ROS2 主输出是无人机之外目标的 `/nexus/target/pose`。无人机位姿、目标相对观测和目标世界位姿不得复用同一语义。
+
 ## 分类
 
 - `ros1_ws/src/`：Ubuntu 20.04 + ROS1 Noetic/catkin 的幻思硬件兼容层。

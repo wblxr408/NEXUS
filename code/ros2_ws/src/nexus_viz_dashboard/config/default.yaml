@@ -1,0 +1,3 @@
+nexus_viz_dashboard:
+  ros__parameters:
+    evidence_mode: true

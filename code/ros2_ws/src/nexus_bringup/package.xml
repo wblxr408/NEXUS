@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<package format="3">
+  <name>nexus_bringup</name>
+  <version>0.1.0</version>
+  <description>ROS2 launch and parameter entry points for NEXUS.</description>
+  <maintainer email="nexus@example.invalid">NEXUS project</maintainer>
+  <license>Apache-2.0</license>
+  <buildtool_depend>ament_cmake</buildtool_depend>
+  <buildtool_depend>ament_cmake_python</buildtool_depend>
+  <exec_depend>launch</exec_depend>
+  <exec_depend>launch_ros</exec_depend>
+  <exec_depend>rclpy</exec_depend>
+  <exec_depend>nexus_vision_localization</exec_depend>
+  <exec_depend>nexus_coord_transform</exec_depend>
+  <exec_depend>nexus_fusion_localization</exec_depend>
+  <exec_depend>nexus_viz_dashboard</exec_depend>
+  <test_depend>ament_cmake_pytest</test_depend>
+  <export><build_type>ament_cmake</build_type></export>
+</package>
