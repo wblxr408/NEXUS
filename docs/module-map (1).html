@@ -265,13 +265,14 @@
 <body>
 <div class="wrap">
 
-  <div class="hero">
-    <div class="eyebrow">module sourcing map v2 / 沙盘实测版 · 5cm精度冲刺</div>
-    <h1>能拿来就拿来，<span class="accent">自己只写"缝合"那部分</span></h1>
-    <p class="lede">
-      结合沙盘实拍照片更新：视觉方案从"机载单相机"升级为"复用沙盘四周三脚架的外部多相机阵列"，
-      这是把精度从10~20cm级拉到5cm级的关键改动，也新增了对应的多相机标定/三角测量模块。
-      下面按系统分层列出目前 GitHub 上比较成熟、可以直接接入 ROS2 工程的开源模块，
+	  <div class="hero">
+	    <div class="eyebrow">module sourcing map v3 / FanciSwarm硬件适配版 · 5cm精度冲刺</div>
+	    <h1>能拿来就拿来，<span class="accent">自己只写"缝合"那部分</span></h1>
+	    <p class="lede"><b>范围决定：</b>被定位对象是无人机之外的目标，无人机作为传感器、通信和计算平台。ROS1/官方 fcu_core 只承担硬件兼容，ROS2 输出目标世界坐标并完成比较、转换、评估和演示；视觉回传飞控仅为可选扩展。目标/UWB 标签安装和相机视角待硬件到货后确认，详见 ADR-002。</p>
+	    <p class="lede">
+      结合幻思 FanciSwarm / Mcontroller V7 官方资料修订：UWB 由四基站和机载 DWM1000 标签组成，位置在飞控端分布式解算；
+      ROS1 Noetic（Ubuntu 20.04）只负责官方 fcu_core 硬件兼容，ROS2 Humble（Ubuntu 22.04）负责项目算法与应用，
+      两侧通过 bridge 连接；视觉只在确认原始图像接口后接入。外部多相机仍是 5cm 冲刺路线，但不再作为未经验证的前置条件。下面按双 ROS 分层列出可适配工程的模块，
       并标注每个模块的可迁移程度。最后单列"需要自己写"的部分——这些是现成项目覆盖不到、
       也正是决定你们项目上限和答辩说服力的地方。
     </p>
@@ -286,17 +287,17 @@
     <div class="diagram-title">system data flow — 系统数据流</div>
     <div class="flow" style="grid-template-columns:repeat(6,1fr); min-width:940px;">
       <div class="flow-col">
-        <div class="node src">UWB 基站阵列<br>(绑沙盘四角三脚架)</div>
-        <div class="node src">外部多相机阵列<br>(复用现有三脚架，3~4台)</div>
+        <div class="node src">FanciSwarm UWB /<br>飞行平台状态<br>(消息语义待确认)</div>
+        <div class="node src">外部目标视觉输入<br>(接口确认后启用)</div>
       </div>
       <div class="arrow">→</div>
       <div class="flow-col">
-        <div class="node direct">硬件驱动<br>(nlink_parser)</div>
-        <div class="node direct">多相机标定<br>(caliscope)</div>
+        <div class="node direct">ROS1官方飞控桥接<br>(fcu_core)</div>
+        <div class="node adapt">视觉标定<br>(OpenCV/caliscope)</div>
       </div>
       <div class="arrow">→</div>
       <div class="flow-col">
-        <div class="node adapt">解算算法对比<br>(trilateration /<br>Chan / Taylor)</div>
+        <div class="node adapt">ROS2算法对比<br>(可用接口范围内)</div>
         <div class="node direct">同步标签检测<br>(apriltag_ros ×N路)</div>
       </div>
       <div class="arrow">→</div>
@@ -307,13 +308,13 @@
       <div class="arrow">→</div>
       <div class="flow-col">
         <div class="node build">坐标标定 + tf2<br>统一世界坐标系<br>(沙盘地标定标)<br><em>(自己写)</em></div>
-        <div class="node adapt">融合核心<br>(robot_localization<br>EKF/UKF，视觉主导)</div>
+        <div class="node adapt">目标世界坐标<br>(/nexus/target/pose<br>ROS2赛题主输出)</div>
         <div class="node build">自适应权重 /<br>遮挡降级状态机<br><em>(自己写)</em></div>
       </div>
       <div class="arrow">→</div>
       <div class="flow-col">
-        <div class="node adapt">RViz2 可视化</div>
-        <div class="node build">Web Dashboard<br>(基于 rosbridge)</div>
+        <div class="node adapt">ROS2 RViz2 可视化</div>
+        <div class="node build">Web Dashboard<br>(ROS2 rosbridge/ros2 bag)</div>
       </div>
     </div>
   </div>
@@ -324,25 +325,25 @@
       <span class="layer-num">01</span>
       <h2>UWB 定位层</h2>
     </div>
-    <p class="layer-desc">硬件驱动直接决定能不能拿到原始测距/坐标数据，算法对比库直接支撑任务2的"精度比较"环节，不需要自己重新推导公式。</p>
+    <p class="layer-desc">幻思已经把 UWB 测距、定位和通信集成到 FanciSwarm/Mcontroller；本项目首先验证官方位置输出和飞控日志，再根据接口是否开放决定是否做原始测距算法对比。</p>
     <div class="cards">
 
       <div class="card">
         <div class="card-top">
-          <span class="repo-name">nooploop-dev/nlink_parser</span>
-          <span class="tag direct"><span class="dot"></span>可直接迁移</span>
+          <span class="repo-name">fancinnov/fcu_core</span>
+          <span class="tag direct"><span class="dot"></span>官方基线</span>
         </div>
-        <p>Nooploop 官方 UWB 驱动（LinkTrack 系列），C++ 编写，无需额外依赖库，串口通信直接解析成 ROS 消息。若学校提供的是 Nooploop 硬件，这是最省心的起点。</p>
-        <div class="card-foot"><a class="link-btn" href="https://github.com/nooploop-dev/nlink_parser" target="_blank">github.com/nooploop-dev/nlink_parser</a></div>
+        <p>幻思官方 ROS1 工程，当前公开版本基于 Ubuntu 20.04 + ROS Noetic + catkin，支持机载电脑/远程主机，通过 USB `/dev/ttyACM0` 或 TCP `192.168.4.1:333` 与 Mcontroller 通信，并发布飞控/UWB/IMU/位置状态；ROS2 算法通过 bridge 接入。</p>
+        <div class="card-foot"><a class="link-btn" href="https://github.com/fancinnov/fcu_core" target="_blank">github.com/fancinnov/fcu_core</a></div>
       </div>
 
       <div class="card">
         <div class="card-top">
-          <span class="repo-name">nooploop-dev/nlink_parser2</span>
-          <span class="tag direct"><span class="dot"></span>可直接迁移 · 厂商官方</span>
+          <span class="repo-name">FanciSwarm UWB ×4</span>
+          <span class="tag direct"><span class="dot"></span>机载分布式定位</span>
         </div>
-        <p><b>Nooploop 官方原生 ROS2 包</b>（不是社区移植版）。文档规范、topic设计清晰、支持LinkTrack全系列产品，构建流程标准。星数不高是因为这是小众设备商的专用驱动包，但厂商一手维护的可信度远高于个人开发者的移植版，建议优先用这个而不是第三方 ROS2 port。</p>
-        <div class="card-foot"><a class="link-btn" href="https://github.com/nooploop-dev/nlink_parser2" target="_blank">github.com/nooploop-dev/nlink_parser2</a></div>
+        <p><b>四基站 + 机载 DWM1000 标签</b>构成幻思 UWB 系统，位置估计在无人机端实时完成，不需要外部计算机才能得到基础位置。先用 App、`fcu_core` 和 SD 日志验证位置、延迟与静态误差；不要把它误写成 TDOA 或 Nooploop 协议。</p>
+        <div class="card-foot"><a class="link-btn" href="https://fancinnov.com/FanciSwarm" target="_blank">fancinnov.com/FanciSwarm</a></div>
       </div>
 
       <div class="card">
@@ -350,8 +351,8 @@
           <span class="repo-name">cliansang/uwb-tracking-ros</span>
           <span class="tag direct"><span class="dot"></span>可直接迁移</span>
         </div>
-        <p>如果硬件是 Decawave/Qorvo DWM1001 而不是 Nooploop，这个驱动更合适，而且自带一层卡尔曼滤波做平滑，RViz 可视化脚本也是现成的。</p>
-        <div class="card-foot"><a class="link-btn" href="https://github.com/cliansang/uwb-tracking-ros" target="_blank">github.com/cliansang/uwb-tracking-ros</a></div>
+        <p>如果厂商没有开放原始四基站测距，只保留这类第三方仓库作为算法参考，不接入生产链路。公开 `fcu_core` 才是本硬件的通信基线。</p>
+        <div class="card-foot"><a class="link-btn" href="https://github.com/fancinnov/fcu_core" target="_blank">官方接口优先</a></div>
       </div>
 
       <div class="card">
@@ -359,7 +360,7 @@
           <span class="repo-name">cliansang/positioning-algorithms-for-uwb-matlab</span>
           <span class="tag adapt"><span class="dot"></span>需少量适配</span>
         </div>
-        <p><b>这个最关键</b>：作者用真实 UWB 硬件（不是仿真）实现并对比了三边定位、最小二乘、Taylor级数、EKF、UKF 五种算法，直接对应任务2的"算法精度比较"。MATLAB代码需要移植成 Python/C++ 节点，但算法逻辑不用自己重新推导。</p>
+        <p><b>条件性使用</b>：只有拿到幻思原始测距数据时，才把该仓库作为离线 LS/鲁棒 LS 参考。若接口只给官方 XYZ 位置，则删除 Chan/Taylor/TDOA 对比，改做官方基线、布局和误差实验。</p>
         <div class="card-foot"><a class="link-btn" href="https://github.com/cliansang/positioning-algorithms-for-uwb-matlab" target="_blank">github.com/cliansang/positioning-algorithms-for-uwb-matlab</a></div>
       </div>
 
@@ -368,7 +369,7 @@
           <span class="repo-name">madfolio/Least-Squares-Trilateration</span>
           <span class="tag direct"><span class="dot"></span>可直接迁移</span>
         </div>
-        <p>用 scipy.optimize.least_squares 实现的最简三边定位，几十行代码，适合当 baseline 或者理解原理的起点，包在自己的 ROS2 节点里就能用。</p>
+        <p>用 scipy.optimize.least_squares 实现的最简三边定位，仅作为拿到原始测距后的离线 baseline；不绕过幻思飞控直接接管飞行。</p>
         <div class="card-foot"><a class="link-btn" href="https://github.com/madfolio/Least-Squares-Trilateration" target="_blank">github.com/madfolio/Least-Squares-Trilateration</a></div>
       </div>
 
@@ -381,7 +382,7 @@
       <span class="layer-num">02</span>
       <h2>视觉定位层</h2>
     </div>
-    <p class="layer-desc">AprilTag / ArUco 的检测与位姿解算（PnP）都是非常成熟的开源领域。结合沙盘实测，视觉方案升级为"多相机阵列"，所以这里多了一个专门做<b>多相机标定+三角测量</b>的模块——它是把精度从单相机的10~20cm拉到5cm级的关键拼图。</p>
+    <p class="layer-desc">AprilTag / ArUco 的检测与位姿解算仍是视觉主线，但幻思硬件资料只确认了 800 万像素机载相机和可选 Jetson/Raspberry Pi 视觉套件，未确认你们当前相机是否开放原始帧。因此多相机阵列是条件性冲刺模块，不是当前必需依赖。</p>
     <div class="cards">
 
       <div class="card" style="border-color:rgba(79,216,232,0.5);">
@@ -389,7 +390,7 @@
           <span class="repo-name">mprib/caliscope</span>
           <span class="tag adapt"><span class="dot"></span>需适配 · 关键模块</span>
         </div>
-        <p><b>专为动作捕捉工作流设计的多相机标定库</b>：自动求解每台相机的内参+相互之间的外参（位置关系），并把多路2D观测三角测量成精确3D坐标——链式立体估计，不要求所有相机同时看到目标。这正是"复用沙盘四周三脚架做多相机阵列"方案缺的那块拼图。是Python库，需要自己写一层把输出接入ROS2的tf2和融合节点。</p>
+        <p><b>条件性使用</b>：自动求解多相机内外参并把2D目标观测三角测量成3D坐标。只有确认沙盘相机能输出原始帧、时间戳和内参后才接入；输出接到 ROS2 `tf2` 并形成 `/nexus/target/pose`，不默认回传飞控。</p>
         <div class="card-foot"><a class="link-btn" href="https://github.com/mprib/caliscope" target="_blank">github.com/mprib/caliscope</a></div>
       </div>
 
@@ -398,26 +399,26 @@
           <span class="repo-name">christianrauch/apriltag_ros</span>
           <span class="tag direct"><span class="dot"></span>可直接迁移</span>
         </div>
-        <p>ROS2 官方级 AprilTag 检测节点，订阅矫正后的图像+相机内参，直接发布标签位姿到 /tf，也支持组合节点(composable node)做零拷贝通信，性能更好。多相机方案里每台相机各起一个实例即可。</p>
+        <p>AprilTag 检测节点优先作为 ROS2 适配候选，订阅矫正图像和相机内参后输出标签位姿。先用 OpenCV/Python 跑通单路，再决定是否包装成 ROS2 节点。</p>
         <div class="card-foot"><a class="link-btn" href="https://github.com/christianrauch/apriltag_ros" target="_blank">github.com/christianrauch/apriltag_ros</a></div>
       </div>
 
       <div class="card">
         <div class="card-top">
-          <span class="repo-name">JMU-ROBOTICS-VIVA/ros2_aruco</span>
-          <span class="tag direct"><span class="dot"></span>可直接迁移</span>
+          <span class="repo-name">OpenCV ArUco</span>
+          <span class="tag adapt"><span class="dot"></span>ROS2适配</span>
         </div>
-        <p>基于 OpenCV 的 ArUco 检测 wrapper，自带命令行工具一键生成标签图片，输出所有检测到的标签 id + 位姿数组，非常适合快速搭演示场景。</p>
-        <div class="card-foot"><a class="link-btn" href="https://github.com/JMU-ROBOTICS-VIVA/ros2_aruco" target="_blank">github.com/JMU-ROBOTICS-VIVA/ros2_aruco</a></div>
+        <p>基于 OpenCV 的 ArUco 检测参考，适合先快速搭演示场景。ROS 发行版不绑定，直接以你们实际图像输入和脚本为准。</p>
+        <div class="card-foot"><a class="link-btn" href="https://docs.opencv.org/4.x/d5/dae/tutorial_aruco_detection.html" target="_blank">OpenCV ArUco 文档</a></div>
       </div>
 
       <div class="card">
         <div class="card-top">
-          <span class="repo-name">AIRLab-POLIMI/ros2-aruco-pose-estimation</span>
-          <span class="tag direct"><span class="dot"></span>可直接迁移</span>
+          <span class="repo-name">OpenCV + RealSense（可选）</span>
+          <span class="tag adapt"><span class="dot"></span>需适配</span>
         </div>
-        <p>同时支持 RGB 和深度图像（如用 RealSense D435），深度信息能显著提升位姿精度，且支持同时检测多个标签，各自独立发布位姿，适合多目标场景。</p>
-        <div class="card-foot"><a class="link-btn" href="https://github.com/AIRLab-POLIMI/ros2-aruco-pose-estimation" target="_blank">github.com/AIRLab-POLIMI/ros2-aruco-pose-estimation</a></div>
+        <p>若采用幻思 Jetson 视觉套件并配置 RealSense D435，可利用 RGB-D 提升位姿估计；当前树莓派5方案先不假设已经具备深度相机。</p>
+        <div class="card-foot"><a class="link-btn" href="https://docs.opencv.org/4.x/d5/dae/tutorial_aruco_detection.html" target="_blank">OpenCV ArUco 文档</a></div>
       </div>
 
     </div>
@@ -429,25 +430,25 @@
       <span class="layer-num">03</span>
       <h2>融合算法 &amp; 参考架构层</h2>
     </div>
-    <p class="layer-desc">融合部分的核心建议：不要从零手写 EKF，用工业级现成包做基础融合，把精力放在"自适应权重"和"降级机制"这些现成包没有的创新点上。</p>
+    <p class="layer-desc">融合部分的核心建议：先分清无人机平台位姿、UWB目标观测和视觉目标观测，在 ROS2 中输出目标世界坐标并完成误差评估；只有实测证明需要时才增加轻量自适应修正，不替换幻思飞控闭环。</p>
     <div class="cards">
 
       <div class="card">
         <div class="card-top">
-          <span class="repo-name">cra-ros-pkg/robot_localization</span>
-          <span class="tag direct"><span class="dot"></span>可直接迁移 · 强烈推荐</span>
+          <span class="repo-name">Mcontroller 内置 EKF + fcu_core</span>
+          <span class="tag direct"><span class="dot"></span>飞行主线基线</span>
         </div>
-        <p>ROS2 官方标准的多传感器非线性状态估计包（EKF/UKF 都有），任意数量传感器融合，只需要写 yaml 配置文件把 UWB 和视觉的 pose topic 接进去即可，<b>不需要自己实现滤波器</b>，是融合层的地基。</p>
-        <div class="card-foot"><a class="link-btn" href="https://github.com/cra-ros-pkg/robot_localization" target="_blank">github.com/cra-ros-pkg/robot_localization</a></div>
+        <p>幻思飞控已经提供 UWB、光流、GNSS、测距和 EKF 相关能力；官方 `fcu_core` 负责 ROS 与飞控之间的状态/位置/指令通信。第一版不重复实现一套飞控级滤波器。</p>
+        <div class="card-foot"><a class="link-btn" href="https://fancinnov.com/support-Mcontroller-v7" target="_blank">官方 Mcontroller V7 文档</a></div>
       </div>
 
       <div class="card">
         <div class="card-top">
-          <span class="repo-name">maduwanthasl/ros2-ekf-localization</span>
+          <span class="repo-name">轻量 EKF 参考</span>
           <span class="tag adapt"><span class="dot"></span>参考学习</span>
         </div>
-        <p>一个"从零手写"的教学级 EKF 实现（GPS+IMU 融合），代码简洁、有精度评估和可视化脚本。当你们要在 robot_localization 基础上做自适应权重这类定制逻辑时，看这个理解原理比看官方源码快。</p>
-        <div class="card-foot"><a class="link-btn" href="https://github.com/maduwanthasl/ros2-ekf-localization" target="_blank">github.com/maduwanthasl/ros2-ekf-localization</a></div>
+        <p>仅在录包回放证明官方基线不够时参考轻量 EKF；不要先为了“先进”替换 Mcontroller 的实时控制闭环。</p>
+        <div class="card-foot"><a class="link-btn" href="https://github.com/rlabbe/Kalman-and-Bayesian-Filters-in-Python" target="_blank">仅作算法参考</a></div>
       </div>
 
       <div class="card">
@@ -455,7 +456,7 @@
           <span class="repo-name">mfurkannargul/drone-...-uwb-camera</span>
           <span class="tag adapt"><span class="dot"></span>强参考 · 需要移植</span>
         </div>
-        <p>一个与你们项目几乎同构的本科毕业设计：无人机 UWB + 视觉（QR码）EKF融合定位，ROS1 + OpenCV。架构思路可以直接照搬，但代码是 ROS1，需要重写成 ROS2 节点。</p>
+        <p>一个 ROS1 + OpenCV 的 UWB/视觉融合参考。当前幻思硬件链路仍以 ROS1 为主，但项目目标定位模块放在 ROS2；只参考其话题组织，实际必须区分 `fcu_core` 的平台状态与项目 `/nexus/target/pose`。</p>
         <div class="card-foot"><a class="link-btn" href="https://github.com/mfurkannargul/drone-localization-ros-opencv-extended-kalman-filter-uwb-sensor-onboard-camera" target="_blank">查看仓库 →</a></div>
       </div>
 
@@ -464,7 +465,7 @@
           <span class="repo-name">ASIG-X/SFUISE2</span>
           <span class="tag build"><span class="dot"></span>进阶参考 · 难度较高</span>
         </div>
-        <p>UWB+IMU 连续时间样条融合框架的 ROS2 版本，比 EKF 更前沿（因子图/优化类方法）。如果团队有余力冲刺"创新点"，可以参考其时间同步和状态估计思路，但直接照搬难度较高，建议只作为思路参考。</p>
+        <p>复杂优化框架不作为首版主线。若 UWB/平台状态、视觉目标观测和目标世界坐标链路已经稳定，再把它作为论文或后续研究参考。</p>
         <div class="card-foot"><a class="link-btn" href="https://github.com/ASIG-X/SFUISE2" target="_blank">github.com/ASIG-X/SFUISE2</a></div>
       </div>
 
@@ -473,7 +474,7 @@
           <span class="repo-name">RobotWebTools/rosbridge_suite</span>
           <span class="tag direct"><span class="dot"></span>可直接迁移</span>
         </div>
-        <p>官方维护、有正式 ros2 分支，一键起 WebSocket 服务把 ROS2 话题暴露给浏览器。你们的 Web Dashboard 前端页面要自己写，但"前端如何拿到实时定位数据"这层桥接直接用它，不用自己写通信协议。</p>
+        <p>使用 ROS2 分支或直接读取 `ros2 bag`，把飞行平台位置、视觉目标观测、目标世界坐标和误差指标暴露给浏览器。前端页面自己写，通信层不重复造协议。</p>
         <div class="card-foot"><a class="link-btn" href="https://github.com/RobotWebTools/rosbridge_suite" target="_blank">github.com/RobotWebTools/rosbridge_suite</a></div>
       </div>
 
@@ -498,35 +499,35 @@
         <span class="why">caliscope 能把多路相机三角测量成3D坐标，但"哪台相机看得更清楚就多信它一点"这种基于距离/视角/检测置信度的动态加权逻辑，需要自己在其输出基础上二次开发，这是把精度从10cm级压到5cm级的关键工程细节。</span>
       </div>
       <div class="build-item">
-        <span class="name">坐标标定 + tf2 统一变换</span>
-        <span class="why">UWB坐标系、多相机阵列坐标系、沙盘世界坐标系三者的标定和刚体变换求解，是针对你们具体沙盘（利用路口/建筑地标做标定点）的物理测量+标定脚本，开源项目不会覆盖这种场地特定的标定流程。</span>
+        <span class="name">坐标标定 + ROS2 tf2 统一变换</span>
+        <span class="why">UWB/飞控坐标系、视觉坐标系、沙盘世界坐标系三者的标定和刚体变换求解，是针对你们具体沙盘的物理测量+标定脚本，开源项目不会覆盖这部分。</span>
       </div>
       <div class="build-item">
         <span class="name">自适应融合权重</span>
-        <span class="why">robot_localization 默认用固定协方差矩阵，你们要做"根据UWB测距残差/视觉重投影误差动态调整权重，且视觉可见时以视觉为主导"，需要在其基础上写自定义融合节点或替换协方差更新逻辑。</span>
+        <span class="why">先实现目标视觉观测质量评估和 `/nexus/target/pose`；只有单源基线实测不足时，才增加根据视觉重投影误差/UWB目标观测残差调整权重的轻量修正。</span>
       </div>
       <div class="build-item">
         <span class="name">遮挡/NLOS 降级状态机</span>
-        <span class="why">视觉丢失目标时切UWB、UWB多径异常时用视觉修正——这个状态判断和切换逻辑没有现成模块，需要自己写一个监控节点。</span>
+        <span class="why">视觉丢失或 UWB 目标观测异常时，明确降低对应观测置信度并保持目标输出语义连续。状态切换只写最小可演示逻辑，不重复实现飞控安全保护。</span>
       </div>
       <div class="build-item">
         <span class="name">Web Dashboard 前端页面</span>
-        <span class="why">rosbridge解决了"数据怎么传到浏览器"，但页面本身（实时坐标、误差曲线、热力图的UI设计）要自己用HTML/JS或React写。</span>
+        <span class="why">rosbridge解决了"数据怎么传到浏览器"，但页面本身（实时坐标、误差曲线、热力图的UI设计）要自己用HTML/JS或React写；ROS1 原始记录可保留为硬件证据。</span>
       </div>
       <div class="build-item">
         <span class="name">精度评估与统计脚本</span>
-        <span class="why">RMSE、CEP50/95、误差热力图这些针对你们测试点位设计的评估代码，需要自己写数据后处理脚本（可以参考 ros2-ekf-localization 里的评估思路）。</span>
+        <span class="why">RMSE、CEP50/95、延迟和误差热力图针对你们测试点位，需要自己写 ROS1 rosbag/ROS2 ros2 bag/SD 日志后处理脚本。</span>
       </div>
       <div class="build-item">
         <span class="name">全系统集成 launch 文件</span>
-        <span class="why">把以上所有模块（驱动、检测、融合、可视化）串成一套能一键启动的 ROS2 launch 文件和参数配置，这是把"缝合"落到工程上的最后一步，必须自己做。</span>
+        <span class="why">把 ROS1 `fcu_core`、跨 ROS 信息通道、ROS2目标视觉、坐标转换、目标输出和可视化串成两侧 launch 与参数配置；飞控回传只作为可选启动项。</span>
       </div>
     </div>
   </section>
 
   <footer>
-    整理时间：2026-08 · 所有链接均为公开 GitHub 仓库，使用前请检查各仓库的 License 是否允许你们的使用场景（多数为 BSD/MIT/GPL，学校项目/答辩演示一般没有问题，如需公开发布或商用请再核实一次）。<br>
-    质量核实：本表已实测核对各仓库的 star 数/提交记录/维护状态（详见对话记录），标"可直接迁移"的均为官方包或百星以上活跃项目；曾有一个社区移植版（T2HOPETECHNIK/nlink_parser_ros2，11星、无release、README自述WIP）经核实质量不足，已替换为 Nooploop 官方原生 ROS2 包。开发前建议团队自己也抽查一遍最近的 issue/commit，不要完全依赖这份列表。
+    整理时间：2026-08 · 官方硬件/软件资料优先于第三方仓库。当前主线是 FanciSwarm 四基站 + Mcontroller V7 + ROS1 <code>fcu_core</code>（Noetic/catkin）+ ROS2 Humble 算法层；视觉和第三方标定库必须先用实际输入验证。<br>
+    质量核实：公开 <code>fcu_core</code> 仓库为幻思官方 ROS 工程，包含 <code>fcu_bridge_001</code>、MAVLink、USB/TCP 和 <code>quadrotor_msgs</code>；本项目不再列 Nooploop 驱动为依赖。
   </footer>
 
 </div>

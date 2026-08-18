@@ -1,0 +1,46 @@
+import numpy as np
+import pytest
+
+from nexus_coord_transform.geometry import (
+    direct_target_measurement,
+    centimeters_to_meters,
+    matrix_to_quaternion,
+    meters_to_centimeters,
+    ned_to_enu,
+    quaternion_to_matrix,
+    umeyama_alignment,
+    platform_relative_measurement,
+)
+
+
+def test_unit_and_axis_conversion_are_explicit():
+    assert np.allclose(centimeters_to_meters([100, -50, 25]), [1, -0.5, 0.25])
+    assert np.allclose(meters_to_centimeters([1, -0.5, 0.25]), [100, -50, 25])
+    assert np.allclose(ned_to_enu([1, 2, 3]), [2, 1, -3])
+
+
+def test_quaternion_round_trip():
+    quaternion = np.array([0.0, 0.0, np.sin(np.pi / 8), np.cos(np.pi / 8)])
+    result = matrix_to_quaternion(quaternion_to_matrix(quaternion))
+    assert np.isclose(abs(np.dot(result, quaternion)), 1.0, atol=1e-6)
+
+
+def test_umeyama_recovers_rigid_transform():
+    source = np.array([[0., 0., 0.], [1., 0., 0.], [0., 1., 0.], [0., 0., 1.]])
+    rotation = np.array([[0., -1., 0.], [1., 0., 0.], [0., 0., 1.]])
+    translation = np.array([2., -1., 0.5])
+    target = (rotation @ source.T).T + translation
+    recovered_rotation, recovered_translation = umeyama_alignment(source, target)
+    assert np.allclose(recovered_rotation, rotation)
+    assert np.allclose(recovered_translation, translation)
+
+
+def test_umeyama_rejects_too_few_points():
+    with pytest.raises(ValueError):
+        umeyama_alignment(np.zeros((2, 3)), np.zeros((2, 3)))
+
+
+def test_direct_and_platform_relative_paths_are_distinct_entries():
+    identity = np.eye(3)
+    assert np.allclose(direct_target_measurement([1, 2, 3], identity, [4, 5, 6]), [5, 7, 9])
+    assert np.allclose(platform_relative_measurement([4, 5, 6], identity, [1, 2, 3]), [5, 7, 9])

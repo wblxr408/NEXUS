@@ -1,0 +1,3 @@
+nexus_bringup:
+  ros__parameters:
+    hardware_required: true

@@ -1,7 +1,12 @@
-# ROS2 / Python build outputs
+# ROS / Python build outputs
+code/ros1_ws/build/
+code/ros1_ws/devel/
+code/ros1_ws/install/
+code/ros1_ws/log/
 code/ros2_ws/build/
 code/ros2_ws/install/
 code/ros2_ws/log/
+code/ros1_ws/src/CMakeLists.txt
 **/__pycache__/
 *.py[cod]
 .venv/

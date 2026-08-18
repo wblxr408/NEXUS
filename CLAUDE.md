@@ -19,3 +19,5 @@
 - 记录：`docs/records/README.md`
 - 答辩：`defense/README.md`
 - 变更决策：`docs/decisions/README.md`
+
+ROS 约定：`code/ros1_ws/` 只放幻思 `fcu_core` 硬件兼容代码，使用 Noetic/catkin；`code/ros2_ws/` 放项目自研算法和展示，使用 Humble/colcon。不要为了统一目录把 ROS1 工程迁移到 ROS2，也不要要求每个包同时支持两套 ROS。

@@ -1,0 +1,1 @@
+"""Offline vision geometry helpers."""

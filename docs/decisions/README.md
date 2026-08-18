@@ -5,3 +5,8 @@
 文件名：`YYYY-MM-DD_ADR-<三位编号>_<slug>.md`。
 
 复制 `templates/adr.md`，填写状态（`proposed / accepted / superseded / rejected`）、背景、候选方案、决定、验证和影响。
+
+## 当前已接受决定
+
+- [ADR-001：采用双 ROS 分层与幻思官方 fcu_core 硬件基线](2026-08-18_ADR-001_fanci-hardware-ros-baseline.md)
+- [ADR-002：固定外部目标定位范围与演示验收边界](2026-08-18_ADR-002_target-localization-scope.md)
