@@ -1,13 +1,11 @@
-# 系统架构与接口
+# 系统架构与接口（双 ROS / FanciSwarm 硬件适配版）
 
 ## 分层
 
-1. `nexus_uwb_driver`：串口/网络接入、原始测距和设备状态。
-2. `nexus_vision_localization`：多相机采集、AprilTag/ArUco 检测、三角测量输出。
-3. `nexus_coord_transform`：传感器、机体、沙盘世界坐标系与 `tf2`。
-4. `nexus_fusion_localization`：EKF/UKF 基线、自适应权重和遮挡/NLOS 降级。
-5. `nexus_viz_dashboard`：RViz2、rosbridge 和 Web Dashboard。
-6. `nexus_bringup`：参数、launch、录包与一键启动。
+1. **ROS1 硬件层（Ubuntu 20.04 + Noetic）**：`fcu_core` / `nexus_fcu_bridge` 连接 Mcontroller V7，读取 UWB/光流/GNSS/IMU，并接收视觉回传。
+2. **ROS1-ROS2 bridge**：只做消息、时间戳、坐标和单位的明确映射，不把两套 ROS 混装进同一工作空间。
+3. **ROS2 算法层（Ubuntu 22.04 + Humble）**：`nexus_vision_localization`、`nexus_coord_transform`、`nexus_fusion_localization` 完成视觉、`tf2`、融合与评估。
+4. **ROS2 应用层**：`nexus_viz_dashboard` 与 `nexus_bringup` 管理 RViz2、rosbridge、`ros2 bag` 和演示启动。
 
 ## 接口原则
 
@@ -15,4 +13,4 @@
 - 所有位置默认使用米、时间使用 ROS 时间；禁止用到达时间替代采样时间而不作说明。
 - 每个节点 README 必须写输入、输出、参数、故障行为和验证命令。
 
-详细坐标约定见 `coordinate-frames.md`；接口表见 `interfaces.md`。
+Mcontroller 端保持官方 FreeRTOS/飞控闭环；ROS1 负责硬件兼容，ROS2 负责项目主线算法和展示。硬件接口基准见 `hardware-integration.md`；详细坐标约定见 `coordinate-frames.md`；接口表见 `interfaces.md`。当前 bridge 话题名是项目草案，必须先回放验证再固化。
