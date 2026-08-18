@@ -1,0 +1,22 @@
+# ROS2 / Python build outputs
+code/ros2_ws/build/
+code/ros2_ws/install/
+code/ros2_ws/log/
+**/__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Large or local-only experiment data
+data/raw/**
+data/interim/**
+data/processed/**
+experiments/runs/**/artifacts/
+*.bag
+*.db3
+*.mcap
+*.mp4
+*.mov
+
+# Keep directory contracts visible
+!.gitkeep

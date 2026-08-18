@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>模块选型图纸 · UWB+视觉融合定位系统</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Sans+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #0a1420;
+    --bg-panel: #0e1c2c;
+    --grid: rgba(120,180,255,0.07);
+    --line: rgba(140,190,255,0.16);
+    --ink: #e7eef7;
+    --sub: #8fa3ba;
+    --sub-dim: #5d7086;
+    --cyan: #4fd8e8;
+    --cyan-dim: rgba(79,216,232,0.12);
+    --amber: #f5b94d;
+    --amber-dim: rgba(245,185,77,0.12);
+    --green: #7ee0a8;
+    --green-dim: rgba(126,224,168,0.12);
+    --mono: 'JetBrains Mono', monospace;
+    --sans: 'IBM Plex Sans SC', 'IBM Plex Sans', sans-serif;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);font-family:var(--sans);}
+  body{
+    background-image:
+      linear-gradient(var(--grid) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+    background-size: 42px 42px;
+    background-attachment: fixed;
+  }
+  a{color:inherit;}
+  .wrap{max-width:1100px;margin:0 auto;padding:0 28px 120px;}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    padding:64px 0 40px;
+    border-bottom:1px solid var(--line);
+    margin-bottom:56px;
+  }
+  .eyebrow{
+    font-family:var(--mono);
+    font-size:12px;
+    letter-spacing:0.18em;
+    color:var(--cyan);
+    text-transform:uppercase;
+    margin-bottom:18px;
+    display:flex;align-items:center;gap:10px;
+  }
+  .eyebrow::before{
+    content:"";
+    width:22px;height:1px;background:var(--cyan);
+    display:inline-block;
+  }
+  h1{
+    font-family:var(--mono);
+    font-weight:800;
+    font-size:clamp(28px,4.2vw,46px);
+    line-height:1.15;
+    margin:0 0 18px;
+    letter-spacing:-0.01em;
+  }
+  h1 .accent{color:var(--cyan);}
+  .hero p.lede{
+    font-size:16px;
+    line-height:1.75;
+    color:var(--sub);
+    max-width:680px;
+    margin:0 0 30px;
+  }
+  .legend{
+    display:flex;
+    flex-wrap:wrap;
+    gap:12px;
+  }
+  .tag{
+    font-family:var(--mono);
+    font-size:12px;
+    padding:7px 12px;
+    border-radius:3px;
+    border:1px solid var(--line);
+    display:inline-flex;
+    align-items:center;
+    gap:7px;
+  }
+  .dot{width:7px;height:7px;border-radius:50%;display:inline-block;}
+  .tag.direct{background:var(--green-dim);border-color:rgba(126,224,168,0.35);}
+  .tag.direct .dot{background:var(--green);}
+  .tag.adapt{background:var(--cyan-dim);border-color:rgba(79,216,232,0.35);}
+  .tag.adapt .dot{background:var(--cyan);}
+  .tag.build{background:var(--amber-dim);border-color:rgba(245,185,77,0.35);}
+  .tag.build .dot{background:var(--amber);}
+
+  /* ---------- ARCHITECTURE DIAGRAM ---------- */
+  .diagram{
+    margin:0 0 64px;
+    border:1px solid var(--line);
+    border-radius:6px;
+    padding:36px 28px;
+    background:var(--bg-panel);
+    position:relative;
+    overflow-x:auto;
+  }
+  .diagram-title{
+    font-family:var(--mono);
+    font-size:11px;
+    letter-spacing:0.14em;
+    color:var(--sub-dim);
+    text-transform:uppercase;
+    margin-bottom:22px;
+  }
+  .flow{
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+    gap:0;
+    align-items:center;
+    min-width:760px;
+  }
+  .flow-col{display:flex;flex-direction:column;gap:14px;align-items:center;}
+  .node{
+    width:100%;
+    font-family:var(--mono);
+    font-size:12.5px;
+    text-align:center;
+    padding:12px 10px;
+    border-radius:4px;
+    border:1px solid var(--line);
+    line-height:1.4;
+  }
+  .node.src{color:var(--sub);border-style:dashed;}
+  .node.direct{background:var(--green-dim);border-color:rgba(126,224,168,0.4);color:var(--green);}
+  .node.adapt{background:var(--cyan-dim);border-color:rgba(79,216,232,0.4);color:var(--cyan);}
+  .node.build{background:var(--amber-dim);border-color:rgba(245,185,77,0.45);color:var(--amber);}
+  .arrow{
+    text-align:center;
+    color:var(--sub-dim);
+    font-size:18px;
+    font-family:var(--mono);
+  }
+
+  /* ---------- SECTIONS ---------- */
+  section.layer{margin-bottom:64px;}
+  .layer-head{
+    display:flex;
+    align-items:baseline;
+    gap:14px;
+    margin-bottom:6px;
+    border-bottom:1px solid var(--line);
+    padding-bottom:14px;
+  }
+  .layer-num{
+    font-family:var(--mono);
+    font-size:13px;
+    color:var(--sub-dim);
+  }
+  .layer-head h2{
+    font-family:var(--mono);
+    font-size:20px;
+    margin:0;
+    font-weight:700;
+  }
+  .layer-desc{
+    color:var(--sub);
+    font-size:14px;
+    margin:12px 0 26px;
+    max-width:720px;
+    line-height:1.7;
+  }
+
+  .cards{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(310px,1fr));
+    gap:16px;
+  }
+  .card{
+    border:1px solid var(--line);
+    background:var(--bg-panel);
+    border-radius:6px;
+    padding:20px 22px;
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+    transition:border-color .15s ease, transform .15s ease;
+  }
+  .card:hover{border-color:rgba(140,190,255,0.4);transform:translateY(-2px);}
+  .card-top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;}
+  .repo-name{
+    font-family:var(--mono);
+    font-size:14.5px;
+    font-weight:700;
+    word-break:break-word;
+  }
+  .card p{
+    font-size:13.5px;
+    line-height:1.7;
+    color:var(--sub);
+    margin:0;
+  }
+  .card-foot{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-top:auto;
+    padding-top:10px;
+  }
+  .link-btn{
+    font-family:var(--mono);
+    font-size:12px;
+    color:var(--cyan);
+    text-decoration:none;
+    border-bottom:1px solid rgba(79,216,232,0.4);
+    padding-bottom:1px;
+  }
+  .link-btn:hover{border-color:var(--cyan);}
+
+  /* ---------- BUILD-YOURSELF LIST ---------- */
+  .build-list{
+    border:1px solid rgba(245,185,77,0.35);
+    background:var(--amber-dim);
+    border-radius:6px;
+    padding:8px 0;
+  }
+  .build-item{
+    display:grid;
+    grid-template-columns:200px 1fr;
+    gap:18px;
+    padding:16px 24px;
+    border-bottom:1px solid rgba(245,185,77,0.18);
+  }
+  .build-item:last-child{border-bottom:none;}
+  .build-item .name{
+    font-family:var(--mono);
+    font-size:13.5px;
+    font-weight:700;
+    color:var(--amber);
+  }
+  .build-item .why{
+    font-size:13.5px;
+    line-height:1.7;
+    color:var(--ink);
+    opacity:0.85;
+  }
+
+  @media(max-width:680px){
+    .build-item{grid-template-columns:1fr;gap:6px;}
+    .flow{grid-template-columns:1fr;min-width:0;}
+    .arrow{transform:rotate(90deg);padding:4px 0;}
+  }
+
+  footer{
+    margin-top:80px;
+    padding-top:24px;
+    border-top:1px solid var(--line);
+    font-family:var(--mono);
+    font-size:12px;
+    color:var(--sub-dim);
+    line-height:1.9;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="hero">
+    <div class="eyebrow">module sourcing map v2 / 沙盘实测版 · 5cm精度冲刺</div>
+    <h1>能拿来就拿来，<span class="accent">自己只写"缝合"那部分</span></h1>
+    <p class="lede">
+      结合沙盘实拍照片更新：视觉方案从"机载单相机"升级为"复用沙盘四周三脚架的外部多相机阵列"，
+      这是把精度从10~20cm级拉到5cm级的关键改动，也新增了对应的多相机标定/三角测量模块。
+      下面按系统分层列出目前 GitHub 上比较成熟、可以直接接入 ROS2 工程的开源模块，
+      并标注每个模块的可迁移程度。最后单列"需要自己写"的部分——这些是现成项目覆盖不到、
+      也正是决定你们项目上限和答辩说服力的地方。
+    </p>
+    <div class="legend">
+      <span class="tag direct"><span class="dot"></span>可直接迁移 — clone 即用，几乎不改代码</span>
+      <span class="tag adapt"><span class="dot"></span>需少量适配 — 改版本/接口/参数即可</span>
+      <span class="tag build"><span class="dot"></span>需要自己写 — 没有现成项目，核心工作量</span>
+    </div>
+  </div>
+
+  <div class="diagram">
+    <div class="diagram-title">system data flow — 系统数据流</div>
+    <div class="flow" style="grid-template-columns:repeat(6,1fr); min-width:940px;">
+      <div class="flow-col">
+        <div class="node src">UWB 基站阵列<br>(绑沙盘四角三脚架)</div>
+        <div class="node src">外部多相机阵列<br>(复用现有三脚架，3~4台)</div>
+      </div>
+      <div class="arrow">→</div>
+      <div class="flow-col">
+        <div class="node direct">硬件驱动<br>(nlink_parser)</div>
+        <div class="node direct">多相机标定<br>(caliscope)</div>
+      </div>
+      <div class="arrow">→</div>
+      <div class="flow-col">
+        <div class="node adapt">解算算法对比<br>(trilateration /<br>Chan / Taylor)</div>
+        <div class="node direct">同步标签检测<br>(apriltag_ros ×N路)</div>
+      </div>
+      <div class="arrow">→</div>
+      <div class="flow-col">
+        <div class="node build">GDOP基站<br>布局优化<br><em>(自己写)</em></div>
+        <div class="node build">多视角三角测量<br>+置信度加权<br><em>(基于caliscope<br>二次开发)</em></div>
+      </div>
+      <div class="arrow">→</div>
+      <div class="flow-col">
+        <div class="node build">坐标标定 + tf2<br>统一世界坐标系<br>(沙盘地标定标)<br><em>(自己写)</em></div>
+        <div class="node adapt">融合核心<br>(robot_localization<br>EKF/UKF，视觉主导)</div>
+        <div class="node build">自适应权重 /<br>遮挡降级状态机<br><em>(自己写)</em></div>
+      </div>
+      <div class="arrow">→</div>
+      <div class="flow-col">
+        <div class="node adapt">RViz2 可视化</div>
+        <div class="node build">Web Dashboard<br>(基于 rosbridge)</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== UWB LAYER ===================== -->
+  <section class="layer">
+    <div class="layer-head">
+      <span class="layer-num">01</span>
+      <h2>UWB 定位层</h2>
+    </div>
+    <p class="layer-desc">硬件驱动直接决定能不能拿到原始测距/坐标数据，算法对比库直接支撑任务2的"精度比较"环节，不需要自己重新推导公式。</p>
+    <div class="cards">
+
+      <div class="card">
+        <div class="card-top">
+          <span class="repo-name">nooploop-dev/nlink_parser</span>
+          <span class="tag direct"><span class="dot"></span>可直接迁移</span>
+        </div>
+        <p>Nooploop 官方 UWB 驱动（LinkTrack 系列），C++ 编写，无需额外依赖库，串口通信直接解析成 ROS 消息。若学校提供的是 Nooploop 硬件，这是最省心的起点。</p>
+        <div class="card-foot"><a class="link-btn" href="https://github.com/nooploop-dev/nlink_parser" target="_blank">github.com/nooploop-dev/nlink_parser</a></div>
+      </div>
+
+      <div class="card">
+        <div class="card-top">
+          <span class="repo-name">nooploop-dev/nlink_parser2</span>
+          <span class="tag direct"><span class="dot"></span>可直接迁移 · 厂商官方</span>
+        </div>
+        <p><b>Nooploop 官方原生 ROS2 包</b>（不是社区移植版）。文档规范、topic设计清晰、支持LinkTrack全系列产品，构建流程标准。星数不高是因为这是小众设备商的专用驱动包，但厂商一手维护的可信度远高于个人开发者的移植版，建议优先用这个而不是第三方 ROS2 port。</p>
+        <div class="card-foot"><a class="link-btn" href="https://github.com/nooploop-dev/nlink_parser2" target="_blank">github.com/nooploop-dev/nlink_parser2</a></div>
+      </div>
+
+      <div class="card">
+        <div class="card-top">
+          <span class="repo-name">cliansang/uwb-tracking-ros</span>
+          <span class="tag direct"><span class="dot"></span>可直接迁移</span>
+        </div>
+        <p>如果硬件是 Decawave/Qorvo DWM1001 而不是 Nooploop，这个驱动更合适，而且自带一层卡尔曼滤波做平滑，RViz 可视化脚本也是现成的。</p>
+        <div class="card-foot"><a class="link-btn" href="https://github.com/cliansang/uwb-tracking-ros" target="_blank">github.com/cliansang/uwb-tracking-ros</a></div>
+      </div>
+
+      <div class="card">
+        <div class="card-top">
+          <span class="repo-name">cliansang/positioning-algorithms-for-uwb-matlab</span>
+          <span class="tag adapt"><span class="dot"></span>需少量适配</span>
+        </div>
+        <p><b>这个最关键</b>：作者用真实 UWB 硬件（不是仿真）实现并对比了三边定位、最小二乘、Taylor级数、EKF、UKF 五种算法，直接对应任务2的"算法精度比较"。MATLAB代码需要移植成 Python/C++ 节点，但算法逻辑不用自己重新推导。</p>
+        <div class="card-foot"><a class="link-btn" href="https://github.com/cliansang/positioning-algorithms-for-uwb-matlab" target="_blank">github.com/cliansang/positioning-algorithms-for-uwb-matlab</a></div>
+      </div>
+
+      <div class="card">
+        <div class="card-top">
+          <span class="repo-name">madfolio/Least-Squares-Trilateration</span>
+          <span class="tag direct"><span class="dot"></span>可直接迁移</span>
+        </div>
+        <p>用 scipy.optimize.least_squares 实现的最简三边定位，几十行代码，适合当 baseline 或者理解原理的起点，包在自己的 ROS2 节点里就能用。</p>
+        <div class="card-foot"><a class="link-btn" href="https://github.com/madfolio/Least-Squares-Trilateration" target="_blank">github.com/madfolio/Least-Squares-Trilateration</a></div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===================== VISION LAYER ===================== -->
+  <section class="layer">
+    <div class="layer-head">
+      <span class="layer-num">02</span>
+      <h2>视觉定位层</h2>
+    </div>
+    <p class="layer-desc">AprilTag / ArUco 的检测与位姿解算（PnP）都是非常成熟的开源领域。结合沙盘实测，视觉方案升级为"多相机阵列"，所以这里多了一个专门做<b>多相机标定+三角测量</b>的模块——它是把精度从单相机的10~20cm拉到5cm级的关键拼图。</p>
+    <div class="cards">
+
+      <div class="card" style="border-color:rgba(79,216,232,0.5);">
+        <div class="card-top">
+          <span class="repo-name">mprib/caliscope</span>
+          <span class="tag adapt"><span class="dot"></span>需适配 · 关键模块</span>
+        </div>
+        <p><b>专为动作捕捉工作流设计的多相机标定库</b>：自动求解每台相机的内参+相互之间的外参（位置关系），并把多路2D观测三角测量成精确3D坐标——链式立体估计，不要求所有相机同时看到目标。这正是"复用沙盘四周三脚架做多相机阵列"方案缺的那块拼图。是Python库，需要自己写一层把输出接入ROS2的tf2和融合节点。</p>
+        <div class="card-foot"><a class="link-btn" href="https://github.com/mprib/caliscope" target="_blank">github.com/mprib/caliscope</a></div>
+      </div>
+
+      <div class="card">
+        <div class="card-top">
+          <span class="repo-name">christianrauch/apriltag_ros</span>
+          <span class="tag direct"><span class="dot"></span>可直接迁移</span>
+        </div>
+        <p>ROS2 官方级 AprilTag 检测节点，订阅矫正后的图像+相机内参，直接发布标签位姿到 /tf，也支持组合节点(composable node)做零拷贝通信，性能更好。多相机方案里每台相机各起一个实例即可。</p>
+        <div class="card-foot"><a class="link-btn" href="https://github.com/christianrauch/apriltag_ros" target="_blank">github.com/christianrauch/apriltag_ros</a></div>
+      </div>
+
+      <div class="card">
+        <div class="card-top">
+          <span class="repo-name">JMU-ROBOTICS-VIVA/ros2_aruco</span>
+          <span class="tag direct"><span class="dot"></span>可直接迁移</span>
+        </div>
+        <p>基于 OpenCV 的 ArUco 检测 wrapper，自带命令行工具一键生成标签图片，输出所有检测到的标签 id + 位姿数组，非常适合快速搭演示场景。</p>
+        <div class="card-foot"><a class="link-btn" href="https://github.com/JMU-ROBOTICS-VIVA/ros2_aruco" target="_blank">github.com/JMU-ROBOTICS-VIVA/ros2_aruco</a></div>
+      </div>
+
+      <div class="card">
+        <div class="card-top">
+          <span class="repo-name">AIRLab-POLIMI/ros2-aruco-pose-estimation</span>
+          <span class="tag direct"><span class="dot"></span>可直接迁移</span>
+        </div>
+        <p>同时支持 RGB 和深度图像（如用 RealSense D435），深度信息能显著提升位姿精度，且支持同时检测多个标签，各自独立发布位姿，适合多目标场景。</p>
+        <div class="card-foot"><a class="link-btn" href="https://github.com/AIRLab-POLIMI/ros2-aruco-pose-estimation" target="_blank">github.com/AIRLab-POLIMI/ros2-aruco-pose-estimation</a></div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===================== FUSION LAYER ===================== -->
+  <section class="layer">
+    <div class="layer-head">
+      <span class="layer-num">03</span>
+      <h2>融合算法 &amp; 参考架构层</h2>
+    </div>
+    <p class="layer-desc">融合部分的核心建议：不要从零手写 EKF，用工业级现成包做基础融合，把精力放在"自适应权重"和"降级机制"这些现成包没有的创新点上。</p>
+    <div class="cards">
+
+      <div class="card">
+        <div class="card-top">
+          <span class="repo-name">cra-ros-pkg/robot_localization</span>
+          <span class="tag direct"><span class="dot"></span>可直接迁移 · 强烈推荐</span>
+        </div>
+        <p>ROS2 官方标准的多传感器非线性状态估计包（EKF/UKF 都有），任意数量传感器融合，只需要写 yaml 配置文件把 UWB 和视觉的 pose topic 接进去即可，<b>不需要自己实现滤波器</b>，是融合层的地基。</p>
+        <div class="card-foot"><a class="link-btn" href="https://github.com/cra-ros-pkg/robot_localization" target="_blank">github.com/cra-ros-pkg/robot_localization</a></div>
+      </div>
+
+      <div class="card">
+        <div class="card-top">
+          <span class="repo-name">maduwanthasl/ros2-ekf-localization</span>
+          <span class="tag adapt"><span class="dot"></span>参考学习</span>
+        </div>
+        <p>一个"从零手写"的教学级 EKF 实现（GPS+IMU 融合），代码简洁、有精度评估和可视化脚本。当你们要在 robot_localization 基础上做自适应权重这类定制逻辑时，看这个理解原理比看官方源码快。</p>
+        <div class="card-foot"><a class="link-btn" href="https://github.com/maduwanthasl/ros2-ekf-localization" target="_blank">github.com/maduwanthasl/ros2-ekf-localization</a></div>
+      </div>
+
+      <div class="card">
+        <div class="card-top">
+          <span class="repo-name">mfurkannargul/drone-...-uwb-camera</span>
+          <span class="tag adapt"><span class="dot"></span>强参考 · 需要移植</span>
+        </div>
+        <p>一个与你们项目几乎同构的本科毕业设计：无人机 UWB + 视觉（QR码）EKF融合定位，ROS1 + OpenCV。架构思路可以直接照搬，但代码是 ROS1，需要重写成 ROS2 节点。</p>
+        <div class="card-foot"><a class="link-btn" href="https://github.com/mfurkannargul/drone-localization-ros-opencv-extended-kalman-filter-uwb-sensor-onboard-camera" target="_blank">查看仓库 →</a></div>
+      </div>
+
+      <div class="card">
+        <div class="card-top">
+          <span class="repo-name">ASIG-X/SFUISE2</span>
+          <span class="tag build"><span class="dot"></span>进阶参考 · 难度较高</span>
+        </div>
+        <p>UWB+IMU 连续时间样条融合框架的 ROS2 版本，比 EKF 更前沿（因子图/优化类方法）。如果团队有余力冲刺"创新点"，可以参考其时间同步和状态估计思路，但直接照搬难度较高，建议只作为思路参考。</p>
+        <div class="card-foot"><a class="link-btn" href="https://github.com/ASIG-X/SFUISE2" target="_blank">github.com/ASIG-X/SFUISE2</a></div>
+      </div>
+
+      <div class="card">
+        <div class="card-top">
+          <span class="repo-name">RobotWebTools/rosbridge_suite</span>
+          <span class="tag direct"><span class="dot"></span>可直接迁移</span>
+        </div>
+        <p>官方维护、有正式 ros2 分支，一键起 WebSocket 服务把 ROS2 话题暴露给浏览器。你们的 Web Dashboard 前端页面要自己写，但"前端如何拿到实时定位数据"这层桥接直接用它，不用自己写通信协议。</p>
+        <div class="card-foot"><a class="link-btn" href="https://github.com/RobotWebTools/rosbridge_suite" target="_blank">github.com/RobotWebTools/rosbridge_suite</a></div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===================== BUILD YOURSELF ===================== -->
+  <section class="layer">
+    <div class="layer-head">
+      <span class="layer-num">04</span>
+      <h2>需要自己写的模块</h2>
+    </div>
+    <p class="layer-desc">这几块没有能直接拿来用的开源项目，因为都和你们具体的沙盘、硬件摆放、创新点强相关。这也是团队真正的工作量所在，也是答辩时能讲清楚"我们做了什么"的部分。</p>
+
+    <div class="build-list">
+      <div class="build-item">
+        <span class="name">UWB基站GDOP布局优化</span>
+        <span class="why">四个基站在沙盘四角的具体摆放位置要根据几何精度稀释度(GDOP)计算最优布局，这是针对你们沙盘具体尺寸的优化计算，没有现成工具，需要自己写一个基站位置优化脚本（可以用简单的网格搜索+GDOP公式）。</span>
+      </div>
+      <div class="build-item">
+        <span class="name">多相机置信度加权融合</span>
+        <span class="why">caliscope 能把多路相机三角测量成3D坐标，但"哪台相机看得更清楚就多信它一点"这种基于距离/视角/检测置信度的动态加权逻辑，需要自己在其输出基础上二次开发，这是把精度从10cm级压到5cm级的关键工程细节。</span>
+      </div>
+      <div class="build-item">
+        <span class="name">坐标标定 + tf2 统一变换</span>
+        <span class="why">UWB坐标系、多相机阵列坐标系、沙盘世界坐标系三者的标定和刚体变换求解，是针对你们具体沙盘（利用路口/建筑地标做标定点）的物理测量+标定脚本，开源项目不会覆盖这种场地特定的标定流程。</span>
+      </div>
+      <div class="build-item">
+        <span class="name">自适应融合权重</span>
+        <span class="why">robot_localization 默认用固定协方差矩阵，你们要做"根据UWB测距残差/视觉重投影误差动态调整权重，且视觉可见时以视觉为主导"，需要在其基础上写自定义融合节点或替换协方差更新逻辑。</span>
+      </div>
+      <div class="build-item">
+        <span class="name">遮挡/NLOS 降级状态机</span>
+        <span class="why">视觉丢失目标时切UWB、UWB多径异常时用视觉修正——这个状态判断和切换逻辑没有现成模块，需要自己写一个监控节点。</span>
+      </div>
+      <div class="build-item">
+        <span class="name">Web Dashboard 前端页面</span>
+        <span class="why">rosbridge解决了"数据怎么传到浏览器"，但页面本身（实时坐标、误差曲线、热力图的UI设计）要自己用HTML/JS或React写。</span>
+      </div>
+      <div class="build-item">
+        <span class="name">精度评估与统计脚本</span>
+        <span class="why">RMSE、CEP50/95、误差热力图这些针对你们测试点位设计的评估代码，需要自己写数据后处理脚本（可以参考 ros2-ekf-localization 里的评估思路）。</span>
+      </div>
+      <div class="build-item">
+        <span class="name">全系统集成 launch 文件</span>
+        <span class="why">把以上所有模块（驱动、检测、融合、可视化）串成一套能一键启动的 ROS2 launch 文件和参数配置，这是把"缝合"落到工程上的最后一步，必须自己做。</span>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    整理时间：2026-08 · 所有链接均为公开 GitHub 仓库，使用前请检查各仓库的 License 是否允许你们的使用场景（多数为 BSD/MIT/GPL，学校项目/答辩演示一般没有问题，如需公开发布或商用请再核实一次）。<br>
+    质量核实：本表已实测核对各仓库的 star 数/提交记录/维护状态（详见对话记录），标"可直接迁移"的均为官方包或百星以上活跃项目；曾有一个社区移植版（T2HOPETECHNIK/nlink_parser_ros2，11星、无release、README自述WIP）经核实质量不足，已替换为 Nooploop 官方原生 ROS2 包。开发前建议团队自己也抽查一遍最近的 issue/commit，不要完全依赖这份列表。
+  </footer>
+
+</div>
+</body>
+</html>
