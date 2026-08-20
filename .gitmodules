@@ -5,7 +5,7 @@
 	path = code/ros2_ws/src/apriltag_ros
 	url = https://github.com/christianrauch/apriltag_ros.git
 [submodule "rosbridge_suite"]
-	path = code/ros2_ws/src/rosbridge_suite
+	path = code/third_party/rosbridge_suite
 	url = https://github.com/RobotWebTools/rosbridge_suite.git
 [submodule "uwb_tracking_ros"]
 	path = code/analysis/uwb/third_party/uwb_tracking_ros
