@@ -4,14 +4,14 @@ import math
 import cv2
 import numpy as np
 import rclpy
-from cv_bridge import CvBridge
+from apriltag_msgs.msg import AprilTagDetectionArray
 from geometry_msgs.msg import Pose
 from rclpy.node import Node
-from sensor_msgs.msg import CameraInfo, Image
+from sensor_msgs.msg import CameraInfo
 
 from nexus_msgs.msg import TargetObservation
 
-from .detector import detect_aruco_markers, reprojection_error, solve_marker_pose
+from .detector import reprojection_error, solve_marker_pose
 
 
 def rotation_matrix_to_quaternion(matrix):
@@ -39,27 +39,32 @@ class VisionLocalizationNode(Node):
         super().__init__("nexus_vision_localization")
         self.declare_parameter("marker_size_m", 0.0)
         self.declare_parameter("camera_frame", "camera")
-        self.declare_parameter("target_prefix", "target")
-        self.declare_parameter("dictionary", "DICT_4X4_50")
+        self.declare_parameter("target_id", "target_0")
+        self.declare_parameter("tag_id", 0)
+        self.declare_parameter("tag_family", "36h11")
         self.declare_parameter("default_confidence", 0.0)
-        self._bridge = CvBridge()
         self._camera_matrix = None
         self._distortion = None
+        self._camera_info_stamp_ns = None
+        self._camera_info_frame = ""
         self._camera_frame = str(self.get_parameter("camera_frame").value)
         self._marker_size = float(self.get_parameter("marker_size_m").value)
-        self._target_prefix = str(self.get_parameter("target_prefix").value)
-        self._dictionary = str(self.get_parameter("dictionary").value)
+        self._target_id = str(self.get_parameter("target_id").value)
+        self._tag_id = int(self.get_parameter("tag_id").value)
+        self._tag_family = str(self.get_parameter("tag_family").value)
         self._confidence = float(self.get_parameter("default_confidence").value)
         self._publisher = self.create_publisher(TargetObservation, "/nexus/vision/target_observation", 10)
         self.create_subscription(CameraInfo, "~/camera_info", self._camera_info_callback, 10)
-        self.create_subscription(Image, "~/image", self._image_callback, 10)
+        self.create_subscription(AprilTagDetectionArray, "~/detections", self._detections_callback, 10)
         if self._marker_size <= 0:
-            self.get_logger().error("marker_size_m must be set to a positive real camera marker size")
-        self.get_logger().warning("waiting for camera_info and image input; no sensor source is synthesized")
+            self.get_logger().error("marker_size_m must be set to the measured positive AprilTag edge length")
+        self.get_logger().warning("waiting for camera_info and AprilTag detections; no sensor source is synthesized")
 
     def _camera_info_callback(self, message):
         self._camera_matrix = np.asarray(message.k, dtype=float).reshape(3, 3)
         self._distortion = np.asarray(message.d, dtype=float)
+        self._camera_info_stamp_ns = message.header.stamp.sec * 1_000_000_000 + message.header.stamp.nanosec
+        self._camera_info_frame = message.header.frame_id
         try:
             from .detector import validate_camera_parameters
             validate_camera_parameters(self._camera_matrix, self._distortion)
@@ -67,53 +72,59 @@ class VisionLocalizationNode(Node):
             self.get_logger().error(str(error))
             self._camera_matrix = None
 
-    def _image_callback(self, message):
+    def _detections_callback(self, message):
         if message.header.stamp.sec == 0 and message.header.stamp.nanosec == 0:
-            self.get_logger().error("rejecting image with an unset sample timestamp")
+            self.get_logger().error("rejecting AprilTag detections with an unset sample timestamp")
             return
         if self._camera_matrix is None or self._distortion is None:
-            self.get_logger().error("waiting for valid camera_info before processing images")
+            self.get_logger().error("waiting for valid camera_info before processing AprilTag detections")
+            return
+        detection_stamp_ns = message.header.stamp.sec * 1_000_000_000 + message.header.stamp.nanosec
+        if self._camera_info_stamp_ns != detection_stamp_ns:
+            self.get_logger().error("rejecting AprilTag detections without same-timestamp camera_info")
+            return
+        if self._camera_info_frame and message.header.frame_id and self._camera_info_frame != message.header.frame_id:
+            self.get_logger().error("rejecting AprilTag detections with camera_info frame mismatch")
             return
         if self._marker_size <= 0:
             return
+        matching = [
+            detection for detection in message.detections
+            if detection.id == self._tag_id and detection.family == self._tag_family
+        ]
+        if not matching:
+            self.get_logger().warning("no configured AprilTag detected")
+            return
+        detection = matching[0]
+        corners = [[corner.x, corner.y] for corner in detection.corners]
         try:
-            image = self._bridge.imgmsg_to_cv2(message, desired_encoding="mono8")
-            markers = detect_aruco_markers(image, self._dictionary)
-        except (RuntimeError, ValueError, cv2.error) as error:
-            self.get_logger().error(f"target detector unavailable or failed: {error}")
+            rotation, translation = solve_marker_pose(
+                corners, self._camera_matrix, self._distortion, self._marker_size)
+            error = reprojection_error(
+                corners, self._camera_matrix, self._distortion,
+                rotation, translation, self._marker_size)
+        except ValueError as exc:
+            self.get_logger().warning(f"rejecting AprilTag {detection.id}: {exc}")
             return
-        if not markers:
-            self.get_logger().warning("no target marker detected in image")
-            return
-        for marker_id, corners in markers:
-            try:
-                rotation, translation = solve_marker_pose(
-                    corners, self._camera_matrix, self._distortion, self._marker_size)
-                error = reprojection_error(
-                    corners, self._camera_matrix, self._distortion,
-                    rotation, translation, self._marker_size)
-            except (ValueError, cv2.error) as exc:
-                self.get_logger().warning(f"rejecting marker {marker_id}: {exc}")
-                continue
-            rotation_matrix, _ = cv2.Rodrigues(rotation)
-            quaternion = rotation_matrix_to_quaternion(rotation_matrix)
-            output = TargetObservation()
-            output.header = message.header
-            output.header.frame_id = message.header.frame_id or self._camera_frame
-            output.target_id = f"{self._target_prefix}_{marker_id}"
-            output.source_mode = TargetObservation.SOURCE_DIRECT_VISION
-            output.pose = Pose()
-            output.pose.position.x = float(translation[0])
-            output.pose.position.y = float(translation[1])
-            output.pose.position.z = float(translation[2])
-            output.pose.orientation.x = float(quaternion[0])
-            output.pose.orientation.y = float(quaternion[1])
-            output.pose.orientation.z = float(quaternion[2])
-            output.pose.orientation.w = float(quaternion[3])
-            output.covariance = [float("nan")] * 36
-            output.confidence = float(max(0.0, min(1.0, self._confidence)))
-            self._publisher.publish(output)
-            self.get_logger().debug(f"target {output.target_id} reprojection_error_px={error:.3f}")
+        rotation_matrix, _ = cv2.Rodrigues(rotation)
+        quaternion = rotation_matrix_to_quaternion(rotation_matrix)
+        output = TargetObservation()
+        output.header = message.header
+        output.header.frame_id = message.header.frame_id or self._camera_frame
+        output.target_id = self._target_id
+        output.source_mode = TargetObservation.SOURCE_DIRECT_VISION
+        output.pose = Pose()
+        output.pose.position.x = float(translation[0])
+        output.pose.position.y = float(translation[1])
+        output.pose.position.z = float(translation[2])
+        output.pose.orientation.x = float(quaternion[0])
+        output.pose.orientation.y = float(quaternion[1])
+        output.pose.orientation.z = float(quaternion[2])
+        output.pose.orientation.w = float(quaternion[3])
+        output.covariance = [float("nan")] * 36
+        output.confidence = float(max(0.0, min(1.0, self._confidence)))
+        self._publisher.publish(output)
+        self.get_logger().debug(f"target {output.target_id} reprojection_error_px={error:.3f}")
 
 
 def main(args=None):

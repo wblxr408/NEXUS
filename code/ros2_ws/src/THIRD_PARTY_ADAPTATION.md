@@ -1,6 +1,6 @@
 # ROS2 第三方模块适配说明
 
-本说明只定义将来适配边界，不修改 `apriltag_ros/` 或 `rosbridge_suite/` 的上游源码。
+本说明只定义将来适配边界，不修改 `apriltag_ros/` 或 `rosbridge_suite/` 的上游源码。`apriltag_ros/` 是首版视觉工作空间依赖；`../../third_party/rosbridge_suite/` 保留为浏览器数据出口的上游参考，不纳入项目自有工作空间的默认构建。
 
 ## `apriltag_ros`
 
@@ -12,8 +12,8 @@
 
 ## `rosbridge_suite`
 
-当前状态：直接下载，尚未加入 `colcon` 构建或对浏览器开放端口。
+当前状态：直接下载在 `code/third_party/rosbridge_suite/`，未加入项目工作空间构建或对浏览器开放端口。其当前上游提交面向较新 ROS2 发行版，不能用它的测试结果代表 Humble 兼容性。
 
 启用前确认：ROS2 Humble 与上游当前依赖兼容；Dashboard 的访问网络和端口策略已确定；只暴露获准的话题。
 
-将来只在 `nexus_viz_dashboard` 的启动和网页配置中适配：订阅并展示 `/nexus/target/pose`、来源、时间延迟和带运行编号的评估结果；设置允许的主题白名单。不得在 rosbridge 或浏览器端实现坐标变换、融合、指标计算，也不得展示规划精度为实测值。
+将来只在 `nexus_viz_dashboard` 的启动和网页配置中适配：使用经 Humble 验证的系统包或另行记录的兼容上游提交，订阅并展示 `/nexus/target/pose`、来源、时间延迟和带运行编号的评估结果；设置允许的主题白名单。不得在 rosbridge 或浏览器端实现坐标变换、融合、指标计算，也不得展示规划精度为实测值。

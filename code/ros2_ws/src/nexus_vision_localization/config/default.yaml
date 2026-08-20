@@ -2,6 +2,7 @@ nexus_vision_localization:
   ros__parameters:
     marker_size_m: 0.0
     camera_frame: camera
-    target_prefix: target
-    dictionary: DICT_4X4_50
+    target_id: target_0
+    tag_id: 0
+    tag_family: 36h11
     default_confidence: 0.0

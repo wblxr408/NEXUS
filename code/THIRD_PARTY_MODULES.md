@@ -8,7 +8,7 @@
 |---|---|---|---|---|
 | `fancinnov/fcu_core` | `ros1_ws/src/fcu_core_external/fcu_core` | `14e228c63cfe2bbdecebda8c4f1fc259f295e0aa` | 上游未见许可证文件，使用/分发前须向维护方确认 | 官方 ROS1 硬件基线 |
 | `christianrauch/apriltag_ros` | `ros2_ws/src/apriltag_ros` | `beffb4c73bdd04fb6347d612e3306f75bb06c7e7` | MIT | ROS2 AprilTag 检测候选 |
-| `RobotWebTools/rosbridge_suite` | `ros2_ws/src/rosbridge_suite` | `aa9a7a33ddb3b1b45ddd6d2eead4c3d5eb800b14` | BSD-3-Clause | ROS2 浏览器数据出口 |
+| `RobotWebTools/rosbridge_suite` | `third_party/rosbridge_suite` | `aa9a7a33ddb3b1b45ddd6d2eead4c3d5eb800b14` | BSD-3-Clause | ROS2 浏览器数据出口（不纳入项目自有工作空间构建） |
 | `cliansang/uwb-tracking-ros` | `analysis/uwb/third_party/uwb_tracking_ros` | `046a757bcf60b3a952f7724b5ee73f28e6a5d5b5` | MIT | 原始 UWB 数据的参考，不接入飞控链路 |
 | `madfolio/Least-Squares-Trilateration` | `analysis/uwb/third_party/least_squares_trilateration` | `e112b8d3356b271843d5ee667e928cc4056a5f4d` | 上游未见许可证文件，使用/分发前须确认 | 原始测距离线基线 |
 | `cliansang/positioning-algorithms-for-uwb-matlab` | `analysis/uwb/third_party/positioning_algorithms_for_uwb_matlab` | `2c24c478ae0c317840fec1c29631c15dbe29a630` | MIT | 原始测距离线算法参考 |

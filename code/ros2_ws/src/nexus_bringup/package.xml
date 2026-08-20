@@ -11,6 +11,7 @@
   <exec_depend>launch_ros</exec_depend>
   <exec_depend>rclpy</exec_depend>
   <exec_depend>nexus_vision_localization</exec_depend>
+  <exec_depend>apriltag_ros</exec_depend>
   <exec_depend>nexus_coord_transform</exec_depend>
   <exec_depend>nexus_fusion_localization</exec_depend>
   <exec_depend>nexus_viz_dashboard</exec_depend>
