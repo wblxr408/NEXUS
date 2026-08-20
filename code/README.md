@@ -15,3 +15,13 @@
 `nexus_fcu_bridge` 位于 `ros1_ws`；其余自研 ROS 包位于 `ros2_ws`。职责与 `docs/architecture/README.md` 一致。
 
 先复用并验证幻思官方 `fcu_core`，再写包 README 和接口；每个自有包应有 `config/`、`launch/`、`src/`、`test/`，参数不得散落在源码中。ROS1 侧使用 `roslaunch`、`rosbag`、`catkin_make`；ROS2 侧使用 `ros2 launch`、`ros2 bag`、`colcon build`。两侧只通过明确的 bridge 接口通信，不要求每个包同时支持两套 ROS。
+
+## 第三方源码
+
+开源模块以 Git submodule 固定版本，不复制进项目自有包。首次取得本仓库后执行：
+
+```bash
+git submodule update --init --recursive
+```
+
+模块位置、固定提交、许可证和适配边界见 [`THIRD_PARTY_MODULES.md`](THIRD_PARTY_MODULES.md)。

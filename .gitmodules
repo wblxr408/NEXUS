@@ -1,0 +1,21 @@
+[submodule "fcu_core"]
+	path = code/ros1_ws/src/fcu_core_external/fcu_core
+	url = https://github.com/fancinnov/fcu_core.git
+[submodule "apriltag_ros"]
+	path = code/ros2_ws/src/apriltag_ros
+	url = https://github.com/christianrauch/apriltag_ros.git
+[submodule "rosbridge_suite"]
+	path = code/ros2_ws/src/rosbridge_suite
+	url = https://github.com/RobotWebTools/rosbridge_suite.git
+[submodule "uwb_tracking_ros"]
+	path = code/analysis/uwb/third_party/uwb_tracking_ros
+	url = https://github.com/cliansang/uwb-tracking-ros.git
+[submodule "least_squares_trilateration"]
+	path = code/analysis/uwb/third_party/least_squares_trilateration
+	url = https://github.com/madfolio/Least-Squares-Trilateration.git
+[submodule "positioning_algorithms_for_uwb_matlab"]
+	path = code/analysis/uwb/third_party/positioning_algorithms_for_uwb_matlab
+	url = https://github.com/cliansang/positioning-algorithms-for-uwb-matlab.git
+[submodule "caliscope"]
+	path = code/analysis/calibration/third_party/caliscope
+	url = https://github.com/mprib/caliscope.git
