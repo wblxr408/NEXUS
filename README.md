@@ -17,6 +17,7 @@
 - `code/ros1_ws/`：Ubuntu 20.04 + ROS1 Noetic，运行幻思 `fcu_core` 和硬件桥接。
 - `code/ros2_ws/`：Ubuntu 22.04 + ROS2 Humble，运行自研视觉、坐标、融合、评估和 RViz2。
 - 两套环境通过 ROS1-ROS2 bridge 连接；Windows 目录只作为仓库编辑/备份副本，真实构建在对应 Ubuntu 中进行。
+- 完整安装、下载与验证命令见 [Ubuntu 与 ROS 双环境配置教程](docs/2026-08-20_guide_dual_ubuntu_ros_environment_setup.md)。
 
 ## 目录速览
 

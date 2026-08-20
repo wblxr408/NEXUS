@@ -24,6 +24,7 @@
 - [实施规划书](<无人机高精度目标定位项目规划 (2).md>)：已按幻思硬件资料修订的方案与四周计划。
 - [完整执行步骤](2026-08-19_plan_project_execution_steps.md)：按前置依赖排列从范围定义、软件骨架、硬件接入、标定、实验到答辩交付的实际顺序。
 - [执行步骤详细指导](2026-08-19_guide_project_execution_steps_detailed.md)：逐步说明每阶段的准备、决策、可复用模块、自研边界、产出和验收条件，不展开具体实现。
+- [Ubuntu 与 ROS 双环境配置教程](2026-08-20_guide_dual_ubuntu_ros_environment_setup.md)：Ubuntu 22.04 + ROS 2 Humble 算法主机、Ubuntu 20.04 + ROS 1 Noetic 硬件兼容主机的下载、安装、构建和验证步骤。
 - [12 份独立步骤指导](project_steps/)：每个项目步骤单独成文，便于分工、评审和逐项验收。
 - [实体沙盘世界坐标系标定方案](2026-08-19_plan_sandbox_world_frame_calibration.md)：定义 `map`、测量基准点、相机/UWB 外参和独立验证方法。
 - [模块选型图](<module-map (1).html>)：开源模块和“需要自己写”的边界，使用前需自行验证版本与许可证。
