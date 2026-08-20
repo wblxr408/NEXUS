@@ -10,3 +10,4 @@
 
 - [ADR-001：采用双 ROS 分层与幻思官方 fcu_core 硬件基线](2026-08-18_ADR-001_fanci-hardware-ros-baseline.md)
 - [ADR-002：固定外部目标定位范围与演示验收边界](2026-08-18_ADR-002_target-localization-scope.md)
+- [ADR-003：将液态神经网络限定为可选融合增强方案](2026-08-20_ADR-003_lnn_optional_fusion_enhancement.md)
