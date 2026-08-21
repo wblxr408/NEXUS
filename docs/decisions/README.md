@@ -13,3 +13,4 @@
 - [ADR-003：将液态神经网络限定为可选融合增强方案](2026-08-20_ADR-003_lnn_optional_fusion_enhancement.md)
 - [ADR-004：首版视觉标记采用 AprilTag 36h11](2026-08-20_ADR-004_apriltag_first_version_marker.md)
 - [ADR-005：冻结硬件到货前接口与坐标契约 V1](2026-08-20_ADR-005_pre_hardware_interface_coordinate_contract.md)
+- [ADR-006：目标观测契约 V2 与实时坐标链](2026-08-21_ADR-006_target_observation_contract_v2.md)

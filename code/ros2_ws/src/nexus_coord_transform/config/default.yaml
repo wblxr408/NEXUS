@@ -1,3 +1,9 @@
 nexus_coord_transform:
   ros__parameters:
     transform_file: ""
+    target_frame: map
+    transform_timeout_ms: 100.0
+    vision_input_topic: /nexus/vision/target_observation
+    vision_output_topic: /nexus/vision/map_target_observation
+    uwb_input_topic: /nexus/uwb/raw_target_observation
+    uwb_output_topic: /nexus/uwb/target_observation

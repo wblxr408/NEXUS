@@ -16,7 +16,7 @@ class DashboardNode(Node):
         self._observation_marker_pub = self.create_publisher(Marker, "/nexus/viz/target_observation", 10)
         self._target_marker_pub = self.create_publisher(Marker, "/nexus/viz/target_pose", 10)
         self.create_subscription(Odometry, "/nexus/fcu/odom", self._platform_callback, 10)
-        self.create_subscription(TargetObservation, "/nexus/vision/target_observation", self._observation_callback, 10)
+        self.create_subscription(TargetObservation, "/nexus/vision/map_target_observation", self._observation_callback, 10)
         self.create_subscription(TargetObservation, "/nexus/target/pose", self._callback, 10)
         self.create_timer(1.0, self._report)
 
@@ -28,6 +28,11 @@ class DashboardNode(Node):
 
     def _observation_callback(self, message):
         self._last_observation = message
+        if message.validity != TargetObservation.VALIDITY_VALID:
+            self.get_logger().warning(
+                f"vision target invalid reason={message.invalid_reason} "
+                f"last_valid_sample_ns={message.last_valid_sample_timestamp_ns}")
+            return
         self._publish_marker(message, self._observation_marker_pub, (1.0, 0.7, 0.0))
 
     def _publish_marker(self, message, publisher, color):
@@ -48,10 +53,16 @@ class DashboardNode(Node):
             self.get_logger().info("no target pose received; waiting for real input")
             return
         message = self._last_target
+        if message.validity != TargetObservation.VALIDITY_VALID:
+            self.get_logger().warning(
+                f"target pose invalid reason={message.invalid_reason} "
+                f"last_valid_sample_ns={message.last_valid_sample_timestamp_ns}")
+            return
         self._publish_marker(message, self._target_marker_pub, (0.0, 1.0, 0.2))
         self.get_logger().info(
             f"target={message.target_id} frame={message.header.frame_id} "
             f"source={message.source_mode} confidence={message.confidence:.3f} "
+            f"unit={message.unit} receive_timestamp_ns={message.receive_timestamp_ns} "
             f"position=({message.pose.position.x:.3f}, {message.pose.position.y:.3f}, {message.pose.position.z:.3f})"
         )
 
@@ -61,6 +72,13 @@ def main(args=None):
     node = DashboardNode()
     try:
         rclpy.spin(node)
+    except KeyboardInterrupt:
+        pass
     finally:
         node.destroy_node()
-        rclpy.shutdown()
+        if rclpy.ok():
+            rclpy.shutdown()
+
+
+if __name__ == "__main__":
+    main()

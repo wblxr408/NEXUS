@@ -16,14 +16,24 @@ class Observation:
     confidence: float
     source_mode: int
     orientation_xyzw: np.ndarray
+    receive_timestamp_ns: int = 0
+    validity: int = 1
+    invalid_reason: str = ""
+    unit: str = "m"
 
 
 def validate_observation(observation, expected_frame):
+    if observation.validity != 1 or observation.invalid_reason:
+        return False
+    if observation.unit != "m":
+        return False
     if not observation.target_id:
         return False
     if not expected_frame or observation.frame_id != expected_frame:
         return False
     if observation.stamp_ns <= 0:
+        return False
+    if observation.receive_timestamp_ns < observation.stamp_ns:
         return False
     if observation.source_mode not in VALID_SOURCE_MODES:
         return False
@@ -54,7 +64,8 @@ def _effective_covariance(observation):
     return np.eye(3) / confidence
 
 
-def fuse_observations(observations, expected_frame, now_ns, max_age_ns):
+def fuse_observations(observations, expected_frame, now_ns, max_age_ns,
+                      max_pair_delta_ns=None):
     valid = [
         item for item in observations
         if validate_observation(item, expected_frame)
@@ -64,6 +75,12 @@ def fuse_observations(observations, expected_frame, now_ns, max_age_ns):
         return None
     target_id = valid[0].target_id
     valid = [item for item in valid if item.target_id == target_id]
+    degraded_reason = ""
+    if (len(valid) > 1 and max_pair_delta_ns is not None
+            and max(item.stamp_ns for item in valid) - min(item.stamp_ns for item in valid)
+            > max_pair_delta_ns):
+        valid = [max(valid, key=lambda item: item.stamp_ns)]
+        degraded_reason = "unsynchronized_sources"
     if len(valid) == 1:
         item = valid[0]
         return {
@@ -75,6 +92,7 @@ def fuse_observations(observations, expected_frame, now_ns, max_age_ns):
             "confidence": float(item.confidence),
             "source_mode": item.source_mode,
             "orientation_xyzw": item.orientation_xyzw.copy(),
+            "degraded_reason": degraded_reason,
         }
     information = np.zeros((3, 3))
     information_vector = np.zeros(3)
@@ -94,4 +112,5 @@ def fuse_observations(observations, expected_frame, now_ns, max_age_ns):
         "confidence": float(max(item.confidence for item in valid)),
         "source_mode": 4,
         "orientation_xyzw": best.orientation_xyzw.copy(),
+        "degraded_reason": "",
     }

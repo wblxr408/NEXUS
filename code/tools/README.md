@@ -4,4 +4,6 @@
 
 `nexus_channel_contract.py` 和 `channel_contract_cli.py` 只定义并校验传输无关的 ROS1/ROS2 envelope；当前不打开网络、不解析 MAVLink，也不决定最终 bridge 传输方式。
 
-目标观测 envelope payload 的最小字段是 `target_id`、米制 `unit`、位置协方差和 0–1 置信度；序号连续性通过 `validate_sequence` 检查，采样时间、frame、schema 版本和来源模式非法时拒绝。
+目标观测 envelope payload 的最小字段是 `target_id`、米制 `unit`、位置协方差和 0–1 置信度；序号连续性通过 `validate_sequence` 检查，时效通过调用方冻结阈值后的 `validate_freshness` 检查；采样/接收时间、frame、schema 版本、有效性和来源模式非法时拒绝。
+
+`measurement_export_cli.py` 将 ROS1 bag、ROS2 bag 或飞控 SD CSV 导出为统一 CSV。ROS1 bag 转换必须在有 `rostopic` 的 Noetic 主机运行；ROS2 bag 使用 `rosbag2_py`。输入列映射仍需在硬件首日按厂商实际 SD 表头确认，未知 frame 保持 `TBD`，不能猜测为 `map`。

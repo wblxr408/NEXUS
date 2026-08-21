@@ -1,0 +1,7 @@
+# This file deliberately contains no physical sandbox transform.
+# After hardware arrival, copy it into an experiment/calibration run and fill
+# measured values there. Do not commit guessed map origins or camera extrinsics.
+calibration_version: "1.0"
+data_status: "tbd_until_hardware_calibration"
+map_definition: "TBD: physical origin and +x/+y reference points"
+transforms: []
