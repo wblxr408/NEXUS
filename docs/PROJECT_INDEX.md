@@ -51,3 +51,5 @@
 ## 当前未决项
 
 目标的物理形态与运动状态、UWB 标签安装对象、相机视角与数量、视觉输入接口、时间同步方式、跨 ROS 信息通道、真值测量方法和最终融合实现仍需通过决策记录确认；Mcontroller V7、FanciSwarm UWB 四基站、UM982、ROS Noetic/fcu_core 与 ROS2 Humble 的分层角色已确定。在确认前使用 `TBD`，不得在代码中写死。
+
+上述未决项对应的具体提问、提问对象和阻塞关系见 `docs/2026-08-23_checklist_open_questions_advisor_and_vendor.md`。该清单只登记问题，不预设答案；答复后按需新增决策记录。

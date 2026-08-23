@@ -30,6 +30,7 @@
 - [模块选型图](<module-map (1).html>)：开源模块和“需要自己写”的边界，使用前需自行验证版本与许可证。
 - [系统架构](architecture/README.md)：ROS1 硬件层、ROS1-ROS2 bridge、ROS2 算法层、坐标系和接口草案。
 - [幻思硬件接口基准](architecture/hardware-integration.md)：官网核对后的硬件、通信和验收边界。
+- [待确认问题清单：赛事方与硬件厂商](2026-08-23_checklist_open_questions_advisor_and_vendor.md)：开学后需向指导老师与幻思逐项确认的阻塞事实，含答案对各执行步骤的影响。
 - [项目记录](records/README.md)：日记录、会议、问题和证据索引。
 - [答辩材料规则](../defense/README.md)：PPT、报告、演示和 Q&A 的归档位置。
 
