@@ -38,7 +38,7 @@
 
 实体沙盘坐标标定：`docs/2026-08-19_plan_sandbox_world_frame_calibration.md`。该方案把沙盘物理基准点建立为 `map`，再分别求相机、UWB 和目标外参，并使用独立验证点检查结果。
 
-可复用算法、公开源码与论文的筛选清单：`docs/2026-08-24_research_reusable_localization_algorithms.md`。它只列候选与接入条件，不包含本项目精度结论。
+可复用算法、公开源码与论文的筛选清单：`docs/2026-08-24_research_reusable_localization_algorithms.md`；无标签视觉目标定位补充检索：`docs/2026-08-24_research_markerless_visual_target_localization.md`。两者只列候选与接入条件，不包含本项目精度结论。
 
 复现上述算法所需的相机、IMU、UWB、时间同步和树莓派/地面端接口验收清单：`docs/2026-08-24_checklist_algorithm_reproduction_hardware_interfaces.md`。
 
