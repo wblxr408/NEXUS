@@ -13,7 +13,7 @@
 
 ## 不可混淆的边界
 
-- `docs/decisions/2026-08-18_ADR-002_target-localization-scope.md`：当前赛题对象与验收边界；被定位对象是无人机之外的目标，优先级高于旧规划中把目标位姿等同于无人机位姿或默认回传飞控的表述。
+- `docs/decisions/2026-08-24_ADR-007_dual_subject_iterative_localization.md`：当前定位对象与测量模型边界；UWB 定位无人机自身，机载视觉定位无人机之外的目标，两条链路在统一坐标系中迭代。该决定对 ADR-002 的对象范围与待选模型部分具有优先级。
 - `docs/无人机高精度目标定位项目规划 (2).md`：按幻思资料修订后的规划，不等于完成情况。
 - `docs/module-map (1).html`：开源模块选型参考，使用前仍需记录版本、许可证和实际验证结果。
 - `docs/figures/`：沙盘参考图片，不是测量真值。
@@ -38,18 +38,20 @@
 
 实体沙盘坐标标定：`docs/2026-08-19_plan_sandbox_world_frame_calibration.md`。该方案把沙盘物理基准点建立为 `map`，再分别求相机、UWB 和目标外参，并使用独立验证点检查结果。
 
+可复用算法、公开源码与论文的筛选清单：`docs/2026-08-24_research_reusable_localization_algorithms.md`。它只列候选与接入条件，不包含本项目精度结论。
+
 ## 已确定的项目边界
 
-- 无人机是传感器、通信和计算平台，被定位对象是无人机之外的目标。
+- 无人机既是传感器、通信和计算平台，也是 UWB 定位对象；机载视觉定位无人机之外的目标。两类定位在统一坐标系中迭代，且不得混用 `base_link` 与 `target_link`。
 - ROS1 Noetic + 官方 `fcu_core` 是幻思硬件兼容层；ROS2 Humble 是赛题要求的二次自研层。
 - 两侧必须建立显式信息通道，但 ROS2 结果回传飞控不是首版必选项。
 - 视觉输入、目标世界坐标和真值测量由项目自定义。
 - 最终验收以 PPT 和有实验来源的演示视频为主，不要求现场实时飞行。
 
-完整决定见 `docs/decisions/2026-08-18_ADR-002_target-localization-scope.md`。
+完整决定见 `docs/decisions/2026-08-24_ADR-007_dual_subject_iterative_localization.md`；ADR-002 未被其覆盖的 ROS 分层、输出语义和证据边界继续有效。
 
 ## 当前未决项
 
-目标的物理形态与运动状态、UWB 标签安装对象、相机视角与数量、视觉输入接口、时间同步方式、跨 ROS 信息通道、真值测量方法和最终融合实现仍需通过决策记录确认；Mcontroller V7、FanciSwarm UWB 四基站、UM982、ROS Noetic/fcu_core 与 ROS2 Humble 的分层角色已确定。在确认前使用 `TBD`，不得在代码中写死。
+目标的物理形态与运动状态、机载相机接口、时间同步方式、跨 ROS 信息通道、真值测量方法和最终融合实现仍需通过决策记录确认；Mcontroller V7、FanciSwarm UWB 四基站、机载摄像头、UM982、ROS Noetic/fcu_core 与 ROS2 Humble 的分层角色已确定。在确认前使用 `TBD`，不得在代码中写死。
 
-上述未决项对应的具体提问、提问对象和阻塞关系见 `docs/2026-08-23_checklist_open_questions_advisor_and_vendor.md`。该清单只登记问题，不预设答案；答复后按需新增决策记录。
+上述未决项与已回填答复的提问、提问对象和阻塞关系见 `docs/2026-08-23_checklist_open_questions_advisor_and_vendor.md`。改变技术边界的答复必须新增决策记录。
