@@ -40,6 +40,8 @@
 
 可复用算法、公开源码与论文的筛选清单：`docs/2026-08-24_research_reusable_localization_algorithms.md`。它只列候选与接入条件，不包含本项目精度结论。
 
+复现上述算法所需的相机、IMU、UWB、时间同步和树莓派/地面端接口验收清单：`docs/2026-08-24_checklist_algorithm_reproduction_hardware_interfaces.md`。
+
 ## 已确定的项目边界
 
 - 无人机既是传感器、通信和计算平台，也是 UWB 定位对象；机载视觉定位无人机之外的目标。两类定位在统一坐标系中迭代，且不得混用 `base_link` 与 `target_link`。
