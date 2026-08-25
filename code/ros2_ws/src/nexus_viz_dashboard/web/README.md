@@ -20,7 +20,7 @@ web/
 
 实现前先阅读：
 
-- `docs/architecture/2026-08-19_design_demo_dashboard_information_architecture.md`：页面信息架构、实时/回放状态和展示边界；
+- `docs/architecture/2026-08-19_design_demo_dashboard_information_architecture.md`：页面信息架构、实时/回放状态和展示边界；同时参考 `docs/architecture/README.md` 与 `docs/2026-08-25_plan_current_execution_baseline.md` 的当前数据语义；
 - `docs/architecture/interfaces.md`：ROS1/ROS2 话题语义；
 - `code/tools/nexus_channel_contract.py`：传输 envelope 的最小字段和校验规则。
 

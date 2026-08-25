@@ -14,6 +14,6 @@
 | `cliansang/positioning-algorithms-for-uwb-matlab` | `analysis/uwb/third_party/positioning_algorithms_for_uwb_matlab` | `2c24c478ae0c317840fec1c29631c15dbe29a630` | MIT | 原始测距离线算法参考 |
 | `mprib/caliscope` | `analysis/calibration/third_party/caliscope` | `6819acc4a4855fa462e034d3f3a213c9a8adde27` | BSD-2-Clause | 条件性多相机标定/三角测量工具 |
 
-`fcu_core`、`apriltag_ros` 和 `rosbridge_suite` 是模块图中的直接迁移项。后三项（除 `uwb_tracking_ros` 外）需要适配，`uwb_tracking_ros` 虽标为可迁移，但与当前 FanciSwarm 的官方已解算位置接口不同，因此仅保留为原始观测可用时的参考。具体前置条件和后续修改范围见各目录旁的适配说明。
+`fcu_core` 和 `rosbridge_suite` 是当前硬件/展示链路的迁移项；`apriltag_ros` 是延后的工程基线，不是当前无标签主线。后三项（除 `uwb_tracking_ros` 外）需要适配，`uwb_tracking_ros` 虽标为可迁移，但与当前 FanciSwarm 的官方已解算位置接口不同，因此仅保留为原始观测可用时的参考。具体前置条件和后续修改范围见当前执行基线与各目录旁的适配说明。
 
 不得把 `/odom_global_001` 或任何飞行平台状态自动当作赛题目标位姿；目标主输出仍只能是 ROS2 的 `/nexus/target/pose`。未获得厂商原始四基站测距前，不启用任何第三方 UWB 解算模块。

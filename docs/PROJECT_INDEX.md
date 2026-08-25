@@ -14,6 +14,7 @@
 ## 不可混淆的边界
 
 - `docs/decisions/2026-08-24_ADR-007_dual_subject_iterative_localization.md`：当前定位对象与测量模型边界；UWB 定位无人机自身，机载视觉定位无人机之外的目标，两条链路在统一坐标系中迭代。该决定对 ADR-002 的对象范围与待选模型部分具有优先级。
+- `docs/decisions/2026-08-25_ADR-008_markerless_visual_first_and_interface_authority.md`：当前算法优先级和接口单一事实源；无标签纯视觉优先，AprilTag 延后。
 - `docs/无人机高精度目标定位项目规划 (2).md`：按幻思资料修订后的规划，不等于完成情况。
 - `docs/module-map (1).html`：开源模块选型参考，使用前仍需记录版本、许可证和实际验证结果。
 - `docs/figures/`：沙盘参考图片，不是测量真值。
@@ -28,19 +29,17 @@
 4. 每次实验的输入、命令、结果：`experiments/runs/`。
 5. 可提交结论：`docs/records/evidence-index.md` 和 `defense/`。
 
-硬件到货前实施计划：`docs/2026-08-18_plan_pre_hardware_work.md`。该计划只覆盖文档/接口、ROS2 骨架、离线工具和传输契约，不产生硬件或精度结论。
+当前执行基线：`docs/2026-08-25_plan_current_execution_baseline.md`。它整合算法复现顺序、验收矩阵和代码接口；无标签纯视觉优先，AprilTag 仅为延后基线。
 
-完整执行顺序：`docs/2026-08-19_plan_project_execution_steps.md`。该文档把硬件到货前准备、硬件验收、单传感器基线、标定、E001/E002/E003 实验、融合、演示和交付串成一条主线；其中规划目标仍不等于实测结果。
+### 历史资料与 2026-08-24 已确认事实（保留入口）
 
-执行步骤详细指导：`docs/2026-08-19_guide_project_execution_steps_detailed.md`。该文档按每个步骤说明前置输入、推进顺序、模块图中的可复用候选、必须自研的边界、产出和停止条件，不涉及具体代码实现。
-
-独立步骤文档目录：`docs/project_steps/`。步骤 01～12 分别成文，可按人员分工或阶段评审单独阅读。
-
-实体沙盘坐标标定：`docs/2026-08-19_plan_sandbox_world_frame_calibration.md`。该方案把沙盘物理基准点建立为 `map`，再分别求相机、UWB 和目标外参，并使用独立验证点检查结果。
-
-可复用算法、公开源码与论文的筛选清单：`docs/2026-08-24_research_reusable_localization_algorithms.md`；无标签视觉目标定位补充检索：`docs/2026-08-24_research_markerless_visual_target_localization.md`。两者只列候选与接入条件，不包含本项目精度结论。
-
-复现上述算法所需的相机、IMU、UWB、时间同步和树莓派/地面端接口验收清单：`docs/2026-08-24_checklist_algorithm_reproduction_hardware_interfaces.md`。
+- [算法复现硬件与接口验收清单（2026-08-24）](2026-08-24_checklist_algorithm_reproduction_hardware_interfaces.md)：保留单目相机、树莓派 5 8GB、Mcontroller V7、STM32H743、四基站 UWB、UM982、网络/串口和已知参数；未确认字段单独列出。
+- [可复用定位算法、论文与开源库（2026-08-24）](2026-08-24_research_reusable_localization_algorithms.md)：保留论文 DOI、源码仓库、许可证和接入限制。
+- [无标签视觉目标定位论文与开源实现（2026-08-24）](2026-08-24_research_markerless_visual_target_localization.md)：保留 FoundationPose、PVNet、GDR-Net、hloc、LightGlue、COLMAP、ORB-SLAM3、DROID-SLAM 等链接和单目边界。
+- [项目执行步骤总表（2026-08-19）](2026-08-19_plan_project_execution_steps.md)、[详细执行指导（2026-08-19）](2026-08-19_guide_project_execution_steps_detailed.md)、[步骤文档](project_steps/)：保留原有实施顺序、验收条件和交付物。
+- [硬件到货前实施计划（2026-08-18）](2026-08-18_plan_pre_hardware_work.md)、[沙盘世界坐标标定方案（2026-08-19）](2026-08-19_plan_sandbox_world_frame_calibration.md)：保留接口、坐标和标定原方案。
+- [双 Ubuntu/ROS 环境配置（2026-08-20）](2026-08-20_guide_dual_ubuntu_ros_environment_setup.md)、[硬件首日验收](2026-08-20_checklist_hardware_first_day_acceptance.md)、[视觉输入准备](2026-08-20_checklist_vision_input_and_marker_readiness.md)：保留安装、验收和输入检查命令。
+- [硬件验收与每日记录](2026-08-22_guide_hardware_acceptance_evidence_capture.md) / [日记录目录](records/daily/)：保留过程证据，不因当前执行基线更新而删除。
 
 ## 已确定的项目边界
 
@@ -54,6 +53,6 @@
 
 ## 当前未决项
 
-目标的物理形态与运动状态、机载相机接口、时间同步方式、跨 ROS 信息通道、真值测量方法和最终融合实现仍需通过决策记录确认；Mcontroller V7、FanciSwarm UWB 四基站、机载摄像头、UM982、ROS Noetic/fcu_core 与 ROS2 Humble 的分层角色已确定。在确认前使用 `TBD`，不得在代码中写死。
+已确认的硬件事实包括：Mcontroller V7（STM32H743）、FanciSwarm 四基站 UWB 与机载标签、树莓派 5 8GB、**单目 800 万像素机载相机**、UM982 FGNSS、Ubuntu 20.04/ROS1 Noetic `fcu_core` 和 Ubuntu 22.04/ROS2 Humble。相机实际分辨率、编码、帧率、时间戳、内参和外参等接口字段仍需实机验收，不能把这些未决字段误写成“没有相机”或“硬件未知”。
 
-上述未决项与已回填答复的提问、提问对象和阻塞关系见 `docs/2026-08-23_checklist_open_questions_advisor_and_vendor.md`。改变技术边界的答复必须新增决策记录。
+未决硬件事实直接记录在对应 `experiments/runs/` 的配置和结论中；改变技术边界、字段、topic、frame 或单位必须新增 ADR。历史计划、8 月 24 日研究清单和日记录是事实与依据，必须保留；当前执行基线只是新增入口，不替代或删除历史资料。

@@ -8,7 +8,7 @@
 
 ## Humble 构建基线
 
-首版 AprilTag 36h11 检测使用工作空间中的 `apriltag_ros`。在 Ubuntu 22.04 + ROS2 Humble 主机上，首次完整构建前安装其系统依赖：
+无标签纯视觉是当前算法复现主线；工作空间中的 `apriltag_ros` 仅作为延后 AprilTag 36h11 工程基线保留。需要复现该基线时，在 Ubuntu 22.04 + ROS2 Humble 主机上安装其系统依赖：
 
 ```bash
 sudo apt-get install ros-humble-apriltag ros-humble-apriltag-msgs
