@@ -10,6 +10,10 @@ def generate_launch_description():
         ExecuteProcess(cmd=[
             "ros2", "bag", "record", "-o", output,
             "/nexus/fcu/odom", "/nexus/fcu/imu",
-            "/nexus/vision/target_observation", "/nexus/target/pose",
+            "/nexus/vision/target_observation",
+            "/nexus/vision/map_target_observation",
+            "/nexus/uwb/raw_target_observation",
+            "/nexus/uwb/target_observation",
+            "/nexus/target/pose",
         ], output="screen"),
     ])

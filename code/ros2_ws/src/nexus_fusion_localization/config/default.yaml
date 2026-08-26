@@ -2,4 +2,6 @@ nexus_fusion_localization:
   ros__parameters:
     target_frame: map
     max_age_ms: 250.0
+    max_pair_delta_ms: 50.0
+    vision_topic: /nexus/vision/map_target_observation
     uwb_topic: /nexus/uwb/target_observation

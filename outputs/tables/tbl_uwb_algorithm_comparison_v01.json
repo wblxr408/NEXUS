@@ -1,0 +1,402 @@
+{
+  "uwb.matlab.trilateration@sigma=0.0": {
+    "samples": 100,
+    "unit": "m",
+    "dimension": "2D",
+    "rmse_m": 1.3807889774712256e-15,
+    "mae_m": 1.1944796200127645e-15,
+    "cep50_m": 1.0516183429620329e-15,
+    "cep95_m": 2.5121479338940403e-15,
+    "max_error_m": 2.8435583831733384e-15,
+    "axis_bias_m": {
+      "x": -8.337774914934925e-16,
+      "y": 6.694644838489694e-16
+    },
+    "total_expected": 100,
+    "valid_count": 100,
+    "success_rate": 1.0,
+    "failure_rate": 0.0,
+    "update_rate_hz": 10.0,
+    "mean_runtime_ms": 0.09367320000000001
+  },
+  "uwb.matlab.multilateration@sigma=0.0": {
+    "samples": 100,
+    "unit": "m",
+    "dimension": "2D",
+    "rmse_m": 7.532353909482245e-16,
+    "mae_m": 6.509179275244058e-16,
+    "cep50_m": 5.551115123125783e-16,
+    "cep95_m": 1.4043333874306805e-15,
+    "max_error_m": 1.831026719408895e-15,
+    "axis_bias_m": {
+      "x": 1.3100631690576846e-16,
+      "y": -2.3869795029440865e-16
+    },
+    "total_expected": 100,
+    "valid_count": 100,
+    "success_rate": 1.0,
+    "failure_rate": 0.0,
+    "update_rate_hz": 10.0,
+    "mean_runtime_ms": 0.038723200000000006
+  },
+  "uwb.matlab.taylor@sigma=0.0": {
+    "samples": 100,
+    "unit": "m",
+    "dimension": "2D",
+    "rmse_m": 0.18350951033237947,
+    "mae_m": 0.13479409019595923,
+    "cep50_m": 0.07941172059381105,
+    "cep95_m": 0.43595824456732934,
+    "max_error_m": 0.449922838782613,
+    "axis_bias_m": {
+      "x": -0.003435574276486997,
+      "y": 0.08075875566515454
+    },
+    "total_expected": 100,
+    "valid_count": 100,
+    "success_rate": 1.0,
+    "failure_rate": 0.0,
+    "update_rate_hz": 10.0,
+    "mean_runtime_ms": 0.30087879
+  },
+  "uwb.matlab.ekf@sigma=0.0": {
+    "samples": 100,
+    "unit": "m",
+    "dimension": "2D",
+    "rmse_m": 0.6962660501962714,
+    "mae_m": 0.6084035345953461,
+    "cep50_m": 0.5371124466695876,
+    "cep95_m": 1.225457854597986,
+    "max_error_m": 1.3565174628205425,
+    "axis_bias_m": {
+      "x": 0.11859054320105064,
+      "y": 0.1669529887054072
+    },
+    "total_expected": 100,
+    "valid_count": 100,
+    "success_rate": 1.0,
+    "failure_rate": 0.0,
+    "update_rate_hz": 10.0,
+    "mean_runtime_ms": 0.04317852999999999
+  },
+  "uwb.matlab.ukf@sigma=0.0": {
+    "samples": 100,
+    "unit": "m",
+    "dimension": "2D",
+    "rmse_m": 0.5571949971560378,
+    "mae_m": 0.5298577839697254,
+    "cep50_m": 0.5416495492384379,
+    "cep95_m": 0.7805310892840298,
+    "max_error_m": 0.7918400479309506,
+    "axis_bias_m": {
+      "x": 0.07766552985923587,
+      "y": 0.09128185826940052
+    },
+    "total_expected": 100,
+    "valid_count": 100,
+    "success_rate": 1.0,
+    "failure_rate": 0.0,
+    "update_rate_hz": 10.0,
+    "mean_runtime_ms": 0.23230597000000003
+  },
+  "uwb.matlab.trilateration@sigma=0.02": {
+    "samples": 100,
+    "unit": "m",
+    "dimension": "2D",
+    "rmse_m": 0.026325678070558734,
+    "mae_m": 0.022930191967056958,
+    "cep50_m": 0.022239738788110825,
+    "cep95_m": 0.04508407195771569,
+    "max_error_m": 0.06740837455362647,
+    "axis_bias_m": {
+      "x": 0.0009806194245472893,
+      "y": -0.001120259038009363
+    },
+    "total_expected": 100,
+    "valid_count": 100,
+    "success_rate": 1.0,
+    "failure_rate": 0.0,
+    "update_rate_hz": 10.0,
+    "mean_runtime_ms": 0.03605517999999999
+  },
+  "uwb.matlab.multilateration@sigma=0.02": {
+    "samples": 100,
+    "unit": "m",
+    "dimension": "2D",
+    "rmse_m": 0.026325678070558838,
+    "mae_m": 0.022930191967056993,
+    "cep50_m": 0.0222397387881116,
+    "cep95_m": 0.04508407195771505,
+    "max_error_m": 0.06740837455362776,
+    "axis_bias_m": {
+      "x": 0.000980619424548076,
+      "y": -0.001120259038010164
+    },
+    "total_expected": 100,
+    "valid_count": 100,
+    "success_rate": 1.0,
+    "failure_rate": 0.0,
+    "update_rate_hz": 10.0,
+    "mean_runtime_ms": 0.028435490000000004
+  },
+  "uwb.matlab.taylor@sigma=0.02": {
+    "samples": 100,
+    "unit": "m",
+    "dimension": "2D",
+    "rmse_m": 0.17147325159643076,
+    "mae_m": 0.12804407160734643,
+    "cep50_m": 0.0819731861371592,
+    "cep95_m": 0.407687672537302,
+    "max_error_m": 0.49023983674636745,
+    "axis_bias_m": {
+      "x": 0.002879422708406768,
+      "y": 0.06822438699123583
+    },
+    "total_expected": 100,
+    "valid_count": 100,
+    "success_rate": 1.0,
+    "failure_rate": 0.0,
+    "update_rate_hz": 10.0,
+    "mean_runtime_ms": 0.30284952
+  },
+  "uwb.matlab.ekf@sigma=0.02": {
+    "samples": 100,
+    "unit": "m",
+    "dimension": "2D",
+    "rmse_m": 0.6926551112457249,
+    "mae_m": 0.6047638547426082,
+    "cep50_m": 0.539702744172649,
+    "cep95_m": 1.2134995118381047,
+    "max_error_m": 1.3408830567551244,
+    "axis_bias_m": {
+      "x": 0.11979095247464848,
+      "y": 0.16553584480226433
+    },
+    "total_expected": 100,
+    "valid_count": 100,
+    "success_rate": 1.0,
+    "failure_rate": 0.0,
+    "update_rate_hz": 10.0,
+    "mean_runtime_ms": 0.04756052
+  },
+  "uwb.matlab.ukf@sigma=0.02": {
+    "samples": 100,
+    "unit": "m",
+    "dimension": "2D",
+    "rmse_m": 0.5571312316104248,
+    "mae_m": 0.5308497576270608,
+    "cep50_m": 0.5425185176916253,
+    "cep95_m": 0.7758406925318354,
+    "max_error_m": 0.785887991934145,
+    "axis_bias_m": {
+      "x": 0.07526728775071155,
+      "y": 0.09000000496750385
+    },
+    "total_expected": 100,
+    "valid_count": 100,
+    "success_rate": 1.0,
+    "failure_rate": 0.0,
+    "update_rate_hz": 10.0,
+    "mean_runtime_ms": 0.23559959999999996
+  },
+  "uwb.matlab.trilateration@sigma=0.05": {
+    "samples": 100,
+    "unit": "m",
+    "dimension": "2D",
+    "rmse_m": 0.06584082751397294,
+    "mae_m": 0.05732539889570006,
+    "cep50_m": 0.05559830106208248,
+    "cep95_m": 0.11291929319719753,
+    "max_error_m": 0.16789690092253312,
+    "axis_bias_m": {
+      "x": 0.00244268991409661,
+      "y": -0.0027842734743132257
+    },
+    "total_expected": 100,
+    "valid_count": 100,
+    "success_rate": 1.0,
+    "failure_rate": 0.0,
+    "update_rate_hz": 10.0,
+    "mean_runtime_ms": 0.0442255
+  },
+  "uwb.matlab.multilateration@sigma=0.05": {
+    "samples": 100,
+    "unit": "m",
+    "dimension": "2D",
+    "rmse_m": 0.06584082751397298,
+    "mae_m": 0.05732539889570003,
+    "cep50_m": 0.0555983010620833,
+    "cep95_m": 0.11291929319719642,
+    "max_error_m": 0.1678969009225353,
+    "axis_bias_m": {
+      "x": 0.0024426899140976223,
+      "y": -0.0027842734743140775
+    },
+    "total_expected": 100,
+    "valid_count": 100,
+    "success_rate": 1.0,
+    "failure_rate": 0.0,
+    "update_rate_hz": 10.0,
+    "mean_runtime_ms": 0.032703279999999994
+  },
+  "uwb.matlab.taylor@sigma=0.05": {
+    "samples": 100,
+    "unit": "m",
+    "dimension": "2D",
+    "rmse_m": 0.1946408608805499,
+    "mae_m": 0.14596404012761888,
+    "cep50_m": 0.10110064871977739,
+    "cep95_m": 0.4434331888857834,
+    "max_error_m": 0.540748097530352,
+    "axis_bias_m": {
+      "x": 0.005964452192801264,
+      "y": 0.050147900929047425
+    },
+    "total_expected": 100,
+    "valid_count": 100,
+    "success_rate": 1.0,
+    "failure_rate": 0.0,
+    "update_rate_hz": 10.0,
+    "mean_runtime_ms": 0.33883224000000006
+  },
+  "uwb.matlab.ekf@sigma=0.05": {
+    "samples": 100,
+    "unit": "m",
+    "dimension": "2D",
+    "rmse_m": 0.6877117553324376,
+    "mae_m": 0.6000229238352255,
+    "cep50_m": 0.5434905712193642,
+    "cep95_m": 1.2009056826841917,
+    "max_error_m": 1.3176804917526814,
+    "axis_bias_m": {
+      "x": 0.1220887246553887,
+      "y": 0.1630302361070217
+    },
+    "total_expected": 100,
+    "valid_count": 100,
+    "success_rate": 1.0,
+    "failure_rate": 0.0,
+    "update_rate_hz": 10.0,
+    "mean_runtime_ms": 0.03834792
+  },
+  "uwb.matlab.ukf@sigma=0.05": {
+    "samples": 100,
+    "unit": "m",
+    "dimension": "2D",
+    "rmse_m": 0.5574090304702304,
+    "mae_m": 0.5327414945196595,
+    "cep50_m": 0.540728582233871,
+    "cep95_m": 0.7655420459731651,
+    "max_error_m": 0.7947419501732618,
+    "axis_bias_m": {
+      "x": 0.07159344857894222,
+      "y": 0.08827433129354574
+    },
+    "total_expected": 100,
+    "valid_count": 100,
+    "success_rate": 1.0,
+    "failure_rate": 0.0,
+    "update_rate_hz": 10.0,
+    "mean_runtime_ms": 0.21401505000000004
+  },
+  "uwb.matlab.trilateration@sigma=0.1": {
+    "samples": 100,
+    "unit": "m",
+    "dimension": "2D",
+    "rmse_m": 0.13178167020375933,
+    "mae_m": 0.1146537407090537,
+    "cep50_m": 0.11119466183299384,
+    "cep95_m": 0.22654028235247162,
+    "max_error_m": 0.3337261917722786,
+    "axis_bias_m": {
+      "x": 0.004855851003950546,
+      "y": -0.005513966546255813
+    },
+    "total_expected": 100,
+    "valid_count": 100,
+    "success_rate": 1.0,
+    "failure_rate": 0.0,
+    "update_rate_hz": 10.0,
+    "mean_runtime_ms": 0.04229818
+  },
+  "uwb.matlab.multilateration@sigma=0.1": {
+    "samples": 100,
+    "unit": "m",
+    "dimension": "2D",
+    "rmse_m": 0.13178167020375947,
+    "mae_m": 0.11465374070905372,
+    "cep50_m": 0.11119466183299379,
+    "cep95_m": 0.22654028235247112,
+    "max_error_m": 0.33372619177228074,
+    "axis_bias_m": {
+      "x": 0.004855851003951604,
+      "y": -0.005513966546256625
+    },
+    "total_expected": 100,
+    "valid_count": 100,
+    "success_rate": 1.0,
+    "failure_rate": 0.0,
+    "update_rate_hz": 10.0,
+    "mean_runtime_ms": 0.04669403999999999
+  },
+  "uwb.matlab.taylor@sigma=0.1": {
+    "samples": 100,
+    "unit": "m",
+    "dimension": "2D",
+    "rmse_m": 0.2378932833020891,
+    "mae_m": 0.18615578239012923,
+    "cep50_m": 0.1428368448668026,
+    "cep95_m": 0.5224310210414818,
+    "max_error_m": 0.6123827263335916,
+    "axis_bias_m": {
+      "x": 0.007506887405430913,
+      "y": 0.039276516603386644
+    },
+    "total_expected": 100,
+    "valid_count": 100,
+    "success_rate": 1.0,
+    "failure_rate": 0.0,
+    "update_rate_hz": 10.0,
+    "mean_runtime_ms": 0.32523286000000007
+  },
+  "uwb.matlab.ekf@sigma=0.1": {
+    "samples": 100,
+    "unit": "m",
+    "dimension": "2D",
+    "rmse_m": 0.6810213521397434,
+    "mae_m": 0.5980936200075933,
+    "cep50_m": 0.540932562343913,
+    "cep95_m": 1.194989872484837,
+    "max_error_m": 1.290129693223956,
+    "axis_bias_m": {
+      "x": 0.12712380928125774,
+      "y": 0.15772738647455564
+    },
+    "total_expected": 100,
+    "valid_count": 100,
+    "success_rate": 1.0,
+    "failure_rate": 0.0,
+    "update_rate_hz": 10.0,
+    "mean_runtime_ms": 0.03797808
+  },
+  "uwb.matlab.ukf@sigma=0.1": {
+    "samples": 100,
+    "unit": "m",
+    "dimension": "2D",
+    "rmse_m": 0.5585943895262749,
+    "mae_m": 0.5361075116794445,
+    "cep50_m": 0.545193790737225,
+    "cep95_m": 0.7471526317346997,
+    "max_error_m": 0.8109127199395448,
+    "axis_bias_m": {
+      "x": 0.06628281168361683,
+      "y": 0.08550367922755195
+    },
+    "total_expected": 100,
+    "valid_count": 100,
+    "success_rate": 1.0,
+    "failure_rate": 0.0,
+    "update_rate_hz": 10.0,
+    "mean_runtime_ms": 0.22763285999999996
+  }
+}

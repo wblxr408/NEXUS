@@ -12,6 +12,18 @@ def apply_rigid_transform(rotation, translation, point):
     return rotation @ point + translation
 
 
+def rotate_position_covariance(covariance, rotation):
+    covariance = np.asarray(covariance, dtype=float).reshape(3, 3)
+    rotation = np.asarray(rotation, dtype=float).reshape(3, 3)
+    if not np.all(np.isfinite(covariance)):
+        raise ValueError("position covariance must be finite")
+    if not np.allclose(covariance, covariance.T, atol=1e-9):
+        raise ValueError("position covariance must be symmetric")
+    if not np.allclose(rotation.T @ rotation, np.eye(3), atol=1e-6):
+        raise ValueError("rotation must be orthonormal")
+    return rotation @ covariance @ rotation.T
+
+
 def direct_target_measurement(target_in_sensor, sensor_to_map_rotation, sensor_to_map_translation):
     """Direct target measurement path: target_link observation to map."""
     return apply_rigid_transform(sensor_to_map_rotation, sensor_to_map_translation,

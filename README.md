@@ -17,6 +17,9 @@
 - `code/ros1_ws/`：Ubuntu 20.04 + ROS1 Noetic，运行幻思 `fcu_core` 和硬件桥接。
 - `code/ros2_ws/`：Ubuntu 22.04 + ROS2 Humble，运行自研视觉、坐标、融合、评估和 RViz2。
 - 两套环境通过 ROS1-ROS2 bridge 连接；Windows 目录只作为仓库编辑/备份副本，真实构建在对应 Ubuntu 中进行。
+- 当前算法顺序、接口和验收入口见 [当前执行基线](docs/2026-08-25_plan_current_execution_baseline.md)；双 ROS 安装按对应工作空间 README 执行。
+- 已知硬件基线：Mcontroller V7/STM32H743、FanciSwarm 四基站 UWB、树莓派 5 8GB、**单目 800 万像素机载相机**、UM982 FGNSS；参数明细和待验收字段见 [2026-08-24 硬件接口清单](docs/2026-08-24_checklist_algorithm_reproduction_hardware_interfaces.md)。
+- 论文和开源库链接见 [可复用算法检索](docs/2026-08-24_research_reusable_localization_algorithms.md) 与 [无标签视觉检索](docs/2026-08-24_research_markerless_visual_target_localization.md)；这些资料和 8 月 24 日记录均为保留事实，不被当前基线替代。
 
 ## 目录速览
 

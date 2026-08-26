@@ -1,0 +1,113 @@
+字段名,含义,单位,作用,可确认数值,阶段
+"SCALED_IMU.xacc/yacc/zacc","加速度（三轴）","mG","输出到 /imu_global_001 的 linear_acceleration",,1
+"SCALED_IMU.xgyro/ygyro/zgyro","角速度（三轴）","mrad/s","输出到 /imu_global_001 的 angular_velocity",,1
+"SCALED_IMU.xmag/ymag/zmag","磁场（三轴）","mgauss","当前未输出到 ROS",,1
+"SCALED_IMU.time_boot_ms","IMU 设备时间","ms（飞控启动后毫秒）","设备采样时间；当前未写入 ROS header",,1
+"GLOBAL_VISION_POSITION_ESTIMATE.x/y/z","平台位置","MAVLink 定义为 m；固件源码注释为 cm","输出到 /odom_global_001，作为 map→base_link","桥接代码：位置×0.01、z 取反",1
+"GLOBAL_VISION_POSITION_ESTIMATE.roll/pitch/yaw","平台姿态（欧拉角）","rad","输出到 /odom_global_001 的姿态",,1
+"GLOBAL_VISION_POSITION_ESTIMATE.usec","位姿时间戳","名义 us；实际由 HAL_GetTick() 提供，ms 语义存疑","位姿采样时间（语义未确认）","= HAL_GetTick()",1
+"GLOBAL_POSITION_INT.lat/lon","经纬度","degE7","GNSS 输入到 /gnss_global_001",,1
+"GLOBAL_POSITION_INT.alt","高度","mm","GNSS 高度",,1
+"GLOBAL_POSITION_INT.vx/vy/vz","速度（三轴）","cm/s","用于 /odom_global_001 的 twist",,1
+"GLOBAL_POSITION_INT.hdg","航向","cdeg","航向角",,1
+"GLOBAL_POSITION_INT.time_boot_ms","时间","ms","时间戳","= time - takeoff_time（未起飞为 0）",1
+"get_uwb_x/y/z()","无人机 UWB 位置（固件内部）","cm（源码用法）","固件内部 UWB 坐标",,1
+"get_pos_x/y/z()","无人机位置（固件内部）","cm（源码注释）","写入 GLOBAL_VISION_POSITION_ESTIMATE（可能为 EKF/融合位置）",,1
+"ahrs_roll_rad()/ahrs_pitch_rad()/ahrs_yaw_rad()","姿态欧拉角（固件内部）","rad","发送到 GLOBAL_VISION_POSITION_ESTIMATE 的姿态",,1
+"UWB_TAG_ID","UWB 标签 ID","整数","标签编号，与 ROS 节点对应（如 ID 1 → fcu_bridge_001）","固件默认 1",2
+"UWB_TAG_MAX","UWB 标签总数","整数","参与 UWB 定位的无人机数量","固件默认 1",2
+"定位状态","UWB 定位状态",,"有效状态判断",,1
+"全局坐标 x/y","UWB 全局平面坐标","手册 cm（内部统一 m）","平面定位（可能为融合结果）",,1
+"uwb-x/uwb-y","纯 UWB 平面坐标","手册 cm（内部统一 m）","优先作为平面 UWB 输入",,1
+"到基站 1~4 的距离","标签到各基站距离","内部 m（原始单位待抓包确认）","四基站多边测量直接输入",,1
+"坐标偏航角","机头与坐标系 X 轴正方向平行时的偏航角","整数（度）","坐标对齐/配置参数，非逐帧 yaw 时间序列",,2
+"基站 1~4 坐标","基站参考坐标","cm","多边测量几何输入","参考/固件默认：基站1 (80,-80,160)；基站2 (0,400,170)；基站3 (400,400,170)；基站4 (400,0,170)（非现场实测）",2
+"anchor_id（基站编号）","基站编号","整数","基站与坐标对应；与每条 range 精确对应","1~4",1
+"起飞时间","起飞时间",,"飞行数据",,1
+"对地高度","对地高度",,"补齐平台 z（参考面/单位待确认）",,1
+"水平速度","水平速度",,"飞行数据",,1
+"垂直速度","垂直速度",,"飞行数据",,1
+"主模式","主飞行模式",,"飞行状态",,1
+"子模式","子飞行模式",,"飞行状态",,1
+"uwb_distance data[0]","ROS 接收端当前时间","s","记录接收时刻（非飞控硬件时间戳）",,1
+"uwb_distance data[index]","机间距离","m","机间距离；非四基站原始测距","本机对应项为 0",1
+"uwb_distance 数组长度","机位数","个","由消息中目标系统编号映射","最多 6",1
+"frame_sequence","帧序号","整数","判断丢帧/乱序/重复帧",,1
+"sample_timestamp_ns","图像采样/曝光时刻","ns","VIO 同步与位姿配对（禁止用接收时间替代）",,1
+"timestamp_clock","时间戳时钟来源","枚举（如 rpi_monotonic_raw）","说明时钟归属，用于对齐",,2
+"image_width_px/image_height_px","图像宽/高","px","提供真实尺寸给算法","Gazebo IMX219：3280×2464；实机须以抓帧结果确认，不以此标称值替代",1
+"encoding/pixel_format","编码/像素格式","枚举（mono8/bgr8/yuyv/mjpeg/h264）","正确解码与延迟评估","Gazebo：rgb8（SDF R8G8B8）；实机输出编码待抓帧确认",2
+"exposure_start_timestamp_ns/曝光时长","曝光起始时刻/时长","ns","运动模糊与同步误差分析",,1
+"gain","增益","数值","解释检测率/特征跟踪失败",,1
+"exposure_us","曝光时间","us","解释运动模糊/曝光状态",,1
+"camera_frame_id","相机坐标系名","字符串（如 camera_optical_frame）","建立相机坐标与 base_link→camera 外参","Gazebo：nexus_uav_camera_optical_frame；实机 frame_id 待固化",2
+"receive_timestamp_ns","地面端接收时刻","ns","测量传输延迟（不替代采样时间）",,1
+"transport","传输方式","枚举（wifi_udp/wifi_tcp/file_copy）","记录链路",,2
+"packet_loss_or_decode_error","丢包/解码错误","计数/状态","诊断",,1
+"distortion_model","畸变模型","枚举（plumb_bob/rational_polynomial/equidistant）","图像矫正一致性","标准版 IMX219 模组：镜头几何畸变 <1%（典型 0.8%~1.0%）；Gazebo 发布 plumb_bob，实机模型待标定",2
+"K[3x3]","相机内参矩阵","焦距 px/主点 px","视觉算法内参（不得用分辨率猜测）","Gazebo CameraInfo 实测：[[1978.892939,0,1640.5],[0,1978.892939,1232.5],[0,0,1]]；实机必须标定",2
+"D[]","畸变系数","无量纲","去畸变（鱼眼不可省略）","标准版仅给出 <1% 的几何畸变，不能换算为 D[]；Gazebo CameraInfo：[0,0,0,0,0]；实机 D[] 待标定",2
+"R","校正矩阵","无量纲","ROS CameraInfo 矫正矩阵","Gazebo CameraInfo 实测：单位阵；实机待标定",2
+"P","投影矩阵","无量纲","ROS CameraInfo 投影矩阵","Gazebo CameraInfo 实测：[[1978.892939,0,1640.5,0],[0,1978.892939,1232.5,0],[0,0,1,0]]；实机待标定",2
+"imu_sample_timestamp_ns","IMU 采样时刻","ns","VIO 时间基准（相邻样本单调递增）",,1
+"angular_velocity_x/y/z","角速度","rad/s","VINS/ORB-SLAM3 惯性输入",,1
+"linear_acceleration_x/y/z","线加速度","m/s²","VINS/ORB-SLAM3 惯性输入",,1
+"imu_frame_id","IMU 坐标系名与轴向","字符串","明确右手系及各轴物理方向",,2
+"orientation/协方差","姿态/协方差",,"诊断（勿把飞控 EKF 姿态当原始 IMU）",,1
+"position(x/y/z)","平台 UWB 位姿位置","内部 m","作为 map→base_link",,1
+"range_m","单条 UWB 测距","m","无人机自身多边测量",,1
+"tag ID","UWB 标签 ID","整数","距离/位姿归属",,1
+"CN1/CN2/CN3/CN5","图传模块硬件接口",,"外置图传模块接口（仅外置版适用）","CN1 网络；CN2 串行；CN3 电源及配对按键；CN5 状态指示",2
+"相机类型","相机形态",,"主链路相机形态","单目",2
+"外置图传默认视频分辨率","外置图传模块默认输出分辨率","px","解码尺寸参考（可网页修改）","2880×1616",2
+"外置图传视频协议","外置图传视频传输协议",,"取流","RTSP",2
+"外置图传视频地址（示例）","RTSP 视频流地址",,"取流地址","rtsp://192.168.1.129:554/stream1（示例）",2
+"外置图传网页管理地址（示例）","模块网页配置地址",,"配置","http://192.168.1.129（示例）",2
+"树莓派串口设备/波特率","树莓派↔飞控 MAVLink 串口","baud","串口通信","/dev/ttyAMA0 或 /dev/ttyS0，460800",2
+"外置图传串口波特率","图传模块串口透传","baud","串口透传（ROS1 fcu_core_v2）","115200",2
+"fcu_core 默认连接","飞控默认连接方式",,"通信","TCP 192.168.4.1:333 / USB /dev/ttyACM0",2
+"rpicam-vid 视频输出","树莓派采集推流",,"TCP 推流（监听）","tcp://0.0.0.0:<port>",2
+"PC 取帧脚本缓冲尺寸","tcp_no_delay_recvstream_pc.py 帧缓冲","px","程序重塑尺寸（非传感器分辨率）","W_img=640, H_img=480",2
+"PC 取帧脚本 TCP 地址（示例）","脚本示例传输地址",,"示例（非设备固定地址）","tcp://192.168.0.112:5005",2
+"PC 取帧脚本依赖","Python 依赖版本",,"复现环境","numpy==1.24.0；opencv-contrib-python==4.6.0.66",2
+"HEARTBEAT","飞控心跳/连接与模式状态",,"确认连接与飞控在线；fcu_core 与 serial_demo 均已解析","非 VINS 首要输入",1
+"BATTERY_STATUS","电池电压/电流","电压/电流（MAVLink 定义）","电量监控；fcu_core 与 serial_demo 已解析","非 VINS 首要输入",1
+"ATTITUDE_QUATERNION","飞控姿态四元数","无量纲（w,x,y,z）","飞控姿态四元数；fcu_core 已解析","公开发送代码未确认四元数输出",1
+"SET_POSITION_TARGET_LOCAL_NED","本地 NED 位置目标","m / (m/s)","位置控制目标设定；fcu_core 已解析","非 VINS 首要输入",1
+"AprilTag family","标签家族（如 tag36h11）",,"无标签/AprilTag 基线检测配置",,2
+"AprilTag ID","目标标签编号","整数","目标标签身份",,2
+"AprilTag 实际边长","标签物理边长","m","PnP/IPPE 尺度基准（不得用规格标称值代替）",,2
+"tag → target_link 外参","标签参考点到 target_link 的平移/旋转","m / rad","把 PnP 输出映射到目标参考点",,2
+"map → base_link","世界坐标系到机体的变换","m / rad","UWB 多边测量得到的无人机自身定位结果",,1
+"base_link → camera_optical_frame","机体到相机光学系外参","m / rad","相对视觉位姿转世界坐标（现场测量/标定）",,2
+"camera → target","相机到目标的变换","m / rad","单目视觉观测输出",,1
+"UWB 标签 → base_link 外参","UWB 标签参考点相对 base_link 的平移/旋转","m / rad","统一 UWB 位置与机体/相机位置","未确认，必须现场测量/标定或向厂商索取",2
+"camera → IMU 外参","相机—IMU 外参","m / rad","VINS / ORB-SLAM3 惯性模式所需","后续对照，非首版",2
+"tag → IMU 外参","UWB 标签—IMU 外参","m / rad","UVINS 紧耦合所需","后续对照，非首版",2
+"标定图像分辨率与裁切/缩放","标定所用真实分辨率及裁切/缩放记录","px","K 仅对同一分辨率/裁切模式有效",,2
+"标定元数据","标定日期/工具/标定板尺寸/重投影误差/配置 SHA256",,"让内参可重现与可替换",,2
+"快门类型","全局/滚动快门",,"解释快速运动模糊与同步误差","标准版 IMX219：滚动/卷帘快门（硬件固定属性）；Gazebo Classic 不模拟逐行读出",2
+"焦距/视场角","镜头焦距与视场角","mm / deg","选取标签尺寸与拍摄距离（不替代实际标定）","项目常见模组：2.85 mm / 79.3°；Raspberry Pi Camera Module 2 参考：3.04 mm / 水平 62.2°、垂直 48.8°；镜头型号待确认",2
+"自动对焦状态","自动对焦是否锁定/镜头是否可拆",,"影响内参稳定性","Raspberry Pi Camera Module 2 参考为可调焦、约 10 cm~∞；本机是否自动/锁焦待确认",2
+"相机型号/传感器","相机型号与传感器",,"选型与参数解释","Sony IMX219，约 808 万像素；传感器并不能唯一确定镜头模组",2
+"相机物理接口","CSI/USB/其他",,"相机连接方式","MIPI CSI-2（docs/IMX219.md）；实机排线/转接板待确认",2
+"相机实际输出分辨率","解码后真实分辨率","px","提供算法真实尺寸（区别于缓冲/标称值）","Gazebo：3280×2464；实机待抓帧确认（不得把标称值当实测）",1
+"相机实际帧率","实测有效帧率","fps","丢帧统计与延迟评估（不以标称代替）","Gazebo 全分辨率：21 Hz（项目文档）；实机需统计。Raspberry Pi Camera Module 2 参考视频模式：1080p47、1640×1232p41、640×480p206",1
+"传感器有效图像面积","IMX219 光学有效面积","mm","由像素尺寸与镜头视场角推算的物理约束","Raspberry Pi Camera Module 2 参考：3.68×2.76 mm（对角 4.6 mm）；镜头模组不同仍须核对",2
+"像素尺寸","单像素感光单元尺寸","µm","估算采样极限与镜头匹配","1.12×1.12 µm（docs/IMX219.md；Raspberry Pi 官方参考一致）",2
+"光圈","镜头最大光圈","F-number","曝光与景深的镜头参数","标准版 IMX219 模组：F2.0；Gazebo Classic 未建模",2
+"镜头最大几何畸变","标准镜头的画面几何畸变上限","%","说明镜头模型与实机标定差异","标准版 IMX219 模组：<1%（典型 0.8%~1.0%）；不能替代 ROS D[] 标定系数",2
+"最大曝光时间","可配置的最长曝光","s","运动模糊与低照度链路边界","Raspberry Pi Camera Module 2 参考：11.76 s；本机驱动与图传链路待确认",2
+"相机模组尺寸/重量","模组外形和载荷","mm / g","安装空间与载荷记录","约 25×24×9 mm / 3 g（Raspberry Pi Camera Module 2 参考）；项目模组尺寸以 docs/IMX219.md 的 25×24 mm 为准，厚度/重量待确认",2
+"地面端接收方式","ffplay 播放/取流命令",,"地面端接收链路","ffplay tcp://<树莓派IP>:<port>（RTSP 走 rtsp://.../stream1）",2
+"树莓派—地面网络要求","树莓派与地面电脑网络条件",,"视频/串口链路准入","同一路由器 Wi-Fi",2
+"payload / 图像字节或外部引用+SHA256","图像数据或外部文件位置与校验值",,"数据可回放（大文件不入 Git，仅登记外部位置与 SHA256）",,1
+"IMU 频率/抖动/丢样率","IMU 实测频率、P95/最大间隔、丢样率","Hz / ns","VIO 连续输入要求（实测统计）",,1
+"IMU 时间基准与精度","时钟来源（飞控 tick / RPi monotonic / UTC）与精度",,"判断可否与相机时钟配对",,2
+"IMU 噪声参数","噪声密度/随机游走/量程/滤波",,"VINS/ORB-SLAM3 配置参数（未知不得假装为真实值）",,2
+"UWB 定位数据更新率","位置/姿态实际输出频率","Hz","抓包统计（不以网页标称值代替）",,1
+"UWB 质量/协方差","定位质量/协方差来源",,"异常值剔除与结果解释；无则记录原始值并标注限制",,1
+"基站布局版本","四基站坐标布局版本",,"多边测量几何可追溯",,2
+"原始距离质量标志","NLOS/LOS、通道/PRF 等可得配置",,"UWB 解算的噪声/异常处理",,1
+"range 有效状态","单条测距有效状态",,"距离有效性判断",,1
+"目标真值坐标","目标 ground truth 坐标及测量方法","m","比较定位精度（无真值不得宣称厘米级）",,1

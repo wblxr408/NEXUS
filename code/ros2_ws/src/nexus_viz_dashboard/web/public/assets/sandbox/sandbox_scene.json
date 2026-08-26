@@ -1,0 +1,8540 @@
+{
+  "scene_id": "sandbox_4000x4700_v03",
+  "scene_mode": "metric_simulation",
+  "frame": "map",
+  "unit": "m",
+  "source_unit": "mm",
+  "dimensions": {
+    "width_x": 4.0,
+    "length_y": 4.7,
+    "deck_height": 0.05
+  },
+  "central_core": {
+    "id": "INDUSTRIAL_CORE",
+    "min_xy": [
+      1.0,
+      1.2
+    ],
+    "size_xy": [
+      2.0,
+      2.3000000000000003
+    ],
+    "center_xy": [
+      2.0,
+      2.35
+    ],
+    "confidence": "A",
+    "source": "dimension_drawing"
+  },
+  "outer_boundary": {
+    "type": "bounding_box",
+    "polygon_xy": [
+      [
+        0.0,
+        0.0
+      ],
+      [
+        4.0,
+        0.0
+      ],
+      [
+        4.0,
+        4.7
+      ],
+      [
+        0.0,
+        4.7
+      ]
+    ],
+    "note": "4000x4700 mm 为 Bounding Box；外轮廓局部不规则，待实测补充。"
+  },
+  "objects": [
+    {
+      "id": "sandbox_deck",
+      "category": "sandbox",
+      "shape": "box",
+      "position": [
+        2.0,
+        2.35,
+        0.025
+      ],
+      "size": [
+        4.0,
+        4.7,
+        0.05
+      ],
+      "color": "grass",
+      "confidence": "A"
+    },
+    {
+      "id": "RD-RING-W",
+      "category": "road",
+      "shape": "box",
+      "position": [
+        0.5,
+        2.35,
+        0.051000000000000004
+      ],
+      "size": [
+        0.7000000000000001,
+        5.2,
+        0.002
+      ],
+      "color": "road",
+      "confidence": "C"
+    },
+    {
+      "id": "RD-RING-E",
+      "category": "road",
+      "shape": "box",
+      "position": [
+        3.5,
+        2.35,
+        0.051000000000000004
+      ],
+      "size": [
+        0.7000000000000001,
+        5.2,
+        0.002
+      ],
+      "color": "road",
+      "confidence": "C"
+    },
+    {
+      "id": "RD-RING-S",
+      "category": "road",
+      "shape": "box",
+      "position": [
+        2.0,
+        0.5,
+        0.051000000000000004
+      ],
+      "size": [
+        4.4,
+        0.7000000000000001,
+        0.002
+      ],
+      "color": "road",
+      "confidence": "C"
+    },
+    {
+      "id": "RD-RING-N",
+      "category": "road",
+      "shape": "box",
+      "position": [
+        2.0,
+        4.2,
+        0.051000000000000004
+      ],
+      "size": [
+        4.4,
+        0.7000000000000001,
+        0.002
+      ],
+      "color": "road",
+      "confidence": "C"
+    },
+    {
+      "id": "RD-C-X",
+      "category": "road",
+      "shape": "box",
+      "position": [
+        2.0,
+        2.35,
+        0.051000000000000004
+      ],
+      "size": [
+        3.0,
+        0.18,
+        0.002
+      ],
+      "color": "road",
+      "confidence": "B"
+    },
+    {
+      "id": "RD-C-Y",
+      "category": "road",
+      "shape": "box",
+      "position": [
+        2.0,
+        2.35,
+        0.051000000000000004
+      ],
+      "size": [
+        0.18,
+        2.3000000000000003,
+        0.002
+      ],
+      "color": "road",
+      "confidence": "B"
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "C",
+      "source_id": "LM-RING-W",
+      "id": "LM-RING-W-01",
+      "position": [
+        0.5,
+        0.79,
+        0.05450000000000001
+      ],
+      "size": [
+        0.025,
+        0.18,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "C",
+      "source_id": "LM-RING-W",
+      "id": "LM-RING-W-02",
+      "position": [
+        0.5,
+        1.09,
+        0.05450000000000001
+      ],
+      "size": [
+        0.025,
+        0.18,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "C",
+      "source_id": "LM-RING-W",
+      "id": "LM-RING-W-03",
+      "position": [
+        0.5,
+        1.3900000000000001,
+        0.05450000000000001
+      ],
+      "size": [
+        0.025,
+        0.18,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "C",
+      "source_id": "LM-RING-W",
+      "id": "LM-RING-W-04",
+      "position": [
+        0.5,
+        1.69,
+        0.05450000000000001
+      ],
+      "size": [
+        0.025,
+        0.18,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "C",
+      "source_id": "LM-RING-W",
+      "id": "LM-RING-W-05",
+      "position": [
+        0.5,
+        1.9900000000000002,
+        0.05450000000000001
+      ],
+      "size": [
+        0.025,
+        0.18,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "C",
+      "source_id": "LM-RING-W",
+      "id": "LM-RING-W-06",
+      "position": [
+        0.5,
+        2.29,
+        0.05450000000000001
+      ],
+      "size": [
+        0.025,
+        0.18,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "C",
+      "source_id": "LM-RING-W",
+      "id": "LM-RING-W-07",
+      "position": [
+        0.5,
+        2.59,
+        0.05450000000000001
+      ],
+      "size": [
+        0.025,
+        0.18,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "C",
+      "source_id": "LM-RING-W",
+      "id": "LM-RING-W-08",
+      "position": [
+        0.5,
+        2.89,
+        0.05450000000000001
+      ],
+      "size": [
+        0.025,
+        0.18,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "C",
+      "source_id": "LM-RING-W",
+      "id": "LM-RING-W-09",
+      "position": [
+        0.5,
+        3.19,
+        0.05450000000000001
+      ],
+      "size": [
+        0.025,
+        0.18,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "C",
+      "source_id": "LM-RING-W",
+      "id": "LM-RING-W-10",
+      "position": [
+        0.5,
+        3.4899999999999998,
+        0.05450000000000001
+      ],
+      "size": [
+        0.025,
+        0.18,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "C",
+      "source_id": "LM-RING-W",
+      "id": "LM-RING-W-11",
+      "position": [
+        0.5,
+        3.79,
+        0.05450000000000001
+      ],
+      "size": [
+        0.025,
+        0.18,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "C",
+      "source_id": "LM-RING-E",
+      "id": "LM-RING-E-01",
+      "position": [
+        3.5,
+        0.79,
+        0.05450000000000001
+      ],
+      "size": [
+        0.025,
+        0.18,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "C",
+      "source_id": "LM-RING-E",
+      "id": "LM-RING-E-02",
+      "position": [
+        3.5,
+        1.09,
+        0.05450000000000001
+      ],
+      "size": [
+        0.025,
+        0.18,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "C",
+      "source_id": "LM-RING-E",
+      "id": "LM-RING-E-03",
+      "position": [
+        3.5,
+        1.3900000000000001,
+        0.05450000000000001
+      ],
+      "size": [
+        0.025,
+        0.18,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "C",
+      "source_id": "LM-RING-E",
+      "id": "LM-RING-E-04",
+      "position": [
+        3.5,
+        1.69,
+        0.05450000000000001
+      ],
+      "size": [
+        0.025,
+        0.18,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "C",
+      "source_id": "LM-RING-E",
+      "id": "LM-RING-E-05",
+      "position": [
+        3.5,
+        1.9900000000000002,
+        0.05450000000000001
+      ],
+      "size": [
+        0.025,
+        0.18,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "C",
+      "source_id": "LM-RING-E",
+      "id": "LM-RING-E-06",
+      "position": [
+        3.5,
+        2.29,
+        0.05450000000000001
+      ],
+      "size": [
+        0.025,
+        0.18,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "C",
+      "source_id": "LM-RING-E",
+      "id": "LM-RING-E-07",
+      "position": [
+        3.5,
+        2.59,
+        0.05450000000000001
+      ],
+      "size": [
+        0.025,
+        0.18,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "C",
+      "source_id": "LM-RING-E",
+      "id": "LM-RING-E-08",
+      "position": [
+        3.5,
+        2.89,
+        0.05450000000000001
+      ],
+      "size": [
+        0.025,
+        0.18,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "C",
+      "source_id": "LM-RING-E",
+      "id": "LM-RING-E-09",
+      "position": [
+        3.5,
+        3.19,
+        0.05450000000000001
+      ],
+      "size": [
+        0.025,
+        0.18,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "C",
+      "source_id": "LM-RING-E",
+      "id": "LM-RING-E-10",
+      "position": [
+        3.5,
+        3.4899999999999998,
+        0.05450000000000001
+      ],
+      "size": [
+        0.025,
+        0.18,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "C",
+      "source_id": "LM-RING-E",
+      "id": "LM-RING-E-11",
+      "position": [
+        3.5,
+        3.79,
+        0.05450000000000001
+      ],
+      "size": [
+        0.025,
+        0.18,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "C",
+      "source_id": "LM-RING-S",
+      "id": "LM-RING-S-01",
+      "position": [
+        0.79,
+        0.5,
+        0.05450000000000001
+      ],
+      "size": [
+        0.18,
+        0.025,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "C",
+      "source_id": "LM-RING-S",
+      "id": "LM-RING-S-02",
+      "position": [
+        1.09,
+        0.5,
+        0.05450000000000001
+      ],
+      "size": [
+        0.18,
+        0.025,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "C",
+      "source_id": "LM-RING-S",
+      "id": "LM-RING-S-03",
+      "position": [
+        1.3900000000000001,
+        0.5,
+        0.05450000000000001
+      ],
+      "size": [
+        0.18,
+        0.025,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "C",
+      "source_id": "LM-RING-S",
+      "id": "LM-RING-S-04",
+      "position": [
+        1.69,
+        0.5,
+        0.05450000000000001
+      ],
+      "size": [
+        0.18,
+        0.025,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "C",
+      "source_id": "LM-RING-S",
+      "id": "LM-RING-S-05",
+      "position": [
+        1.9900000000000002,
+        0.5,
+        0.05450000000000001
+      ],
+      "size": [
+        0.18,
+        0.025,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "C",
+      "source_id": "LM-RING-S",
+      "id": "LM-RING-S-06",
+      "position": [
+        2.29,
+        0.5,
+        0.05450000000000001
+      ],
+      "size": [
+        0.18,
+        0.025,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "C",
+      "source_id": "LM-RING-S",
+      "id": "LM-RING-S-07",
+      "position": [
+        2.59,
+        0.5,
+        0.05450000000000001
+      ],
+      "size": [
+        0.18,
+        0.025,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "C",
+      "source_id": "LM-RING-S",
+      "id": "LM-RING-S-08",
+      "position": [
+        2.89,
+        0.5,
+        0.05450000000000001
+      ],
+      "size": [
+        0.18,
+        0.025,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "C",
+      "source_id": "LM-RING-S",
+      "id": "LM-RING-S-09",
+      "position": [
+        3.19,
+        0.5,
+        0.05450000000000001
+      ],
+      "size": [
+        0.18,
+        0.025,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "C",
+      "source_id": "LM-RING-N",
+      "id": "LM-RING-N-01",
+      "position": [
+        0.79,
+        4.2,
+        0.05450000000000001
+      ],
+      "size": [
+        0.18,
+        0.025,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "C",
+      "source_id": "LM-RING-N",
+      "id": "LM-RING-N-02",
+      "position": [
+        1.09,
+        4.2,
+        0.05450000000000001
+      ],
+      "size": [
+        0.18,
+        0.025,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "C",
+      "source_id": "LM-RING-N",
+      "id": "LM-RING-N-03",
+      "position": [
+        1.3900000000000001,
+        4.2,
+        0.05450000000000001
+      ],
+      "size": [
+        0.18,
+        0.025,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "C",
+      "source_id": "LM-RING-N",
+      "id": "LM-RING-N-04",
+      "position": [
+        1.69,
+        4.2,
+        0.05450000000000001
+      ],
+      "size": [
+        0.18,
+        0.025,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "C",
+      "source_id": "LM-RING-N",
+      "id": "LM-RING-N-05",
+      "position": [
+        1.9900000000000002,
+        4.2,
+        0.05450000000000001
+      ],
+      "size": [
+        0.18,
+        0.025,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "C",
+      "source_id": "LM-RING-N",
+      "id": "LM-RING-N-06",
+      "position": [
+        2.29,
+        4.2,
+        0.05450000000000001
+      ],
+      "size": [
+        0.18,
+        0.025,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "C",
+      "source_id": "LM-RING-N",
+      "id": "LM-RING-N-07",
+      "position": [
+        2.59,
+        4.2,
+        0.05450000000000001
+      ],
+      "size": [
+        0.18,
+        0.025,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "C",
+      "source_id": "LM-RING-N",
+      "id": "LM-RING-N-08",
+      "position": [
+        2.89,
+        4.2,
+        0.05450000000000001
+      ],
+      "size": [
+        0.18,
+        0.025,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "C",
+      "source_id": "LM-RING-N",
+      "id": "LM-RING-N-09",
+      "position": [
+        3.19,
+        4.2,
+        0.05450000000000001
+      ],
+      "size": [
+        0.18,
+        0.025,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "C",
+      "source_id": "CW-SW-X",
+      "id": "CW-SW-X-01",
+      "position": [
+        0.5,
+        0.73,
+        0.05450000000000001
+      ],
+      "size": [
+        0.28,
+        0.014,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "C",
+      "source_id": "CW-SW-X",
+      "id": "CW-SW-X-02",
+      "position": [
+        0.5,
+        0.75,
+        0.05450000000000001
+      ],
+      "size": [
+        0.28,
+        0.014,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "C",
+      "source_id": "CW-SW-X",
+      "id": "CW-SW-X-03",
+      "position": [
+        0.5,
+        0.77,
+        0.05450000000000001
+      ],
+      "size": [
+        0.28,
+        0.014,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "C",
+      "source_id": "CW-SW-X",
+      "id": "CW-SW-X-04",
+      "position": [
+        0.5,
+        0.79,
+        0.05450000000000001
+      ],
+      "size": [
+        0.28,
+        0.014,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "C",
+      "source_id": "CW-SW-X",
+      "id": "CW-SW-X-05",
+      "position": [
+        0.5,
+        0.81,
+        0.05450000000000001
+      ],
+      "size": [
+        0.28,
+        0.014,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "C",
+      "source_id": "CW-SW-X",
+      "id": "CW-SW-X-06",
+      "position": [
+        0.5,
+        0.8300000000000001,
+        0.05450000000000001
+      ],
+      "size": [
+        0.28,
+        0.014,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "C",
+      "source_id": "CW-SW-X",
+      "id": "CW-SW-X-07",
+      "position": [
+        0.5,
+        0.8500000000000001,
+        0.05450000000000001
+      ],
+      "size": [
+        0.28,
+        0.014,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "C",
+      "source_id": "CW-SW-X",
+      "id": "CW-SW-X-08",
+      "position": [
+        0.5,
+        0.8700000000000001,
+        0.05450000000000001
+      ],
+      "size": [
+        0.28,
+        0.014,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "C",
+      "source_id": "CW-SW-Y",
+      "id": "CW-SW-Y-01",
+      "position": [
+        0.73,
+        0.5,
+        0.05450000000000001
+      ],
+      "size": [
+        0.014,
+        0.28,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "C",
+      "source_id": "CW-SW-Y",
+      "id": "CW-SW-Y-02",
+      "position": [
+        0.75,
+        0.5,
+        0.05450000000000001
+      ],
+      "size": [
+        0.014,
+        0.28,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "C",
+      "source_id": "CW-SW-Y",
+      "id": "CW-SW-Y-03",
+      "position": [
+        0.77,
+        0.5,
+        0.05450000000000001
+      ],
+      "size": [
+        0.014,
+        0.28,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "C",
+      "source_id": "CW-SW-Y",
+      "id": "CW-SW-Y-04",
+      "position": [
+        0.79,
+        0.5,
+        0.05450000000000001
+      ],
+      "size": [
+        0.014,
+        0.28,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "C",
+      "source_id": "CW-SW-Y",
+      "id": "CW-SW-Y-05",
+      "position": [
+        0.81,
+        0.5,
+        0.05450000000000001
+      ],
+      "size": [
+        0.014,
+        0.28,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "C",
+      "source_id": "CW-SW-Y",
+      "id": "CW-SW-Y-06",
+      "position": [
+        0.8300000000000001,
+        0.5,
+        0.05450000000000001
+      ],
+      "size": [
+        0.014,
+        0.28,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "C",
+      "source_id": "CW-SW-Y",
+      "id": "CW-SW-Y-07",
+      "position": [
+        0.8500000000000001,
+        0.5,
+        0.05450000000000001
+      ],
+      "size": [
+        0.014,
+        0.28,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "C",
+      "source_id": "CW-SW-Y",
+      "id": "CW-SW-Y-08",
+      "position": [
+        0.8700000000000001,
+        0.5,
+        0.05450000000000001
+      ],
+      "size": [
+        0.014,
+        0.28,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "C",
+      "source_id": "CW-SE-X",
+      "id": "CW-SE-X-01",
+      "position": [
+        3.5,
+        0.73,
+        0.05450000000000001
+      ],
+      "size": [
+        0.28,
+        0.014,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "C",
+      "source_id": "CW-SE-X",
+      "id": "CW-SE-X-02",
+      "position": [
+        3.5,
+        0.75,
+        0.05450000000000001
+      ],
+      "size": [
+        0.28,
+        0.014,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "C",
+      "source_id": "CW-SE-X",
+      "id": "CW-SE-X-03",
+      "position": [
+        3.5,
+        0.77,
+        0.05450000000000001
+      ],
+      "size": [
+        0.28,
+        0.014,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "C",
+      "source_id": "CW-SE-X",
+      "id": "CW-SE-X-04",
+      "position": [
+        3.5,
+        0.79,
+        0.05450000000000001
+      ],
+      "size": [
+        0.28,
+        0.014,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "C",
+      "source_id": "CW-SE-X",
+      "id": "CW-SE-X-05",
+      "position": [
+        3.5,
+        0.81,
+        0.05450000000000001
+      ],
+      "size": [
+        0.28,
+        0.014,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "C",
+      "source_id": "CW-SE-X",
+      "id": "CW-SE-X-06",
+      "position": [
+        3.5,
+        0.8300000000000001,
+        0.05450000000000001
+      ],
+      "size": [
+        0.28,
+        0.014,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "C",
+      "source_id": "CW-SE-X",
+      "id": "CW-SE-X-07",
+      "position": [
+        3.5,
+        0.8500000000000001,
+        0.05450000000000001
+      ],
+      "size": [
+        0.28,
+        0.014,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "C",
+      "source_id": "CW-SE-X",
+      "id": "CW-SE-X-08",
+      "position": [
+        3.5,
+        0.8700000000000001,
+        0.05450000000000001
+      ],
+      "size": [
+        0.28,
+        0.014,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "C",
+      "source_id": "CW-SE-Y",
+      "id": "CW-SE-Y-01",
+      "position": [
+        3.1300000000000003,
+        0.5,
+        0.05450000000000001
+      ],
+      "size": [
+        0.014,
+        0.28,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "C",
+      "source_id": "CW-SE-Y",
+      "id": "CW-SE-Y-02",
+      "position": [
+        3.1500000000000004,
+        0.5,
+        0.05450000000000001
+      ],
+      "size": [
+        0.014,
+        0.28,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "C",
+      "source_id": "CW-SE-Y",
+      "id": "CW-SE-Y-03",
+      "position": [
+        3.1700000000000004,
+        0.5,
+        0.05450000000000001
+      ],
+      "size": [
+        0.014,
+        0.28,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "C",
+      "source_id": "CW-SE-Y",
+      "id": "CW-SE-Y-04",
+      "position": [
+        3.1900000000000004,
+        0.5,
+        0.05450000000000001
+      ],
+      "size": [
+        0.014,
+        0.28,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "C",
+      "source_id": "CW-SE-Y",
+      "id": "CW-SE-Y-05",
+      "position": [
+        3.21,
+        0.5,
+        0.05450000000000001
+      ],
+      "size": [
+        0.014,
+        0.28,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "C",
+      "source_id": "CW-SE-Y",
+      "id": "CW-SE-Y-06",
+      "position": [
+        3.23,
+        0.5,
+        0.05450000000000001
+      ],
+      "size": [
+        0.014,
+        0.28,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "C",
+      "source_id": "CW-SE-Y",
+      "id": "CW-SE-Y-07",
+      "position": [
+        3.25,
+        0.5,
+        0.05450000000000001
+      ],
+      "size": [
+        0.014,
+        0.28,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "C",
+      "source_id": "CW-SE-Y",
+      "id": "CW-SE-Y-08",
+      "position": [
+        3.27,
+        0.5,
+        0.05450000000000001
+      ],
+      "size": [
+        0.014,
+        0.28,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "C",
+      "source_id": "CW-NW-X",
+      "id": "CW-NW-X-01",
+      "position": [
+        0.5,
+        3.83,
+        0.05450000000000001
+      ],
+      "size": [
+        0.28,
+        0.014,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "C",
+      "source_id": "CW-NW-X",
+      "id": "CW-NW-X-02",
+      "position": [
+        0.5,
+        3.85,
+        0.05450000000000001
+      ],
+      "size": [
+        0.28,
+        0.014,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "C",
+      "source_id": "CW-NW-X",
+      "id": "CW-NW-X-03",
+      "position": [
+        0.5,
+        3.87,
+        0.05450000000000001
+      ],
+      "size": [
+        0.28,
+        0.014,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "C",
+      "source_id": "CW-NW-X",
+      "id": "CW-NW-X-04",
+      "position": [
+        0.5,
+        3.89,
+        0.05450000000000001
+      ],
+      "size": [
+        0.28,
+        0.014,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "C",
+      "source_id": "CW-NW-X",
+      "id": "CW-NW-X-05",
+      "position": [
+        0.5,
+        3.9099999999999997,
+        0.05450000000000001
+      ],
+      "size": [
+        0.28,
+        0.014,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "C",
+      "source_id": "CW-NW-X",
+      "id": "CW-NW-X-06",
+      "position": [
+        0.5,
+        3.9299999999999997,
+        0.05450000000000001
+      ],
+      "size": [
+        0.28,
+        0.014,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "C",
+      "source_id": "CW-NW-X",
+      "id": "CW-NW-X-07",
+      "position": [
+        0.5,
+        3.9499999999999997,
+        0.05450000000000001
+      ],
+      "size": [
+        0.28,
+        0.014,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "C",
+      "source_id": "CW-NW-X",
+      "id": "CW-NW-X-08",
+      "position": [
+        0.5,
+        3.9699999999999998,
+        0.05450000000000001
+      ],
+      "size": [
+        0.28,
+        0.014,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "C",
+      "source_id": "CW-NW-Y",
+      "id": "CW-NW-Y-01",
+      "position": [
+        0.73,
+        4.2,
+        0.05450000000000001
+      ],
+      "size": [
+        0.014,
+        0.28,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "C",
+      "source_id": "CW-NW-Y",
+      "id": "CW-NW-Y-02",
+      "position": [
+        0.75,
+        4.2,
+        0.05450000000000001
+      ],
+      "size": [
+        0.014,
+        0.28,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "C",
+      "source_id": "CW-NW-Y",
+      "id": "CW-NW-Y-03",
+      "position": [
+        0.77,
+        4.2,
+        0.05450000000000001
+      ],
+      "size": [
+        0.014,
+        0.28,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "C",
+      "source_id": "CW-NW-Y",
+      "id": "CW-NW-Y-04",
+      "position": [
+        0.79,
+        4.2,
+        0.05450000000000001
+      ],
+      "size": [
+        0.014,
+        0.28,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "C",
+      "source_id": "CW-NW-Y",
+      "id": "CW-NW-Y-05",
+      "position": [
+        0.81,
+        4.2,
+        0.05450000000000001
+      ],
+      "size": [
+        0.014,
+        0.28,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "C",
+      "source_id": "CW-NW-Y",
+      "id": "CW-NW-Y-06",
+      "position": [
+        0.8300000000000001,
+        4.2,
+        0.05450000000000001
+      ],
+      "size": [
+        0.014,
+        0.28,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "C",
+      "source_id": "CW-NW-Y",
+      "id": "CW-NW-Y-07",
+      "position": [
+        0.8500000000000001,
+        4.2,
+        0.05450000000000001
+      ],
+      "size": [
+        0.014,
+        0.28,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "C",
+      "source_id": "CW-NW-Y",
+      "id": "CW-NW-Y-08",
+      "position": [
+        0.8700000000000001,
+        4.2,
+        0.05450000000000001
+      ],
+      "size": [
+        0.014,
+        0.28,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "C",
+      "source_id": "CW-NE-X",
+      "id": "CW-NE-X-01",
+      "position": [
+        3.5,
+        3.83,
+        0.05450000000000001
+      ],
+      "size": [
+        0.28,
+        0.014,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "C",
+      "source_id": "CW-NE-X",
+      "id": "CW-NE-X-02",
+      "position": [
+        3.5,
+        3.85,
+        0.05450000000000001
+      ],
+      "size": [
+        0.28,
+        0.014,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "C",
+      "source_id": "CW-NE-X",
+      "id": "CW-NE-X-03",
+      "position": [
+        3.5,
+        3.87,
+        0.05450000000000001
+      ],
+      "size": [
+        0.28,
+        0.014,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "C",
+      "source_id": "CW-NE-X",
+      "id": "CW-NE-X-04",
+      "position": [
+        3.5,
+        3.89,
+        0.05450000000000001
+      ],
+      "size": [
+        0.28,
+        0.014,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "C",
+      "source_id": "CW-NE-X",
+      "id": "CW-NE-X-05",
+      "position": [
+        3.5,
+        3.9099999999999997,
+        0.05450000000000001
+      ],
+      "size": [
+        0.28,
+        0.014,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "C",
+      "source_id": "CW-NE-X",
+      "id": "CW-NE-X-06",
+      "position": [
+        3.5,
+        3.9299999999999997,
+        0.05450000000000001
+      ],
+      "size": [
+        0.28,
+        0.014,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "C",
+      "source_id": "CW-NE-X",
+      "id": "CW-NE-X-07",
+      "position": [
+        3.5,
+        3.9499999999999997,
+        0.05450000000000001
+      ],
+      "size": [
+        0.28,
+        0.014,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "C",
+      "source_id": "CW-NE-X",
+      "id": "CW-NE-X-08",
+      "position": [
+        3.5,
+        3.9699999999999998,
+        0.05450000000000001
+      ],
+      "size": [
+        0.28,
+        0.014,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "C",
+      "source_id": "CW-NE-Y",
+      "id": "CW-NE-Y-01",
+      "position": [
+        3.1300000000000003,
+        4.2,
+        0.05450000000000001
+      ],
+      "size": [
+        0.014,
+        0.28,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "C",
+      "source_id": "CW-NE-Y",
+      "id": "CW-NE-Y-02",
+      "position": [
+        3.1500000000000004,
+        4.2,
+        0.05450000000000001
+      ],
+      "size": [
+        0.014,
+        0.28,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "C",
+      "source_id": "CW-NE-Y",
+      "id": "CW-NE-Y-03",
+      "position": [
+        3.1700000000000004,
+        4.2,
+        0.05450000000000001
+      ],
+      "size": [
+        0.014,
+        0.28,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "C",
+      "source_id": "CW-NE-Y",
+      "id": "CW-NE-Y-04",
+      "position": [
+        3.1900000000000004,
+        4.2,
+        0.05450000000000001
+      ],
+      "size": [
+        0.014,
+        0.28,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "C",
+      "source_id": "CW-NE-Y",
+      "id": "CW-NE-Y-05",
+      "position": [
+        3.21,
+        4.2,
+        0.05450000000000001
+      ],
+      "size": [
+        0.014,
+        0.28,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "C",
+      "source_id": "CW-NE-Y",
+      "id": "CW-NE-Y-06",
+      "position": [
+        3.23,
+        4.2,
+        0.05450000000000001
+      ],
+      "size": [
+        0.014,
+        0.28,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "C",
+      "source_id": "CW-NE-Y",
+      "id": "CW-NE-Y-07",
+      "position": [
+        3.25,
+        4.2,
+        0.05450000000000001
+      ],
+      "size": [
+        0.014,
+        0.28,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "C",
+      "source_id": "CW-NE-Y",
+      "id": "CW-NE-Y-08",
+      "position": [
+        3.27,
+        4.2,
+        0.05450000000000001
+      ],
+      "size": [
+        0.014,
+        0.28,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "B",
+      "source_id": "CW-C-W",
+      "id": "CW-C-W-01",
+      "position": [
+        0.42,
+        2.35,
+        0.05450000000000001
+      ],
+      "size": [
+        0.014,
+        0.56,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "B",
+      "source_id": "CW-C-W",
+      "id": "CW-C-W-02",
+      "position": [
+        0.44,
+        2.35,
+        0.05450000000000001
+      ],
+      "size": [
+        0.014,
+        0.56,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "B",
+      "source_id": "CW-C-W",
+      "id": "CW-C-W-03",
+      "position": [
+        0.46,
+        2.35,
+        0.05450000000000001
+      ],
+      "size": [
+        0.014,
+        0.56,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "B",
+      "source_id": "CW-C-W",
+      "id": "CW-C-W-04",
+      "position": [
+        0.48,
+        2.35,
+        0.05450000000000001
+      ],
+      "size": [
+        0.014,
+        0.56,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "B",
+      "source_id": "CW-C-W",
+      "id": "CW-C-W-05",
+      "position": [
+        0.5,
+        2.35,
+        0.05450000000000001
+      ],
+      "size": [
+        0.014,
+        0.56,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "B",
+      "source_id": "CW-C-W",
+      "id": "CW-C-W-06",
+      "position": [
+        0.52,
+        2.35,
+        0.05450000000000001
+      ],
+      "size": [
+        0.014,
+        0.56,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "B",
+      "source_id": "CW-C-W",
+      "id": "CW-C-W-07",
+      "position": [
+        0.54,
+        2.35,
+        0.05450000000000001
+      ],
+      "size": [
+        0.014,
+        0.56,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "B",
+      "source_id": "CW-C-W",
+      "id": "CW-C-W-08",
+      "position": [
+        0.56,
+        2.35,
+        0.05450000000000001
+      ],
+      "size": [
+        0.014,
+        0.56,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "B",
+      "source_id": "CW-C-W",
+      "id": "CW-C-W-09",
+      "position": [
+        0.58,
+        2.35,
+        0.05450000000000001
+      ],
+      "size": [
+        0.014,
+        0.56,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "B",
+      "source_id": "CW-C-E",
+      "id": "CW-C-E-01",
+      "position": [
+        3.42,
+        2.35,
+        0.05450000000000001
+      ],
+      "size": [
+        0.014,
+        0.56,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "B",
+      "source_id": "CW-C-E",
+      "id": "CW-C-E-02",
+      "position": [
+        3.44,
+        2.35,
+        0.05450000000000001
+      ],
+      "size": [
+        0.014,
+        0.56,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "B",
+      "source_id": "CW-C-E",
+      "id": "CW-C-E-03",
+      "position": [
+        3.46,
+        2.35,
+        0.05450000000000001
+      ],
+      "size": [
+        0.014,
+        0.56,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "B",
+      "source_id": "CW-C-E",
+      "id": "CW-C-E-04",
+      "position": [
+        3.48,
+        2.35,
+        0.05450000000000001
+      ],
+      "size": [
+        0.014,
+        0.56,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "B",
+      "source_id": "CW-C-E",
+      "id": "CW-C-E-05",
+      "position": [
+        3.5,
+        2.35,
+        0.05450000000000001
+      ],
+      "size": [
+        0.014,
+        0.56,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "B",
+      "source_id": "CW-C-E",
+      "id": "CW-C-E-06",
+      "position": [
+        3.52,
+        2.35,
+        0.05450000000000001
+      ],
+      "size": [
+        0.014,
+        0.56,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "B",
+      "source_id": "CW-C-E",
+      "id": "CW-C-E-07",
+      "position": [
+        3.54,
+        2.35,
+        0.05450000000000001
+      ],
+      "size": [
+        0.014,
+        0.56,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "B",
+      "source_id": "CW-C-E",
+      "id": "CW-C-E-08",
+      "position": [
+        3.56,
+        2.35,
+        0.05450000000000001
+      ],
+      "size": [
+        0.014,
+        0.56,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "B",
+      "source_id": "CW-C-E",
+      "id": "CW-C-E-09",
+      "position": [
+        3.58,
+        2.35,
+        0.05450000000000001
+      ],
+      "size": [
+        0.014,
+        0.56,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "C",
+      "source_id": "CW-EXT-W-S",
+      "id": "CW-EXT-W-S-01",
+      "position": [
+        0.5,
+        0.03,
+        0.05450000000000001
+      ],
+      "size": [
+        0.28,
+        0.014,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "C",
+      "source_id": "CW-EXT-W-S",
+      "id": "CW-EXT-W-S-02",
+      "position": [
+        0.5,
+        0.05,
+        0.05450000000000001
+      ],
+      "size": [
+        0.28,
+        0.014,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "C",
+      "source_id": "CW-EXT-W-S",
+      "id": "CW-EXT-W-S-03",
+      "position": [
+        0.5,
+        0.07,
+        0.05450000000000001
+      ],
+      "size": [
+        0.28,
+        0.014,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "C",
+      "source_id": "CW-EXT-W-S",
+      "id": "CW-EXT-W-S-04",
+      "position": [
+        0.5,
+        0.09000000000000001,
+        0.05450000000000001
+      ],
+      "size": [
+        0.28,
+        0.014,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "C",
+      "source_id": "CW-EXT-W-S",
+      "id": "CW-EXT-W-S-05",
+      "position": [
+        0.5,
+        0.11,
+        0.05450000000000001
+      ],
+      "size": [
+        0.28,
+        0.014,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "C",
+      "source_id": "CW-EXT-W-S",
+      "id": "CW-EXT-W-S-06",
+      "position": [
+        0.5,
+        0.13,
+        0.05450000000000001
+      ],
+      "size": [
+        0.28,
+        0.014,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "C",
+      "source_id": "CW-EXT-W-S",
+      "id": "CW-EXT-W-S-07",
+      "position": [
+        0.5,
+        0.15000000000000002,
+        0.05450000000000001
+      ],
+      "size": [
+        0.28,
+        0.014,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "C",
+      "source_id": "CW-EXT-W-S",
+      "id": "CW-EXT-W-S-08",
+      "position": [
+        0.5,
+        0.17,
+        0.05450000000000001
+      ],
+      "size": [
+        0.28,
+        0.014,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "C",
+      "source_id": "CW-EXT-W-N",
+      "id": "CW-EXT-W-N-01",
+      "position": [
+        0.5,
+        4.53,
+        0.05450000000000001
+      ],
+      "size": [
+        0.28,
+        0.014,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "C",
+      "source_id": "CW-EXT-W-N",
+      "id": "CW-EXT-W-N-02",
+      "position": [
+        0.5,
+        4.550000000000001,
+        0.05450000000000001
+      ],
+      "size": [
+        0.28,
+        0.014,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "C",
+      "source_id": "CW-EXT-W-N",
+      "id": "CW-EXT-W-N-03",
+      "position": [
+        0.5,
+        4.57,
+        0.05450000000000001
+      ],
+      "size": [
+        0.28,
+        0.014,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "C",
+      "source_id": "CW-EXT-W-N",
+      "id": "CW-EXT-W-N-04",
+      "position": [
+        0.5,
+        4.590000000000001,
+        0.05450000000000001
+      ],
+      "size": [
+        0.28,
+        0.014,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "C",
+      "source_id": "CW-EXT-W-N",
+      "id": "CW-EXT-W-N-05",
+      "position": [
+        0.5,
+        4.61,
+        0.05450000000000001
+      ],
+      "size": [
+        0.28,
+        0.014,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "C",
+      "source_id": "CW-EXT-W-N",
+      "id": "CW-EXT-W-N-06",
+      "position": [
+        0.5,
+        4.630000000000001,
+        0.05450000000000001
+      ],
+      "size": [
+        0.28,
+        0.014,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "C",
+      "source_id": "CW-EXT-W-N",
+      "id": "CW-EXT-W-N-07",
+      "position": [
+        0.5,
+        4.65,
+        0.05450000000000001
+      ],
+      "size": [
+        0.28,
+        0.014,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "C",
+      "source_id": "CW-EXT-W-N",
+      "id": "CW-EXT-W-N-08",
+      "position": [
+        0.5,
+        4.670000000000001,
+        0.05450000000000001
+      ],
+      "size": [
+        0.28,
+        0.014,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "C",
+      "source_id": "CW-EXT-E-S",
+      "id": "CW-EXT-E-S-01",
+      "position": [
+        3.5,
+        0.03,
+        0.05450000000000001
+      ],
+      "size": [
+        0.28,
+        0.014,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "C",
+      "source_id": "CW-EXT-E-S",
+      "id": "CW-EXT-E-S-02",
+      "position": [
+        3.5,
+        0.05,
+        0.05450000000000001
+      ],
+      "size": [
+        0.28,
+        0.014,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "C",
+      "source_id": "CW-EXT-E-S",
+      "id": "CW-EXT-E-S-03",
+      "position": [
+        3.5,
+        0.07,
+        0.05450000000000001
+      ],
+      "size": [
+        0.28,
+        0.014,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "C",
+      "source_id": "CW-EXT-E-S",
+      "id": "CW-EXT-E-S-04",
+      "position": [
+        3.5,
+        0.09000000000000001,
+        0.05450000000000001
+      ],
+      "size": [
+        0.28,
+        0.014,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "C",
+      "source_id": "CW-EXT-E-S",
+      "id": "CW-EXT-E-S-05",
+      "position": [
+        3.5,
+        0.11,
+        0.05450000000000001
+      ],
+      "size": [
+        0.28,
+        0.014,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "C",
+      "source_id": "CW-EXT-E-S",
+      "id": "CW-EXT-E-S-06",
+      "position": [
+        3.5,
+        0.13,
+        0.05450000000000001
+      ],
+      "size": [
+        0.28,
+        0.014,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "C",
+      "source_id": "CW-EXT-E-S",
+      "id": "CW-EXT-E-S-07",
+      "position": [
+        3.5,
+        0.15000000000000002,
+        0.05450000000000001
+      ],
+      "size": [
+        0.28,
+        0.014,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "C",
+      "source_id": "CW-EXT-E-S",
+      "id": "CW-EXT-E-S-08",
+      "position": [
+        3.5,
+        0.17,
+        0.05450000000000001
+      ],
+      "size": [
+        0.28,
+        0.014,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "C",
+      "source_id": "CW-EXT-E-N",
+      "id": "CW-EXT-E-N-01",
+      "position": [
+        3.5,
+        4.53,
+        0.05450000000000001
+      ],
+      "size": [
+        0.28,
+        0.014,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "C",
+      "source_id": "CW-EXT-E-N",
+      "id": "CW-EXT-E-N-02",
+      "position": [
+        3.5,
+        4.550000000000001,
+        0.05450000000000001
+      ],
+      "size": [
+        0.28,
+        0.014,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "C",
+      "source_id": "CW-EXT-E-N",
+      "id": "CW-EXT-E-N-03",
+      "position": [
+        3.5,
+        4.57,
+        0.05450000000000001
+      ],
+      "size": [
+        0.28,
+        0.014,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "C",
+      "source_id": "CW-EXT-E-N",
+      "id": "CW-EXT-E-N-04",
+      "position": [
+        3.5,
+        4.590000000000001,
+        0.05450000000000001
+      ],
+      "size": [
+        0.28,
+        0.014,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "C",
+      "source_id": "CW-EXT-E-N",
+      "id": "CW-EXT-E-N-05",
+      "position": [
+        3.5,
+        4.61,
+        0.05450000000000001
+      ],
+      "size": [
+        0.28,
+        0.014,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "C",
+      "source_id": "CW-EXT-E-N",
+      "id": "CW-EXT-E-N-06",
+      "position": [
+        3.5,
+        4.630000000000001,
+        0.05450000000000001
+      ],
+      "size": [
+        0.28,
+        0.014,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "C",
+      "source_id": "CW-EXT-E-N",
+      "id": "CW-EXT-E-N-07",
+      "position": [
+        3.5,
+        4.65,
+        0.05450000000000001
+      ],
+      "size": [
+        0.28,
+        0.014,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "C",
+      "source_id": "CW-EXT-E-N",
+      "id": "CW-EXT-E-N-08",
+      "position": [
+        3.5,
+        4.670000000000001,
+        0.05450000000000001
+      ],
+      "size": [
+        0.28,
+        0.014,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "C",
+      "source_id": "CW-EXT-S-W",
+      "id": "CW-EXT-S-W-01",
+      "position": [
+        0.03,
+        0.5,
+        0.05450000000000001
+      ],
+      "size": [
+        0.014,
+        0.28,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "C",
+      "source_id": "CW-EXT-S-W",
+      "id": "CW-EXT-S-W-02",
+      "position": [
+        0.05,
+        0.5,
+        0.05450000000000001
+      ],
+      "size": [
+        0.014,
+        0.28,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "C",
+      "source_id": "CW-EXT-S-W",
+      "id": "CW-EXT-S-W-03",
+      "position": [
+        0.07,
+        0.5,
+        0.05450000000000001
+      ],
+      "size": [
+        0.014,
+        0.28,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "C",
+      "source_id": "CW-EXT-S-W",
+      "id": "CW-EXT-S-W-04",
+      "position": [
+        0.09000000000000001,
+        0.5,
+        0.05450000000000001
+      ],
+      "size": [
+        0.014,
+        0.28,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "C",
+      "source_id": "CW-EXT-S-W",
+      "id": "CW-EXT-S-W-05",
+      "position": [
+        0.11,
+        0.5,
+        0.05450000000000001
+      ],
+      "size": [
+        0.014,
+        0.28,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "C",
+      "source_id": "CW-EXT-S-W",
+      "id": "CW-EXT-S-W-06",
+      "position": [
+        0.13,
+        0.5,
+        0.05450000000000001
+      ],
+      "size": [
+        0.014,
+        0.28,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "C",
+      "source_id": "CW-EXT-S-W",
+      "id": "CW-EXT-S-W-07",
+      "position": [
+        0.15000000000000002,
+        0.5,
+        0.05450000000000001
+      ],
+      "size": [
+        0.014,
+        0.28,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "C",
+      "source_id": "CW-EXT-S-W",
+      "id": "CW-EXT-S-W-08",
+      "position": [
+        0.17,
+        0.5,
+        0.05450000000000001
+      ],
+      "size": [
+        0.014,
+        0.28,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "C",
+      "source_id": "CW-EXT-S-E",
+      "id": "CW-EXT-S-E-01",
+      "position": [
+        3.83,
+        0.5,
+        0.05450000000000001
+      ],
+      "size": [
+        0.014,
+        0.28,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "C",
+      "source_id": "CW-EXT-S-E",
+      "id": "CW-EXT-S-E-02",
+      "position": [
+        3.85,
+        0.5,
+        0.05450000000000001
+      ],
+      "size": [
+        0.014,
+        0.28,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "C",
+      "source_id": "CW-EXT-S-E",
+      "id": "CW-EXT-S-E-03",
+      "position": [
+        3.87,
+        0.5,
+        0.05450000000000001
+      ],
+      "size": [
+        0.014,
+        0.28,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "C",
+      "source_id": "CW-EXT-S-E",
+      "id": "CW-EXT-S-E-04",
+      "position": [
+        3.89,
+        0.5,
+        0.05450000000000001
+      ],
+      "size": [
+        0.014,
+        0.28,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "C",
+      "source_id": "CW-EXT-S-E",
+      "id": "CW-EXT-S-E-05",
+      "position": [
+        3.9099999999999997,
+        0.5,
+        0.05450000000000001
+      ],
+      "size": [
+        0.014,
+        0.28,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "C",
+      "source_id": "CW-EXT-S-E",
+      "id": "CW-EXT-S-E-06",
+      "position": [
+        3.9299999999999997,
+        0.5,
+        0.05450000000000001
+      ],
+      "size": [
+        0.014,
+        0.28,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "C",
+      "source_id": "CW-EXT-S-E",
+      "id": "CW-EXT-S-E-07",
+      "position": [
+        3.9499999999999997,
+        0.5,
+        0.05450000000000001
+      ],
+      "size": [
+        0.014,
+        0.28,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "C",
+      "source_id": "CW-EXT-S-E",
+      "id": "CW-EXT-S-E-08",
+      "position": [
+        3.9699999999999998,
+        0.5,
+        0.05450000000000001
+      ],
+      "size": [
+        0.014,
+        0.28,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "C",
+      "source_id": "CW-EXT-N-W",
+      "id": "CW-EXT-N-W-01",
+      "position": [
+        0.03,
+        4.2,
+        0.05450000000000001
+      ],
+      "size": [
+        0.014,
+        0.28,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "C",
+      "source_id": "CW-EXT-N-W",
+      "id": "CW-EXT-N-W-02",
+      "position": [
+        0.05,
+        4.2,
+        0.05450000000000001
+      ],
+      "size": [
+        0.014,
+        0.28,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "C",
+      "source_id": "CW-EXT-N-W",
+      "id": "CW-EXT-N-W-03",
+      "position": [
+        0.07,
+        4.2,
+        0.05450000000000001
+      ],
+      "size": [
+        0.014,
+        0.28,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "C",
+      "source_id": "CW-EXT-N-W",
+      "id": "CW-EXT-N-W-04",
+      "position": [
+        0.09000000000000001,
+        4.2,
+        0.05450000000000001
+      ],
+      "size": [
+        0.014,
+        0.28,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "C",
+      "source_id": "CW-EXT-N-W",
+      "id": "CW-EXT-N-W-05",
+      "position": [
+        0.11,
+        4.2,
+        0.05450000000000001
+      ],
+      "size": [
+        0.014,
+        0.28,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "C",
+      "source_id": "CW-EXT-N-W",
+      "id": "CW-EXT-N-W-06",
+      "position": [
+        0.13,
+        4.2,
+        0.05450000000000001
+      ],
+      "size": [
+        0.014,
+        0.28,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "C",
+      "source_id": "CW-EXT-N-W",
+      "id": "CW-EXT-N-W-07",
+      "position": [
+        0.15000000000000002,
+        4.2,
+        0.05450000000000001
+      ],
+      "size": [
+        0.014,
+        0.28,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "C",
+      "source_id": "CW-EXT-N-W",
+      "id": "CW-EXT-N-W-08",
+      "position": [
+        0.17,
+        4.2,
+        0.05450000000000001
+      ],
+      "size": [
+        0.014,
+        0.28,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "C",
+      "source_id": "CW-EXT-N-E",
+      "id": "CW-EXT-N-E-01",
+      "position": [
+        3.83,
+        4.2,
+        0.05450000000000001
+      ],
+      "size": [
+        0.014,
+        0.28,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "C",
+      "source_id": "CW-EXT-N-E",
+      "id": "CW-EXT-N-E-02",
+      "position": [
+        3.85,
+        4.2,
+        0.05450000000000001
+      ],
+      "size": [
+        0.014,
+        0.28,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "C",
+      "source_id": "CW-EXT-N-E",
+      "id": "CW-EXT-N-E-03",
+      "position": [
+        3.87,
+        4.2,
+        0.05450000000000001
+      ],
+      "size": [
+        0.014,
+        0.28,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "C",
+      "source_id": "CW-EXT-N-E",
+      "id": "CW-EXT-N-E-04",
+      "position": [
+        3.89,
+        4.2,
+        0.05450000000000001
+      ],
+      "size": [
+        0.014,
+        0.28,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "C",
+      "source_id": "CW-EXT-N-E",
+      "id": "CW-EXT-N-E-05",
+      "position": [
+        3.9099999999999997,
+        4.2,
+        0.05450000000000001
+      ],
+      "size": [
+        0.014,
+        0.28,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "C",
+      "source_id": "CW-EXT-N-E",
+      "id": "CW-EXT-N-E-06",
+      "position": [
+        3.9299999999999997,
+        4.2,
+        0.05450000000000001
+      ],
+      "size": [
+        0.014,
+        0.28,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "C",
+      "source_id": "CW-EXT-N-E",
+      "id": "CW-EXT-N-E-07",
+      "position": [
+        3.9499999999999997,
+        4.2,
+        0.05450000000000001
+      ],
+      "size": [
+        0.014,
+        0.28,
+        0.004
+      ]
+    },
+    {
+      "category": "road_marking",
+      "shape": "box",
+      "color": "road_white",
+      "confidence": "C",
+      "source_id": "CW-EXT-N-E",
+      "id": "CW-EXT-N-E-08",
+      "position": [
+        3.9699999999999998,
+        4.2,
+        0.05450000000000001
+      ],
+      "size": [
+        0.014,
+        0.28,
+        0.004
+      ]
+    },
+    {
+      "id": "IND-NW-PAD",
+      "category": "industrial_yard",
+      "position": [
+        1.5,
+        2.95,
+        0.054000000000000006
+      ],
+      "size": [
+        0.7000000000000001,
+        0.8,
+        0.008
+      ],
+      "shape": "box",
+      "color": "concrete",
+      "confidence": "B"
+    },
+    {
+      "id": "IND-NE-PAD",
+      "category": "industrial_yard",
+      "position": [
+        2.5,
+        2.95,
+        0.054000000000000006
+      ],
+      "size": [
+        0.7000000000000001,
+        0.8,
+        0.008
+      ],
+      "shape": "box",
+      "color": "concrete",
+      "confidence": "B"
+    },
+    {
+      "id": "IND-SW-PAD",
+      "category": "industrial_yard",
+      "position": [
+        1.5,
+        1.75,
+        0.054000000000000006
+      ],
+      "size": [
+        0.7000000000000001,
+        0.8,
+        0.008
+      ],
+      "shape": "box",
+      "color": "concrete",
+      "confidence": "B"
+    },
+    {
+      "id": "IND-SE-PAD",
+      "category": "industrial_yard",
+      "position": [
+        2.5,
+        1.75,
+        0.054000000000000006
+      ],
+      "size": [
+        0.7000000000000001,
+        0.8,
+        0.008
+      ],
+      "shape": "box",
+      "color": "concrete",
+      "confidence": "B"
+    },
+    {
+      "id": "NW-T01",
+      "category": "tank",
+      "subtype": "silver_large",
+      "position": [
+        1.32,
+        3.08,
+        0.10500000000000001
+      ],
+      "size": [
+        0.18,
+        0.18,
+        0.11
+      ],
+      "shape": "cylinder",
+      "color": "silver",
+      "confidence": "B"
+    },
+    {
+      "id": "NW-T02",
+      "category": "tank",
+      "subtype": "silver_large",
+      "position": [
+        1.61,
+        3.1,
+        0.10500000000000001
+      ],
+      "size": [
+        0.18,
+        0.18,
+        0.11
+      ],
+      "shape": "cylinder",
+      "color": "silver",
+      "confidence": "B"
+    },
+    {
+      "id": "NW-T03",
+      "category": "tank",
+      "subtype": "silver_small",
+      "position": [
+        1.76,
+        2.7800000000000002,
+        0.095
+      ],
+      "size": [
+        0.09,
+        0.09,
+        0.09
+      ],
+      "shape": "cylinder",
+      "color": "silver",
+      "confidence": "B"
+    },
+    {
+      "id": "NW-T04",
+      "category": "tank",
+      "subtype": "orange",
+      "position": [
+        1.57,
+        2.73,
+        0.09
+      ],
+      "size": [
+        0.11,
+        0.11,
+        0.08
+      ],
+      "shape": "cylinder",
+      "color": "orange",
+      "confidence": "B"
+    },
+    {
+      "id": "NW-B01",
+      "category": "building",
+      "subtype": "industrial_yellow",
+      "position": [
+        1.55,
+        3.29,
+        0.11
+      ],
+      "size": [
+        0.28,
+        0.12,
+        0.12
+      ],
+      "shape": "box",
+      "color": "yellow",
+      "confidence": "B"
+    },
+    {
+      "id": "NE-T01",
+      "category": "tank",
+      "subtype": "silver_large",
+      "position": [
+        2.3000000000000003,
+        3.08,
+        0.10500000000000001
+      ],
+      "size": [
+        0.18,
+        0.18,
+        0.11
+      ],
+      "shape": "cylinder",
+      "color": "silver",
+      "confidence": "B"
+    },
+    {
+      "id": "NE-T02",
+      "category": "tank",
+      "subtype": "silver_large",
+      "position": [
+        2.65,
+        3.08,
+        0.10500000000000001
+      ],
+      "size": [
+        0.18,
+        0.18,
+        0.11
+      ],
+      "shape": "cylinder",
+      "color": "silver",
+      "confidence": "B"
+    },
+    {
+      "id": "NE-T03",
+      "category": "tank",
+      "subtype": "silver_small",
+      "position": [
+        2.77,
+        2.77,
+        0.09
+      ],
+      "size": [
+        0.09,
+        0.09,
+        0.08
+      ],
+      "shape": "cylinder",
+      "color": "silver",
+      "confidence": "B"
+    },
+    {
+      "id": "NE-T04",
+      "category": "tank",
+      "subtype": "purple",
+      "position": [
+        2.56,
+        2.74,
+        0.09
+      ],
+      "size": [
+        0.11,
+        0.11,
+        0.08
+      ],
+      "shape": "cylinder",
+      "color": "purple",
+      "confidence": "B"
+    },
+    {
+      "id": "NE-B01",
+      "category": "building",
+      "subtype": "industrial_yellow",
+      "position": [
+        2.48,
+        3.29,
+        0.11
+      ],
+      "size": [
+        0.28,
+        0.12,
+        0.12
+      ],
+      "shape": "box",
+      "color": "yellow",
+      "confidence": "B"
+    },
+    {
+      "id": "SW-T01",
+      "category": "tank",
+      "subtype": "silver_large",
+      "position": [
+        1.28,
+        1.9100000000000001,
+        0.10500000000000001
+      ],
+      "size": [
+        0.18,
+        0.18,
+        0.11
+      ],
+      "shape": "cylinder",
+      "color": "silver",
+      "confidence": "B"
+    },
+    {
+      "id": "SW-T02",
+      "category": "tank",
+      "subtype": "silver_large",
+      "position": [
+        1.58,
+        1.9100000000000001,
+        0.10500000000000001
+      ],
+      "size": [
+        0.18,
+        0.18,
+        0.11
+      ],
+      "shape": "cylinder",
+      "color": "silver",
+      "confidence": "B"
+    },
+    {
+      "id": "SW-T03",
+      "category": "tank",
+      "subtype": "blue_red",
+      "position": [
+        1.48,
+        1.57,
+        0.09
+      ],
+      "size": [
+        0.12,
+        0.12,
+        0.08
+      ],
+      "shape": "cylinder",
+      "color": "blue_red",
+      "confidence": "B"
+    },
+    {
+      "id": "SE-T01",
+      "category": "tank",
+      "subtype": "silver_large",
+      "position": [
+        2.3000000000000003,
+        1.92,
+        0.10500000000000001
+      ],
+      "size": [
+        0.18,
+        0.18,
+        0.11
+      ],
+      "shape": "cylinder",
+      "color": "silver",
+      "confidence": "B"
+    },
+    {
+      "id": "SE-T02",
+      "category": "tank",
+      "subtype": "silver_large",
+      "position": [
+        2.62,
+        1.93,
+        0.10500000000000001
+      ],
+      "size": [
+        0.18,
+        0.18,
+        0.11
+      ],
+      "shape": "cylinder",
+      "color": "silver",
+      "confidence": "B"
+    },
+    {
+      "id": "SE-T03",
+      "category": "tank",
+      "subtype": "silver_large",
+      "position": [
+        2.75,
+        1.62,
+        0.10500000000000001
+      ],
+      "size": [
+        0.18,
+        0.18,
+        0.11
+      ],
+      "shape": "cylinder",
+      "color": "silver",
+      "confidence": "B"
+    },
+    {
+      "id": "SE-T04",
+      "category": "tank",
+      "subtype": "green",
+      "position": [
+        2.48,
+        2.05,
+        0.09
+      ],
+      "size": [
+        0.11,
+        0.11,
+        0.08
+      ],
+      "shape": "cylinder",
+      "color": "green",
+      "confidence": "B"
+    },
+    {
+      "id": "SE-B01",
+      "category": "building",
+      "subtype": "white_yellow_factory",
+      "position": [
+        2.7,
+        2.08,
+        0.1
+      ],
+      "size": [
+        0.28,
+        0.12,
+        0.1
+      ],
+      "shape": "box",
+      "color": "white_yellow",
+      "confidence": "B"
+    },
+    {
+      "id": "SE-B02",
+      "category": "building",
+      "subtype": "white_yellow_factory",
+      "position": [
+        2.7,
+        1.48,
+        0.1
+      ],
+      "size": [
+        0.28,
+        0.12,
+        0.1
+      ],
+      "shape": "box",
+      "color": "white_yellow",
+      "confidence": "B"
+    },
+    {
+      "id": "BLD-F01",
+      "category": "building",
+      "subtype": "white",
+      "position": [
+        0.06,
+        4.66,
+        0.16
+      ],
+      "size": [
+        0.12,
+        0.12,
+        0.22
+      ],
+      "shape": "box",
+      "color": "white",
+      "confidence": "C"
+    },
+    {
+      "id": "BLD-F02",
+      "category": "building",
+      "subtype": "white",
+      "position": [
+        1.1,
+        4.66,
+        0.16
+      ],
+      "size": [
+        0.26,
+        0.12,
+        0.22
+      ],
+      "shape": "box",
+      "color": "white",
+      "confidence": "C"
+    },
+    {
+      "id": "BLD-F03",
+      "category": "building",
+      "subtype": "glass_highrise",
+      "position": [
+        2.2,
+        4.66,
+        0.24
+      ],
+      "size": [
+        0.24,
+        0.12,
+        0.38
+      ],
+      "shape": "box",
+      "color": "glass",
+      "confidence": "B"
+    },
+    {
+      "id": "BLD-F04",
+      "category": "building",
+      "subtype": "beige",
+      "position": [
+        3.92,
+        4.66,
+        0.16
+      ],
+      "size": [
+        0.12,
+        0.12,
+        0.22
+      ],
+      "shape": "box",
+      "color": "beige",
+      "confidence": "C"
+    },
+    {
+      "id": "BLD-L01",
+      "category": "building",
+      "subtype": "yellow",
+      "position": [
+        0.06,
+        1.4000000000000001,
+        0.22000000000000003
+      ],
+      "size": [
+        0.12,
+        0.26,
+        0.34
+      ],
+      "shape": "box",
+      "color": "yellow",
+      "confidence": "C"
+    },
+    {
+      "id": "BLD-L02",
+      "category": "building",
+      "subtype": "white_office",
+      "position": [
+        0.06,
+        2.25,
+        0.16999999999999998
+      ],
+      "size": [
+        0.12,
+        0.22,
+        0.24
+      ],
+      "shape": "box",
+      "color": "white",
+      "confidence": "C"
+    },
+    {
+      "id": "BLD-L03",
+      "category": "building",
+      "subtype": "white_office",
+      "position": [
+        0.06,
+        3.0500000000000003,
+        0.16999999999999998
+      ],
+      "size": [
+        0.12,
+        0.22,
+        0.24
+      ],
+      "shape": "box",
+      "color": "white",
+      "confidence": "C"
+    },
+    {
+      "id": "BLD-L04",
+      "category": "building",
+      "subtype": "white_rear",
+      "position": [
+        0.06,
+        3.6,
+        0.16999999999999998
+      ],
+      "size": [
+        0.12,
+        0.22,
+        0.24
+      ],
+      "shape": "box",
+      "color": "white",
+      "confidence": "C"
+    },
+    {
+      "id": "BLD-R01",
+      "category": "building",
+      "subtype": "right_front",
+      "position": [
+        3.94,
+        1.05,
+        0.16999999999999998
+      ],
+      "size": [
+        0.12,
+        0.22,
+        0.24
+      ],
+      "shape": "box",
+      "color": "beige",
+      "confidence": "C"
+    },
+    {
+      "id": "BLD-R02",
+      "category": "building",
+      "subtype": "glass",
+      "position": [
+        3.94,
+        2.25,
+        0.19
+      ],
+      "size": [
+        0.12,
+        0.22,
+        0.28
+      ],
+      "shape": "box",
+      "color": "glass",
+      "confidence": "C"
+    },
+    {
+      "id": "BLD-R03",
+      "category": "building",
+      "subtype": "diamond_facade",
+      "position": [
+        3.94,
+        3.0500000000000003,
+        0.21000000000000002
+      ],
+      "size": [
+        0.12,
+        0.22,
+        0.32
+      ],
+      "shape": "box",
+      "color": "glass",
+      "confidence": "B"
+    },
+    {
+      "id": "BLD-R04",
+      "category": "building",
+      "subtype": "white_rear",
+      "position": [
+        3.94,
+        3.6,
+        0.16999999999999998
+      ],
+      "size": [
+        0.12,
+        0.22,
+        0.24
+      ],
+      "shape": "box",
+      "color": "white",
+      "confidence": "C"
+    },
+    {
+      "id": "BLD-B01",
+      "category": "building",
+      "subtype": "white_office",
+      "position": [
+        0.06,
+        0.06,
+        0.16999999999999998
+      ],
+      "size": [
+        0.12,
+        0.12,
+        0.24
+      ],
+      "shape": "box",
+      "color": "white",
+      "confidence": "C"
+    },
+    {
+      "id": "BLD-B02",
+      "category": "building",
+      "subtype": "white_office",
+      "position": [
+        1.1,
+        0.06,
+        0.16999999999999998
+      ],
+      "size": [
+        0.26,
+        0.12,
+        0.24
+      ],
+      "shape": "box",
+      "color": "white",
+      "confidence": "C"
+    },
+    {
+      "id": "BLD-B03",
+      "category": "building",
+      "subtype": "blue_gray",
+      "position": [
+        1.9000000000000001,
+        0.06,
+        0.19
+      ],
+      "size": [
+        0.26,
+        0.12,
+        0.28
+      ],
+      "shape": "box",
+      "color": "blue_gray",
+      "confidence": "C"
+    },
+    {
+      "id": "BLD-B04",
+      "category": "building",
+      "subtype": "white_office",
+      "position": [
+        2.6,
+        0.06,
+        0.16999999999999998
+      ],
+      "size": [
+        0.26,
+        0.12,
+        0.24
+      ],
+      "shape": "box",
+      "color": "white",
+      "confidence": "C"
+    },
+    {
+      "id": "BLD-B05",
+      "category": "building",
+      "subtype": "blue_gray_highrise",
+      "position": [
+        3.0,
+        0.06,
+        0.24
+      ],
+      "size": [
+        0.12,
+        0.12,
+        0.38
+      ],
+      "shape": "box",
+      "color": "blue_gray",
+      "confidence": "C"
+    },
+    {
+      "id": "BLD-B06",
+      "category": "building",
+      "subtype": "white_rear",
+      "position": [
+        3.92,
+        0.06,
+        0.16999999999999998
+      ],
+      "size": [
+        0.12,
+        0.12,
+        0.24
+      ],
+      "shape": "box",
+      "color": "white",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-L01-01",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        0.1,
+        0.7000000000000001,
+        0.1
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.1
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-L01-02",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        0.1,
+        0.8222222222222223,
+        0.1
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.1
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-L01-03",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        0.1,
+        0.9444444444444444,
+        0.1
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.1
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-L01-04",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        0.1,
+        1.0666666666666667,
+        0.1
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.1
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-L01-05",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        0.1,
+        1.1888888888888889,
+        0.1
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.1
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-L01-06",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        0.1,
+        1.3111111111111111,
+        0.1
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.1
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-L01-07",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        0.1,
+        1.4333333333333333,
+        0.1
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.1
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-L01-08",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        0.1,
+        1.5555555555555556,
+        0.1
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.1
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-L01-09",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        0.1,
+        1.6777777777777776,
+        0.1
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.1
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-L01-10",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        0.1,
+        1.7999999999999998,
+        0.1
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.1
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-L01-11",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        0.1,
+        1.922222222222222,
+        0.1
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.1
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-L01-12",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        0.1,
+        2.0444444444444443,
+        0.1
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.1
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-L01-13",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        0.1,
+        2.1666666666666665,
+        0.1
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.1
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-L01-14",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        0.1,
+        2.2888888888888888,
+        0.1
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.1
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-L01-15",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        0.1,
+        2.411111111111111,
+        0.1
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.1
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-L01-16",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        0.1,
+        2.533333333333333,
+        0.1
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.1
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-L01-17",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        0.1,
+        2.6555555555555554,
+        0.1
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.1
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-L01-18",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        0.1,
+        2.777777777777778,
+        0.1
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.1
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-L01-19",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        0.1,
+        2.9,
+        0.1
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.1
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-L01-20",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        0.1,
+        3.022222222222222,
+        0.1
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.1
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-L01-21",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        0.1,
+        3.1444444444444444,
+        0.1
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.1
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-L01-22",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        0.1,
+        3.2666666666666666,
+        0.1
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.1
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-L01-23",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        0.1,
+        3.388888888888889,
+        0.1
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.1
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-L01-24",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        0.1,
+        3.511111111111111,
+        0.1
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.1
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-L01-25",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        0.1,
+        3.6333333333333333,
+        0.1
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.1
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-L01-26",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        0.1,
+        3.7555555555555555,
+        0.1
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.1
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-L01-27",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        0.1,
+        3.8777777777777778,
+        0.1
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.1
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-L01-28",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        0.1,
+        4.0,
+        0.1
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.1
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-L02-01",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        0.25,
+        0.7000000000000001,
+        0.1
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.1
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-L02-02",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        0.25,
+        0.8222222222222223,
+        0.1
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.1
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-L02-03",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        0.25,
+        0.9444444444444444,
+        0.1
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.1
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-L02-04",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        0.25,
+        1.0666666666666667,
+        0.1
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.1
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-L02-05",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        0.25,
+        1.1888888888888889,
+        0.1
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.1
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-L02-06",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        0.25,
+        1.3111111111111111,
+        0.1
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.1
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-L02-07",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        0.25,
+        1.4333333333333333,
+        0.1
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.1
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-L02-08",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        0.25,
+        1.5555555555555556,
+        0.1
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.1
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-L02-09",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        0.25,
+        1.6777777777777776,
+        0.1
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.1
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-L02-10",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        0.25,
+        1.7999999999999998,
+        0.1
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.1
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-L02-11",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        0.25,
+        1.922222222222222,
+        0.1
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.1
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-L02-12",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        0.25,
+        2.0444444444444443,
+        0.1
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.1
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-L02-13",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        0.25,
+        2.1666666666666665,
+        0.1
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.1
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-L02-14",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        0.25,
+        2.2888888888888888,
+        0.1
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.1
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-L02-15",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        0.25,
+        2.411111111111111,
+        0.1
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.1
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-L02-16",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        0.25,
+        2.533333333333333,
+        0.1
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.1
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-L02-17",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        0.25,
+        2.6555555555555554,
+        0.1
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.1
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-L02-18",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        0.25,
+        2.777777777777778,
+        0.1
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.1
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-L02-19",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        0.25,
+        2.9,
+        0.1
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.1
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-L02-20",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        0.25,
+        3.022222222222222,
+        0.1
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.1
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-L02-21",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        0.25,
+        3.1444444444444444,
+        0.1
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.1
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-L02-22",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        0.25,
+        3.2666666666666666,
+        0.1
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.1
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-L02-23",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        0.25,
+        3.388888888888889,
+        0.1
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.1
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-L02-24",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        0.25,
+        3.511111111111111,
+        0.1
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.1
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-L02-25",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        0.25,
+        3.6333333333333333,
+        0.1
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.1
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-L02-26",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        0.25,
+        3.7555555555555555,
+        0.1
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.1
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-L02-27",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        0.25,
+        3.8777777777777778,
+        0.1
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.1
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-L02-28",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        0.25,
+        4.0,
+        0.1
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.1
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-R01-01",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        3.9,
+        0.7000000000000001,
+        0.1
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.1
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-R01-02",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        3.9,
+        0.8222222222222223,
+        0.1
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.1
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-R01-03",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        3.9,
+        0.9444444444444444,
+        0.1
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.1
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-R01-04",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        3.9,
+        1.0666666666666667,
+        0.1
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.1
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-R01-05",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        3.9,
+        1.1888888888888889,
+        0.1
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.1
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-R01-06",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        3.9,
+        1.3111111111111111,
+        0.1
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.1
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-R01-07",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        3.9,
+        1.4333333333333333,
+        0.1
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.1
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-R01-08",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        3.9,
+        1.5555555555555556,
+        0.1
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.1
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-R01-09",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        3.9,
+        1.6777777777777776,
+        0.1
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.1
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-R01-10",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        3.9,
+        1.7999999999999998,
+        0.1
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.1
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-R01-11",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        3.9,
+        1.922222222222222,
+        0.1
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.1
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-R01-12",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        3.9,
+        2.0444444444444443,
+        0.1
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.1
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-R01-13",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        3.9,
+        2.1666666666666665,
+        0.1
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.1
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-R01-14",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        3.9,
+        2.2888888888888888,
+        0.1
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.1
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-R01-15",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        3.9,
+        2.411111111111111,
+        0.1
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.1
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-R01-16",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        3.9,
+        2.533333333333333,
+        0.1
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.1
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-R01-17",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        3.9,
+        2.6555555555555554,
+        0.1
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.1
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-R01-18",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        3.9,
+        2.777777777777778,
+        0.1
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.1
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-R01-19",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        3.9,
+        2.9,
+        0.1
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.1
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-R01-20",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        3.9,
+        3.022222222222222,
+        0.1
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.1
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-R01-21",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        3.9,
+        3.1444444444444444,
+        0.1
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.1
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-R01-22",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        3.9,
+        3.2666666666666666,
+        0.1
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.1
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-R01-23",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        3.9,
+        3.388888888888889,
+        0.1
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.1
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-R01-24",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        3.9,
+        3.511111111111111,
+        0.1
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.1
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-R01-25",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        3.9,
+        3.6333333333333333,
+        0.1
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.1
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-R01-26",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        3.9,
+        3.7555555555555555,
+        0.1
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.1
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-R01-27",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        3.9,
+        3.8777777777777778,
+        0.1
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.1
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-R01-28",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        3.9,
+        4.0,
+        0.1
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.1
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-R02-01",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        3.75,
+        0.7000000000000001,
+        0.1
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.1
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-R02-02",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        3.75,
+        0.8222222222222223,
+        0.1
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.1
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-R02-03",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        3.75,
+        0.9444444444444444,
+        0.1
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.1
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-R02-04",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        3.75,
+        1.0666666666666667,
+        0.1
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.1
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-R02-05",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        3.75,
+        1.1888888888888889,
+        0.1
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.1
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-R02-06",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        3.75,
+        1.3111111111111111,
+        0.1
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.1
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-R02-07",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        3.75,
+        1.4333333333333333,
+        0.1
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.1
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-R02-08",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        3.75,
+        1.5555555555555556,
+        0.1
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.1
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-R02-09",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        3.75,
+        1.6777777777777776,
+        0.1
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.1
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-R02-10",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        3.75,
+        1.7999999999999998,
+        0.1
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.1
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-R02-11",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        3.75,
+        1.922222222222222,
+        0.1
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.1
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-R02-12",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        3.75,
+        2.0444444444444443,
+        0.1
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.1
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-R02-13",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        3.75,
+        2.1666666666666665,
+        0.1
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.1
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-R02-14",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        3.75,
+        2.2888888888888888,
+        0.1
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.1
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-R02-15",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        3.75,
+        2.411111111111111,
+        0.1
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.1
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-R02-16",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        3.75,
+        2.533333333333333,
+        0.1
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.1
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-R02-17",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        3.75,
+        2.6555555555555554,
+        0.1
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.1
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-R02-18",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        3.75,
+        2.777777777777778,
+        0.1
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.1
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-R02-19",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        3.75,
+        2.9,
+        0.1
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.1
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-R02-20",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        3.75,
+        3.022222222222222,
+        0.1
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.1
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-R02-21",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        3.75,
+        3.1444444444444444,
+        0.1
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.1
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-R02-22",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        3.75,
+        3.2666666666666666,
+        0.1
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.1
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-R02-23",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        3.75,
+        3.388888888888889,
+        0.1
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.1
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-R02-24",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        3.75,
+        3.511111111111111,
+        0.1
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.1
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-R02-25",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        3.75,
+        3.6333333333333333,
+        0.1
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.1
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-R02-26",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        3.75,
+        3.7555555555555555,
+        0.1
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.1
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-R02-27",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        3.75,
+        3.8777777777777778,
+        0.1
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.1
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-R02-28",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        3.75,
+        4.0,
+        0.1
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.1
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-F01-01",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        0.7000000000000001,
+        0.1,
+        0.1
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.1
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-F01-02",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        0.8181818181818182,
+        0.1,
+        0.1
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.1
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-F01-03",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        0.9363636363636365,
+        0.1,
+        0.1
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.1
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-F01-04",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        1.0545454545454547,
+        0.1,
+        0.1
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.1
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-F01-05",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        1.1727272727272728,
+        0.1,
+        0.1
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.1
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-F01-06",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        1.290909090909091,
+        0.1,
+        0.1
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.1
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-F01-07",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        1.4090909090909092,
+        0.1,
+        0.1
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.1
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-F01-08",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        1.5272727272727273,
+        0.1,
+        0.1
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.1
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-F01-09",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        1.6454545454545455,
+        0.1,
+        0.1
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.1
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-F01-10",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        1.7636363636363637,
+        0.1,
+        0.1
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.1
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-F01-11",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        1.8818181818181818,
+        0.1,
+        0.1
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.1
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-F01-12",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        2.0,
+        0.1,
+        0.1
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.1
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-F01-13",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        2.118181818181818,
+        0.1,
+        0.1
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.1
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-F01-14",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        2.2363636363636368,
+        0.1,
+        0.1
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.1
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-F01-15",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        2.3545454545454545,
+        0.1,
+        0.1
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.1
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-F01-16",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        2.4727272727272727,
+        0.1,
+        0.1
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.1
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-F01-17",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        2.5909090909090913,
+        0.1,
+        0.1
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.1
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-F01-18",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        2.7090909090909094,
+        0.1,
+        0.1
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.1
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-F01-19",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        2.8272727272727276,
+        0.1,
+        0.1
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.1
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-F01-20",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        2.9454545454545458,
+        0.1,
+        0.1
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.1
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-F01-21",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        3.063636363636364,
+        0.1,
+        0.1
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.1
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-F01-22",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        3.181818181818182,
+        0.1,
+        0.1
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.1
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-F01-23",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        3.3000000000000003,
+        0.1,
+        0.1
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.1
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-F02-01",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        0.7000000000000001,
+        0.3,
+        0.09
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.08
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-F02-02",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        0.8181818181818182,
+        0.3,
+        0.09
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.08
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-F02-03",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        0.9363636363636365,
+        0.3,
+        0.09
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.08
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-F02-04",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        1.0545454545454547,
+        0.3,
+        0.09
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.08
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-F02-05",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        1.1727272727272728,
+        0.3,
+        0.09
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.08
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-F02-06",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        1.290909090909091,
+        0.3,
+        0.09
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.08
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-F02-07",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        1.4090909090909092,
+        0.3,
+        0.09
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.08
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-F02-08",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        1.5272727272727273,
+        0.3,
+        0.09
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.08
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-F02-09",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        1.6454545454545455,
+        0.3,
+        0.09
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.08
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-F02-10",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        1.7636363636363637,
+        0.3,
+        0.09
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.08
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-F02-11",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        1.8818181818181818,
+        0.3,
+        0.09
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.08
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-F02-12",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        2.0,
+        0.3,
+        0.09
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.08
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-F02-13",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        2.118181818181818,
+        0.3,
+        0.09
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.08
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-F02-14",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        2.2363636363636368,
+        0.3,
+        0.09
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.08
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-F02-15",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        2.3545454545454545,
+        0.3,
+        0.09
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.08
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-F02-16",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        2.4727272727272727,
+        0.3,
+        0.09
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.08
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-F02-17",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        2.5909090909090913,
+        0.3,
+        0.09
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.08
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-F02-18",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        2.7090909090909094,
+        0.3,
+        0.09
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.08
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-F02-19",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        2.8272727272727276,
+        0.3,
+        0.09
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.08
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-F02-20",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        2.9454545454545458,
+        0.3,
+        0.09
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.08
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-F02-21",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        3.063636363636364,
+        0.3,
+        0.09
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.08
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-F02-22",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        3.181818181818182,
+        0.3,
+        0.09
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.08
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-F02-23",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        3.3000000000000003,
+        0.3,
+        0.09
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.08
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-B01-01",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        0.7000000000000001,
+        4.65,
+        0.1
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.1
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-B01-02",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        0.8181818181818182,
+        4.65,
+        0.1
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.1
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-B01-03",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        0.9363636363636365,
+        4.65,
+        0.1
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.1
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-B01-04",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        1.0545454545454547,
+        4.65,
+        0.1
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.1
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-B01-05",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        1.1727272727272728,
+        4.65,
+        0.1
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.1
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-B01-06",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        1.290909090909091,
+        4.65,
+        0.1
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.1
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-B01-07",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        1.4090909090909092,
+        4.65,
+        0.1
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.1
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-B01-08",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        1.5272727272727273,
+        4.65,
+        0.1
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.1
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-B01-09",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        1.6454545454545455,
+        4.65,
+        0.1
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.1
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-B01-10",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        1.7636363636363637,
+        4.65,
+        0.1
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.1
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-B01-11",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        1.8818181818181818,
+        4.65,
+        0.1
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.1
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-B01-12",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        2.0,
+        4.65,
+        0.1
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.1
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-B01-13",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        2.118181818181818,
+        4.65,
+        0.1
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.1
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-B01-14",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        2.2363636363636368,
+        4.65,
+        0.1
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.1
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-B01-15",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        2.3545454545454545,
+        4.65,
+        0.1
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.1
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-B01-16",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        2.4727272727272727,
+        4.65,
+        0.1
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.1
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-B01-17",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        2.5909090909090913,
+        4.65,
+        0.1
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.1
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-B01-18",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        2.7090909090909094,
+        4.65,
+        0.1
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.1
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-B01-19",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        2.8272727272727276,
+        4.65,
+        0.1
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.1
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-B01-20",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        2.9454545454545458,
+        4.65,
+        0.1
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.1
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-B01-21",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        3.063636363636364,
+        4.65,
+        0.1
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.1
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-B01-22",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        3.181818181818182,
+        4.65,
+        0.1
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.1
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-B01-23",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        3.3000000000000003,
+        4.65,
+        0.1
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.1
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-B02-01",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        0.7000000000000001,
+        4.45,
+        0.115
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.13
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-B02-02",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        0.8181818181818182,
+        4.45,
+        0.115
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.13
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-B02-03",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        0.9363636363636365,
+        4.45,
+        0.115
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.13
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-B02-04",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        1.0545454545454547,
+        4.45,
+        0.115
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.13
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-B02-05",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        1.1727272727272728,
+        4.45,
+        0.115
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.13
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-B02-06",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        1.290909090909091,
+        4.45,
+        0.115
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.13
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-B02-07",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        1.4090909090909092,
+        4.45,
+        0.115
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.13
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-B02-08",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        1.5272727272727273,
+        4.45,
+        0.115
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.13
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-B02-09",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        1.6454545454545455,
+        4.45,
+        0.115
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.13
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-B02-10",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        1.7636363636363637,
+        4.45,
+        0.115
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.13
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-B02-11",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        1.8818181818181818,
+        4.45,
+        0.115
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.13
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-B02-12",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        2.0,
+        4.45,
+        0.115
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.13
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-B02-13",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        2.118181818181818,
+        4.45,
+        0.115
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.13
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-B02-14",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        2.2363636363636368,
+        4.45,
+        0.115
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.13
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-B02-15",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        2.3545454545454545,
+        4.45,
+        0.115
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.13
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-B02-16",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        2.4727272727272727,
+        4.45,
+        0.115
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.13
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-B02-17",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        2.5909090909090913,
+        4.45,
+        0.115
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.13
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-B02-18",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        2.7090909090909094,
+        4.45,
+        0.115
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.13
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-B02-19",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        2.8272727272727276,
+        4.45,
+        0.115
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.13
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-B02-20",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        2.9454545454545458,
+        4.45,
+        0.115
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.13
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-B02-21",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        3.063636363636364,
+        4.45,
+        0.115
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.13
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-B02-22",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        3.181818181818182,
+        4.45,
+        0.115
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.13
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TR-B02-23",
+      "category": "tree",
+      "shape": "cylinder",
+      "position": [
+        3.3000000000000003,
+        4.45,
+        0.115
+      ],
+      "size": [
+        0.035,
+        0.035,
+        0.13
+      ],
+      "color": "tree",
+      "confidence": "C"
+    },
+    {
+      "id": "TL-SW-1",
+      "category": "traffic_light",
+      "shape": "box",
+      "position": [
+        0.08,
+        0.08,
+        0.14
+      ],
+      "size": [
+        0.03,
+        0.03,
+        0.18
+      ],
+      "color": "traffic_black",
+      "confidence": "C"
+    },
+    {
+      "id": "TL-SW-2",
+      "category": "traffic_light",
+      "shape": "box",
+      "position": [
+        0.92,
+        0.08,
+        0.14
+      ],
+      "size": [
+        0.03,
+        0.03,
+        0.18
+      ],
+      "color": "traffic_black",
+      "confidence": "C"
+    },
+    {
+      "id": "TL-SW-3",
+      "category": "traffic_light",
+      "shape": "box",
+      "position": [
+        0.08,
+        0.92,
+        0.14
+      ],
+      "size": [
+        0.03,
+        0.03,
+        0.18
+      ],
+      "color": "traffic_black",
+      "confidence": "C"
+    },
+    {
+      "id": "TL-SW-4",
+      "category": "traffic_light",
+      "shape": "box",
+      "position": [
+        0.92,
+        0.92,
+        0.14
+      ],
+      "size": [
+        0.03,
+        0.03,
+        0.18
+      ],
+      "color": "traffic_black",
+      "confidence": "C"
+    },
+    {
+      "id": "TL-SE-1",
+      "category": "traffic_light",
+      "shape": "box",
+      "position": [
+        3.08,
+        0.08,
+        0.14
+      ],
+      "size": [
+        0.03,
+        0.03,
+        0.18
+      ],
+      "color": "traffic_black",
+      "confidence": "C"
+    },
+    {
+      "id": "TL-SE-2",
+      "category": "traffic_light",
+      "shape": "box",
+      "position": [
+        3.92,
+        0.08,
+        0.14
+      ],
+      "size": [
+        0.03,
+        0.03,
+        0.18
+      ],
+      "color": "traffic_black",
+      "confidence": "C"
+    },
+    {
+      "id": "TL-SE-3",
+      "category": "traffic_light",
+      "shape": "box",
+      "position": [
+        3.08,
+        0.92,
+        0.14
+      ],
+      "size": [
+        0.03,
+        0.03,
+        0.18
+      ],
+      "color": "traffic_black",
+      "confidence": "C"
+    },
+    {
+      "id": "TL-SE-4",
+      "category": "traffic_light",
+      "shape": "box",
+      "position": [
+        3.92,
+        0.92,
+        0.14
+      ],
+      "size": [
+        0.03,
+        0.03,
+        0.18
+      ],
+      "color": "traffic_black",
+      "confidence": "C"
+    },
+    {
+      "id": "TL-NW-1",
+      "category": "traffic_light",
+      "shape": "box",
+      "position": [
+        0.08,
+        3.7800000000000002,
+        0.14
+      ],
+      "size": [
+        0.03,
+        0.03,
+        0.18
+      ],
+      "color": "traffic_black",
+      "confidence": "C"
+    },
+    {
+      "id": "TL-NW-2",
+      "category": "traffic_light",
+      "shape": "box",
+      "position": [
+        0.92,
+        3.7800000000000002,
+        0.14
+      ],
+      "size": [
+        0.03,
+        0.03,
+        0.18
+      ],
+      "color": "traffic_black",
+      "confidence": "C"
+    },
+    {
+      "id": "TL-NW-3",
+      "category": "traffic_light",
+      "shape": "box",
+      "position": [
+        0.08,
+        4.62,
+        0.14
+      ],
+      "size": [
+        0.03,
+        0.03,
+        0.18
+      ],
+      "color": "traffic_black",
+      "confidence": "C"
+    },
+    {
+      "id": "TL-NW-4",
+      "category": "traffic_light",
+      "shape": "box",
+      "position": [
+        0.92,
+        4.62,
+        0.14
+      ],
+      "size": [
+        0.03,
+        0.03,
+        0.18
+      ],
+      "color": "traffic_black",
+      "confidence": "C"
+    },
+    {
+      "id": "TL-NE-1",
+      "category": "traffic_light",
+      "shape": "box",
+      "position": [
+        3.08,
+        3.7800000000000002,
+        0.14
+      ],
+      "size": [
+        0.03,
+        0.03,
+        0.18
+      ],
+      "color": "traffic_black",
+      "confidence": "C"
+    },
+    {
+      "id": "TL-NE-2",
+      "category": "traffic_light",
+      "shape": "box",
+      "position": [
+        3.92,
+        3.7800000000000002,
+        0.14
+      ],
+      "size": [
+        0.03,
+        0.03,
+        0.18
+      ],
+      "color": "traffic_black",
+      "confidence": "C"
+    },
+    {
+      "id": "TL-NE-3",
+      "category": "traffic_light",
+      "shape": "box",
+      "position": [
+        3.08,
+        4.62,
+        0.14
+      ],
+      "size": [
+        0.03,
+        0.03,
+        0.18
+      ],
+      "color": "traffic_black",
+      "confidence": "C"
+    },
+    {
+      "id": "TL-NE-4",
+      "category": "traffic_light",
+      "shape": "box",
+      "position": [
+        3.92,
+        4.62,
+        0.14
+      ],
+      "size": [
+        0.03,
+        0.03,
+        0.18
+      ],
+      "color": "traffic_black",
+      "confidence": "C"
+    },
+    {
+      "id": "NW-C-01",
+      "category": "traffic_cone",
+      "shape": "cylinder",
+      "position": [
+        1.8,
+        2.95,
+        0.07500000000000001
+      ],
+      "size": [
+        0.025,
+        0.025,
+        0.05
+      ],
+      "color": "orange",
+      "confidence": "C"
+    },
+    {
+      "id": "NW-C-02",
+      "category": "traffic_cone",
+      "shape": "cylinder",
+      "position": [
+        1.7121320343559643,
+        3.1621320343559645,
+        0.07500000000000001
+      ],
+      "size": [
+        0.025,
+        0.025,
+        0.05
+      ],
+      "color": "orange",
+      "confidence": "C"
+    },
+    {
+      "id": "NW-C-03",
+      "category": "traffic_cone",
+      "shape": "cylinder",
+      "position": [
+        1.5,
+        3.25,
+        0.07500000000000001
+      ],
+      "size": [
+        0.025,
+        0.025,
+        0.05
+      ],
+      "color": "orange",
+      "confidence": "C"
+    },
+    {
+      "id": "NW-C-04",
+      "category": "traffic_cone",
+      "shape": "cylinder",
+      "position": [
+        1.2878679656440357,
+        3.1621320343559645,
+        0.07500000000000001
+      ],
+      "size": [
+        0.025,
+        0.025,
+        0.05
+      ],
+      "color": "orange",
+      "confidence": "C"
+    },
+    {
+      "id": "NW-C-05",
+      "category": "traffic_cone",
+      "shape": "cylinder",
+      "position": [
+        1.2,
+        2.95,
+        0.07500000000000001
+      ],
+      "size": [
+        0.025,
+        0.025,
+        0.05
+      ],
+      "color": "orange",
+      "confidence": "C"
+    },
+    {
+      "id": "NW-C-06",
+      "category": "traffic_cone",
+      "shape": "cylinder",
+      "position": [
+        1.2878679656440357,
+        2.737867965644036,
+        0.07500000000000001
+      ],
+      "size": [
+        0.025,
+        0.025,
+        0.05
+      ],
+      "color": "orange",
+      "confidence": "C"
+    },
+    {
+      "id": "NW-C-07",
+      "category": "traffic_cone",
+      "shape": "cylinder",
+      "position": [
+        1.5,
+        2.6500000000000004,
+        0.07500000000000001
+      ],
+      "size": [
+        0.025,
+        0.025,
+        0.05
+      ],
+      "color": "orange",
+      "confidence": "C"
+    },
+    {
+      "id": "NW-C-08",
+      "category": "traffic_cone",
+      "shape": "cylinder",
+      "position": [
+        1.7121320343559643,
+        2.737867965644036,
+        0.07500000000000001
+      ],
+      "size": [
+        0.025,
+        0.025,
+        0.05
+      ],
+      "color": "orange",
+      "confidence": "C"
+    },
+    {
+      "id": "NE-C-01",
+      "category": "traffic_cone",
+      "shape": "cylinder",
+      "position": [
+        2.8,
+        2.95,
+        0.07500000000000001
+      ],
+      "size": [
+        0.025,
+        0.025,
+        0.05
+      ],
+      "color": "orange",
+      "confidence": "C"
+    },
+    {
+      "id": "NE-C-02",
+      "category": "traffic_cone",
+      "shape": "cylinder",
+      "position": [
+        2.7121320343559643,
+        3.1621320343559645,
+        0.07500000000000001
+      ],
+      "size": [
+        0.025,
+        0.025,
+        0.05
+      ],
+      "color": "orange",
+      "confidence": "C"
+    },
+    {
+      "id": "NE-C-03",
+      "category": "traffic_cone",
+      "shape": "cylinder",
+      "position": [
+        2.5,
+        3.25,
+        0.07500000000000001
+      ],
+      "size": [
+        0.025,
+        0.025,
+        0.05
+      ],
+      "color": "orange",
+      "confidence": "C"
+    },
+    {
+      "id": "NE-C-04",
+      "category": "traffic_cone",
+      "shape": "cylinder",
+      "position": [
+        2.2878679656440357,
+        3.1621320343559645,
+        0.07500000000000001
+      ],
+      "size": [
+        0.025,
+        0.025,
+        0.05
+      ],
+      "color": "orange",
+      "confidence": "C"
+    },
+    {
+      "id": "NE-C-05",
+      "category": "traffic_cone",
+      "shape": "cylinder",
+      "position": [
+        2.2,
+        2.95,
+        0.07500000000000001
+      ],
+      "size": [
+        0.025,
+        0.025,
+        0.05
+      ],
+      "color": "orange",
+      "confidence": "C"
+    },
+    {
+      "id": "NE-C-06",
+      "category": "traffic_cone",
+      "shape": "cylinder",
+      "position": [
+        2.2878679656440357,
+        2.737867965644036,
+        0.07500000000000001
+      ],
+      "size": [
+        0.025,
+        0.025,
+        0.05
+      ],
+      "color": "orange",
+      "confidence": "C"
+    },
+    {
+      "id": "NE-C-07",
+      "category": "traffic_cone",
+      "shape": "cylinder",
+      "position": [
+        2.5,
+        2.6500000000000004,
+        0.07500000000000001
+      ],
+      "size": [
+        0.025,
+        0.025,
+        0.05
+      ],
+      "color": "orange",
+      "confidence": "C"
+    },
+    {
+      "id": "NE-C-08",
+      "category": "traffic_cone",
+      "shape": "cylinder",
+      "position": [
+        2.7121320343559643,
+        2.737867965644036,
+        0.07500000000000001
+      ],
+      "size": [
+        0.025,
+        0.025,
+        0.05
+      ],
+      "color": "orange",
+      "confidence": "C"
+    },
+    {
+      "id": "SW-C-01",
+      "category": "traffic_cone",
+      "shape": "cylinder",
+      "position": [
+        1.8,
+        1.75,
+        0.07500000000000001
+      ],
+      "size": [
+        0.025,
+        0.025,
+        0.05
+      ],
+      "color": "orange",
+      "confidence": "C"
+    },
+    {
+      "id": "SW-C-02",
+      "category": "traffic_cone",
+      "shape": "cylinder",
+      "position": [
+        1.7121320343559643,
+        1.9621320343559643,
+        0.07500000000000001
+      ],
+      "size": [
+        0.025,
+        0.025,
+        0.05
+      ],
+      "color": "orange",
+      "confidence": "C"
+    },
+    {
+      "id": "SW-C-03",
+      "category": "traffic_cone",
+      "shape": "cylinder",
+      "position": [
+        1.5,
+        2.05,
+        0.07500000000000001
+      ],
+      "size": [
+        0.025,
+        0.025,
+        0.05
+      ],
+      "color": "orange",
+      "confidence": "C"
+    },
+    {
+      "id": "SW-C-04",
+      "category": "traffic_cone",
+      "shape": "cylinder",
+      "position": [
+        1.2878679656440357,
+        1.9621320343559643,
+        0.07500000000000001
+      ],
+      "size": [
+        0.025,
+        0.025,
+        0.05
+      ],
+      "color": "orange",
+      "confidence": "C"
+    },
+    {
+      "id": "SW-C-05",
+      "category": "traffic_cone",
+      "shape": "cylinder",
+      "position": [
+        1.2,
+        1.75,
+        0.07500000000000001
+      ],
+      "size": [
+        0.025,
+        0.025,
+        0.05
+      ],
+      "color": "orange",
+      "confidence": "C"
+    },
+    {
+      "id": "SW-C-06",
+      "category": "traffic_cone",
+      "shape": "cylinder",
+      "position": [
+        1.2878679656440357,
+        1.5378679656440357,
+        0.07500000000000001
+      ],
+      "size": [
+        0.025,
+        0.025,
+        0.05
+      ],
+      "color": "orange",
+      "confidence": "C"
+    },
+    {
+      "id": "SW-C-07",
+      "category": "traffic_cone",
+      "shape": "cylinder",
+      "position": [
+        1.5,
+        1.45,
+        0.07500000000000001
+      ],
+      "size": [
+        0.025,
+        0.025,
+        0.05
+      ],
+      "color": "orange",
+      "confidence": "C"
+    },
+    {
+      "id": "SW-C-08",
+      "category": "traffic_cone",
+      "shape": "cylinder",
+      "position": [
+        1.7121320343559643,
+        1.5378679656440357,
+        0.07500000000000001
+      ],
+      "size": [
+        0.025,
+        0.025,
+        0.05
+      ],
+      "color": "orange",
+      "confidence": "C"
+    },
+    {
+      "id": "SE-C-01",
+      "category": "traffic_cone",
+      "shape": "cylinder",
+      "position": [
+        2.8,
+        1.75,
+        0.07500000000000001
+      ],
+      "size": [
+        0.025,
+        0.025,
+        0.05
+      ],
+      "color": "orange",
+      "confidence": "C"
+    },
+    {
+      "id": "SE-C-02",
+      "category": "traffic_cone",
+      "shape": "cylinder",
+      "position": [
+        2.7121320343559643,
+        1.9621320343559643,
+        0.07500000000000001
+      ],
+      "size": [
+        0.025,
+        0.025,
+        0.05
+      ],
+      "color": "orange",
+      "confidence": "C"
+    },
+    {
+      "id": "SE-C-03",
+      "category": "traffic_cone",
+      "shape": "cylinder",
+      "position": [
+        2.5,
+        2.05,
+        0.07500000000000001
+      ],
+      "size": [
+        0.025,
+        0.025,
+        0.05
+      ],
+      "color": "orange",
+      "confidence": "C"
+    },
+    {
+      "id": "SE-C-04",
+      "category": "traffic_cone",
+      "shape": "cylinder",
+      "position": [
+        2.2878679656440357,
+        1.9621320343559643,
+        0.07500000000000001
+      ],
+      "size": [
+        0.025,
+        0.025,
+        0.05
+      ],
+      "color": "orange",
+      "confidence": "C"
+    },
+    {
+      "id": "SE-C-05",
+      "category": "traffic_cone",
+      "shape": "cylinder",
+      "position": [
+        2.2,
+        1.75,
+        0.07500000000000001
+      ],
+      "size": [
+        0.025,
+        0.025,
+        0.05
+      ],
+      "color": "orange",
+      "confidence": "C"
+    },
+    {
+      "id": "SE-C-06",
+      "category": "traffic_cone",
+      "shape": "cylinder",
+      "position": [
+        2.2878679656440357,
+        1.5378679656440357,
+        0.07500000000000001
+      ],
+      "size": [
+        0.025,
+        0.025,
+        0.05
+      ],
+      "color": "orange",
+      "confidence": "C"
+    },
+    {
+      "id": "SE-C-07",
+      "category": "traffic_cone",
+      "shape": "cylinder",
+      "position": [
+        2.5,
+        1.45,
+        0.07500000000000001
+      ],
+      "size": [
+        0.025,
+        0.025,
+        0.05
+      ],
+      "color": "orange",
+      "confidence": "C"
+    },
+    {
+      "id": "SE-C-08",
+      "category": "traffic_cone",
+      "shape": "cylinder",
+      "position": [
+        2.7121320343559643,
+        1.5378679656440357,
+        0.07500000000000001
+      ],
+      "size": [
+        0.025,
+        0.025,
+        0.05
+      ],
+      "color": "orange",
+      "confidence": "C"
+    }
+  ],
+  "uwb_anchors": [],
+  "model": "sandbox.obj"
+}

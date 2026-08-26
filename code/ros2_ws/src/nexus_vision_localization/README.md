@@ -1,3 +1,5 @@
 # nexus_vision_localization（ROS2）
 
-职责：接入项目自定义的机载或外部相机输入，检测无人机之外的目标并输出 `/nexus/vision/target_observation`。输出必须注明相机/世界 frame、采样时间、目标标识和不确定度，不能与无人机自身位姿混用。相机数量、标签族和标定版本由配置指定；硬件到货前只做接口和固定几何单测，不启动仿真或假传感器，确认真实图像接口后再绑定具体相机。
+职责：保留一个延后的 AprilTag 36h11/PnP 工程基线，接入 `apriltag_ros` 检测结果和同一相机的 `CameraInfo`，输出外部目标 `target_0` 的 `/nexus/vision/target_observation`。当前算法复现主线是无标签纯视觉；无标签适配器必须输出同一 `TargetObservation` 契约。输出必须注明相机/世界 frame、采样时间、目标标识和不确定度，不能与无人机自身位姿混用。
+
+`marker_size_m` 是到货后用量具复测的实体 AprilTag 边长，默认 `0.0` 表示未配置，节点会拒绝输出；不得用上游示例尺寸代替。`target_link` 是刚性安装板外向平面的几何中心，标签中心到该点的外参必须在标定运行中登记。相机输入、`CameraInfo`、frame 和时间戳确认后，使用 `apriltag_localization.launch.py` 同时启动 `apriltag_ros` 与本适配节点；适配节点拒绝相机参数与检测时间戳或 frame 不一致的数据。完整决定见 `ADR-004`。

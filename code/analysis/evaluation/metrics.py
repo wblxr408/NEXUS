@@ -31,6 +31,50 @@ def position_metrics(estimates, references, outlier_threshold_m=None):
     }
 
 
+def position_metrics_2d(estimates, references):
+    """Horizontal-only metrics; callers must not pad z=0 to fake a 3D result."""
+    estimated = np.asarray(estimates, dtype=float)
+    reference = np.asarray(references, dtype=float)
+    if estimated.ndim != 2 or estimated.shape[1] < 2:
+        raise ValueError("estimates must have shape (N, >=2)")
+    if estimated.shape != reference.shape or estimated.shape[0] == 0:
+        raise ValueError("estimates and references must have matching non-empty shapes")
+    if not np.all(np.isfinite(estimated)) or not np.all(np.isfinite(reference)):
+        raise ValueError("all estimates and references must be finite")
+
+    errors_xy = estimated[:, :2] - reference[:, :2]
+    distances = np.linalg.norm(errors_xy, axis=1)
+    axis_bias = np.mean(errors_xy, axis=0)
+    return {
+        "samples": int(distances.size),
+        "unit": "m",
+        "dimension": "2D",
+        "rmse_m": float(np.sqrt(np.mean(distances ** 2))),
+        "mae_m": float(np.mean(distances)),
+        "cep50_m": float(np.percentile(distances, 50)),
+        "cep95_m": float(np.percentile(distances, 95)),
+        "max_error_m": float(np.max(distances)),
+        "axis_bias_m": {"x": float(axis_bias[0]), "y": float(axis_bias[1])},
+    }
+
+
+def success_metrics(total_expected, valid_count, timestamps_ns=None):
+    if total_expected <= 0:
+        raise ValueError("total_expected must be positive")
+    result = {
+        "total_expected": int(total_expected),
+        "valid_count": int(valid_count),
+        "success_rate": float(valid_count / total_expected),
+        "failure_rate": float(1.0 - valid_count / total_expected),
+    }
+    stamps = np.asarray(timestamps_ns, dtype=np.int64)
+    if stamps is not None and stamps.size >= 2:
+        duration_s = (stamps[-1] - stamps[0]) / 1e9
+        if duration_s > 0:
+            result["update_rate_hz"] = float(valid_count / duration_s)
+    return result
+
+
 def update_frequency_hz(timestamps_ns):
     stamps = np.asarray(timestamps_ns, dtype=np.int64)
     if stamps.size < 2:

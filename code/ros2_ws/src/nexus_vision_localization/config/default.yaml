@@ -2,6 +2,10 @@ nexus_vision_localization:
   ros__parameters:
     marker_size_m: 0.0
     camera_frame: camera
-    target_prefix: target
-    dictionary: DICT_4X4_50
+    target_id: target_0
+    tag_id: 0
+    tag_family: 36h11
     default_confidence: 0.0
+    position_variance_m2: 0.0
+    input_timeout_ms: 1000.0
+    max_camera_info_age_ms: 1000.0

@@ -1,0 +1,25 @@
+# Gazebo Classic camera profile. This is an explicitly simulated profile, not
+# a substitute for an on-aircraft intrinsic calibration.
+camera:
+  model: sony_imx219
+  source: docs/IMX219.md
+  frame_id: nexus_uav_camera_optical_frame
+  image_width_px: 3280
+  image_height_px: 2464
+  pixel_format: R8G8B8
+  horizontal_fov_deg: 79.3
+  update_rate_hz: 21
+  clip_near_m: 0.05
+  clip_far_m: 30.0
+  # Gazebo Classic's camera accepts FOV, image format and rate. It does not
+  # model aperture, rolling-shutter readout or this module's lens distortion.
+  unsupported_hardware_parameters:
+    shutter_type: rolling
+    aperture_f_number: 2.0
+    lens_distortion_percent: "<1.0 (typical 0.8-1.0)"
+    focal_length_mm: 2.85
+    pixel_pitch_um: 1.12
+uav:
+  model_name: nexus_uav
+  spawn_pose_m: [2.0, 2.35, 2.5]
+  odom_topic: /nexus/gazebo/uav/odom

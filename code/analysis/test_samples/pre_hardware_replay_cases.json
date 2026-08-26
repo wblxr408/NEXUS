@@ -1,0 +1,122 @@
+{
+  "data_type": "test_sample",
+  "purpose": "pre-hardware functional checks; not sensor simulation or measured data",
+  "cases": [
+    {
+      "case_id": "dual_source_fused",
+      "expected_frame": "map",
+      "now_timestamp_ns": 1100000000,
+      "max_age_ns": 250000000,
+      "max_pair_delta_ns": 50000000,
+      "expected_status": "fused",
+      "truth_position_m": [1.1, 2.0, 0.5],
+      "sample_timestamp_for_metrics_ns": 1020000000,
+      "receive_timestamp_for_metrics_ns": 1025000000,
+      "sensor_to_map_transforms": {
+        "camera_0": {
+          "rotation": [[1.0, 0.0, 0.0], [0.0, 1.0, 0.0], [0.0, 0.0, 1.0]],
+          "translation_m": [1.0, 2.0, 0.0]
+        }
+      },
+      "observations": [
+        {"target_id": "test_target", "source_mode": "SOURCE_DIRECT_UWB", "frame_id": "map", "unit": "m", "sample_timestamp_ns": 1000000000, "position_m": [1.0, 2.0, 0.5], "covariance_m2": [[0.04, 0.0, 0.0], [0.0, 0.04, 0.0], [0.0, 0.0, 0.04]], "confidence": 0.8},
+        {"target_id": "test_target", "source_mode": "SOURCE_DIRECT_VISION", "frame_id": "camera_0", "unit": "m", "sample_timestamp_ns": 1020000000, "position_m": [0.1, 0.0, 0.5], "covariance_m2": [[0.01, 0.0, 0.0], [0.0, 0.01, 0.0], [0.0, 0.0, 0.01]], "confidence": 0.9}
+      ]
+    },
+    {
+      "case_id": "vision_lost_uwb_fallback",
+      "expected_frame": "map",
+      "now_timestamp_ns": 1100000000,
+      "max_age_ns": 250000000,
+      "max_pair_delta_ns": 50000000,
+      "expected_status": "single_source",
+      "truth_position_m": [1.0, 2.0, 0.5],
+      "sample_timestamp_for_metrics_ns": 1000000000,
+      "receive_timestamp_for_metrics_ns": 1003000000,
+      "observations": [
+        {"target_id": "test_target", "source_mode": "SOURCE_DIRECT_UWB", "frame_id": "map", "unit": "m", "sample_timestamp_ns": 1000000000, "position_m": [1.0, 2.0, 0.5], "covariance_m2": [[0.04, 0.0, 0.0], [0.0, 0.04, 0.0], [0.0, 0.0, 0.04]], "confidence": 0.8}
+      ]
+    },
+    {
+      "case_id": "camera_frame_single_source_transform",
+      "expected_frame": "map",
+      "now_timestamp_ns": 1100000000,
+      "max_age_ns": 250000000,
+      "max_pair_delta_ns": 50000000,
+      "expected_status": "single_source",
+      "truth_position_m": [1.2, 2.0, 0.5],
+      "sample_timestamp_for_metrics_ns": 1010000000,
+      "receive_timestamp_for_metrics_ns": 1016000000,
+      "sensor_to_map_transforms": {
+        "camera_0": {
+          "rotation": [[1.0, 0.0, 0.0], [0.0, 1.0, 0.0], [0.0, 0.0, 1.0]],
+          "translation_m": [1.0, 2.0, 0.0]
+        }
+      },
+      "observations": [
+        {"target_id": "test_target", "source_mode": "SOURCE_DIRECT_VISION", "frame_id": "camera_0", "unit": "m", "sample_timestamp_ns": 1010000000, "position_m": [0.2, 0.0, 0.5], "covariance_m2": [[0.01, 0.0, 0.0], [0.0, 0.01, 0.0], [0.0, 0.0, 0.01]], "confidence": 0.9}
+      ]
+    },
+    {
+      "case_id": "stale_observation_rejected",
+      "expected_frame": "map",
+      "now_timestamp_ns": 1300000000,
+      "max_age_ns": 250000000,
+      "max_pair_delta_ns": 50000000,
+      "expected_status": "no_valid_observation",
+      "observations": [
+        {"target_id": "test_target", "source_mode": "SOURCE_DIRECT_VISION", "frame_id": "map", "unit": "m", "sample_timestamp_ns": 1000000000, "position_m": [1.0, 2.0, 0.5], "covariance_m2": [[0.01, 0.0, 0.0], [0.0, 0.01, 0.0], [0.0, 0.0, 0.01]], "confidence": 0.9}
+      ]
+    },
+    {
+      "case_id": "frame_mismatch_rejected",
+      "expected_frame": "map",
+      "now_timestamp_ns": 1100000000,
+      "max_age_ns": 250000000,
+      "max_pair_delta_ns": 50000000,
+      "expected_status": "single_source",
+      "truth_position_m": [1.0, 2.0, 0.5],
+      "sample_timestamp_for_metrics_ns": 1000000000,
+      "receive_timestamp_for_metrics_ns": 1004000000,
+      "observations": [
+        {"target_id": "test_target", "source_mode": "SOURCE_DIRECT_UWB", "frame_id": "map", "unit": "m", "sample_timestamp_ns": 1000000000, "position_m": [1.0, 2.0, 0.5], "covariance_m2": [[0.04, 0.0, 0.0], [0.0, 0.04, 0.0], [0.0, 0.0, 0.04]], "confidence": 0.8},
+        {"target_id": "test_target", "source_mode": "SOURCE_DIRECT_VISION", "frame_id": "camera_0", "unit": "m", "sample_timestamp_ns": 1020000000, "position_m": [1.1, 2.0, 0.5], "covariance_m2": [[0.01, 0.0, 0.0], [0.0, 0.01, 0.0], [0.0, 0.0, 0.01]], "confidence": 0.9}
+      ]
+    },
+    {
+      "case_id": "unit_error_rejected",
+      "expected_frame": "map",
+      "now_timestamp_ns": 1100000000,
+      "max_age_ns": 250000000,
+      "max_pair_delta_ns": 50000000,
+      "expected_status": "no_valid_observation",
+      "observations": [
+        {"target_id": "test_target", "source_mode": "SOURCE_DIRECT_UWB", "frame_id": "map", "unit": "cm", "sample_timestamp_ns": 1000000000, "position_m": [100.0, 200.0, 50.0], "covariance_m2": [[0.04, 0.0, 0.0], [0.0, 0.04, 0.0], [0.0, 0.0, 0.04]], "confidence": 0.8}
+      ]
+    },
+    {
+      "case_id": "asynchronous_pair_rejected",
+      "expected_frame": "map",
+      "now_timestamp_ns": 1200000000,
+      "max_age_ns": 250000000,
+      "max_pair_delta_ns": 50000000,
+      "expected_status": "no_synchronized_pair",
+      "observations": [
+        {"target_id": "test_target", "source_mode": "SOURCE_DIRECT_UWB", "frame_id": "map", "unit": "m", "sample_timestamp_ns": 1000000000, "position_m": [1.0, 2.0, 0.5], "covariance_m2": [[0.04, 0.0, 0.0], [0.0, 0.04, 0.0], [0.0, 0.0, 0.04]], "confidence": 0.8},
+        {"target_id": "test_target", "source_mode": "SOURCE_DIRECT_VISION", "frame_id": "map", "unit": "m", "sample_timestamp_ns": 1100000000, "position_m": [1.1, 2.0, 0.5], "covariance_m2": [[0.01, 0.0, 0.0], [0.0, 0.01, 0.0], [0.0, 0.0, 0.01]], "confidence": 0.9}
+      ]
+    },
+    {
+      "case_id": "both_sources_invalid",
+      "expected_frame": "map",
+      "now_timestamp_ns": 1300000000,
+      "max_age_ns": 250000000,
+      "max_pair_delta_ns": 50000000,
+      "expected_status": "no_valid_observation",
+      "observations": [
+        {"target_id": "test_target", "source_mode": "SOURCE_DIRECT_UWB", "frame_id": "map", "unit": "m", "sample_timestamp_ns": 1000000000, "position_m": [1.0, 2.0, 0.5], "covariance_m2": [[0.04, 0.0, 0.0], [0.0, 0.04, 0.0], [0.0, 0.0, 0.04]], "confidence": 0.8},
+        {"target_id": "test_target", "source_mode": "SOURCE_DIRECT_VISION", "frame_id": "camera_0", "unit": "m", "sample_timestamp_ns": 1000000000, "position_m": [1.1, 2.0, 0.5], "covariance_m2": [[0.01, 0.0, 0.0], [0.0, 0.01, 0.0], [0.0, 0.0, 0.01]], "confidence": 0.9}
+      ]
+    }
+  ]
+}

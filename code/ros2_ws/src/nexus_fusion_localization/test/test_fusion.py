@@ -13,6 +13,7 @@ def observation(position, source=2, confidence=1.0, stamp=1_000_000_000):
         confidence=confidence,
         source_mode=source,
         orientation_xyzw=np.array([0., 0., 0., 1.]),
+        receive_timestamp_ns=stamp + 1,
     )
 
 
@@ -34,3 +35,22 @@ def test_two_observations_are_information_weighted():
 def test_stale_observations_are_rejected():
     assert is_stale(1_000, 2_001, 1_000)
     assert not is_stale(1_001, 2_001, 1_000)
+
+
+def test_unsynchronized_sources_degrade_to_newest_single_source():
+    first = observation([0, 0, 0], source=1, stamp=1_000_000_000)
+    second = observation([1, 0, 0], source=2, stamp=1_100_000_000)
+    result = fuse_observations(
+        [first, second], "map", 1_110_000_000, 250_000_000, 50_000_000)
+    assert result["source_mode"] == 2
+    assert result["degraded_reason"] == "unsynchronized_sources"
+    assert np.allclose(result["position"], [1, 0, 0])
+
+
+def test_invalid_status_and_unit_are_rejected():
+    invalid = observation([1, 2, 3])
+    invalid = Observation(**{**invalid.__dict__, "validity": 2, "invalid_reason": "stale"})
+    wrong_unit = observation([1, 2, 3], source=1)
+    wrong_unit = Observation(**{**wrong_unit.__dict__, "unit": "cm"})
+    assert fuse_observations(
+        [invalid, wrong_unit], "map", 1_100_000_000, 250_000_000, 50_000_000) is None
