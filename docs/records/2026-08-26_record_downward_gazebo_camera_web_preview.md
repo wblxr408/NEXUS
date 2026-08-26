@@ -10,8 +10,9 @@
 pitch 将光轴旋转至世界 `-z`，所以相机观察无人机下方的沙盘。
 
 相机插件 `libgazebo_ros_camera.so` 发布原始图像到
-`/nexus/camera/imx219/image_raw`。Dashboard 的 rosbridge 客户端订阅该话题、将 `rgb8`/
-`bgr8`/`mono8` 图像缩小为浏览器预览，并绘制到 `cam-canvas` 的“相机成像与检测证据”窗口。
+`/nexus/camera/imx219/image_raw`。Dashboard 的 rosbridge 客户端订阅由同一相机发布的
+`/nexus/camera/imx219/image_raw/compressed` JPEG 流并绘制到 `cam-canvas` 的“相机成像与检测证据”窗口。
+原始 `3280 × 2464 rgb8` 帧约为 24 MB，经 JSON/Base64 传输会超过 30 MB，不适合作为浏览器实时流。
 
 ## 验证
 

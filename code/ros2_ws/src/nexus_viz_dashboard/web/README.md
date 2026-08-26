@@ -65,7 +65,7 @@ http://127.0.0.1:8765/public/index.html
 ```
 
 停止服务器按 `Ctrl+C`。页面会自动连接同主机的 `ws://<host>:9090` rosbridge，并订阅
-Gazebo 的 `/nexus/camera/imx219/image_raw`、`/nexus/gazebo/uav/odom` 与 NEXUS 定位话题。
+Gazebo 的 `/nexus/camera/imx219/image_raw/compressed`、`/nexus/gazebo/uav/odom` 与 NEXUS 定位话题。
 需要不同地址时在 URL 追加 `?rosbridge=ws://<host>:<port>`。未启动 rosbridge 时仍显示
 静态沙盘，并明确显示 `BRIDGE ERROR/DISCONNECTED`；不会伪造定位数据。
 
