@@ -8,9 +8,17 @@ code/ros2_ws/install/
 code/ros2_ws/log/
 code/ros1_ws/src/CMakeLists.txt
 **/__pycache__/
+**/.pytest_cache/
 *.py[cod]
 .venv/
 venv/
+
+# Generic local build and dataset directories.
+**/build/
+**/install/
+**/log/
+datasets/
+downloads/
 
 # Large or local-only experiment data
 data/raw/**
@@ -20,6 +28,12 @@ experiments/runs/**/artifacts/
 *.bag
 *.db3
 *.mcap
+
+# Small, explicitly archived evidence for the current UWB runs.
+!experiments/runs/2026-08-26_E002_uwb_positioning_reproduction/artifacts/
+!experiments/runs/2026-08-26_E002_uwb_positioning_reproduction/artifacts/*.png
+!experiments/runs/2026-08-26_E003_uwb_sandbox_online_smoke/artifacts/
+!experiments/runs/2026-08-26_E003_uwb_sandbox_online_smoke/artifacts/*.md
 *.mp4
 *.mov
 

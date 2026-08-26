@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<package format="3">
+  <name>nexus_uwb_simulation</name>
+  <version>0.1.0</version>
+  <description>NEXUS UWB simulation adapter</description>
+  <maintainer email="nexus@todo.todo">nexus</maintainer>
+  <license>TODO</license>
+  <depend>rclpy</depend>
+  <depend>nav_msgs</depend>
+  <depend>geometry_msgs</depend>
+  <depend>nexus_msgs</depend>
+  <buildtool_depend>ament_cmake</buildtool_depend>
+  <export>
+    <build_type>ament_cmake</build_type>
+  </export>
+</package>

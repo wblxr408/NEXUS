@@ -47,6 +47,44 @@ for _name, _family, _source in (
     register_algorithm_slot(_name, _family, _source)
 
 
+def register_default_algorithms():
+    """Register concrete runners that ship with the project."""
+    from algorithms.uwb.positioning_algorithms_for_uwb_matlab.trilateration import (
+        run_trilateration,
+    )
+    from algorithms.uwb.positioning_algorithms_for_uwb_matlab.multilateration import (
+        run_multilateration,
+    )
+    from algorithms.uwb.positioning_algorithms_for_uwb_matlab.taylor_series import (
+        run_taylor,
+    )
+    from algorithms.uwb.positioning_algorithms_for_uwb_matlab.kalman_filters import (
+        run_ekf,
+        run_ukf,
+    )
+
+    register_algorithm(
+        "uwb.matlab.trilateration", "uwb", run_trilateration,
+        source="https://github.com/cliansang/positioning-algorithms-for-uwb-matlab",
+    )
+    register_algorithm(
+        "uwb.matlab.multilateration", "uwb", run_multilateration,
+        source="https://github.com/cliansang/positioning-algorithms-for-uwb-matlab",
+    )
+    register_algorithm(
+        "uwb.matlab.taylor", "uwb", run_taylor,
+        source="https://github.com/cliansang/positioning-algorithms-for-uwb-matlab",
+    )
+    register_algorithm(
+        "uwb.matlab.ekf", "uwb", run_ekf,
+        source="https://github.com/cliansang/positioning-algorithms-for-uwb-matlab",
+    )
+    register_algorithm(
+        "uwb.matlab.ukf", "uwb", run_ukf,
+        source="https://github.com/cliansang/positioning-algorithms-for-uwb-matlab",
+    )
+
+
 def available_algorithms(family=None):
     return [spec for spec in _REGISTRY.values() if (family is None or spec.family == family)]
 

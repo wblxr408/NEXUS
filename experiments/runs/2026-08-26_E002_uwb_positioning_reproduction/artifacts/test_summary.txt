@@ -1,0 +1,5 @@
+Test summary for 2026-08-26_E002_uwb_positioning_reproduction
+
+Command: python3 -m pytest -q code/analysis/test code/ros2_ws/src/nexus_uwb_simulation/test
+Result: 18 passed in 0.18s
+Environment: Python 3.10 runtime available in the validation shell.
