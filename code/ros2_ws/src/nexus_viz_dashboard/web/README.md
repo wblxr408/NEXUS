@@ -2,12 +2,14 @@
 
 此目录预留给浏览器端的 Dashboard。页面部署在 ROS2 Ubuntu 主机，由 `nexus_viz_dashboard` 的后续网关提供 HTTP/WebSocket；浏览器可在同网段的 Ubuntu 或 Windows 上访问。
 
-当前只建立目录边界，不包含前端框架、依赖清单、页面、模拟数据、网络地址或消息实现。具体技术栈和数据契约须在硬件接口、相机输入和网关方案确认后通过实验运行及接口记录固化。
+当前页面骨架已可读取参数化沙盘资源，展示其相对/绝对坐标布局；ROS2 实时消息仍由后续网关适配。仿真源文件不放在此目录，唯一源数据位于仓库根目录 `simulation/`。
 
 ```text
 web/
 ├── public/                 静态入口与已核准的静态资源
-│   └── assets/             坐标已配准的沙盘底图、图标等（不得放原始视频）
+│   └── assets/
+│       └── sandbox/        由 simulation 生成的 Web 静态资源（JSON/OBJ/MTL）
+├── public/vendor/three/     本地 Three.js + OrbitControls（不依赖外网 CDN）
 ├── src/
 │   ├── app/                应用装配、路由和页面状态
 │   ├── components/         可复用展示组件
@@ -18,10 +20,46 @@ web/
 └── test/                   前端单元、集成和回放验收测试
 ```
 
-实现前先阅读：
+## 沙盘资源同步
 
-- `docs/architecture/2026-08-19_design_demo_dashboard_information_architecture.md`：页面信息架构、实时/回放状态和展示边界；同时参考 `docs/architecture/README.md` 与 `docs/2026-08-25_plan_current_execution_baseline.md` 的当前数据语义；
-- `docs/architecture/interfaces.md`：ROS1/ROS2 话题语义；
-- `code/tools/nexus_channel_contract.py`：传输 envelope 的最小字段和校验规则。
+源配置和生成器：
 
-网页只能展示由 ROS2 网关验证过的消息。坐标转换、融合、指标计算和真值处理不应移到浏览器端；原始视频、rosbag 与未经登记的实验数据不放入本目录。
+```text
+simulation/sandbox_scene.yaml
+simulation/generate_sandbox.py
+```
+
+生成后将以下派生资源同步到 `public/assets/sandbox/`：
+
+```text
+sandbox_scene.json   # 页面读取的场景坐标、物体、尺寸和置信度
+sandbox.obj          # 后续 Three.js/OBJLoader 或其他 3D 引擎使用
+sandbox.mtl          # OBJ 材质
+```
+
+当前 `scene_renderer.js` 使用本地 Three.js WebGL 渲染器读取 `assets/sandbox/sandbox_scene.json`，提供真实深度遮挡、透视、光照/阴影和 OrbitControls 鼠标旋转/滚轮缩放；它会绘制外围环形双车道、四角十字路口与人行横道、中央无虚线单车道、建筑、储罐和树阵。道路标识与 OBJ、SDF 共用生成器产出的 `road_marking` 对象，避免三种视图布局漂移。
+
+重新生成模型后执行：
+
+```bash
+python3 simulation/generate_sandbox.py
+cp simulation/sandbox_scene.json simulation/sandbox.obj simulation/sandbox.mtl \
+  code/ros2_ws/src/nexus_viz_dashboard/web/public/assets/sandbox/
+```
+
+## 本地查看页面
+
+不要直接双击 `public/index.html`。浏览器会阻止 `file://` 页面加载 ES Module 和场景 JSON。启动一个本地静态服务器：
+
+```bash
+cd code/ros2_ws/src/nexus_viz_dashboard/web
+python3 -m http.server 8765
+```
+
+然后打开：
+
+```text
+http://127.0.0.1:8765/public/index.html
+```
+
+当前版本不需要编译，也不需要 `colcon build`。停止服务器按 `Ctrl+C`。页面的 ROS2/实时数据网关尚未接入时，页面会显示 `NO INPUT`，但沙盘布局仍应显示在主地图区域。

@@ -1,0 +1,143 @@
+scene_id: sandbox_4000x4700_v03
+scene_mode: metric_simulation
+unit: mm
+source_unit: mm
+object_z_mode: base
+coordinate_frame: map
+origin: [0, 0, 0]
+axis: {x: east, y: north, z: up}
+dimensions: {width_x: 4000, length_y: 4700, deck_height: 50}
+dimensions_confidence: A
+central_core:
+  id: INDUSTRIAL_CORE
+  min_xy: [1000, 1200]
+  size_xy: [2000, 2300]
+  center_xy: [2000, 2350]
+  confidence: A
+  source: dimension_drawing
+outer_boundary:
+  type: bounding_box
+  polygon_xy: [[0, 0], [4000, 0], [4000, 4700], [0, 4700]]
+  note: "4000x4700 mm 为 Bounding Box；外轮廓局部不规则，待实测补充。"
+
+# 外围是一圈连续双向双车道环路；四个角点为十字路口。核心内部仅由
+# 一条东西向和一条南北向单车道切分四块工业岛。工业岛边界直接贴住核心
+# 边界道路，不再生成工业岛周边绿化树环。
+roads:
+  # 外周道路吸收原内圈矩形道路的宽度：每条为双向双车道。
+  - {id: RD-RING-W, type: perimeter_ns, center: [500, 2350], size: [600, 5200], height: 2, confidence: C}
+  - {id: RD-RING-E, type: perimeter_ns, center: [3500, 2350], size: [600, 5200], height: 2, confidence: C}
+  - {id: RD-RING-S, type: perimeter_ew, center: [2000, 500], size: [4400, 600], height: 2, confidence: C}
+  - {id: RD-RING-N, type: perimeter_ew, center: [2000, 4200], size: [4400, 600], height: 2, confidence: C}
+  # 横向单车道延伸到左右环路，和外围道路形成两个十字交叉；纵向单车道只分割核心岛。
+  - {id: RD-C-X, type: central_single_lane_ew, center: [2000, 2350], size: [3000, 180], height: 2, confidence: B}
+  - {id: RD-C-Y, type: central_single_lane_ns, center: [2000, 2350], size: [180, 2300], height: 2, confidence: B}
+
+road_markings:
+  - {id: LM-RING-W, kind: lane_dashes, start: [500, 700], end: [500, 4000], width: 25, dash_length: 180, gap: 120, color: road_white, confidence: C}
+  - {id: LM-RING-E, kind: lane_dashes, start: [3500, 700], end: [3500, 4000], width: 25, dash_length: 180, gap: 120, color: road_white, confidence: C}
+  - {id: LM-RING-S, kind: lane_dashes, start: [700, 500], end: [3300, 500], width: 25, dash_length: 180, gap: 120, color: road_white, confidence: C}
+  - {id: LM-RING-N, kind: lane_dashes, start: [700, 4200], end: [3300, 4200], width: 25, dash_length: 180, gap: 120, color: road_white, confidence: C}
+  # 四个环路角点各设置两组人行横道，形成可识别的十字路口。
+  - {id: CW-SW-X, kind: crosswalk, center: [500, 800], axis: x, count: 8, bar_length: 280, bar_width: 14, spacing: 20, color: road_white, confidence: C}
+  - {id: CW-SW-Y, kind: crosswalk, center: [800, 500], axis: y, count: 8, bar_length: 280, bar_width: 14, spacing: 20, color: road_white, confidence: C}
+  - {id: CW-SE-X, kind: crosswalk, center: [3500, 800], axis: x, count: 8, bar_length: 280, bar_width: 14, spacing: 20, color: road_white, confidence: C}
+  - {id: CW-SE-Y, kind: crosswalk, center: [3200, 500], axis: y, count: 8, bar_length: 280, bar_width: 14, spacing: 20, color: road_white, confidence: C}
+  - {id: CW-NW-X, kind: crosswalk, center: [500, 3900], axis: x, count: 8, bar_length: 280, bar_width: 14, spacing: 20, color: road_white, confidence: C}
+  - {id: CW-NW-Y, kind: crosswalk, center: [800, 4200], axis: y, count: 8, bar_length: 280, bar_width: 14, spacing: 20, color: road_white, confidence: C}
+  - {id: CW-NE-X, kind: crosswalk, center: [3500, 3900], axis: x, count: 8, bar_length: 280, bar_width: 14, spacing: 20, color: road_white, confidence: C}
+  - {id: CW-NE-Y, kind: crosswalk, center: [3200, 4200], axis: y, count: 8, bar_length: 280, bar_width: 14, spacing: 20, color: road_white, confidence: C}
+  # 工业岛中央单车道的四向人行横道。
+  # 横向单车道只在左右端接入边界道路处过街；纵向单车道不设置斑马线。
+  - {id: CW-C-W, kind: crosswalk, center: [500, 2350], axis: y, count: 9, bar_length: 560, bar_width: 14, spacing: 20, color: road_white, confidence: B}
+  - {id: CW-C-E, kind: crosswalk, center: [3500, 2350], axis: y, count: 9, bar_length: 560, bar_width: 14, spacing: 20, color: road_white, confidence: B}
+  # 四条伸出沙盘边界的道路，在出界端补一组人行横道。
+  - {id: CW-EXT-W-S, kind: crosswalk, center: [500, 100], axis: x, count: 8, bar_length: 280, bar_width: 14, spacing: 20, color: road_white, confidence: C}
+  - {id: CW-EXT-W-N, kind: crosswalk, center: [500, 4600], axis: x, count: 8, bar_length: 280, bar_width: 14, spacing: 20, color: road_white, confidence: C}
+  - {id: CW-EXT-E-S, kind: crosswalk, center: [3500, 100], axis: x, count: 8, bar_length: 280, bar_width: 14, spacing: 20, color: road_white, confidence: C}
+  - {id: CW-EXT-E-N, kind: crosswalk, center: [3500, 4600], axis: x, count: 8, bar_length: 280, bar_width: 14, spacing: 20, color: road_white, confidence: C}
+  - {id: CW-EXT-S-W, kind: crosswalk, center: [100, 500], axis: y, count: 8, bar_length: 280, bar_width: 14, spacing: 20, color: road_white, confidence: C}
+  - {id: CW-EXT-S-E, kind: crosswalk, center: [3900, 500], axis: y, count: 8, bar_length: 280, bar_width: 14, spacing: 20, color: road_white, confidence: C}
+  - {id: CW-EXT-N-W, kind: crosswalk, center: [100, 4200], axis: y, count: 8, bar_length: 280, bar_width: 14, spacing: 20, color: road_white, confidence: C}
+  - {id: CW-EXT-N-E, kind: crosswalk, center: [3900, 4200], axis: y, count: 8, bar_length: 280, bar_width: 14, spacing: 20, color: road_white, confidence: C}
+
+industrial_islands:
+  - {id: IND-NW, center: [1500, 2950], size: [700, 800], confidence: B}
+  - {id: IND-NE, center: [2500, 2950], size: [700, 800], confidence: B}
+  - {id: IND-SW, center: [1500, 1750], size: [700, 800], confidence: B}
+  - {id: IND-SE, center: [2500, 1750], size: [700, 800], confidence: B}
+
+objects:
+  # 环路内外侧人行道（浅灰色窄带），与斑马线在四角路口衔接。
+  # 人行道仅保留在外周车道外侧，不侵入车道。
+  - {id: SIDEWALK-W-OUT, category: sidewalk, position: [120, 2350, 0], size: [120, 4700, 10], shape: box, color: concrete, confidence: C}
+  - {id: SIDEWALK-E-OUT, category: sidewalk, position: [3880, 2350, 0], size: [120, 4700, 10], shape: box, color: concrete, confidence: C}
+  - {id: SIDEWALK-S-OUT, category: sidewalk, position: [2000, 120, 0], size: [4000, 120, 10], shape: box, color: concrete, confidence: C}
+  - {id: SIDEWALK-N-OUT, category: sidewalk, position: [2000, 4580, 0], size: [4000, 120, 10], shape: box, color: concrete, confidence: C}
+  - {id: IND-NW-PAD, category: industrial_yard, position: [1500, 2950, 0], size: [700, 800, 8], shape: box, color: concrete, confidence: B}
+  - {id: IND-NE-PAD, category: industrial_yard, position: [2500, 2950, 0], size: [700, 800, 8], shape: box, color: concrete, confidence: B}
+  - {id: IND-SW-PAD, category: industrial_yard, position: [1500, 1750, 0], size: [700, 800, 8], shape: box, color: concrete, confidence: B}
+  - {id: IND-SE-PAD, category: industrial_yard, position: [2500, 1750, 0], size: [700, 800, 8], shape: box, color: concrete, confidence: B}
+  - {id: NW-T01, category: tank, subtype: silver_large, position: [1320, 3080, 0], size: [180, 180, 110], shape: cylinder, color: silver, confidence: B}
+  - {id: NW-T02, category: tank, subtype: silver_large, position: [1610, 3100, 0], size: [180, 180, 110], shape: cylinder, color: silver, confidence: B}
+  - {id: NW-T03, category: tank, subtype: silver_small, position: [1760, 2780, 0], size: [90, 90, 90], shape: cylinder, color: silver, confidence: B}
+  - {id: NW-T04, category: tank, subtype: orange, position: [1570, 2730, 0], size: [110, 110, 80], shape: cylinder, color: orange, confidence: B}
+  - {id: NW-B01, category: building, subtype: industrial_yellow, position: [1550, 3290, 0], size: [280, 120, 120], shape: box, color: yellow, confidence: B}
+  - {id: NE-T01, category: tank, subtype: silver_large, position: [2300, 3080, 0], size: [180, 180, 110], shape: cylinder, color: silver, confidence: B}
+  - {id: NE-T02, category: tank, subtype: silver_large, position: [2650, 3080, 0], size: [180, 180, 110], shape: cylinder, color: silver, confidence: B}
+  - {id: NE-T03, category: tank, subtype: silver_small, position: [2770, 2770, 0], size: [90, 90, 80], shape: cylinder, color: silver, confidence: B}
+  - {id: NE-T04, category: tank, subtype: purple, position: [2560, 2740, 0], size: [110, 110, 80], shape: cylinder, color: purple, confidence: B}
+  - {id: NE-B01, category: building, subtype: industrial_yellow, position: [2480, 3290, 0], size: [280, 120, 120], shape: box, color: yellow, confidence: B}
+  - {id: SW-T01, category: tank, subtype: silver_large, position: [1280, 1910, 0], size: [180, 180, 110], shape: cylinder, color: silver, confidence: B}
+  - {id: SW-T02, category: tank, subtype: silver_large, position: [1580, 1910, 0], size: [180, 180, 110], shape: cylinder, color: silver, confidence: B}
+  - {id: SW-T03, category: tank, subtype: blue_red, position: [1480, 1570, 0], size: [120, 120, 80], shape: cylinder, color: blue_red, confidence: B}
+  - {id: SE-T01, category: tank, subtype: silver_large, position: [2300, 1920, 0], size: [180, 180, 110], shape: cylinder, color: silver, confidence: B}
+  - {id: SE-T02, category: tank, subtype: silver_large, position: [2620, 1930, 0], size: [180, 180, 110], shape: cylinder, color: silver, confidence: B}
+  - {id: SE-T03, category: tank, subtype: silver_large, position: [2750, 1620, 0], size: [180, 180, 110], shape: cylinder, color: silver, confidence: B}
+  - {id: SE-T04, category: tank, subtype: green, position: [2480, 2050, 0], size: [110, 110, 80], shape: cylinder, color: green, confidence: B}
+  - {id: SE-B01, category: building, subtype: white_yellow_factory, position: [2700, 2080, 0], size: [280, 120, 100], shape: box, color: white_yellow, confidence: B}
+  - {id: SE-B02, category: building, subtype: white_yellow_factory, position: [2700, 1480, 0], size: [280, 120, 100], shape: box, color: white_yellow, confidence: B}
+
+  # 外围建筑：照片反推坐标，统一按底面 Z=0 表达。
+  # 建筑全部放在环路外侧的绿化带，建筑底面与道路边缘留出间隙。
+  - {id: BLD-F01, category: building, subtype: white, position: [850, 4560, 0], size: [360, 180, 250], shape: box, color: white, confidence: C}
+  - {id: BLD-F02, category: building, subtype: white, position: [1450, 4560, 0], size: [360, 180, 250], shape: box, color: white, confidence: C}
+  - {id: BLD-F03, category: building, subtype: glass_highrise, position: [2600, 4560, 0], size: [260, 180, 420], shape: box, color: glass, confidence: B}
+  - {id: BLD-F04, category: building, subtype: beige, position: [3350, 4560, 0], size: [320, 180, 250], shape: box, color: beige, confidence: C}
+  - {id: BLD-L01, category: building, subtype: yellow, position: [120, 1400, 0], size: [220, 300, 360], shape: box, color: yellow, confidence: C}
+  - {id: BLD-L02, category: building, subtype: white_office, position: [120, 2250, 0], size: [220, 250, 260], shape: box, color: white, confidence: C}
+  - {id: BLD-L03, category: building, subtype: white_office, position: [120, 3050, 0], size: [220, 250, 260], shape: box, color: white, confidence: C}
+  - {id: BLD-L04, category: building, subtype: white_rear, position: [120, 3850, 0], size: [220, 250, 260], shape: box, color: white, confidence: C}
+  - {id: BLD-R01, category: building, subtype: right_front, position: [3880, 900, 0], size: [220, 250, 260], shape: box, color: beige, confidence: C}
+  - {id: BLD-R02, category: building, subtype: glass, position: [3880, 2250, 0], size: [220, 250, 300], shape: box, color: glass, confidence: C}
+  - {id: BLD-R03, category: building, subtype: diamond_facade, position: [3880, 3050, 0], size: [220, 250, 340], shape: box, color: glass, confidence: B}
+  - {id: BLD-R04, category: building, subtype: white_rear, position: [3880, 3850, 0], size: [220, 250, 260], shape: box, color: white, confidence: C}
+  - {id: BLD-B01, category: building, subtype: white_office, position: [950, 140, 0], size: [320, 180, 260], shape: box, color: white, confidence: C}
+  - {id: BLD-B02, category: building, subtype: white_office, position: [1400, 140, 0], size: [320, 180, 260], shape: box, color: white, confidence: C}
+  - {id: BLD-B03, category: building, subtype: blue_gray, position: [2050, 140, 0], size: [320, 180, 300], shape: box, color: blue_gray, confidence: C}
+  - {id: BLD-B04, category: building, subtype: white_office, position: [2650, 140, 0], size: [320, 180, 260], shape: box, color: white, confidence: C}
+  - {id: BLD-B05, category: building, subtype: blue_gray_highrise, position: [3150, 140, 0], size: [260, 180, 420], shape: box, color: blue_gray, confidence: C}
+  - {id: BLD-B06, category: building, subtype: white_rear, position: [3600, 140, 0], size: [260, 180, 260], shape: box, color: white, confidence: C}
+
+tree_rows:
+  - {id: TR-L01, start: [100, 700], end: [100, 4000], height: 100, count: 28, confidence: C}
+  - {id: TR-L02, start: [250, 700], end: [250, 4000], height: 100, count: 28, confidence: C}
+  - {id: TR-R01, start: [3900, 700], end: [3900, 4000], height: 100, count: 28, confidence: C}
+  - {id: TR-R02, start: [3750, 700], end: [3750, 4000], height: 100, count: 28, confidence: C}
+  - {id: TR-F01, start: [700, 100], end: [3300, 100], height: 100, count: 23, confidence: C}
+  - {id: TR-F02, start: [700, 300], end: [3300, 300], height: 80, count: 23, confidence: C}
+  - {id: TR-B01, start: [700, 4650], end: [3300, 4650], height: 100, count: 23, confidence: C}
+  - {id: TR-B02, start: [700, 4450], end: [3300, 4450], height: 130, count: 23, confidence: C}
+
+traffic_light_groups:
+  # 每组四盏灯分别落在路口四角人行道，不再集中在路口中心。
+  - {id: TL-SW, center: [500, 500], positions: [[280, 280], [720, 280], [280, 720], [720, 720]], confidence: C}
+  - {id: TL-SE, center: [3500, 500], positions: [[3280, 280], [3720, 280], [3280, 720], [3720, 720]], confidence: C}
+  - {id: TL-NW, center: [500, 4200], positions: [[280, 4000], [720, 4000], [280, 4400], [720, 4400]], confidence: C}
+  - {id: TL-NE, center: [3500, 4200], positions: [[3280, 4000], [3720, 4000], [3280, 4400], [3720, 4400]], confidence: C}
+cone_groups:
+  - {id: NW-C, center: [1500, 2950], count: 8, radius: 300, diameter: 25, height: 50, confidence: C}
+  - {id: NE-C, center: [2500, 2950], count: 8, radius: 300, diameter: 25, height: 50, confidence: C}
+  - {id: SW-C, center: [1500, 1750], count: 8, radius: 300, diameter: 25, height: 50, confidence: C}
+  - {id: SE-C, center: [2500, 1750], count: 8, radius: 300, diameter: 25, height: 50, confidence: C}
+uwb_anchors: []
