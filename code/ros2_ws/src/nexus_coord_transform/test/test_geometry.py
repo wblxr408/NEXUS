@@ -10,6 +10,7 @@ from nexus_coord_transform.geometry import (
     quaternion_to_matrix,
     umeyama_alignment,
     platform_relative_measurement,
+    rotate_position_covariance,
 )
 
 
@@ -44,3 +45,10 @@ def test_direct_and_platform_relative_paths_are_distinct_entries():
     identity = np.eye(3)
     assert np.allclose(direct_target_measurement([1, 2, 3], identity, [4, 5, 6]), [5, 7, 9])
     assert np.allclose(platform_relative_measurement([4, 5, 6], identity, [1, 2, 3]), [5, 7, 9])
+
+
+def test_position_covariance_rotates_with_frame():
+    rotation = np.array([[0., -1., 0.], [1., 0., 0.], [0., 0., 1.]])
+    covariance = np.diag([1., 4., 9.])
+    assert np.allclose(
+        rotate_position_covariance(covariance, rotation), np.diag([4., 1., 9.]))

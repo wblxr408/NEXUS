@@ -1,0 +1,54 @@
+newmtl road
+Kd 0.08 0.09 0.1
+
+newmtl silver
+Kd 0.55 0.58 0.6
+
+newmtl orange
+Kd 0.95 0.35 0.05
+
+newmtl purple
+Kd 0.45 0.18 0.55
+
+newmtl blue_red
+Kd 0.08 0.35 0.75
+
+newmtl green
+Kd 0.1 0.55 0.22
+
+newmtl yellow
+Kd 0.9 0.72 0.08
+
+newmtl white
+Kd 0.82 0.84 0.84
+
+newmtl white_yellow
+Kd 0.95 0.84 0.5
+
+newmtl beige
+Kd 0.72 0.62 0.42
+
+newmtl glass
+Kd 0.2 0.55 0.72
+
+newmtl blue_gray
+Kd 0.25 0.35 0.45
+
+newmtl grass
+Kd 0.12 0.45 0.12
+
+newmtl tree
+Kd 0.08 0.42 0.12
+
+newmtl concrete
+Kd 0.46 0.5 0.49
+
+newmtl road_white
+Kd 0.93 0.93 0.88
+
+newmtl road_yellow
+Kd 0.92 0.68 0.12
+
+newmtl traffic_black
+Kd 0.03 0.03 0.03
+

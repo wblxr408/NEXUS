@@ -1,0 +1,19 @@
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600;700&family=Inter:wght@400;600;700&family=Oswald:wght@600;700&display=swap");
+
+:root {
+  --bg-global: #252725;
+  --bg-canvas: #e9e8e3;
+  --bg-primary: #f5f4f0;
+  --bg-secondary: #e2e1dc;
+  --text-primary: #252725;
+  --text-secondary: #575a56;
+  --border-heavy: #a9aaa5;
+  --border-light: #c8c8c2;
+  --color-axis-x: #2d6fa3;
+  --color-axis-y: #2b817d;
+  --color-axis-z: #67507f;
+  --color-warn: #a56b18;
+  --font-brand: "Oswald", sans-serif;
+  --font-ui: "Inter", sans-serif;
+  --font-mono: "IBM Plex Mono", monospace;
+}

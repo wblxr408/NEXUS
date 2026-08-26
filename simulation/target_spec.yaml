@@ -1,0 +1,4 @@
+target_id: target_001
+enabled: false
+source_object_id: null
+note: "目标物体尚未由项目组指定；填写 source_object_id 后生成器可标记 target_link。"

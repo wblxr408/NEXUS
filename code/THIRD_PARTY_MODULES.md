@@ -8,12 +8,12 @@
 |---|---|---|---|---|
 | `fancinnov/fcu_core` | `ros1_ws/src/fcu_core_external/fcu_core` | `14e228c63cfe2bbdecebda8c4f1fc259f295e0aa` | 上游未见许可证文件，使用/分发前须向维护方确认 | 官方 ROS1 硬件基线 |
 | `christianrauch/apriltag_ros` | `ros2_ws/src/apriltag_ros` | `beffb4c73bdd04fb6347d612e3306f75bb06c7e7` | MIT | ROS2 AprilTag 检测候选 |
-| `RobotWebTools/rosbridge_suite` | `ros2_ws/src/rosbridge_suite` | `aa9a7a33ddb3b1b45ddd6d2eead4c3d5eb800b14` | BSD-3-Clause | ROS2 浏览器数据出口 |
+| `RobotWebTools/rosbridge_suite` | `third_party/rosbridge_suite` | `aa9a7a33ddb3b1b45ddd6d2eead4c3d5eb800b14` | BSD-3-Clause | ROS2 浏览器数据出口（不纳入项目自有工作空间构建） |
 | `cliansang/uwb-tracking-ros` | `analysis/uwb/third_party/uwb_tracking_ros` | `046a757bcf60b3a952f7724b5ee73f28e6a5d5b5` | MIT | 原始 UWB 数据的参考，不接入飞控链路 |
 | `madfolio/Least-Squares-Trilateration` | `analysis/uwb/third_party/least_squares_trilateration` | `e112b8d3356b271843d5ee667e928cc4056a5f4d` | 上游未见许可证文件，使用/分发前须确认 | 原始测距离线基线 |
 | `cliansang/positioning-algorithms-for-uwb-matlab` | `analysis/uwb/third_party/positioning_algorithms_for_uwb_matlab` | `2c24c478ae0c317840fec1c29631c15dbe29a630` | MIT | 原始测距离线算法参考 |
 | `mprib/caliscope` | `analysis/calibration/third_party/caliscope` | `6819acc4a4855fa462e034d3f3a213c9a8adde27` | BSD-2-Clause | 条件性多相机标定/三角测量工具 |
 
-`fcu_core`、`apriltag_ros` 和 `rosbridge_suite` 是模块图中的直接迁移项。后三项（除 `uwb_tracking_ros` 外）需要适配，`uwb_tracking_ros` 虽标为可迁移，但与当前 FanciSwarm 的官方已解算位置接口不同，因此仅保留为原始观测可用时的参考。具体前置条件和后续修改范围见各目录旁的适配说明。
+`fcu_core` 和 `rosbridge_suite` 是当前硬件/展示链路的迁移项；`apriltag_ros` 是延后的工程基线，不是当前无标签主线。后三项（除 `uwb_tracking_ros` 外）需要适配，`uwb_tracking_ros` 虽标为可迁移，但与当前 FanciSwarm 的官方已解算位置接口不同，因此仅保留为原始观测可用时的参考。具体前置条件和后续修改范围见当前执行基线与各目录旁的适配说明。
 
 不得把 `/odom_global_001` 或任何飞行平台状态自动当作赛题目标位姿；目标主输出仍只能是 ROS2 的 `/nexus/target/pose`。未获得厂商原始四基站测距前，不启用任何第三方 UWB 解算模块。

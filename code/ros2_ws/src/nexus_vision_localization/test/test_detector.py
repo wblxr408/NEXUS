@@ -6,6 +6,7 @@ from nexus_vision_localization.detector import (
     reprojection_error,
     validate_camera_parameters,
 )
+from nexus_vision_localization.vision_node import rotation_matrix_to_quaternion
 
 
 def test_marker_points_are_metric_and_centered():
@@ -28,3 +29,8 @@ def test_reprojection_error_is_zero_for_projected_points():
     import cv2
     points, _ = cv2.projectPoints(marker_object_points(0.1), rotation, translation, camera, distortion)
     assert reprojection_error(points, camera, distortion, rotation, translation, 0.1) < 1e-9
+
+
+def test_rotation_matrix_conversion_produces_identity_quaternion():
+    quaternion = rotation_matrix_to_quaternion(np.eye(3))
+    assert np.allclose(quaternion, [0.0, 0.0, 0.0, 1.0])

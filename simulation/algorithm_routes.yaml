@@ -1,0 +1,15 @@
+# 仿真/回放使用的算法路由登记。具体实现注册后，路由按名称调用 runner。
+# 本文件只登记候选名称，不表示算法已经实现或已经验证。
+default:
+  uwb: null
+  vision: null
+
+candidates:
+  uwb:
+    - uwb.awesome_uwb
+    - uwb.matlab_positioning
+  vision:
+    - vision.pvnet
+    - vision.gdr_net
+    - vision.foundationpose
+    - vision.fixed_map_feature_pnp

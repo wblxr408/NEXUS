@@ -17,4 +17,4 @@
 
 Mcontroller 端保持官方 FreeRTOS/飞控闭环；ROS1 负责硬件兼容，ROS2 负责外部目标定位和展示。ROS2→ROS1 控制回传只在演示明确需要目标跟踪时启用。硬件接口基准见 `hardware-integration.md`；详细坐标约定见 `coordinate-frames.md`；接口表见 `interfaces.md`。当前信息通道和话题名都是项目草案，必须先回放验证再固化。
 
-演示网页的信息层级、实时/回放状态和相机预览位置见 [Dashboard 信息架构设计](2026-08-19_design_demo_dashboard_information_architecture.md)。
+演示网页的信息层级、实时/回放状态和相机预览位置见 [Dashboard 信息架构设计](2026-08-19_design_demo_dashboard_information_architecture.md)。算法复现顺序、验收矩阵和接口单一事实源见 [当前执行基线](../2026-08-25_plan_current_execution_baseline.md) 与 [ADR-008](../decisions/2026-08-25_ADR-008_markerless_visual_first_and_interface_authority.md)；后者是新增入口，不替代历史设计文档。
