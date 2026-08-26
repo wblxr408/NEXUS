@@ -16,6 +16,7 @@ venv/
 data/raw/**
 data/interim/**
 data/processed/**
+!data/processed/README.md
 experiments/runs/**/artifacts/
 *.bag
 *.db3

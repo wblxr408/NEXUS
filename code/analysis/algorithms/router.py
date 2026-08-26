@@ -8,6 +8,8 @@ from dataclasses import dataclass
 from typing import Any, Callable
 
 from .contracts import AlgorithmResult
+from vision.gdr_net import run_gdr_net
+from uwb.multilateration import run_multilateration
 
 
 @dataclass(frozen=True)
@@ -38,13 +40,20 @@ def register_algorithm_slot(name, family, source):
 
 for _name, _family, _source in (
     ("vision.pvnet", "vision", "docs:markerless_visual_simulation_preparation"),
-    ("vision.gdr_net", "vision", "docs:markerless_visual_simulation_preparation"),
     ("vision.foundationpose", "vision", "docs:markerless_visual_simulation_preparation"),
     ("vision.fixed_map_feature_pnp", "vision", "docs:markerless_visual_simulation_preparation"),
     ("uwb.awesome_uwb", "uwb", "https://github.com/qxiaofan/awesome-uwb-localization"),
     ("uwb.matlab_positioning", "uwb", "https://github.com/cliansang/positioning-algorithms-for-uwb-matlab"),
 ):
     register_algorithm_slot(_name, _family, _source)
+
+register_algorithm(
+    "vision.gdr_net",
+    "vision",
+    run_gdr_net,
+    source="THU-DA-6D-Pose-Group/GDR-Net@1be9fe73292fd748087aa88d7bf987434f271ebb",
+)
+register_algorithm("uwb.multilateration", "uwb", run_multilateration, source="project:linearized_least_squares")
 
 
 def available_algorithms(family=None):
