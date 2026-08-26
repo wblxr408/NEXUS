@@ -31,6 +31,8 @@
 
 当前执行基线：`docs/2026-08-25_plan_current_execution_baseline.md`。它整合算法复现顺序、验收矩阵和代码接口；无标签纯视觉优先，AprilTag 仅为延后基线。
 
+实机验证前的仿真入口：`docs/2026-08-25_plan_markerless_visual_simulation_preparation.md`。该文档规定沙盘 3D 建模、UWB/GNSS/单目视觉仿真边界、接口字段填充、实验步骤与实机迁移准入；仿真结果不等同于实测精度。
+
 ### 历史资料与 2026-08-24 已确认事实（保留入口）
 
 - [算法复现硬件与接口验收清单（2026-08-24）](2026-08-24_checklist_algorithm_reproduction_hardware_interfaces.md)：保留单目相机、树莓派 5 8GB、Mcontroller V7、STM32H743、四基站 UWB、UM982、网络/串口和已知参数；未确认字段单独列出。

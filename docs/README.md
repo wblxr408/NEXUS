@@ -23,6 +23,7 @@
 - [项目索引](PROJECT_INDEX.md)：按任务选择最小阅读路径，区分规划、实现和证据。
 - [实施规划书](<无人机高精度目标定位项目规划 (2).md>)：已按幻思硬件资料修订的方案与四周计划。
 - [当前执行基线](2026-08-25_plan_current_execution_baseline.md)：整合无标签纯视觉优先的复现顺序、验收矩阵和最新代码接口。
+- [无标签纯视觉仿真准备、方法与实施步骤](2026-08-25_plan_markerless_visual_simulation_preparation.md)：实机验证前的沙盘 3D 建模、UWB/GNSS/单目视觉仿真、字段映射、实验矩阵和迁移准入。
 - [完整执行步骤](2026-08-19_plan_project_execution_steps.md)：从范围定义、软件骨架、硬件接入、标定、实验到答辩交付的实际顺序。
 - [执行步骤详细指导](2026-08-19_guide_project_execution_steps_detailed.md)：每阶段准备、决策、复用模块、自研边界、产出和验收条件。
 - [Ubuntu 与 ROS 双环境配置教程](2026-08-20_guide_dual_ubuntu_ros_environment_setup.md)：Ubuntu 22.04 + ROS2 Humble 与 Ubuntu 20.04 + ROS1 Noetic 的安装和验证。
