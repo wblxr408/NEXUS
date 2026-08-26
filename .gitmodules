@@ -19,3 +19,6 @@
 [submodule "caliscope"]
 	path = code/analysis/calibration/third_party/caliscope
 	url = https://github.com/mprib/caliscope.git
+[submodule "code/analysis/vision/third_party/gdr_net"]
+	path = code/analysis/vision/third_party/gdr_net
+	url = https://github.com/THU-DA-6D-Pose-Group/GDR-Net.git
