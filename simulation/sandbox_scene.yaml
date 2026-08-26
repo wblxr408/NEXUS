@@ -25,10 +25,10 @@ outer_boundary:
 # 边界道路，不再生成工业岛周边绿化树环。
 roads:
   # 外周道路吸收原内圈矩形道路的宽度：每条为双向双车道。
-  - {id: RD-RING-W, type: perimeter_ns, center: [500, 2350], size: [600, 5200], height: 2, confidence: C}
-  - {id: RD-RING-E, type: perimeter_ns, center: [3500, 2350], size: [600, 5200], height: 2, confidence: C}
-  - {id: RD-RING-S, type: perimeter_ew, center: [2000, 500], size: [4400, 600], height: 2, confidence: C}
-  - {id: RD-RING-N, type: perimeter_ew, center: [2000, 4200], size: [4400, 600], height: 2, confidence: C}
+  - {id: RD-RING-W, type: perimeter_ns, center: [500, 2350], size: [700, 5200], height: 2, confidence: C}
+  - {id: RD-RING-E, type: perimeter_ns, center: [3500, 2350], size: [700, 5200], height: 2, confidence: C}
+  - {id: RD-RING-S, type: perimeter_ew, center: [2000, 500], size: [4400, 700], height: 2, confidence: C}
+  - {id: RD-RING-N, type: perimeter_ew, center: [2000, 4200], size: [4400, 700], height: 2, confidence: C}
   # 横向单车道延伸到左右环路，和外围道路形成两个十字交叉；纵向单车道只分割核心岛。
   - {id: RD-C-X, type: central_single_lane_ew, center: [2000, 2350], size: [3000, 180], height: 2, confidence: B}
   - {id: RD-C-Y, type: central_single_lane_ns, center: [2000, 2350], size: [180, 2300], height: 2, confidence: B}
@@ -69,11 +69,6 @@ industrial_islands:
 
 objects:
   # 环路内外侧人行道（浅灰色窄带），与斑马线在四角路口衔接。
-  # 人行道仅保留在外周车道外侧，不侵入车道。
-  - {id: SIDEWALK-W-OUT, category: sidewalk, position: [120, 2350, 0], size: [120, 4700, 10], shape: box, color: concrete, confidence: C}
-  - {id: SIDEWALK-E-OUT, category: sidewalk, position: [3880, 2350, 0], size: [120, 4700, 10], shape: box, color: concrete, confidence: C}
-  - {id: SIDEWALK-S-OUT, category: sidewalk, position: [2000, 120, 0], size: [4000, 120, 10], shape: box, color: concrete, confidence: C}
-  - {id: SIDEWALK-N-OUT, category: sidewalk, position: [2000, 4580, 0], size: [4000, 120, 10], shape: box, color: concrete, confidence: C}
   - {id: IND-NW-PAD, category: industrial_yard, position: [1500, 2950, 0], size: [700, 800, 8], shape: box, color: concrete, confidence: B}
   - {id: IND-NE-PAD, category: industrial_yard, position: [2500, 2950, 0], size: [700, 800, 8], shape: box, color: concrete, confidence: B}
   - {id: IND-SW-PAD, category: industrial_yard, position: [1500, 1750, 0], size: [700, 800, 8], shape: box, color: concrete, confidence: B}
@@ -100,24 +95,24 @@ objects:
 
   # 外围建筑：照片反推坐标，统一按底面 Z=0 表达。
   # 建筑全部放在环路外侧的绿化带，建筑底面与道路边缘留出间隙。
-  - {id: BLD-F01, category: building, subtype: white, position: [850, 4560, 0], size: [360, 180, 250], shape: box, color: white, confidence: C}
-  - {id: BLD-F02, category: building, subtype: white, position: [1450, 4560, 0], size: [360, 180, 250], shape: box, color: white, confidence: C}
-  - {id: BLD-F03, category: building, subtype: glass_highrise, position: [2600, 4560, 0], size: [260, 180, 420], shape: box, color: glass, confidence: B}
-  - {id: BLD-F04, category: building, subtype: beige, position: [3350, 4560, 0], size: [320, 180, 250], shape: box, color: beige, confidence: C}
-  - {id: BLD-L01, category: building, subtype: yellow, position: [120, 1400, 0], size: [220, 300, 360], shape: box, color: yellow, confidence: C}
-  - {id: BLD-L02, category: building, subtype: white_office, position: [120, 2250, 0], size: [220, 250, 260], shape: box, color: white, confidence: C}
-  - {id: BLD-L03, category: building, subtype: white_office, position: [120, 3050, 0], size: [220, 250, 260], shape: box, color: white, confidence: C}
-  - {id: BLD-L04, category: building, subtype: white_rear, position: [120, 3850, 0], size: [220, 250, 260], shape: box, color: white, confidence: C}
-  - {id: BLD-R01, category: building, subtype: right_front, position: [3880, 900, 0], size: [220, 250, 260], shape: box, color: beige, confidence: C}
-  - {id: BLD-R02, category: building, subtype: glass, position: [3880, 2250, 0], size: [220, 250, 300], shape: box, color: glass, confidence: C}
-  - {id: BLD-R03, category: building, subtype: diamond_facade, position: [3880, 3050, 0], size: [220, 250, 340], shape: box, color: glass, confidence: B}
-  - {id: BLD-R04, category: building, subtype: white_rear, position: [3880, 3850, 0], size: [220, 250, 260], shape: box, color: white, confidence: C}
-  - {id: BLD-B01, category: building, subtype: white_office, position: [950, 140, 0], size: [320, 180, 260], shape: box, color: white, confidence: C}
-  - {id: BLD-B02, category: building, subtype: white_office, position: [1400, 140, 0], size: [320, 180, 260], shape: box, color: white, confidence: C}
-  - {id: BLD-B03, category: building, subtype: blue_gray, position: [2050, 140, 0], size: [320, 180, 300], shape: box, color: blue_gray, confidence: C}
-  - {id: BLD-B04, category: building, subtype: white_office, position: [2650, 140, 0], size: [320, 180, 260], shape: box, color: white, confidence: C}
-  - {id: BLD-B05, category: building, subtype: blue_gray_highrise, position: [3150, 140, 0], size: [260, 180, 420], shape: box, color: blue_gray, confidence: C}
-  - {id: BLD-B06, category: building, subtype: white_rear, position: [3600, 140, 0], size: [260, 180, 260], shape: box, color: white, confidence: C}
+  - {id: BLD-F01, category: building, subtype: white, position: [60, 4660, 0], size: [120, 120, 220], shape: box, color: white, confidence: C}
+  - {id: BLD-F02, category: building, subtype: white, position: [1100, 4660, 0], size: [260, 120, 220], shape: box, color: white, confidence: C}
+  - {id: BLD-F03, category: building, subtype: glass_highrise, position: [2200, 4660, 0], size: [240, 120, 380], shape: box, color: glass, confidence: B}
+  - {id: BLD-F04, category: building, subtype: beige, position: [3920, 4660, 0], size: [120, 120, 220], shape: box, color: beige, confidence: C}
+  - {id: BLD-L01, category: building, subtype: yellow, position: [60, 1400, 0], size: [120, 260, 340], shape: box, color: yellow, confidence: C}
+  - {id: BLD-L02, category: building, subtype: white_office, position: [60, 2250, 0], size: [120, 220, 240], shape: box, color: white, confidence: C}
+  - {id: BLD-L03, category: building, subtype: white_office, position: [60, 3050, 0], size: [120, 220, 240], shape: box, color: white, confidence: C}
+  - {id: BLD-L04, category: building, subtype: white_rear, position: [60, 3600, 0], size: [120, 220, 240], shape: box, color: white, confidence: C}
+  - {id: BLD-R01, category: building, subtype: right_front, position: [3940, 1050, 0], size: [120, 220, 240], shape: box, color: beige, confidence: C}
+  - {id: BLD-R02, category: building, subtype: glass, position: [3940, 2250, 0], size: [120, 220, 280], shape: box, color: glass, confidence: C}
+  - {id: BLD-R03, category: building, subtype: diamond_facade, position: [3940, 3050, 0], size: [120, 220, 320], shape: box, color: glass, confidence: B}
+  - {id: BLD-R04, category: building, subtype: white_rear, position: [3940, 3600, 0], size: [120, 220, 240], shape: box, color: white, confidence: C}
+  - {id: BLD-B01, category: building, subtype: white_office, position: [60, 60, 0], size: [120, 120, 240], shape: box, color: white, confidence: C}
+  - {id: BLD-B02, category: building, subtype: white_office, position: [1100, 60, 0], size: [260, 120, 240], shape: box, color: white, confidence: C}
+  - {id: BLD-B03, category: building, subtype: blue_gray, position: [1900, 60, 0], size: [260, 120, 280], shape: box, color: blue_gray, confidence: C}
+  - {id: BLD-B04, category: building, subtype: white_office, position: [2600, 60, 0], size: [260, 120, 240], shape: box, color: white, confidence: C}
+  - {id: BLD-B05, category: building, subtype: blue_gray_highrise, position: [3000, 60, 0], size: [120, 120, 380], shape: box, color: blue_gray, confidence: C}
+  - {id: BLD-B06, category: building, subtype: white_rear, position: [3920, 60, 0], size: [120, 120, 240], shape: box, color: white, confidence: C}
 
 tree_rows:
   - {id: TR-L01, start: [100, 700], end: [100, 4000], height: 100, count: 28, confidence: C}
@@ -131,10 +126,10 @@ tree_rows:
 
 traffic_light_groups:
   # 每组四盏灯分别落在路口四角人行道，不再集中在路口中心。
-  - {id: TL-SW, center: [500, 500], positions: [[280, 280], [720, 280], [280, 720], [720, 720]], confidence: C}
-  - {id: TL-SE, center: [3500, 500], positions: [[3280, 280], [3720, 280], [3280, 720], [3720, 720]], confidence: C}
-  - {id: TL-NW, center: [500, 4200], positions: [[280, 4000], [720, 4000], [280, 4400], [720, 4400]], confidence: C}
-  - {id: TL-NE, center: [3500, 4200], positions: [[3280, 4000], [3720, 4000], [3280, 4400], [3720, 4400]], confidence: C}
+  - {id: TL-SW, center: [500, 500], positions: [[80, 80], [920, 80], [80, 920], [920, 920]], confidence: C}
+  - {id: TL-SE, center: [3500, 500], positions: [[3080, 80], [3920, 80], [3080, 920], [3920, 920]], confidence: C}
+  - {id: TL-NW, center: [500, 4200], positions: [[80, 3780], [920, 3780], [80, 4620], [920, 4620]], confidence: C}
+  - {id: TL-NE, center: [3500, 4200], positions: [[3080, 3780], [3920, 3780], [3080, 4620], [3920, 4620]], confidence: C}
 cone_groups:
   - {id: NW-C, center: [1500, 2950], count: 8, radius: 300, diameter: 25, height: 50, confidence: C}
   - {id: NE-C, center: [2500, 2950], count: 8, radius: 300, diameter: 25, height: 50, confidence: C}

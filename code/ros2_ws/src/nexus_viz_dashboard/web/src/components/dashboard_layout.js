@@ -15,12 +15,12 @@ export function dashboardLayout() {
       <main class="dashboard-grid">
         <section class="panel map-panel" aria-labelledby="map-title">
           <div class="panel-header"><span id="map-title">任务空间 · 目标位置</span><span class="header-meta">MAP / m · DRAG TO ORBIT · WHEEL TO ZOOM</span></div>
-          <div id="map-wrapper" class="map-wrapper"><canvas id="map-canvas" aria-label="map 坐标系目标位置"></canvas><div class="map-legend"><span class="legend-fused">● FUSED</span><span class="legend-uwb">● UWB</span><span class="legend-vision">● VISION</span></div></div>
+          <div id="map-wrapper" class="map-wrapper"><canvas id="map-canvas" aria-label="map 坐标系目标位置；悬停查看物体语义和厘米级坐标"></canvas><div id="map-object-info" class="map-object-info" aria-live="polite"><span class="map-object-kicker">MAP OBJECT / HOVER</span><strong id="map-object-name">沙盘任务空间</strong><span id="map-object-type">地图坐标系：原点在西南角</span><span id="map-object-position" class="map-object-position">x 0.00–4.00 · y 0.00–4.70 · z 向上</span><span id="map-object-note">标称布局坐标；厘米显示不代表实测精度</span></div><div class="map-legend"><span class="legend-fused">● FUSED</span><span class="legend-uwb">● UWB ANCHOR</span><span class="legend-vision">● VISION</span><span class="legend-uav">◆ SIM UAV</span></div></div>
         </section>
         <div class="column column-evidence">
           <section class="panel camera-panel" aria-labelledby="camera-title">
-            <div class="panel-header"><span id="camera-title">相机成像与检测证据</span><span class="header-meta">CAMERA_1</span></div>
-            <div class="camera-content"><div class="camera-viewport"><canvas id="cam-canvas" width="640" height="480" aria-label="相机预览"></canvas><div id="camera-empty" class="empty-state">无相机帧</div></div><dl class="evidence-meta"><div><dt>TOPIC</dt><dd>/nexus/camera/compressed</dd></div><div><dt>CONFIDENCE</dt><dd id="ui-cam-conf">—</dd></div><div><dt>REPROJECTION</dt><dd id="ui-cam-reproj">—</dd></div><div><dt>IMAGE AGE</dt><dd id="ui-image-age">unknown</dd></div><div><dt>STATUS</dt><dd id="ui-camera-status">NO_FRAME</dd></div></dl></div>
+            <div class="panel-header"><span id="camera-title">相机成像与检测证据</span><span class="header-meta">IMX219 / GAZEBO</span></div>
+            <div class="camera-content"><div class="camera-viewport"><canvas id="cam-canvas" width="640" height="480" aria-label="相机预览"></canvas><div id="camera-empty" class="empty-state">无相机帧</div></div><dl class="evidence-meta"><div><dt>TOPIC</dt><dd>/nexus/camera/imx219/image_raw</dd></div><div><dt>CONFIDENCE</dt><dd id="ui-cam-conf">—</dd></div><div><dt>REPROJECTION</dt><dd id="ui-cam-reproj">—</dd></div><div><dt>IMAGE AGE</dt><dd id="ui-image-age">unknown</dd></div><div><dt>STATUS</dt><dd id="ui-camera-status">NO_FRAME</dd></div></dl></div>
           </section>
           <section class="panel latency-panel" aria-labelledby="latency-title"><div class="panel-header"><span id="latency-title">数据年龄 / 延迟趋势</span><span class="header-meta">LAST 60 S</span></div><div class="chart-wrap"><canvas id="latency-canvas" aria-label="最近数据年龄趋势"></canvas><div id="latency-empty" class="empty-state">暂无同步数据</div></div></section>
         </div>

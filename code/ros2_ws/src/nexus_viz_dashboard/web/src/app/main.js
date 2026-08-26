@@ -2,12 +2,14 @@ import { dashboardLayout } from "../components/dashboard_layout.js";
 import { createSceneRenderer } from "../features/map/scene_renderer.js";
 import { createDashboardStore } from "../features/telemetry/dashboard_store.js";
 import { installNexusAPI } from "../services/nexus_api.js";
+import { installRosbridgeGateway } from "../services/rosbridge_client.js";
 import { formatNumber } from "../types/dashboard_types.js";
 
 const root = document.querySelector("#nexus-app");
 const store = createDashboardStore();
 root.innerHTML = dashboardLayout();
 installNexusAPI(store);
+installRosbridgeGateway(store);
 
 const byId = (id) => document.getElementById(id);
 const setText = (id, value) => { const element = byId(id); if (element) element.textContent = value; };

@@ -80,6 +80,61 @@ def model_xml(obj):
     return f'''<model name="{obj['id']}"><static>true</static><pose>{x} {y} {z} 0 0 0</pose><link name="link"><collision name="collision"><geometry>{geom}</geometry></collision><visual name="visual"><geometry>{geom}</geometry><material><ambient>{' '.join(map(str, COLORS.get(color, COLORS['white'])))} 1</ambient><diffuse>{' '.join(map(str, COLORS.get(color, COLORS['white'])))} 1</diffuse></material></visual></link></model>'''
 
 
+def imx219_uav_xml(profile):
+    """Return the stationary Gazebo camera carrier used for visual integration."""
+    camera = profile["camera"]
+    uav = profile["uav"]
+    x, y, z = uav["spawn_pose_m"]
+    hfov = math.radians(camera["horizontal_fov_deg"])
+    return f'''<model name="{uav['model_name']}">
+  <static>true</static>
+  <pose>{x} {y} {z} 0 0 0</pose>
+  <link name="base_link">
+    <visual name="body"><geometry><box><size>0.34 0.34 0.08</size></box></geometry><material><ambient>0.12 0.12 0.14 1</ambient><diffuse>0.12 0.12 0.14 1</diffuse></material></visual>
+    <visual name="rotor_x"><pose>0.25 0 0 0 0 0</pose><geometry><cylinder><radius>0.13</radius><length>0.012</length></cylinder></geometry><material><ambient>0.06 0.06 0.07 1</ambient><diffuse>0.06 0.06 0.07 1</diffuse></material></visual>
+    <visual name="rotor_y"><pose>0 0.25 0 0 0 0</pose><geometry><cylinder><radius>0.13</radius><length>0.012</length></cylinder></geometry><material><ambient>0.06 0.06 0.07 1</ambient><diffuse>0.06 0.06 0.07 1</diffuse></material></visual>
+    <visual name="rotor_neg_x"><pose>-0.25 0 0 0 0 0</pose><geometry><cylinder><radius>0.13</radius><length>0.012</length></cylinder></geometry><material><ambient>0.06 0.06 0.07 1</ambient><diffuse>0.06 0.06 0.07 1</diffuse></material></visual>
+    <visual name="rotor_neg_y"><pose>0 -0.25 0 0 0 0</pose><geometry><cylinder><radius>0.13</radius><length>0.012</length></cylinder></geometry><material><ambient>0.06 0.06 0.07 1</ambient><diffuse>0.06 0.06 0.07 1</diffuse></material></visual>
+    <sensor name="imx219" type="camera">
+      <pose>0 0 -0.06 0 1.57079632679 0</pose>
+      <always_on>true</always_on>
+      <visualize>true</visualize>
+      <update_rate>{camera['update_rate_hz']}</update_rate>
+      <camera name="imx219">
+        <horizontal_fov>{hfov:.12f}</horizontal_fov>
+        <image><width>{camera['image_width_px']}</width><height>{camera['image_height_px']}</height><format>{camera['pixel_format']}</format></image>
+        <clip><near>{camera['clip_near_m']}</near><far>{camera['clip_far_m']}</far></clip>
+      </camera>
+      <plugin name="nexus_imx219_camera" filename="libgazebo_ros_camera.so">
+        <ros><namespace>/nexus/camera</namespace></ros>
+        <camera_name>imx219</camera_name>
+        <frame_name>{camera['frame_id']}</frame_name>
+      </plugin>
+    </sensor>
+  </link>
+  <plugin name="nexus_uav_ground_truth" filename="libgazebo_ros_p3d.so">
+    <ros><namespace>/nexus/gazebo/uav</namespace></ros>
+    <body_name>base_link</body_name>
+    <update_rate>30</update_rate>
+  </plugin>
+</model>'''
+
+
+def gazebo_world_xml(models, profile):
+    """Keep Gazebo and Web views on the same generated sandbox geometry."""
+    return f'''<?xml version="1.0"?>
+<sdf version="1.7">
+  <world name="nexus_sandbox_imx219">
+    <gravity>0 0 -9.81</gravity>
+    <scene><ambient>0.7 0.7 0.7 1</ambient><background>0.7 0.8 0.9 1</background></scene>
+    <physics name="ode" type="ode"><real_time_update_rate>1000</real_time_update_rate><max_step_size>0.001</max_step_size></physics>
+    {''.join(models)}
+    {imx219_uav_xml(profile)}
+  </world>
+</sdf>
+'''
+
+
 def boxes_for_marking(marking, deck):
     """Expand semantic road markings to thin, z-up boxes."""
     h = marking.get("height", 0.004)
@@ -212,8 +267,10 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--scene", default="sandbox_scene.yaml")
     ap.add_argument("--out", default=".")
+    ap.add_argument("--camera-profile", default=Path(__file__).with_name("imx219_gazebo_camera.yaml"))
     args = ap.parse_args()
     authored_scene = yaml.safe_load(Path(args.scene).read_text(encoding="utf-8"))
+    camera_profile = yaml.safe_load(Path(args.camera_profile).read_text(encoding="utf-8"))
     scene = scene_in_meters(authored_scene)
     validate_layout(scene)
     out = Path(args.out); out.mkdir(parents=True, exist_ok=True)
@@ -271,6 +328,8 @@ def main():
     models = [model_xml(x) for x in objects]
     sdf = '<?xml version="1.0"?>\n<sdf version="1.7"><world name="sandbox">' + ''.join(models) + '</world></sdf>\n'
     (out / "sandbox.sdf").write_text(sdf, encoding="utf-8")
+    (out / "nexus_sandbox_imx219.world").write_text(
+        gazebo_world_xml(models, camera_profile), encoding="utf-8")
     runtime = {"scene_id": scene["scene_id"], "scene_mode": scene["scene_mode"], "frame": scene["coordinate_frame"], "unit": scene["unit"], "source_unit": scene.get("source_unit", scene["unit"]), "dimensions": scene["dimensions"], "central_core": scene["central_core"], "outer_boundary": scene["outer_boundary"], "objects": objects, "uwb_anchors": scene.get("uwb_anchors", []), "model": "sandbox.obj"}
     (out / "sandbox_scene.json").write_text(json.dumps(runtime, ensure_ascii=False, indent=2), encoding="utf-8")
     print(f"generated {len(objects)} objects -> {out}")

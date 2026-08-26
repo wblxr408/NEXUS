@@ -7,6 +7,7 @@ const initialState = () => ({
   targetId: null,
   sourceMode: SOURCE_MODES.UNKNOWN,
   pose: { x: null, y: null, z: null },
+  platform: { x: null, y: null, z: null },
   frameId: null,
   poseTimestamp: null,
   trajectory: [],
@@ -47,6 +48,11 @@ export function createDashboardStore() {
       });
     },
     updateCamera(data = {}) { patch({ camera: { ...state.camera, ...data } }); },
+    updatePlatform(position = {}) {
+      const platform = { x: finiteOrNull(position.x), y: finiteOrNull(position.y), z: finiteOrNull(position.z) };
+      if (Object.values(platform).some((value) => value === null)) return;
+      patch({ platform });
+    },
     updateObservations(data = {}) { patch({ observations: { ...state.observations, ...data } }); },
     updateMetrics(data = {}) {
       // `cep` 是旧单文件稿的字段名，转换只做字段兼容，不改变指标口径。

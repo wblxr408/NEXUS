@@ -39,6 +39,8 @@ sandbox.mtl          # OBJ 材质
 
 当前 `scene_renderer.js` 使用本地 Three.js WebGL 渲染器读取 `assets/sandbox/sandbox_scene.json`，提供真实深度遮挡、透视、光照/阴影和 OrbitControls 鼠标旋转/滚轮缩放；它会绘制外围环形双车道、四角十字路口与人行横道、中央无虚线单车道、建筑、储罐和树阵。道路标识与 OBJ、SDF 共用生成器产出的 `road_marking` 对象，避免三种视图布局漂移。
 
+地图右上角的固定信息窗会随鼠标悬停更新，显示物体语义、`map` 世界坐标（`x/y/z` 均保留到厘米）和坐标来源说明。空白状态也明确显示沙盘范围 `x=0.00–4.00 m`、`y=0.00–4.70 m` 与 `+z` 向上。页面另外绘制四角 UWB 基站（0.70 m 为尚待现场标定的标称高度）以及含 IMX219/Gazebo 相机、机载 UWB 标签的模拟无人机；UWB 安装坐标和无人机静态位置均为可视化示意，不能当作已测量精度证据。
+
 重新生成模型后执行：
 
 ```bash
@@ -62,4 +64,11 @@ python3 -m http.server 8765
 http://127.0.0.1:8765/public/index.html
 ```
 
-当前版本不需要编译，也不需要 `colcon build`。停止服务器按 `Ctrl+C`。页面的 ROS2/实时数据网关尚未接入时，页面会显示 `NO INPUT`，但沙盘布局仍应显示在主地图区域。
+停止服务器按 `Ctrl+C`。页面会自动连接同主机的 `ws://<host>:9090` rosbridge，并订阅
+Gazebo 的 `/nexus/camera/imx219/image_raw`、`/nexus/gazebo/uav/odom` 与 NEXUS 定位话题。
+需要不同地址时在 URL 追加 `?rosbridge=ws://<host>:<port>`。未启动 rosbridge 时仍显示
+静态沙盘，并明确显示 `BRIDGE ERROR/DISCONNECTED`；不会伪造定位数据。
+
+Gazebo 通过 `nexus_bringup` 的 `gazebo_sandbox.launch.py` 启动，完整命令与 IMX219 仿真范围见
+[`nexus_bringup/README.md`](../../nexus_bringup/README.md)。前端只显示 Gazebo 的图像和位置，不在浏览器中做
+坐标转换或融合。
