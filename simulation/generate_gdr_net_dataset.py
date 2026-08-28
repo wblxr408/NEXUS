@@ -121,7 +121,7 @@ def _draw_mesh(image, mask, vertices_world, faces, color, camera_position, rotat
         draws.append((float(np.mean(z)), polygon))
     # Far faces are drawn first. This is sufficient for the opaque convex
     # primitives in this initial model asset set.
-    for z, polygon in sorted(draws, reverse=True):
+    for z, polygon in sorted(draws, key=lambda item: item[0], reverse=True):
         shade = max(0.55, min(1.0, 1.15 - 0.10 * z))
         shaded = tuple(int(max(0, min(255, value * shade))) for value in color)
         cv2.fillConvexPoly(image, polygon, shaded)

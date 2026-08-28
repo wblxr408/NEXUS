@@ -86,3 +86,51 @@ python3 simulation/generate_gdr_net_dataset.py \
 零）；UWB 仍只提供 `trajectory.csv` 中的测距。该文件用于把视觉
 `camera -> target_link` 与 UWB `map -> base_link` 合成为端到端
 `map -> target_link`，不从 `ground_truth/` 读取姿态。
+
+## ORB-SLAM2 单目连续序列
+
+使用 `python3 simulation/generate_orb_slam2_dataset.py` 可生成 180 帧以上的连续
+单目 RGB 序列、相机真值和 ORB-SLAM2 相机 YAML。`simulation/run_orb_slam2.py` 调用
+上游 `mono_tum` 并写出日志与 `metrics.json`。单目尺度默认不对齐；UWB 只能在轨迹
+成功后用于尺度和 `map` 坐标恢复。当前 Linux 兼容构建的实测记录见
+`experiments/runs/2026-08-27_E007_orb_slam2_mono_simulation/`。
+Windows Conda/MSVC 的构建与运行命令见
+`simulation/2026-08-27_orb_slam2_windows.md`；Windows 兼容副本和依赖均保留在用户
+本机，不进入仓库。
+
+要在同一时空数据上联调 ORB、UWB 和 GDR-Net，使用
+`simulation/generate_orb_gdrn_dataset.py`。它让 ORB 的 `rgb.txt` 与 BOP 测试集引用
+同一批 RGB 文件，并同时生成独立 UWB 测距、相机/平台真值和十个目标模型；完整实测
+记录见 `experiments/runs/2026-08-27_E008_orb_gdrn_uwb_end_to_end/`。
+
+## 十类目标检测与 6D 姿态数据
+
+`target_catalog_v01.yaml` 定义了十个无 CAD 的可区分参数化代理目标。它们的形状、尺寸
+和位置是仿真设计值，不可表述为实体测量真值。使用下列命令生成 RGB、COCO/YOLO bbox、
+实例掩码、BOP `camera → target` 位姿和相机标定文件；训练、验证、测试按完整飞行轨迹
+隔离，绝不随机拆分相邻视频帧：
+
+```bash
+python3 simulation/generate_target_detection_dataset.py \
+  --config simulation/target_detection_dataset_v01.yaml \
+  --out /mnt/c/Users/wblxr/nexus_target_detection_pose_v02 \
+  --yolo-assets copy
+```
+
+`--yolo-assets copy` 是 Windows 训练必需项，因为 Windows 不能读取 WSL 生成的相对符号链接。
+相机参数优先使用 `docs/2026-08-25_reference_interface_fields.csv` 中确认的 Gazebo IMX219
+CameraInfo；CSV 未确认的实机畸变、外参、曝光等字段在 YAML 中显式理想化。数据与外部
+YOLO 的实测结果见 `experiments/runs/2026-08-27_E009_target_detector_dataset/` 与
+`experiments/runs/2026-08-27_E010_target_detector_scene_context_v02/`。v02 还渲染
+`sandbox_scene.yaml` 的道路、工业岛、建筑、树列、交通标线等无标签背景。
+
+## CARLA 0.9.16 Windows 联调
+
+CARLA 服务端只走 Windows `CARLA_0.9.16.zip`（低画质、RPC 端口 2000）；WSL 侧只运行
+Python 客户端。Windows 下载、防火墙、WSL mirrored 网络和冒烟验收命令见
+[`carla_windows_setup.md`](carla_windows_setup.md)。
+
+`simulation/carla/run_carla_server.sh` 仅保留 Linux 软件渲染路线的弃用提示；该路线已知
+会崩溃，不应再用来启动服务端。Windows 服务端启动后，在 WSL 执行
+`simulation/carla_smoke_test.py`，确认版本一致、车辆和相机生成、同步 tick 20 帧、PNG
+落盘并输出 `SMOKE_TEST_OK` 后，再进入 ORB-SLAM2 / GDR-Net / UWB 接入实验。

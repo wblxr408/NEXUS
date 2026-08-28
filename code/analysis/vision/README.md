@@ -70,3 +70,17 @@ NEXUS，之后才进入仿真评估。
 以米为单位的 `camera_0 -> target_link` JSON。它目前以 `scene_gt_info.bbox_visib`
 作为 ROI 输入，因而只能报告“给定 GT ROI 条件下”的 6D 姿态，不可把可用率当作
 整图检测率。完整已运行参数和持出集指标见 E006 实验记录。
+
+若传入 `--detector-predictions <json>`，推理阶段改由外部检测器的类别和 bbox
+裁剪，不读取 `scene_gt_info` 的真值框。JSON 契约由 `detector_contract.py` 定义：
+
+```json
+{
+  "0": [{"class_id": 1, "bbox_xywh_px": [120.0, 80.0, 64.0, 72.0], "confidence": 0.93}]
+}
+```
+
+这只是检测器到上游 GDR-Net 的输入适配，不改变 GDR-Net 网络、损失或 PnP 模块。十类
+参数化目标的 COCO/YOLO 训练数据由
+`simulation/generate_target_detection_dataset.py` 生成；轨迹隔离策略和真实设备优先的
+相机标定依据记录在 `simulation/target_detection_dataset_v01.yaml`。

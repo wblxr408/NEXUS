@@ -1,0 +1,20 @@
+# Ten parameterised stand-ins for the fixed sandbox targets.  No surveyed CAD
+# exists yet: dimensions and decorative geometry are a simulation design, not
+# physical ground truth for the real sandbox.
+catalog_id: nexus_sandbox_distinct_targets_v01
+unit: mm
+coordinate_frame: map
+origin_definition: target_link at each object's geometric reference centre
+source: designed_parameterized_proxy_without_cad
+dimension_confidence: C
+targets:
+  - {object_id: 1, class_name: vertical_striped_tank, source_object_id: NW-T01, shape: cylinder, position_mm: [1320, 3080, 115], size_mm: [190, 190, 130], yaw_deg: 10, color_rgb: [197, 72, 56], decoration: vertical_stripes, symmetry: none}
+  - {object_id: 2, class_name: horizontal_capsule_tank, source_object_id: NW-T02, shape: horizontal_cylinder, position_mm: [1610, 3100, 115], size_mm: [260, 140, 140], yaw_deg: 35, color_rgb: [57, 121, 185], decoration: end_bands, symmetry: none}
+  - {object_id: 3, class_name: conical_roof_silo, source_object_id: NW-T03, shape: silo_roof, position_mm: [1760, 2780, 105], size_mm: [145, 145, 150], yaw_deg: 0, color_rgb: [210, 168, 51], decoration: roof_cap, symmetry: none}
+  - {object_id: 4, class_name: triangular_hopper, source_object_id: NW-T04, shape: triangular_prism, position_mm: [1570, 2730, 95], size_mm: [180, 135, 110], yaw_deg: -20, color_rgb: [133, 75, 159], decoration: dark_base, symmetry: none}
+  - {object_id: 5, class_name: hexagonal_column, source_object_id: NE-T01, shape: hex_prism, position_mm: [2300, 3080, 120], size_mm: [170, 170, 150], yaw_deg: 15, color_rgb: [66, 151, 106], decoration: light_cap, symmetry: none}
+  - {object_id: 6, class_name: stacked_box_tower, source_object_id: NE-T02, shape: stacked_box, position_mm: [2650, 3080, 120], size_mm: [190, 150, 170], yaw_deg: -25, color_rgb: [205, 111, 43], decoration: two_stage, symmetry: none}
+  - {object_id: 7, class_name: l_profile_factory, source_object_id: NE-T03, shape: l_prism, position_mm: [2770, 2770, 100], size_mm: [200, 170, 120], yaw_deg: 10, color_rgb: [86, 151, 178], decoration: white_roof, symmetry: none}
+  - {object_id: 8, class_name: cross_valve_block, source_object_id: NE-T04, shape: cross_prism, position_mm: [2560, 2740, 100], size_mm: [200, 200, 110], yaw_deg: 45, color_rgb: [185, 64, 71], decoration: central_cap, symmetry: none}
+  - {object_id: 9, class_name: tapered_frustum, source_object_id: SW-T01, shape: frustum, position_mm: [1280, 1910, 110], size_mm: [180, 180, 145], yaw_deg: 0, color_rgb: [97, 102, 172], decoration: top_ring, symmetry: none}
+  - {object_id: 10, class_name: twin_cylinder_unit, source_object_id: SW-T02, shape: twin_cylinder, position_mm: [1580, 1910, 105], size_mm: [230, 150, 130], yaw_deg: -15, color_rgb: [83, 152, 148], decoration: connector, symmetry: none}

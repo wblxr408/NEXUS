@@ -2,7 +2,7 @@
 
 此目录预留给浏览器端的 Dashboard。页面部署在 ROS2 Ubuntu 主机，由 `nexus_viz_dashboard` 的后续网关提供 HTTP/WebSocket；浏览器可在同网段的 Ubuntu 或 Windows 上访问。
 
-当前页面骨架已可读取参数化沙盘资源，展示其相对/绝对坐标布局；ROS2 实时消息仍由后续网关适配。仿真源文件不放在此目录，唯一源数据位于仓库根目录 `simulation/`。
+当前页面采用“双窗口”方案：Windows 端 CARLA 负责 sandbox-v29 的真实 GPU 渲染，Web Dashboard 左侧消费 WSL bridge 推送的 CARLA、算法和日志数据，右侧保留相机证据、延迟和实验指标。
 
 ```text
 web/
@@ -20,7 +20,15 @@ web/
 └── test/                   前端单元、集成和回放验收测试
 ```
 
-## 沙盘资源同步
+## CARLA 数据流接入
+
+当前主界面不再把参数化沙盘作为左侧主视觉。Windows CARLA 窗口负责 sandbox-v29 的真实渲染，Web 左侧通过 WSL bridge 消费 CARLA 状态、位姿、算法输出和滚动日志。
+
+默认状态流地址：`ws://<host>:8766/ws/carla_status`。浏览器也保留 rosbridge 的 `ws://<host>:9090` 连接，用于相机证据和 ROS2 观测。
+
+状态流可发送 `carla_connected`、`map`、`tick_hz`、`sync_mode`、`actor_count`、`ego_pose`、`sensors`、`algorithms`、`target` 和 `log` 字段；前端只展示这些结构化结果，不在浏览器内做坐标转换或融合。
+
+## 沙盘资源同步（历史资源）
 
 源配置和生成器：
 
@@ -64,10 +72,7 @@ python3 -m http.server 8765
 http://127.0.0.1:8765/public/index.html
 ```
 
-停止服务器按 `Ctrl+C`。页面会自动连接同主机的 `ws://<host>:9090` rosbridge，并订阅
-Gazebo 的 `/nexus/camera/imx219/image_raw/compressed`、`/nexus/gazebo/uav/odom` 与 NEXUS 定位话题。
-需要不同地址时在 URL 追加 `?rosbridge=ws://<host>:<port>`。未启动 rosbridge 时仍显示
-静态沙盘，并明确显示 `BRIDGE ERROR/DISCONNECTED`；不会伪造定位数据。
+停止服务器按 Ctrl+C。页面会连接 ws://<host>:9090 rosbridge 和 ws://<host>:8766/ws/carla_status CARLA 状态流。可用 ?rosbridge=ws://<host>:<port>&carla_ws=ws://<host>:<port>/ws/carla_status 覆盖地址。未启动任一路 WebSocket 时会显示断开状态，不会伪造定位数据。
 
 Gazebo 通过 `nexus_bringup` 的 `gazebo_sandbox.launch.py` 启动，完整命令与 IMX219 仿真范围见
 [`nexus_bringup/README.md`](../../nexus_bringup/README.md)。前端只显示 Gazebo 的图像和位置，不在浏览器中做

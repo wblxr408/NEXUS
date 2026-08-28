@@ -57,7 +57,7 @@ C:\\Users\\wblxr\\anaconda3\\envs\\gdr_net\\python.exe \
   --train-dataset data/processed/nexus_sandbox_gdr_net_train_v01 \
   --test-dataset data/processed/nexus_sandbox_gdr_net_v03 \
   --output-dir experiments/runs/2026-08-26_E006_gdrn_synthetic_heldout_eval/artifacts \
-  --epochs 300 --batch-size 32 --learning-rate 0.001 --seed 20260828
+  --epochs 150 --batch-size 32 --learning-rate 0.001 --seed 20260828
 
 PYTHONPATH=code/analysis python3 simulation/evaluate_uwb_dataset.py \
   --dataset data/processed/nexus_sandbox_gdr_net_v03 \
@@ -106,6 +106,37 @@ Further final values:
 - Update rate is `2.0 Hz`; all outputs were present, so recovery time is
   `0.0 ms`. Sensor-to-output latency is unavailable in this offline replay and
   is intentionally recorded as `null`, rather than treated as runtime.
+
+## Metric coverage audit against `docs/算法比较定义参数.md`
+
+| Definition item | E006 status | Evidence/qualification |
+|---|---|---|
+| 3D RMSE, MAE, P50, P95, maximum | recorded | UWB platform and both target-pose JSON reports |
+| Axis bias | recorded | x/y/z fields for all three reports |
+| Availability / success and failure rate | recorded | 5/5 UWB samples and 50/50 target instances; GT-ROI conditional for GDRN |
+| Update rate | recorded | 2 Hz from the five timestamps |
+| Runtime | recorded | UWB and GDRN wall-clock inference; first CUDA warm-up is included in the mean |
+| Latency | not measured | no sensor-to-output transport clock in offline replay; fields are `null` |
+| Recovery time | conditional only | `0.0 ms` means no failure occurred; no forced-loss recovery trial was run |
+| CPU/GPU/memory | not measured | GPU model is recorded, utilization/peak memory are not |
+| Platform rotation | not applicable to UWB output | UWB runner estimates position only; simulated attitude is an input, not a UWB estimate |
+| ATE / RPE | not computed | five independent hover points are a static geometry check, not a continuous dynamic trajectory |
+| Target rotation geodesic | recorded | RMSE/P50/P95 in camera and map reports; rotation mean was not exported |
+| ADD / ADD-S | ADD-S recorded; ADD not applicable | all ten generated targets are continuous-z symmetric cylinders; ADD fields are `null` by design |
+| 2D projection error | camera result recorded | mean/P95 for `camera -> target`; map report has no image projection context |
+| Projection success rate | not defined | no threshold was specified in the project definition |
+| Reprojection error | not measured | no independent 2D correspondence/inlier stream was produced |
+| Detection recall and matching diagnostics | not measured | inference uses BOP `bbox_visib` GT ROI, so this is not whole-image detection |
+| Occlusion/distance/lighting breakdown | not measured | one flat-rendered geometry condition only |
+| NLOS outlier rate / packet loss / GDOP | not measured | synthetic ranges have noise but no NLOS or packet-loss labels; GDOP was not run in E006 |
+| NEES/NIS/coverage/NLL | not measured | covariance is not calibrated and no innovation stream exists |
+| Run metadata | mostly recorded | algorithm, commit, datasets, seeds, frame/unit and environment are in this record |
+
+The runtime distributions contain one first-inference CUDA warm-up sample of
+approximately `804.17 ms` for GDRN (and `821.70 ms` after fusion), while the
+remaining samples are about `4--7 ms`. The reported P95 is empirical over all
+50 samples and the mean includes warm-up; these are not steady-state real-time
+guarantees.
 
 The visual and fused values **do not meet** the project’s centimetre-level
 target. Reasons visible in this experiment are limited training coverage,

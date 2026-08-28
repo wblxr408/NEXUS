@@ -66,7 +66,8 @@ def evaluate_pose_records(records, *, diameter_by_object=None, add_threshold_fra
     and optionally ``camera_matrix`` and ``projection_points_m``.
     """
     translation_errors, translation_deltas, rotation_errors, add_errors, projection_errors = [], [], [], [], []
-    add_s_errors, add_s_successes = [], []
+    add_successes, add_s_errors, add_s_successes = [], [], []
+    pose_2deg_2cm, rotation_2deg, translation_2cm = [], [], []
     reprojection_errors = []
     runtimes, latencies = [], []
     for record in records:
@@ -80,14 +81,21 @@ def evaluate_pose_records(records, *, diameter_by_object=None, add_threshold_fra
         translation_delta = translation_est - translation_gt
         translation_errors.append(float(np.linalg.norm(translation_delta)))
         translation_deltas.append(translation_delta)
-        rotation_errors.append(rotation_error_deg(rotation_est, rotation_gt))
+        rotation_error = rotation_error_deg(rotation_est, rotation_gt)
+        rotation_errors.append(rotation_error)
+        pose_2deg_2cm.append(bool(rotation_error <= 2.0 and np.linalg.norm(translation_delta) <= 0.02))
+        rotation_2deg.append(bool(rotation_error <= 2.0))
+        translation_2cm.append(bool(np.linalg.norm(translation_delta) <= 0.02))
         distances = _distances(rotation_est, translation_est, rotation_gt, translation_gt, model_points, bool(record.get("symmetric", False)))
         if record.get("symmetric", False):
             add_s_errors.append(float(np.mean(distances)))
             diameter = float(record.get("diameter_m", 0.0))
             add_s_successes.append(bool(diameter > 0 and np.mean(distances) <= add_threshold_fraction * diameter))
         else:
-            add_errors.append(float(np.mean(distances)))
+            add_error = float(np.mean(distances))
+            add_errors.append(add_error)
+            diameter = float(record.get("diameter_m", 0.0))
+            add_successes.append(bool(diameter > 0 and add_error <= add_threshold_fraction * diameter))
         if "camera_matrix" in record:
             camera = _array(record["camera_matrix"], (3, 3), "camera_matrix")
             projected_est, _ = cv2.projectPoints(model_points, cv2.Rodrigues(rotation_est)[0], translation_est, camera, np.zeros(5))
@@ -120,13 +128,18 @@ def evaluate_pose_records(records, *, diameter_by_object=None, add_threshold_fra
         "translation_bias_z_m": float(axis_bias[2]) if translation_deltas else None,
         "horizontal_rmse_m": float(np.sqrt(np.mean(horizontal_errors**2))) if horizontal_errors.size else None,
         "rotation_rmse_deg": rotation["rmse"],
+        "rotation_mean_deg": rotation["mean"],
         "rotation_p50_deg": rotation["p50"],
         "rotation_p95_deg": rotation["p95"],
         "add_m": add["mean"],
         "add_p95_m": add["p95"],
+        "add_recall_at_10_percent_diameter": float(np.mean(add_successes)) if add_successes else None,
         "add_s_m": add_s["mean"],
         "add_s_p95_m": add_s["p95"],
         "add_s_recall": float(np.mean(add_s_successes)) if add_s_successes else None,
+        "pose_2deg_2cm_recall": float(np.mean(pose_2deg_2cm)) if pose_2deg_2cm else None,
+        "rotation_lt_2deg_recall": float(np.mean(rotation_2deg)) if rotation_2deg else None,
+        "translation_lt_2cm_recall": float(np.mean(translation_2cm)) if translation_2cm else None,
         "projection_error_mean_px": projection["mean"],
         "projection_error_p95_px": projection["p95"],
         "reprojection_error_mean_px": float(np.mean(reprojection_errors)) if reprojection_errors else None,

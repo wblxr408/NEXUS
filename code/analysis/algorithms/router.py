@@ -42,6 +42,7 @@ for _name, _family, _source in (
     ("vision.pvnet", "vision", "docs:markerless_visual_simulation_preparation"),
     ("vision.foundationpose", "vision", "docs:markerless_visual_simulation_preparation"),
     ("vision.fixed_map_feature_pnp", "vision", "docs:markerless_visual_simulation_preparation"),
+    ("vision.orb_slam2_monocular", "vision", "raulmur/ORB_SLAM2@f2e6f51cdc8d067655d90a78c06261378e07e8f3"),
     ("uwb.awesome_uwb", "uwb", "https://github.com/qxiaofan/awesome-uwb-localization"),
     ("uwb.matlab_positioning", "uwb", "https://github.com/cliansang/positioning-algorithms-for-uwb-matlab"),
 ):

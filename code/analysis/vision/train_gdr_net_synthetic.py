@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
-"""Train and infer a small upstream-GDRN model on NEXUS synthetic BOP data.
+"""Train and infer an upstream-GDRN model on NEXUS synthetic BOP data.
 
 This is a deliberately narrow custom-data adapter: it reuses the upstream
 GDRN backbone, dense-coordinate head and ConvPnP head, while supplying a
-minimal PyTorch loop for the project's parameterised BOP records.  It does not
-claim compatibility with the authors' LM/LM-O/YCB-V training recipe, and it
-uses BOP ground-truth ROI boxes as the detector input for both train and test.
+minimal PyTorch loop for the project's parameterised BOP records.  Training
+uses native dense XYZ and mask supervision generated from BOP poses and PLY
+models. It does not claim compatibility with the authors' LM/LM-O/YCB-V
+training recipe.
 
 Run it with the dedicated Windows ``gdr_net`` Conda interpreter.  The output
 prediction JSON contains only model output poses (metres) and can be evaluated
@@ -27,6 +28,7 @@ import cv2
 import numpy as np
 
 from gdr_net_numpy_compat import apply_numpy2_compat
+from detector_contract import load_detector_predictions
 
 
 PROJECT_ROOT = Path(__file__).resolve().parents[3]
@@ -40,7 +42,7 @@ from torch.utils.data import DataLoader, Dataset
 
 from detectron2.utils.events import EventStorage
 from core.gdrn_modeling.models import GDRN
-from core.utils.data_utils import crop_resize_by_warp_affine
+from core.utils.data_utils import crop_resize_by_warp_affine, get_affine_transform
 
 
 @dataclass(frozen=True)
@@ -52,6 +54,9 @@ class PoseSample:
     rotation: np.ndarray
     translation_m: np.ndarray
     extent_m: np.ndarray
+    geometry_path: Path
+    camera_matrix: np.ndarray
+    image_size: tuple[int, int]
 
 
 class BopPoseDataset(Dataset):
@@ -65,19 +70,28 @@ class BopPoseDataset(Dataset):
             raise FileNotFoundError(f"BOP scene not found: {self.scene_root}")
         gt = json.loads((self.scene_root / "scene_gt.json").read_text(encoding="utf-8"))
         gt_info = json.loads((self.scene_root / "scene_gt_info.json").read_text(encoding="utf-8"))
+        cameras = json.loads((self.scene_root / "scene_camera.json").read_text(encoding="utf-8"))
         model_info = json.loads((root / "models" / "models_info.json").read_text(encoding="utf-8"))
+        calibration = json.loads((root / "calibration" / "camera_info.json").read_text(encoding="utf-8"))
+        image_size = (int(calibration["image_width_px"]), int(calibration["image_height_px"]))
         samples: list[PoseSample] = []
         for frame_id, objects in gt.items():
             infos = gt_info[frame_id]
             if len(objects) != len(infos):
                 raise ValueError(f"scene GT/info instance count mismatch for frame {frame_id}")
             image_path = self.scene_root / "rgb" / f"{int(frame_id):06d}.png"
-            for object_gt, info in zip(objects, infos):
+            for instance_index, (object_gt, info) in enumerate(zip(objects, infos)):
                 bbox = info["bbox_visib"]
                 if bbox[2] <= 0 or bbox[3] <= 0:
                     continue
                 object_id = int(object_gt["obj_id"])
                 details = model_info[str(object_id)]
+                geometry_path = self.scene_root / "xyz_crop" / f"{int(frame_id):06d}_{instance_index:06d}.npz"
+                if not geometry_path.is_file():
+                    raise FileNotFoundError(
+                        f"missing dense XYZ supervision: {geometry_path}; run "
+                        "simulation/generate_gdrn_geometry_labels.py first"
+                    )
                 samples.append(PoseSample(
                     image_path=image_path,
                     frame_id=str(int(frame_id)),
@@ -86,6 +100,9 @@ class BopPoseDataset(Dataset):
                     rotation=np.asarray(object_gt["cam_R_m2c"], dtype=np.float32).reshape(3, 3),
                     translation_m=np.asarray(object_gt["cam_t_m2c"], dtype=np.float32).reshape(3) * 0.001,
                     extent_m=np.asarray([details["size_x"], details["size_y"], details["size_z"]], dtype=np.float32) * 0.001,
+                    geometry_path=geometry_path,
+                    camera_matrix=np.asarray(cameras[frame_id]["cam_K"], dtype=np.float32).reshape(3, 3),
+                    image_size=image_size,
                 ))
         if not samples:
             raise ValueError(f"no visible BOP instances in {self.scene_root}")
@@ -94,6 +111,7 @@ class BopPoseDataset(Dataset):
         # Retaining uint8 crops removes WSL/Windows filesystem latency from
         # each epoch while keeping the dataset below 100 MiB.
         self.roi_images = [self._read_crop(sample) for sample in samples]
+        self.roi_geometry = [self._read_geometry(sample) for sample in samples]
 
     def __len__(self) -> int:
         return len(self.samples)
@@ -106,6 +124,7 @@ class BopPoseDataset(Dataset):
         keep = [index for index, sample in enumerate(self.samples) if sample.frame_id in allowed]
         self.samples = [self.samples[index] for index in keep]
         self.roi_images = [self.roi_images[index] for index in keep]
+        self.roi_geometry = [self.roi_geometry[index] for index in keep]
         if not self.samples:
             raise ValueError(f"no instances remain after limiting to {frame_count} frames")
 
@@ -119,15 +138,139 @@ class BopPoseDataset(Dataset):
         # This is the same affine crop primitive used by the upstream mapper.
         return np.ascontiguousarray(crop_resize_by_warp_affine(image, center, scale, 256, interpolation=cv2.INTER_LINEAR).transpose(2, 0, 1))
 
+    @staticmethod
+    def _read_geometry(sample: PoseSample) -> tuple[np.ndarray, np.ndarray]:
+        with np.load(sample.geometry_path) as label:
+            xyz = np.asarray(label["xyz"], dtype=np.float32)
+            mask = np.asarray(label["mask"], dtype=np.float32)
+        if xyz.shape != (64, 64, 3) or mask.shape != (64, 64):
+            raise ValueError(f"invalid geometry label shape in {sample.geometry_path}")
+        return np.ascontiguousarray(xyz.transpose(2, 0, 1)), np.ascontiguousarray(mask)
+
+    def _crop_geometry(self, sample: PoseSample) -> tuple[np.ndarray, np.ndarray, np.ndarray, np.ndarray, float]:
+        x, y, width, height = sample.bbox_xywh
+        center = np.asarray([x + 0.5 * width, y + 0.5 * height], dtype=np.float32)
+        scale = max(width, height) * self.pad_scale
+        affine = get_affine_transform(center, scale, 0, 64)
+        inverse = cv2.invertAffineTransform(affine)
+        yy, xx = np.mgrid[0:64, 0:64].astype(np.float32)
+        source = np.stack((xx, yy), axis=-1) @ inverse[:, :2].T + inverse[:, 2]
+        coordinate_2d = np.stack((source[..., 0] / (sample.image_size[0] - 1), source[..., 1] / (sample.image_size[1] - 1)), axis=0)
+        object_center_h = sample.camera_matrix @ sample.translation_m
+        object_center = object_center_h[:2] / object_center_h[2]
+        translation_ratio = np.array([(object_center[0] - center[0]) / width, (object_center[1] - center[1]) / height, sample.translation_m[2] / (64.0 / scale)], dtype=np.float32)
+        return coordinate_2d.astype(np.float32), center, np.array([width, height], dtype=np.float32), translation_ratio, float(64.0 / scale)
+
     def __getitem__(self, index: int) -> dict[str, Any]:
         sample = self.samples[index]
+        coord_2d, bbox_center, roi_wh, translation_ratio, resize_ratio = self._crop_geometry(sample)
         return {
             "roi_img": torch.from_numpy(self.roi_images[index].astype(np.float32) / 255.0),
             "rotation": torch.from_numpy(sample.rotation),
             "translation_m": torch.from_numpy(sample.translation_m),
             "extent_m": torch.from_numpy(sample.extent_m),
+            "xyz": torch.from_numpy(self.roi_geometry[index][0]),
+            "mask": torch.from_numpy(self.roi_geometry[index][1]),
+            "coord_2d": torch.from_numpy(coord_2d),
+            "camera_matrix": torch.from_numpy(sample.camera_matrix),
+            "bbox_center": torch.from_numpy(bbox_center),
+            "roi_wh": torch.from_numpy(roi_wh),
+            "translation_ratio": torch.from_numpy(translation_ratio),
+            "resize_ratio": torch.tensor(resize_ratio, dtype=torch.float32),
             "frame_id": sample.frame_id,
             "object_id": sample.object_id,
+        }
+
+
+@dataclass(frozen=True)
+class DetectorPoseSample:
+    """An inference crop supplied by an external detector, never BOP GT."""
+
+    image_path: Path
+    frame_id: str
+    object_id: int
+    bbox_xywh: tuple[float, float, float, float]
+    extent_m: np.ndarray
+    confidence: float
+    camera_matrix: np.ndarray
+    image_size: tuple[int, int]
+
+
+class DetectorPoseDataset(Dataset):
+    """Crop GDR-Net inputs from detector class+bbox outputs only."""
+
+    def __init__(self, root: Path, split: str, detector_predictions: str | Path, pad_scale: float = 1.5):
+        self.root = root
+        self.scene_root = root / split / "000001"
+        self.pad_scale = float(pad_scale)
+        if not self.scene_root.is_dir():
+            raise FileNotFoundError(f"BOP scene not found: {self.scene_root}")
+        model_info = json.loads((root / "models" / "models_info.json").read_text(encoding="utf-8"))
+        cameras = json.loads((self.scene_root / "scene_camera.json").read_text(encoding="utf-8"))
+        calibration = json.loads((root / "calibration" / "camera_info.json").read_text(encoding="utf-8"))
+        image_size = (int(calibration["image_width_px"]), int(calibration["image_height_px"]))
+        detections = load_detector_predictions(detector_predictions)
+        samples: list[DetectorPoseSample] = []
+        for frame_id, records in detections.items():
+            image_path = self.scene_root / "rgb" / f"{int(frame_id):06d}.png"
+            if not image_path.is_file():
+                raise FileNotFoundError(f"detector frame has no BOP RGB image: {image_path}")
+            image = cv2.imread(str(image_path), cv2.IMREAD_COLOR)
+            if image is None:
+                raise FileNotFoundError(image_path)
+            image_height, image_width = image.shape[:2]
+            for record in records:
+                object_id = int(record["class_id"])
+                if str(object_id) not in model_info:
+                    raise ValueError(f"detector class {object_id} has no object model")
+                x, y, width, height = record["bbox_xywh_px"]
+                if x < 0 or y < 0 or x + width > image_width or y + height > image_height:
+                    raise ValueError(f"detector bbox for frame {frame_id} lies outside the image")
+                details = model_info[str(object_id)]
+                samples.append(DetectorPoseSample(
+                    image_path=image_path, frame_id=str(int(frame_id)), object_id=object_id,
+                    bbox_xywh=(float(x), float(y), float(width), float(height)),
+                    extent_m=np.asarray([details["size_x"], details["size_y"], details["size_z"]], dtype=np.float32) * 0.001,
+                    confidence=float(record["confidence"]),
+                    camera_matrix=np.asarray(cameras[str(int(frame_id))]["cam_K"], dtype=np.float32).reshape(3, 3),
+                    image_size=image_size,
+                ))
+        if not samples:
+            raise ValueError("detector produced no usable class+bbox records")
+        self.samples = samples
+        self.roi_images = [self._read_crop(sample) for sample in samples]
+
+    def __len__(self) -> int:
+        return len(self.samples)
+
+    def _read_crop(self, sample: DetectorPoseSample) -> np.ndarray:
+        image = cv2.imread(str(sample.image_path), cv2.IMREAD_COLOR)
+        x, y, width, height = sample.bbox_xywh
+        center = np.asarray([x + 0.5 * width, y + 0.5 * height], dtype=np.float32)
+        scale = max(width, height) * self.pad_scale
+        return np.ascontiguousarray(crop_resize_by_warp_affine(image, center, scale, 256, interpolation=cv2.INTER_LINEAR).transpose(2, 0, 1))
+
+    def __getitem__(self, index: int) -> dict[str, Any]:
+        sample = self.samples[index]
+        x, y, width, height = sample.bbox_xywh
+        center = np.asarray([x + 0.5 * width, y + 0.5 * height], dtype=np.float32)
+        scale = max(width, height) * self.pad_scale
+        affine = get_affine_transform(center, scale, 0, 64)
+        inverse = cv2.invertAffineTransform(affine)
+        yy, xx = np.mgrid[0:64, 0:64].astype(np.float32)
+        source = np.stack((xx, yy), axis=-1) @ inverse[:, :2].T + inverse[:, 2]
+        coordinate_2d = np.stack((source[..., 0] / (sample.image_size[0] - 1), source[..., 1] / (sample.image_size[1] - 1)), axis=0)
+        return {
+            "roi_img": torch.from_numpy(self.roi_images[index].astype(np.float32) / 255.0),
+            "extent_m": torch.from_numpy(sample.extent_m),
+            "frame_id": sample.frame_id,
+            "object_id": sample.object_id,
+            "confidence": sample.confidence,
+            "coord_2d": torch.from_numpy(coordinate_2d.astype(np.float32)),
+            "camera_matrix": torch.from_numpy(sample.camera_matrix),
+            "bbox_center": torch.from_numpy(center),
+            "roi_wh": torch.tensor([width, height], dtype=torch.float32),
+            "resize_ratio": torch.tensor(64.0 / scale, dtype=torch.float32),
         }
 
 
@@ -146,27 +289,27 @@ def _configure_model() -> torch.nn.Module:
     cfg.MODEL.CDPN.ROT_HEAD.NUM_LAYERS = 3
     cfg.MODEL.CDPN.ROT_HEAD.NUM_CLASSES = 1
     cfg.MODEL.CDPN.ROT_HEAD.NUM_REGIONS = 2
-    # The custom loop trains GDRN's direct learned-PnP outputs. Dense-head
-    # supervision is intentionally disabled because this renderer does not yet
-    # emit per-pixel surface XYZ maps; it remains in the forward path.
-    cfg.MODEL.CDPN.ROT_HEAD.XYZ_LW = 0.0
-    cfg.MODEL.CDPN.ROT_HEAD.MASK_LW = 0.0
+    # Native GDRN geometry guidance: labels are normalized local XYZ maps and
+    # visible-object masks generated from the BOP PLY/pose records.
+    cfg.MODEL.CDPN.ROT_HEAD.XYZ_LW = 1.0
+    cfg.MODEL.CDPN.ROT_HEAD.MASK_LW = 1.0
     cfg.MODEL.CDPN.ROT_HEAD.REGION_LW = 0.0
     cfg.MODEL.CDPN.PNP_NET.PNP_HEAD_CFG = dict(type="ConvPnPNet", norm="GN", num_gn_groups=32, drop_prob=0.0)
     cfg.MODEL.CDPN.PNP_NET.R_ONLY = False
-    cfg.MODEL.CDPN.PNP_NET.WITH_2D_COORD = False
+    cfg.MODEL.CDPN.PNP_NET.WITH_2D_COORD = True
     cfg.MODEL.CDPN.PNP_NET.REGION_ATTENTION = False
     cfg.MODEL.CDPN.PNP_NET.MASK_ATTENTION = "none"
-    cfg.MODEL.CDPN.PNP_NET.ROT_TYPE = "ego_rot6d"
-    cfg.MODEL.CDPN.PNP_NET.TRANS_TYPE = "trans"
+    cfg.MODEL.CDPN.PNP_NET.ROT_TYPE = "allo_rot6d"
+    cfg.MODEL.CDPN.PNP_NET.TRANS_TYPE = "centroid_z"
+    cfg.MODEL.CDPN.PNP_NET.Z_TYPE = "REL"
     cfg.MODEL.CDPN.PNP_NET.PM_LW = 0.0
     cfg.MODEL.CDPN.PNP_NET.ROT_LOSS_TYPE = "L2"
     cfg.MODEL.CDPN.PNP_NET.ROT_LW = 1.0
-    cfg.MODEL.CDPN.PNP_NET.TRANS_LOSS_TYPE = "MSE"
+    cfg.MODEL.CDPN.PNP_NET.TRANS_LOSS_TYPE = "L1"
     cfg.MODEL.CDPN.PNP_NET.TRANS_LOSS_DISENTANGLE = False
-    cfg.MODEL.CDPN.PNP_NET.TRANS_LW = 5.0
-    cfg.MODEL.CDPN.PNP_NET.CENTROID_LW = 0.0
-    cfg.MODEL.CDPN.PNP_NET.Z_LW = 0.0
+    cfg.MODEL.CDPN.PNP_NET.TRANS_LW = 1.0
+    cfg.MODEL.CDPN.PNP_NET.CENTROID_LW = 1.0
+    cfg.MODEL.CDPN.PNP_NET.Z_LW = 1.0
     # build_model_optimizer needs this even though the custom loop uses AdamW.
     cfg.SOLVER.BASE_LR = 1e-3
     cfg.SOLVER.OPTIMIZER_CFG = dict(type="RMSprop", lr=1e-3, momentum=0.0, weight_decay=0.0)
@@ -180,19 +323,25 @@ def _loss_inputs(batch: dict[str, Any], device: torch.device) -> tuple[dict[str,
     translation = batch["translation_m"].to(device, non_blocking=True)
     extent = batch["extent_m"].to(device, non_blocking=True)
     batch_size = image.shape[0]
-    zeros_mask = torch.zeros((batch_size, 64, 64), dtype=torch.float32, device=device)
-    zeros_xyz = torch.zeros((batch_size, 3, 64, 64), dtype=torch.float32, device=device)
+    zeros_region = torch.zeros((batch_size, 64, 64), dtype=torch.float32, device=device)
+    mask = batch["mask"].to(device, non_blocking=True)
+    xyz = batch["xyz"].to(device, non_blocking=True)
     zeros_ratio = torch.zeros((batch_size, 3), dtype=torch.float32, device=device)
     inputs = dict(
         x=image,
-        gt_xyz=zeros_xyz,
-        gt_mask_trunc=zeros_mask,
-        gt_mask_visib=zeros_mask,
-        gt_mask_obj=zeros_mask,
-        gt_region=zeros_mask,
+        gt_xyz=xyz,
+        gt_mask_trunc=mask,
+        gt_mask_visib=mask,
+        gt_mask_obj=mask,
+        gt_region=zeros_region,
         gt_ego_rot=rotation,
         gt_trans=translation,
-        gt_trans_ratio=zeros_ratio,
+        gt_trans_ratio=batch["translation_ratio"].to(device, non_blocking=True),
+        roi_coord_2d=batch["coord_2d"].to(device, non_blocking=True),
+        roi_cams=batch["camera_matrix"].to(device, non_blocking=True),
+        roi_centers=batch["bbox_center"].to(device, non_blocking=True),
+        roi_whs=batch["roi_wh"].to(device, non_blocking=True),
+        resize_ratios=batch["resize_ratio"].to(device, non_blocking=True),
         roi_extents=extent,
         do_loss=True,
     )
@@ -240,7 +389,14 @@ def _infer(model: torch.nn.Module, dataset: BopPoseDataset) -> tuple[dict[str, l
             extent = batch["extent_m"].to(device, non_blocking=True)
             torch.cuda.synchronize()
             start = time.perf_counter()
-            output = model(image, roi_extents=extent, do_loss=False)
+            output = model(
+                image, roi_extents=extent, do_loss=False,
+                roi_coord_2d=batch["coord_2d"].to(device, non_blocking=True),
+                roi_cams=batch["camera_matrix"].to(device, non_blocking=True),
+                roi_centers=batch["bbox_center"].to(device, non_blocking=True),
+                roi_whs=batch["roi_wh"].to(device, non_blocking=True),
+                resize_ratios=batch["resize_ratio"].to(device, non_blocking=True),
+            )
             torch.cuda.synchronize()
             runtimes_ms.append((time.perf_counter() - start) * 1000.0)
             rotation = output["rot"].detach().cpu().numpy()[0]
@@ -251,6 +407,7 @@ def _infer(model: torch.nn.Module, dataset: BopPoseDataset) -> tuple[dict[str, l
                 "R": rotation.tolist(),
                 "t_m": translation.tolist(),
                 "runtime_ms": runtimes_ms[-1],
+                **({"detector_confidence": float(batch["confidence"][0])} if "confidence" in batch else {}),
             })
     return predictions, runtimes_ms
 
@@ -267,6 +424,7 @@ def main(argv: list[str] | None = None) -> None:
     parser.add_argument("--train-frame-limit", type=int, default=0, help="optional bounded training subset; 0 keeps all frames")
     parser.add_argument("--checkpoint", help="existing custom GDRN checkpoint to load")
     parser.add_argument("--skip-training", action="store_true", help="only run inference from --checkpoint")
+    parser.add_argument("--detector-predictions", help="external detector JSON; test-time crops then use only detector class+bbox")
     args = parser.parse_args(argv)
     if not torch.cuda.is_available():
         raise RuntimeError("the custom GDRN training run requires CUDA in the dedicated Windows environment")
@@ -278,7 +436,8 @@ def main(argv: list[str] | None = None) -> None:
     output_dir.mkdir(parents=True, exist_ok=True)
     train_set = BopPoseDataset(Path(args.train_dataset), "train_pbr")
     train_set.limit_frames(args.train_frame_limit)
-    test_set = BopPoseDataset(Path(args.test_dataset), "test")
+    test_set = (DetectorPoseDataset(Path(args.test_dataset), "test", args.detector_predictions)
+                if args.detector_predictions else BopPoseDataset(Path(args.test_dataset), "test"))
     print(f"train_instances={len(train_set)} test_instances={len(test_set)}", flush=True)
     model = _configure_model()
     if args.checkpoint:
@@ -305,7 +464,8 @@ def main(argv: list[str] | None = None) -> None:
         "seed": args.seed,
         "train_frame_limit": args.train_frame_limit,
         "checkpoint": args.checkpoint,
-        "roi_source": "BOP scene_gt_info bbox_visib (GT ROI condition)",
+        "roi_source": ("external detector class+bbox JSON" if args.detector_predictions else "BOP scene_gt_info bbox_visib (GT ROI condition)"),
+        "detector_predictions": args.detector_predictions,
         "runtime_mean_ms": float(np.mean(runtimes_ms)),
         "runtime_p95_ms": float(np.percentile(runtimes_ms, 95)),
         "history": history,
