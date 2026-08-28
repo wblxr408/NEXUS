@@ -1,5 +1,8 @@
 # CARLA 0.9.16 Windows 联调
 
+从下载、解压、合并 sandbox-v29 到最终部署的完整过程，请先看：
+[`2026-08-28_carla_windows_deploy_full.md`](2026-08-28_carla_windows_deploy_full.md)。
+
 当前 CARLA 服务端路线是 Windows 包；WSL 中只运行 Python 客户端冒烟测试。
 `simulation/carla/run_carla_server.sh` 保留作历史记录，Linux 软件渲染路线已弃用，
 不要再用它启动服务端。
