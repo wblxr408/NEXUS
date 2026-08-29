@@ -22,3 +22,6 @@
 [submodule "code/analysis/vision/third_party/gdr_net"]
 	path = code/analysis/vision/third_party/gdr_net
 	url = https://github.com/THU-DA-6D-Pose-Group/GDR-Net.git
+[submodule "code/analysis/vision/third_party/orb_slam2"]
+	path = code/analysis/vision/third_party/orb_slam2
+	url = https://github.com/raulmur/ORB_SLAM2.git

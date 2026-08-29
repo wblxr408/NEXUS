@@ -1,6 +1,6 @@
 import { dashboardLayout } from "../components/dashboard_layout.js";
-import { createSceneRenderer } from "../features/map/scene_renderer.js";
 import { createDashboardStore } from "../features/telemetry/dashboard_store.js";
+import { installCarlaStatusGateway } from "../services/carla_status_client.js";
 import { installNexusAPI } from "../services/nexus_api.js";
 import { installRosbridgeGateway } from "../services/rosbridge_client.js";
 import { formatNumber } from "../types/dashboard_types.js";
@@ -10,12 +10,14 @@ const store = createDashboardStore();
 root.innerHTML = dashboardLayout();
 installNexusAPI(store);
 installRosbridgeGateway(store);
+installCarlaStatusGateway(store);
 
 const byId = (id) => document.getElementById(id);
 const setText = (id, value) => { const element = byId(id); if (element) element.textContent = value; };
 const ageText = (value) => value === null || value === undefined ? "unknown" : `${formatNumber(value, 2)} s`;
 const metricText = (value, suffix = " m") => value === null || value === undefined ? "—" : `${formatNumber(value)}${suffix}`;
 let renderedCameraImage = null;
+let renderedCarlaThumbnail = null;
 
 function renderCamera(imageData) {
   const canvas = byId("cam-canvas");
@@ -60,6 +62,58 @@ function drawLatency(values) {
   context.stroke();
 }
 
+function formatPoseText(point, digits = 2) {
+  if (!point || [point.x, point.y, point.z].some((value) => value === null || value === undefined || Number.isNaN(Number(value)))) return "—";
+  return "x " + formatNumber(point.x, digits) + " · y " + formatNumber(point.y, digits) + " · z " + formatNumber(point.z, digits);
+}
+
+function formatAttitudeText(ego) {
+  const values = [ego?.roll, ego?.pitch, ego?.yaw];
+  if (values.some((value) => value === null || value === undefined || Number.isNaN(Number(value)))) return "—";
+  return "r " + formatNumber(ego.roll, 1) + "° · p " + formatNumber(ego.pitch, 1) + "° · y " + formatNumber(ego.yaw, 1) + "°";
+}
+
+function renderCarlaThumbnail(imageData) {
+  const image = byId("ui-carla-thumb");
+  const empty = byId("ui-carla-thumb-empty");
+  if (!image || !empty) return;
+  if (!imageData || imageData === renderedCarlaThumbnail) {
+    image.hidden = !renderedCarlaThumbnail;
+    empty.hidden = Boolean(renderedCarlaThumbnail);
+    return;
+  }
+  if (typeof imageData !== "string") return;
+  image.src = imageData;
+  image.hidden = false;
+  empty.hidden = true;
+  renderedCarlaThumbnail = imageData;
+}
+
+function renderAlgorithms(algorithms) {
+  const list = byId("ui-algorithm-list");
+  if (!list) return;
+  list.replaceChildren();
+  [["ORB-SLAM2", algorithms.orbSlam2], ["UWB", algorithms.uwb], ["GDR-NET", algorithms.detector], ["FUSION", algorithms.fusion]].forEach(([label, data]) => {
+    const row = document.createElement("div"); row.className = "algorithm-row";
+    const name = document.createElement("strong"); name.className = "algorithm-name"; name.textContent = label;
+    const status = document.createElement("span"); status.className = "algorithm-status " + String(data?.status || "UNKNOWN").toLowerCase(); status.textContent = data?.status || "UNKNOWN";
+    const meta = document.createElement("span"); meta.className = "algorithm-meta";
+    const parts = []; if (data?.summary) parts.push(data.summary); if (data?.latencyMs != null) parts.push(formatNumber(data.latencyMs, 1) + " ms"); if (data?.dropRate != null) parts.push("drop " + formatNumber(data.dropRate, 1) + "%"); if (data?.lastUpdate) parts.push("@" + data.lastUpdate);
+    meta.textContent = parts.join(" · ") || "暂无模块输出"; row.append(name, status, meta); list.append(row);
+  });
+}
+
+function renderLogs(logs) {
+  const list = byId("ui-log-list"); if (!list) return; list.replaceChildren();
+  if (!logs.length) { const empty = document.createElement("div"); empty.className = "log-empty"; empty.textContent = "暂无日志；等待 CARLA bridge 推送。"; list.append(empty); return; }
+  logs.slice(-40).reverse().forEach((entry) => {
+    const row = document.createElement("div"); row.className = "log-row";
+    const ts = document.createElement("span"); ts.className = "log-ts"; ts.textContent = entry.timestamp || "—";
+    const level = document.createElement("span"); level.className = "log-level " + String(entry.level || "INFO").toLowerCase(); level.textContent = entry.level || "INFO";
+    const text = document.createElement("span"); text.className = "log-text"; text.textContent = entry.text || "—"; row.append(ts, level, text); list.append(row);
+  });
+}
+
 function render(state) {
   setText("ui-mode", state.mode.replace("_", " "));
   setText("ui-run-id", state.runId || "UNREGISTERED");
@@ -75,6 +129,19 @@ function render(state) {
   setText("ui-image-age", ageText(state.camera.imageAge));
   setText("ui-camera-status", state.camera.status || "NO_FRAME");
   renderCamera(state.camera.image);
+  const carla = state.carla;
+  setText("ui-carla-conn-pill", carla.connected ? "CONNECTED" : "DISCONNECTED");
+  const pill = byId("ui-carla-conn-pill"); if (pill) pill.className = "stream-pill " + (carla.connected ? "stream-pill-online" : "stream-pill-offline");
+  setText("ui-carla-endpoint", carla.endpoint || "127.0.0.1:2000"); setText("ui-carla-map", carla.mapName || "—");
+  setText("ui-carla-tick", carla.tickHz == null ? "—" : formatNumber(carla.tickHz, 1) + " Hz");
+  setText("ui-carla-sync", carla.synchronousMode == null ? "—" : (carla.synchronousMode ? "SYNC" : "ASYNC"));
+  const actorSummary = [carla.actorCount == null ? null : carla.actorCount + " total", carla.vehicleCount == null ? null : carla.vehicleCount + " veh", carla.walkerCount == null ? null : carla.walkerCount + " ped", carla.trafficLightCount == null ? null : carla.trafficLightCount + " tl"].filter(Boolean).join(" · ");
+  setText("ui-carla-actors", actorSummary || "—"); setText("ui-carla-sensors", Object.entries(carla.sensors || {}).map(([name, status]) => name + ":" + status).join(" · ") || "—");
+  renderCarlaThumbnail(carla.thumbnail); setText("ui-ego-pos", formatPoseText(state.ego.x == null ? state.platform : state.ego));
+  setText("ui-ego-att", formatAttitudeText(state.ego)); setText("ui-ego-speed", state.ego.speed == null ? "—" : formatNumber(state.ego.speed, 2) + " m/s");
+  setText("ui-target-pos-stream", formatPoseText(state.pose)); setText("ui-traffic-state", carla.trafficSummary || actorSummary || "—");
+  setText("ui-carla-frame-time", (carla.frame ?? state.frameId ?? "—") + " / " + (carla.timestamp || state.poseTimestamp || "unknown"));
+  renderAlgorithms(state.algorithms); renderLogs(state.logs);
   const health = [["uwb", "UWB"], ["vision", "vis"], ["fusion", "fus"]];
   health.forEach(([key, suffix]) => {
     setText(`ui-h-${suffix}`, state.health[key]?.status || "UNKNOWN");
@@ -95,4 +162,3 @@ function render(state) {
 }
 
 store.subscribe(render);
-createSceneRenderer(byId("map-canvas"), byId("map-wrapper"), store);

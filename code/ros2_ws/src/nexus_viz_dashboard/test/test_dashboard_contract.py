@@ -22,3 +22,20 @@ def test_dashboard_renders_gazebo_imx219_raw_frames_in_camera_canvas():
     assert "previewFromCompressedImage" in bridge
     assert "store.updateCamera" in bridge
     assert 'byId("cam-canvas")' in app
+
+
+def test_dashboard_replaces_left_sandbox_with_carla_stream_panel():
+    package_root = Path(__file__).parents[1]
+    layout = (package_root / "web" / "src" / "components" / "dashboard_layout.js").read_text()
+    assert "CARLA 实时数据流" in layout
+    assert 'id="ui-carla-map"' in layout
+    assert 'id="ui-algorithm-list"' in layout
+    assert 'id="ui-log-list"' in layout
+
+
+def test_dashboard_connects_to_carla_status_gateway():
+    package_root = Path(__file__).parents[1]
+    gateway = (package_root / "web" / "src" / "services" / "carla_status_client.js").read_text()
+    app = (package_root / "web" / "src" / "app" / "main.js").read_text()
+    assert "carla_ws" in gateway
+    assert "installCarlaStatusGateway(store)" in app

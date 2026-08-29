@@ -1,0 +1,13 @@
+dataset_id: nexus_sandbox_orb_slam2_mono
+coordinate_frame: map
+unit: m
+camera:
+  base_to_camera_translation_m: [0.0, 0.0, 0.0]
+  base_to_camera_rotation_matrix: [[1.0, 0.0, 0.0], [0.0, 1.0, 0.0], [0.0, 0.0, 1.0]]
+uwb:
+  anchors_m:
+    - {id: anchor_0, position_m: [0.15, 0.15, 0.40]}
+    - {id: anchor_1, position_m: [3.85, 0.15, 2.40]}
+    - {id: anchor_2, position_m: [3.85, 4.55, 4.40]}
+    - {id: anchor_3, position_m: [0.15, 4.55, 1.40]}
+  range_noise_std_m: 0.015

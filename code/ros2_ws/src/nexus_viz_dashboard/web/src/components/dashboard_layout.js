@@ -13,9 +13,51 @@ export function dashboardLayout() {
         </div>
       </header>
       <main class="dashboard-grid">
-        <section class="panel map-panel" aria-labelledby="map-title">
-          <div class="panel-header"><span id="map-title">任务空间 · 目标位置</span><span class="header-meta">MAP / m · DRAG TO ORBIT · WHEEL TO ZOOM</span></div>
-          <div id="map-wrapper" class="map-wrapper"><canvas id="map-canvas" aria-label="map 坐标系目标位置；悬停查看物体语义和厘米级坐标"></canvas><div id="map-object-info" class="map-object-info" aria-live="polite"><span class="map-object-kicker">MAP OBJECT / HOVER</span><strong id="map-object-name">沙盘任务空间</strong><span id="map-object-type">地图坐标系：原点在西南角</span><span id="map-object-position" class="map-object-position">x 0.00–4.00 · y 0.00–4.70 · z 向上</span><span id="map-object-note">标称布局坐标；厘米显示不代表实测精度</span></div><div class="map-legend"><span class="legend-fused">● FUSED</span><span class="legend-uwb">● UWB ANCHOR</span><span class="legend-vision">● VISION</span><span class="legend-uav">◆ SIM UAV</span></div></div>
+        <section class="panel data-panel" aria-labelledby="data-title">
+          <div class="panel-header"><span id="data-title">CARLA 实时数据流</span><span class="header-meta">WINDOWS GPU RENDER / WSL JSON BRIDGE</span></div>
+          <div class="data-stream-panel">
+            <section class="stream-card stream-card-primary" aria-labelledby="carla-connection-title">
+              <div class="stream-card-header">
+                <span id="carla-connection-title">连接状态</span>
+                <span id="ui-carla-conn-pill" class="stream-pill stream-pill-offline">DISCONNECTED</span>
+              </div>
+              <div class="stream-primary-grid">
+                <div class="thumbnail-wrap">
+                  <img id="ui-carla-thumb" class="thumbnail-image" alt="最近一帧 CARLA 相机缩略图" hidden />
+                  <div id="ui-carla-thumb-empty" class="empty-state">暂无 CARLA 缩略图</div>
+                </div>
+                <dl class="stream-kv">
+                  <div><dt>RPC</dt><dd id="ui-carla-endpoint">127.0.0.1:2000</dd></div>
+                  <div><dt>MAP</dt><dd id="ui-carla-map">—</dd></div>
+                  <div><dt>TICK</dt><dd id="ui-carla-tick">—</dd></div>
+                  <div><dt>MODE</dt><dd id="ui-carla-sync">—</dd></div>
+                  <div><dt>ACTORS</dt><dd id="ui-carla-actors">—</dd></div>
+                  <div><dt>SENSORS</dt><dd id="ui-carla-sensors">—</dd></div>
+                </dl>
+              </div>
+            </section>
+            <div class="stream-grid">
+              <section class="stream-card" aria-labelledby="pose-stream-title">
+                <div class="stream-card-header"><span id="pose-stream-title">实时位姿与状态流</span><span class="header-meta">EGO / TARGET / ACTORS</span></div>
+                <dl class="stream-kv">
+                  <div><dt>EGO POS</dt><dd id="ui-ego-pos">—</dd></div>
+                  <div><dt>EGO ATT</dt><dd id="ui-ego-att">—</dd></div>
+                  <div><dt>EGO SPD</dt><dd id="ui-ego-speed">—</dd></div>
+                  <div><dt>TARGET</dt><dd id="ui-target-pos-stream">—</dd></div>
+                  <div><dt>TRAFFIC</dt><dd id="ui-traffic-state">—</dd></div>
+                  <div><dt>FRAME / TS</dt><dd id="ui-carla-frame-time">—</dd></div>
+                </dl>
+              </section>
+              <section class="stream-card" aria-labelledby="algorithm-stream-title">
+                <div class="stream-card-header"><span id="algorithm-stream-title">算法输出流</span><span class="header-meta">ORB-SLAM2 / UWB / GDR-NET / FUSION</span></div>
+                <div id="ui-algorithm-list" class="algorithm-list" aria-live="polite"></div>
+              </section>
+            </div>
+            <section class="stream-card stream-log-card" aria-labelledby="log-stream-title">
+              <div class="stream-card-header"><span id="log-stream-title">日志流</span><span class="header-meta">CARLA / SENSORS / FUSION</span></div>
+              <div id="ui-log-list" class="log-list" aria-live="polite"></div>
+            </section>
+          </div>
         </section>
         <div class="column column-evidence">
           <section class="panel camera-panel" aria-labelledby="camera-title">
