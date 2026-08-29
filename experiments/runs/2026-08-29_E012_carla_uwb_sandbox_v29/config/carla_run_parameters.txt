@@ -1,0 +1,16 @@
+CARLA map: CustomMaps/sandbox-v29/sandbox-v29
+frames: 100
+warmup_frames: 20
+fixed_delta_seconds: 0.1
+sigma_m: 0.05
+random_seed: 42
+anchor_half_width_m: 15.0
+anchor_half_height_m: 12.0
+anchor_heights_m: 0.5,4.5,0.5,4.5
+uav_altitude_m: 3.0
+camera_height_m: 48.0
+camera_fov_degrees: 90.0
+range_model: euclidean_3d
+dimensions: 3
+actor_blueprint: static.prop.mobile
+actor_role_name: nexus_uav
