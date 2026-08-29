@@ -231,7 +231,7 @@ def _write_outputs(args, anchors, frames, positions, velocities, frame_ids, metr
             "frame_seq", "sample_timestamp_ns", "tag_id", "anchor_id",
             "anchor_x_m", "anchor_y_m", "anchor_z_m", "range_m", "stddev_m",
         ]
-        writer = csv.DictWriter(stream, fieldnames=fields)
+        writer = csv.DictWriter(stream, fieldnames=fields, lineterminator="\n")
         writer.writeheader()
         for frame_seq, frame in enumerate(frames):
             for sample in frame.ranges:
@@ -252,7 +252,7 @@ def _write_outputs(args, anchors, frames, positions, velocities, frame_ids, metr
             "frame_seq", "carla_frame", "sample_timestamp_ns", "x_m", "y_m", "z_m",
             "velocity_x_mps", "velocity_y_mps", "velocity_z_mps",
         ]
-        writer = csv.DictWriter(stream, fieldnames=fields)
+        writer = csv.DictWriter(stream, fieldnames=fields, lineterminator="\n")
         writer.writeheader()
         for index, (position, velocity) in enumerate(zip(positions, velocities)):
             writer.writerow({
@@ -265,7 +265,9 @@ def _write_outputs(args, anchors, frames, positions, velocities, frame_ids, metr
             })
 
     with (output / "estimates.csv").open("w", encoding="utf-8", newline="") as stream:
-        writer = csv.DictWriter(stream, fieldnames=list(estimates[0]))
+        writer = csv.DictWriter(
+            stream, fieldnames=list(estimates[0]), lineterminator="\n"
+        )
         writer.writeheader()
         writer.writerows(estimates)
 
