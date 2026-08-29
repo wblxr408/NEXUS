@@ -124,13 +124,15 @@ YOLO 的实测结果见 `experiments/runs/2026-08-27_E009_target_detector_datase
 `experiments/runs/2026-08-27_E010_target_detector_scene_context_v02/`。v02 还渲染
 `sandbox_scene.yaml` 的道路、工业岛、建筑、树列、交通标线等无标签背景。
 
-## CARLA 0.9.16 Windows 联调
+## CARLA 0.9.16 Linux UWB 联调
 
-CARLA 服务端只走 Windows `CARLA_0.9.16.zip`（低画质、RPC 端口 2000）；WSL 侧只运行
-Python 客户端。Windows 下载、防火墙、WSL mirrored 网络和冒烟验收命令见
-[`carla_windows_setup.md`](carla_windows_setup.md)。
+当前环境已验证 Linux CARLA Vulkan offscreen 服务、运动 UAV actor 与 RGB 相机同步 tick。启动命令、
+NVIDIA ICD 条件和冒烟验收见 [`carla_linux_setup.md`](carla_linux_setup.md)。Windows 文档
+只作为历史部署备选保留。
 
-`simulation/carla/run_carla_server.sh` 仅保留 Linux 软件渲染路线的弃用提示；该路线已知
-会崩溃，不应再用来启动服务端。Windows 服务端启动后，在 WSL 执行
-`simulation/carla_smoke_test.py`，确认版本一致、车辆和相机生成、同步 tick 20 帧、PNG
-落盘并输出 `SMOKE_TEST_OK` 后，再进入 ORB-SLAM2 / GDR-Net / UWB 接入实验。
+UWB 端到端入口为 `simulation/run_carla_uwb_reproduction.py`。它只运行指定的两个上游
+项目：第一个项目的 Trilateration、Multilateration、Taylor、EKF、UKF，以及第二个项目
+的 UWB-only range graph。实验固定加载 `gz_parts` 中恢复的
+`CustomMaps/sandbox-v29/sandbox-v29` 三维地图；CARLA UAV actor 真值只生成 3D ranges
+和计算指标，不进入算法输入。可视化入口为
+`simulation/visualize_carla_uwb.py`，输出沙盘俯视投影、UAV、四个非共面锚点和六条估计轨迹。

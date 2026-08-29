@@ -8,8 +8,13 @@ from dataclasses import dataclass
 from typing import Any, Callable
 
 from .contracts import AlgorithmResult
-from vision.gdr_net import run_gdr_net
 from uwb.multilateration import run_multilateration
+
+
+def _run_gdr_net_lazy(**inputs):
+    from vision.gdr_net import run_gdr_net
+
+    return run_gdr_net(**inputs)
 
 
 @dataclass(frozen=True)
@@ -51,7 +56,7 @@ for _name, _family, _source in (
 register_algorithm(
     "vision.gdr_net",
     "vision",
-    run_gdr_net,
+    _run_gdr_net_lazy,
     source="THU-DA-6D-Pose-Group/GDR-Net@1be9fe73292fd748087aa88d7bf987434f271ebb",
 )
 register_algorithm("uwb.multilateration", "uwb", run_multilateration, source="project:linearized_least_squares")
@@ -72,6 +77,7 @@ def register_default_algorithms():
         run_ekf,
         run_ukf,
     )
+    from algorithms.uwb.awesome_uwb_localization.graph_range import run_graph_range
 
     register_algorithm(
         "uwb.matlab.trilateration", "uwb", run_trilateration,
@@ -92,6 +98,10 @@ def register_default_algorithms():
     register_algorithm(
         "uwb.matlab.ukf", "uwb", run_ukf,
         source="https://github.com/cliansang/positioning-algorithms-for-uwb-matlab",
+    )
+    register_algorithm(
+        "uwb.awesome_uwb", "uwb", run_graph_range,
+        source="qxiaofan/awesome-uwb-localization@b3cd36e5d78da4daea2f350cfebeb6b8b8378810",
     )
 
 

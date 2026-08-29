@@ -11,9 +11,12 @@ from algorithms import AlgorithmRouter, available_algorithms, register_algorithm
 from algorithms.contracts import AlgorithmResult
 
 
-def test_router_requires_concrete_implementation():
-    with pytest.raises(RuntimeError, match="unavailable"):
-        AlgorithmRouter("uwb.awesome_uwb")
+def test_router_exposes_awesome_uwb_after_default_registration():
+    from algorithms.router import register_default_algorithms
+
+    register_default_algorithms()
+    names = {item.name: item for item in available_algorithms()}
+    assert names["uwb.awesome_uwb"].available is True
 
 
 def test_router_dispatches_registered_runner():
@@ -26,9 +29,9 @@ def test_router_dispatches_registered_runner():
     assert result.algorithm == "test.example"
 
 
-def test_external_algorithm_is_registered_but_not_falsely_available():
+def test_unported_matlab_aggregate_slot_remains_unavailable():
     names = {item.name: item for item in available_algorithms()}
-    assert names["uwb.awesome_uwb"].available is False
+    assert names["uwb.matlab_positioning"].available is False
 
 
 def test_gdr_net_dense_correspondence_runner_recovers_metric_translation():

@@ -129,10 +129,9 @@ def main(argv: list[str] | None = None) -> int:
     client.set_timeout(60.0)
     client_api_version = client.get_client_version()
     server_version = client.get_server_version()
-    # CARLA's released wheel reports its git build id from get_client_version()
-    # (for 0.9.16 this is commonly ``294096eb1-dirty``), while the server
-    # reports the package version.  Compare the wheel metadata to the server,
-    # not those two different representations.
+    # CARLA's client and server expose the build id through their API.  The
+    # wheel metadata is the release number (for example, ``0.9.16``), so it
+    # must not be compared directly with the build id.
     try:
         client_package_version = importlib.metadata.version("carla")
     except importlib.metadata.PackageNotFoundError:
@@ -141,10 +140,10 @@ def main(argv: list[str] | None = None) -> int:
     if client_package_version:
         print("client wheel version:", client_package_version)
     print("server version:", server_version)
-    if client_package_version and client_package_version != server_version:
+    if client_api_version != server_version:
         raise RuntimeError(
             "CARLA client/server version mismatch: "
-            f"client_wheel={client_package_version}, server={server_version}"
+            f"client_api={client_api_version}, server={server_version}"
         )
     print("CARLA versions match:", client_package_version or server_version)
 

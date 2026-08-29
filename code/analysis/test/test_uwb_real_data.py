@@ -39,10 +39,10 @@ def _write_observations(path, rows):
 def _row(frame_seq=1, sample_ns=1_000, receive_ns=1_100, anchor_id="A1",
         range_value="250", stddev="2", point_id="p01", repeat_id="2"):
     positions = {
-        "A1": (0.0, 0.0, 2.0),
-        "A2": (4.0, 0.0, 2.0),
-        "A3": (4.0, 4.0, 2.0),
-        "A4": (0.0, 4.0, 2.0),
+        "A1": (0.0, 0.0, 0.5),
+        "A2": (4.0, 0.0, 4.5),
+        "A3": (4.0, 4.0, 0.5),
+        "A4": (0.0, 4.0, 4.5),
     }
     x, y, z = positions[anchor_id]
     return {
@@ -88,7 +88,7 @@ def test_observation_import_groups_rows_and_converts_units(tmp_path):
     # The normalized schema names this field ``stddev_m``; only the raw
     # range column is converted by the explicit source-unit argument.
     assert frames[0].ranges[0].stddev_m == pytest.approx(2.0)
-    assert frames[0].ranges[0].anchor_position_m == (0.0, 0.0, 2.0)
+    assert frames[0].ranges[0].anchor_position_m == (0.0, 0.0, 0.5)
     assert frames[1].timestamp_ns == 2_000
 
 
@@ -219,10 +219,10 @@ def test_sha256_file_matches_standard_digest(tmp_path):
 
 def test_imported_frame_runs_all_five_algorithms(tmp_path):
     anchors = {
-        "A1": (0.0, 0.0, 2.0),
-        "A2": (4.0, 0.0, 2.0),
-        "A3": (4.0, 4.0, 2.0),
-        "A4": (0.0, 4.0, 2.0),
+        "A1": (0.0, 0.0, 0.5),
+        "A2": (4.0, 0.0, 4.5),
+        "A3": (4.0, 4.0, 0.5),
+        "A4": (0.0, 4.0, 4.5),
     }
     target = np.array([2.0, 2.0, 2.0])
     rows = []
@@ -246,7 +246,7 @@ def test_imported_frame_runs_all_five_algorithms(tmp_path):
         reset_runner_state(runner)
         result = AlgorithmRouter(algorithm).run(observation_frame=frame)
         assert result.valid, f"{algorithm} failed: {result.metadata}"
-        assert result.estimate.shape == (2,)
+        assert result.estimate.shape == (3,)
         assert result.metadata["timestamp_ns"] == frame.timestamp_ns
 
 
@@ -300,10 +300,10 @@ def test_real_data_runner_marks_missing_anchor_frame_invalid(tmp_path):
 @pytest.mark.parametrize("algorithm", ["uwb.matlab.ekf", "uwb.matlab.ukf"])
 def test_filter_state_reset_reproduces_first_frame(algorithm):
     anchors = [
-        Anchor("A1", (0.30, 0.30, 2.20)),
-        Anchor("A2", (3.70, 0.30, 2.20)),
-        Anchor("A3", (3.70, 4.40, 2.20)),
-        Anchor("A4", (0.30, 4.40, 2.20)),
+        Anchor("A1", (0.30, 0.30, 0.50)),
+        Anchor("A2", (3.70, 0.30, 4.50)),
+        Anchor("A3", (3.70, 4.40, 0.50)),
+        Anchor("A4", (0.30, 4.40, 4.50)),
     ]
     frame = simulate_ranges(anchors, [[2.0, 2.35, 1.2]], [1_000])[0]
     register_default_algorithms()
@@ -321,10 +321,10 @@ def test_filter_state_reset_reproduces_first_frame(algorithm):
 @pytest.mark.parametrize("algorithm", ["uwb.matlab.ekf", "uwb.matlab.ukf"])
 def test_filter_state_is_continuous_across_imported_frames(tmp_path, algorithm):
     anchors = {
-        "A1": (0.0, 0.0, 2.0),
-        "A2": (4.0, 0.0, 2.0),
-        "A3": (4.0, 4.0, 2.0),
-        "A4": (0.0, 4.0, 2.0),
+        "A1": (0.0, 0.0, 0.5),
+        "A2": (4.0, 0.0, 4.5),
+        "A3": (4.0, 4.0, 0.5),
+        "A4": (0.0, 4.0, 4.5),
     }
     positions = (np.array([1.0, 1.0, 2.0]), np.array([3.0, 3.0, 2.0]))
     rows = []

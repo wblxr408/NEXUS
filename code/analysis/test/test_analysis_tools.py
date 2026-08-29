@@ -17,6 +17,7 @@ def test_metrics_have_explicit_units_and_count():
     result = position_metrics([[0, 0, 0], [1, 0, 0]], [[0, 0, 0], [0, 0, 0]])
     assert result["samples"] == 2
     assert result["unit"] == "m"
+    assert result["dimension"] == "3D"
     assert result["max_error_m"] == 1.0
 
 

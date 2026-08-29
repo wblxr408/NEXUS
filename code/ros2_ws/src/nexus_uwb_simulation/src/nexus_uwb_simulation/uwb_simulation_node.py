@@ -16,6 +16,7 @@ from nav_msgs.msg import Odometry
 from rclpy.node import Node
 
 from nexus_msgs.msg import TargetObservation  # noqa: F401 (ROS2 runtime only)
+from nexus_uwb_simulation.observation_frame import ObservationFrame
 
 
 def _resolve_analysis_root():
@@ -44,8 +45,10 @@ class UwbSimulationNode(Node):
         self.declare_parameter("odom_topic", "/nexus/gazebo/uav/odom")
         self.declare_parameter("output_topic", "/nexus/uwb/target_observation")
         self.declare_parameter("algorithm", "uwb.matlab.trilateration")
-        self.declare_parameter("sigma_m", 0.0)
-        self.declare_parameter("random_seed", 42)
+        # Negative values mean "use the YAML value"; non-negative launch
+        # parameters intentionally override the file for experiment sweeps.
+        self.declare_parameter("sigma_m", -1.0)
+        self.declare_parameter("random_seed", -1)
         self.declare_parameter("configured_height_m", float("nan"))
 
         config_file = str(self.get_parameter("config_file").value)
@@ -59,10 +62,21 @@ class UwbSimulationNode(Node):
             (entry["id"], tuple(float(v) for v in entry["position_m"]))
             for entry in config.get("anchors", [])
         ]
-        if len(self._anchors) < 3:
-            raise ValueError("at least three anchors are required")
-        self._sigma = float(noise_config.get("sigma_m", 0.0))
-        self._seed = int(noise_config.get("random_seed", 42))
+        if len(self._anchors) < 4:
+            raise ValueError("at least four anchors are required for 3D UWB")
+        anchor_positions = np.asarray([position for _, position in self._anchors], dtype=float)
+        if anchor_positions.shape[1] != 3 or np.linalg.matrix_rank(
+            anchor_positions[1:] - anchor_positions[0]
+        ) < 3:
+            raise ValueError("3D UWB anchors must be non-coplanar")
+        config_sigma = float(noise_config.get("sigma_m", 0.0))
+        parameter_sigma = float(self.get_parameter("sigma_m").value)
+        self._sigma = parameter_sigma if parameter_sigma >= 0.0 else config_sigma
+        if self._sigma < 0.0:
+            raise ValueError("sigma_m must be non-negative")
+        config_seed = int(noise_config.get("random_seed", 42))
+        parameter_seed = int(self.get_parameter("random_seed").value)
+        self._seed = parameter_seed if parameter_seed >= 0 else config_seed
         self._rng = np.random.default_rng(self._seed)
         self._algorithm_name = str(self.get_parameter("algorithm").value)
         self._configured_height = float(self.get_parameter("configured_height_m").value)
@@ -86,19 +100,28 @@ class UwbSimulationNode(Node):
 
     def on_ground_truth(self, message):
         position = message.pose.pose.position
-        gt_xy = np.array([position.x, position.y])
         tag_z = position.z if np.isfinite(position.z) else 0.0
+        gt_xyz = np.array([position.x, position.y, tag_z], dtype=float)
+        timestamp_ns = (
+            int(message.header.stamp.sec) * 1_000_000_000
+            + int(message.header.stamp.nanosec)
+        )
 
         ranges = []
         for anchor_id, anchor_pos in self._anchors:
-            distance_3d = float(np.linalg.norm(np.array(anchor_pos) - [position.x, position.y, tag_z]))
+            distance_3d = float(np.linalg.norm(np.asarray(anchor_pos) - gt_xyz))
             noise = self._rng.normal(0.0, self._sigma) if self._sigma > 0 else 0.0
             ranges.append(max(0.0, distance_3d + noise))
 
-        from .observation_frame import ObservationFrame as _Frame
-        observation_frame = _Frame(ranges, [anchor[1] for anchor in self._anchors])
+        observation_frame = ObservationFrame(
+            ranges,
+            [anchor[1] for anchor in self._anchors],
+            timestamp_ns=timestamp_ns,
+            tag_id="uav_tag",
+            stddev_m=self._sigma,
+        )
         result = self._router.run(observation_frame=observation_frame)
-        self._last_gt = gt_xy
+        self._last_gt = gt_xyz
         self._last_result = result
 
         output = TargetObservation()
@@ -107,16 +130,29 @@ class UwbSimulationNode(Node):
         output.receive_timestamp_ns = self.get_clock().now().nanoseconds
         output.target_id = "uav_tag"
         output.source_mode = TargetObservation.SOURCE_DIRECT_UWB
+        estimate = np.asarray(result.estimate, dtype=float).reshape(-1)
+        valid = bool(result.valid and estimate.size >= 3 and np.all(np.isfinite(estimate[:3])))
         output.validity = (
-            TargetObservation.VALIDITY_VALID if result.valid
+            TargetObservation.VALIDITY_VALID if valid
             else TargetObservation.VALIDITY_INVALID)
+        output.last_valid_sample_timestamp_ns = (
+            timestamp_ns if valid else 0)
         output.unit = "m"
-        if result.valid:
-            output.pose.position.x = float(result.estimate[0])
-            output.pose.position.y = float(result.estimate[1])
-            z = self._configured_height if np.isfinite(self._configured_height) else 0.0
-            output.pose.position.z = z
+        if valid:
+            output.pose.position.x = float(estimate[0])
+            output.pose.position.y = float(estimate[1])
+            output.pose.position.z = float(estimate[2])
             output.pose.orientation.w = 1.0
+            covariance = np.full((6, 6), np.nan, dtype=float)
+            result_covariance = np.asarray(result.covariance, dtype=float)
+            if result_covariance.shape == (3, 3) and np.all(np.isfinite(result_covariance)):
+                covariance[:3, :3] = result_covariance
+            output.covariance = covariance.reshape(-1).tolist()
+            output.confidence = 0.0
+        else:
+            output.invalid_reason = str(
+                result.metadata.get("error", "algorithm_invalid_or_non_3d")
+            )
         self._publisher.publish(output)
 
 
@@ -129,7 +165,8 @@ def main(args=None):
         pass
     finally:
         node.destroy_node()
-        rclpy.shutdown()
+        if rclpy.ok():
+            rclpy.shutdown()
 
 
 if __name__ == "__main__":

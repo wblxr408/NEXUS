@@ -74,6 +74,11 @@ def main(args=None):
         rclpy.spin(node)
     except KeyboardInterrupt:
         pass
+    except RuntimeError:
+        # rclpy Humble can race a SIGINT with subscription conversion after
+        # the context has been shut down. Preserve real callback failures.
+        if rclpy.ok():
+            raise
     finally:
         node.destroy_node()
         if rclpy.ok():

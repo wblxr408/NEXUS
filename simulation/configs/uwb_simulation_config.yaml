@@ -1,10 +1,11 @@
 # Simulation-baseline UWB anchor configuration for the NEXUS sandbox.
 # These positions are geometric assumptions, not measured field values.
 anchors:
-  - {id: A1, position_m: [0.30, 0.30, 2.20]}
-  - {id: A2, position_m: [3.70, 0.30, 2.20]}
-  - {id: A3, position_m: [3.70, 4.40, 2.20]}
-  - {id: A4, position_m: [0.30, 4.40, 2.20]}
+  # Four non-coplanar anchors are required by the active 3D UWB routes.
+  - {id: A1, position_m: [0.30, 0.30, 0.50]}
+  - {id: A2, position_m: [3.70, 0.30, 4.50]}
+  - {id: A3, position_m: [3.70, 4.40, 0.50]}
+  - {id: A4, position_m: [0.30, 4.40, 4.50]}
 
 range_noise:
   distribution: gaussian

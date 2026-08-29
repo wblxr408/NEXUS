@@ -1,0 +1,6675 @@
+{
+  "carla_map": "CustomMaps/sandbox-v29/sandbox-v29",
+  "carla_frame": 903300,
+  "carla_local_origin_world_m": [
+    235.7187042236328,
+    -27.25874900817871,
+    0.5
+  ],
+  "image": "/root/autodl-tmp/NEXUS/outputs/carla_uwb_reproduction/carla_uwb_overhead.png",
+  "image_size": [
+    1600,
+    900
+  ],
+  "camera_height_m": 48.0,
+  "camera_fov_degrees": 90.0,
+  "camera_projection": "top-down pitch=-90 yaw=0; +X down, +Y right",
+  "uav_path_length_m": 9.653393426295057,
+  "uav_altitude_m": 3.0,
+  "tracked_entity": "uav_platform_base_link",
+  "carla_uav_actor": {
+    "blueprint": "static.prop.mobile",
+    "role_name": "nexus_uav",
+    "visual_mesh": "small non-vehicle prop; white UAV marker is overlaid"
+  },
+  "range_model": "euclidean_3d",
+  "dimensions": 3,
+  "anchors": [
+    {
+      "id": "A1",
+      "position_m": [
+        -15.0,
+        -12.0,
+        0.5
+      ]
+    },
+    {
+      "id": "A2",
+      "position_m": [
+        15.0,
+        -12.0,
+        4.5
+      ]
+    },
+    {
+      "id": "A3",
+      "position_m": [
+        15.0,
+        12.0,
+        0.5
+      ]
+    },
+    {
+      "id": "A4",
+      "position_m": [
+        -15.0,
+        12.0,
+        4.5
+      ]
+    }
+  ],
+  "positions_xyz": [
+    [
+      2.8524169921875,
+      5.5180511474609375,
+      3.058412790298462
+    ],
+    [
+      2.992095947265625,
+      5.57475471496582,
+      3.061164140701294
+    ],
+    [
+      3.1313323974609375,
+      5.631099700927734,
+      3.0638909339904785
+    ],
+    [
+      3.2700958251953125,
+      5.687084197998047,
+      3.06659197807312
+    ],
+    [
+      3.408416748046875,
+      5.742706298828125,
+      3.0692665576934814
+    ],
+    [
+      3.5462493896484375,
+      5.7979583740234375,
+      3.071913719177246
+    ],
+    [
+      3.68353271484375,
+      5.85284423828125,
+      3.0745320320129395
+    ],
+    [
+      3.8203125,
+      5.907350540161133,
+      3.077120304107666
+    ],
+    [
+      3.95654296875,
+      5.961479187011719,
+      3.0796775817871094
+    ],
+    [
+      4.09222412109375,
+      6.015228271484375,
+      3.0822036266326904
+    ],
+    [
+      4.2272796630859375,
+      6.068593978881836,
+      3.0846962928771973
+    ],
+    [
+      4.36175537109375,
+      6.1215667724609375,
+      3.087155342102051
+    ],
+    [
+      4.4955902099609375,
+      6.174150466918945,
+      3.0895793437957764
+    ],
+    [
+      4.6287689208984375,
+      6.226337432861328,
+      3.0919673442840576
+    ],
+    [
+      4.76129150390625,
+      6.278129577636719,
+      3.0943188667297363
+    ],
+    [
+      4.89312744140625,
+      6.32951545715332,
+      3.096632719039917
+    ],
+    [
+      5.024261474609375,
+      6.380496978759766,
+      3.098907709121704
+    ],
+    [
+      5.1546478271484375,
+      6.431074142456055,
+      3.1011431217193604
+    ],
+    [
+      5.2843170166015625,
+      6.481235504150391,
+      3.1033382415771484
+    ],
+    [
+      5.4132232666015625,
+      6.530982971191406,
+      3.105491876602173
+    ],
+    [
+      5.541351318359375,
+      6.580312728881836,
+      3.1076033115386963
+    ],
+    [
+      5.668670654296875,
+      6.629220962524414,
+      3.1096718311309814
+    ],
+    [
+      5.7951812744140625,
+      6.677707672119141,
+      3.111696481704712
+    ],
+    [
+      5.92083740234375,
+      6.725763320922852,
+      3.1136763095855713
+    ],
+    [
+      6.045684814453125,
+      6.77338981628418,
+      3.1156108379364014
+    ],
+    [
+      6.1696319580078125,
+      6.820583343505859,
+      3.1174991130828857
+    ],
+    [
+      6.292694091796875,
+      6.867340087890625,
+      3.119340181350708
+    ],
+    [
+      6.4148406982421875,
+      6.913656234741211,
+      3.12113356590271
+    ],
+    [
+      6.53607177734375,
+      6.959531784057617,
+      3.1228785514831543
+    ],
+    [
+      6.6563720703125,
+      7.004961013793945,
+      3.1245744228363037
+    ],
+    [
+      6.7757110595703125,
+      7.0499420166015625,
+      3.126220703125
+    ],
+    [
+      6.8940582275390625,
+      7.094472885131836,
+      3.1278159618377686
+    ],
+    [
+      7.0114288330078125,
+      7.138547897338867,
+      3.1293606758117676
+    ],
+    [
+      7.1277923583984375,
+      7.182167053222656,
+      3.1308531761169434
+    ],
+    [
+      7.24310302734375,
+      7.2253265380859375,
+      3.132293701171875
+    ],
+    [
+      7.3574066162109375,
+      7.268022537231445,
+      3.133681058883667
+    ],
+    [
+      7.4706268310546875,
+      7.31025505065918,
+      3.135014772415161
+    ],
+    [
+      7.5827789306640625,
+      7.352018356323242,
+      3.1362950801849365
+    ],
+    [
+      7.6938323974609375,
+      7.393312454223633,
+      3.1375203132629395
+    ],
+    [
+      7.8037872314453125,
+      7.434131622314453,
+      3.138690710067749
+    ],
+    [
+      7.91259765625,
+      7.474475860595703,
+      3.139805793762207
+    ],
+    [
+      8.020309448242188,
+      7.51434326171875,
+      3.140864849090576
+    ],
+    [
+      8.126815795898438,
+      7.553728103637695,
+      3.1418676376342773
+    ],
+    [
+      8.232192993164062,
+      7.592628479003906,
+      3.1428134441375732
+    ],
+    [
+      8.33636474609375,
+      7.631044387817383,
+      3.143702268600464
+    ],
+    [
+      8.4393310546875,
+      7.668972015380859,
+      3.144533634185791
+    ],
+    [
+      8.541091918945312,
+      7.706409454345703,
+      3.1453073024749756
+    ],
+    [
+      8.641647338867188,
+      7.743354797363281,
+      3.1460227966308594
+    ],
+    [
+      8.740936279296875,
+      7.7798004150390625,
+      3.146679639816284
+    ],
+    [
+      8.838943481445312,
+      7.8157501220703125,
+      3.147278070449829
+    ],
+    [
+      8.935699462890625,
+      7.851200103759766,
+      3.147817373275757
+    ],
+    [
+      9.03118896484375,
+      7.886146545410156,
+      3.1482975482940674
+    ],
+    [
+      9.125350952148438,
+      7.920589447021484,
+      3.14871883392334
+    ],
+    [
+      9.21820068359375,
+      7.954524993896484,
+      3.1490800380706787
+    ],
+    [
+      9.309722900390625,
+      7.987951278686523,
+      3.1493818759918213
+    ],
+    [
+      9.39990234375,
+      8.020868301391602,
+      3.1496243476867676
+    ],
+    [
+      9.488754272460938,
+      8.053268432617188,
+      3.149806499481201
+    ],
+    [
+      9.576217651367188,
+      8.085155487060547,
+      3.1499288082122803
+    ],
+    [
+      9.662307739257812,
+      8.116523742675781,
+      3.149991035461426
+    ],
+    [
+      9.74700927734375,
+      8.14737319946289,
+      3.149993419647217
+    ],
+    [
+      9.830291748046875,
+      8.177701950073242,
+      3.149935722351074
+    ],
+    [
+      9.91217041015625,
+      8.20750617980957,
+      3.1498184204101562
+    ],
+    [
+      9.99261474609375,
+      8.236785888671875,
+      3.1496410369873047
+    ],
+    [
+      10.071640014648438,
+      8.26553726196289,
+      3.1494035720825195
+    ],
+    [
+      10.149200439453125,
+      8.29376220703125,
+      3.14910626411438
+    ],
+    [
+      10.225296020507812,
+      8.321455001831055,
+      3.148749589920044
+    ],
+    [
+      10.2999267578125,
+      8.348613739013672,
+      3.1483333110809326
+    ],
+    [
+      10.373046875,
+      8.375240325927734,
+      3.147857904434204
+    ],
+    [
+      10.4447021484375,
+      8.401330947875977,
+      3.1473228931427
+    ],
+    [
+      10.514862060546875,
+      8.426881790161133,
+      3.1467292308807373
+    ],
+    [
+      10.58349609375,
+      8.451894760131836,
+      3.1460771560668945
+    ],
+    [
+      10.650604248046875,
+      8.47636604309082,
+      3.1453664302825928
+    ],
+    [
+      10.716171264648438,
+      8.500295639038086,
+      3.144597291946411
+    ],
+    [
+      10.78021240234375,
+      8.523679733276367,
+      3.143770694732666
+    ],
+    [
+      10.842681884765625,
+      8.546520233154297,
+      3.142886161804199
+    ],
+    [
+      10.903594970703125,
+      8.56881332397461,
+      3.1419451236724854
+    ],
+    [
+      10.96295166015625,
+      8.590557098388672,
+      3.140946865081787
+    ],
+    [
+      11.020721435546875,
+      8.611751556396484,
+      3.139892101287842
+    ],
+    [
+      11.076889038085938,
+      8.632394790649414,
+      3.1387815475463867
+    ],
+    [
+      11.131484985351562,
+      8.652486801147461,
+      3.13761568069458
+    ],
+    [
+      11.1844482421875,
+      8.67202377319336,
+      3.136394500732422
+    ],
+    [
+      11.23583984375,
+      8.69100570678711,
+      3.1351189613342285
+    ],
+    [
+      11.28558349609375,
+      8.709432601928711,
+      3.133789300918579
+    ],
+    [
+      11.333709716796875,
+      8.727302551269531,
+      3.132405996322632
+    ],
+    [
+      11.380218505859375,
+      8.744609832763672,
+      3.130969762802124
+    ],
+    [
+      11.425079345703125,
+      8.761360168457031,
+      3.129481077194214
+    ],
+    [
+      11.468276977539062,
+      8.777549743652344,
+      3.127941131591797
+    ],
+    [
+      11.509841918945312,
+      8.79317855834961,
+      3.126349449157715
+    ],
+    [
+      11.54974365234375,
+      8.808242797851562,
+      3.1247072219848633
+    ],
+    [
+      11.5880126953125,
+      8.822744369506836,
+      3.1230156421661377
+    ],
+    [
+      11.624588012695312,
+      8.836681365966797,
+      3.12127423286438
+    ],
+    [
+      11.659469604492188,
+      8.850053787231445,
+      3.1194849014282227
+    ],
+    [
+      11.692703247070312,
+      8.862857818603516,
+      3.117647409439087
+    ],
+    [
+      11.7242431640625,
+      8.87509536743164,
+      3.115762948989868
+    ],
+    [
+      11.75408935546875,
+      8.886764526367188,
+      3.1138319969177246
+    ],
+    [
+      11.7822265625,
+      8.897865295410156,
+      3.1118557453155518
+    ],
+    [
+      11.808685302734375,
+      8.908397674560547,
+      3.1098344326019287
+    ],
+    [
+      11.833465576171875,
+      8.918357849121094,
+      3.107769727706909
+    ],
+    [
+      11.856521606445312,
+      8.927749633789062,
+      3.105661630630493
+    ],
+    [
+      11.87786865234375,
+      8.936567306518555,
+      3.103511333465576
+    ]
+  ],
+  "estimate_rows": [
+    {
+      "frame_seq": 0,
+      "sample_timestamp_ns": 2468203734919,
+      "algorithm": "uwb.matlab.trilateration",
+      "valid": 1,
+      "estimate_x_m": 2.883476145165749,
+      "estimate_y_m": 5.473268608279911,
+      "estimate_z_m": 3.19868562207649,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 1,
+      "sample_timestamp_ns": 2468303734920,
+      "algorithm": "uwb.matlab.trilateration",
+      "valid": 1,
+      "estimate_x_m": 2.9676626465201092,
+      "estimate_y_m": 5.49904295296523,
+      "estimate_z_m": 2.975769136355796,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 2,
+      "sample_timestamp_ns": 2468403734922,
+      "algorithm": "uwb.matlab.trilateration",
+      "valid": 1,
+      "estimate_x_m": 3.1485434669122503,
+      "estimate_y_m": 5.583535524022571,
+      "estimate_z_m": 3.15638835268981,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 3,
+      "sample_timestamp_ns": 2468503734923,
+      "algorithm": "uwb.matlab.trilateration",
+      "valid": 1,
+      "estimate_x_m": 3.232339931699183,
+      "estimate_y_m": 5.724570993553595,
+      "estimate_z_m": 3.0707337969280997,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 4,
+      "sample_timestamp_ns": 2468603734925,
+      "algorithm": "uwb.matlab.trilateration",
+      "valid": 1,
+      "estimate_x_m": 3.422618470014279,
+      "estimate_y_m": 5.720099756374966,
+      "estimate_z_m": 3.335555963200288,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 5,
+      "sample_timestamp_ns": 2468703734926,
+      "algorithm": "uwb.matlab.trilateration",
+      "valid": 1,
+      "estimate_x_m": 3.5382163545045042,
+      "estimate_y_m": 5.764159512733781,
+      "estimate_z_m": 3.2528905700194564,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 6,
+      "sample_timestamp_ns": 2468803734928,
+      "algorithm": "uwb.matlab.trilateration",
+      "valid": 1,
+      "estimate_x_m": 3.68065778684786,
+      "estimate_y_m": 5.818694314673822,
+      "estimate_z_m": 3.0503189666118025,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 7,
+      "sample_timestamp_ns": 2468903734929,
+      "algorithm": "uwb.matlab.trilateration",
+      "valid": 1,
+      "estimate_x_m": 3.791701889111523,
+      "estimate_y_m": 5.907371630157172,
+      "estimate_z_m": 3.3124354451104914,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 8,
+      "sample_timestamp_ns": 2469003734931,
+      "algorithm": "uwb.matlab.trilateration",
+      "valid": 1,
+      "estimate_x_m": 3.971852513930683,
+      "estimate_y_m": 5.897843900872088,
+      "estimate_z_m": 3.01167031975603,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 9,
+      "sample_timestamp_ns": 2469103734932,
+      "algorithm": "uwb.matlab.trilateration",
+      "valid": 1,
+      "estimate_x_m": 4.124083287651801,
+      "estimate_y_m": 5.990934230003807,
+      "estimate_z_m": 3.027146832323658,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 10,
+      "sample_timestamp_ns": 2469203734934,
+      "algorithm": "uwb.matlab.trilateration",
+      "valid": 1,
+      "estimate_x_m": 4.2450258869525435,
+      "estimate_y_m": 6.104891056624097,
+      "estimate_z_m": 3.0548396516620486,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 11,
+      "sample_timestamp_ns": 2469303734935,
+      "algorithm": "uwb.matlab.trilateration",
+      "valid": 1,
+      "estimate_x_m": 4.355248004775351,
+      "estimate_y_m": 6.11357915350479,
+      "estimate_z_m": 3.1172416265017255,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 12,
+      "sample_timestamp_ns": 2469403734937,
+      "algorithm": "uwb.matlab.trilateration",
+      "valid": 1,
+      "estimate_x_m": 4.517341064782004,
+      "estimate_y_m": 6.177455721072507,
+      "estimate_z_m": 3.136071146468288,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 13,
+      "sample_timestamp_ns": 2469503734938,
+      "algorithm": "uwb.matlab.trilateration",
+      "valid": 1,
+      "estimate_x_m": 4.595579483849637,
+      "estimate_y_m": 6.198134258885106,
+      "estimate_z_m": 2.935333738628547,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 14,
+      "sample_timestamp_ns": 2469603734940,
+      "algorithm": "uwb.matlab.trilateration",
+      "valid": 1,
+      "estimate_x_m": 4.754197833792706,
+      "estimate_y_m": 6.293128529377118,
+      "estimate_z_m": 2.6614616090612313,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 15,
+      "sample_timestamp_ns": 2469703734941,
+      "algorithm": "uwb.matlab.trilateration",
+      "valid": 1,
+      "estimate_x_m": 4.869453689301861,
+      "estimate_y_m": 6.259953891416565,
+      "estimate_z_m": 2.791214316747664,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 16,
+      "sample_timestamp_ns": 2469803734943,
+      "algorithm": "uwb.matlab.trilateration",
+      "valid": 1,
+      "estimate_x_m": 5.0219676459103475,
+      "estimate_y_m": 6.432372713727701,
+      "estimate_z_m": 3.150967296574707,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 17,
+      "sample_timestamp_ns": 2469903734944,
+      "algorithm": "uwb.matlab.trilateration",
+      "valid": 1,
+      "estimate_x_m": 5.170156363910563,
+      "estimate_y_m": 6.491527016372467,
+      "estimate_z_m": 3.32936011609461,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 18,
+      "sample_timestamp_ns": 2470003734946,
+      "algorithm": "uwb.matlab.trilateration",
+      "valid": 1,
+      "estimate_x_m": 5.2653102226268595,
+      "estimate_y_m": 6.448832719148082,
+      "estimate_z_m": 2.799230797402199,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 19,
+      "sample_timestamp_ns": 2470103734947,
+      "algorithm": "uwb.matlab.trilateration",
+      "valid": 1,
+      "estimate_x_m": 5.3892261709509555,
+      "estimate_y_m": 6.5215388104011405,
+      "estimate_z_m": 3.09618277804347,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 20,
+      "sample_timestamp_ns": 2470203734949,
+      "algorithm": "uwb.matlab.trilateration",
+      "valid": 1,
+      "estimate_x_m": 5.560081314370777,
+      "estimate_y_m": 6.591856510184758,
+      "estimate_z_m": 3.298795579960301,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 21,
+      "sample_timestamp_ns": 2470303734950,
+      "algorithm": "uwb.matlab.trilateration",
+      "valid": 1,
+      "estimate_x_m": 5.636922708799029,
+      "estimate_y_m": 6.610176587842827,
+      "estimate_z_m": 2.803286409119333,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 22,
+      "sample_timestamp_ns": 2470403734952,
+      "algorithm": "uwb.matlab.trilateration",
+      "valid": 1,
+      "estimate_x_m": 5.790817865969163,
+      "estimate_y_m": 6.696090558528512,
+      "estimate_z_m": 3.1966516076375275,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 23,
+      "sample_timestamp_ns": 2470503734953,
+      "algorithm": "uwb.matlab.trilateration",
+      "valid": 1,
+      "estimate_x_m": 5.901406405232725,
+      "estimate_y_m": 6.763082055970112,
+      "estimate_z_m": 3.1310403575517975,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 24,
+      "sample_timestamp_ns": 2470603734955,
+      "algorithm": "uwb.matlab.trilateration",
+      "valid": 1,
+      "estimate_x_m": 6.011860185174047,
+      "estimate_y_m": 6.728799624043661,
+      "estimate_z_m": 3.161095126097883,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 25,
+      "sample_timestamp_ns": 2470703734956,
+      "algorithm": "uwb.matlab.trilateration",
+      "valid": 1,
+      "estimate_x_m": 6.154644454560942,
+      "estimate_y_m": 6.824749798760672,
+      "estimate_z_m": 2.7565845027231037,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 26,
+      "sample_timestamp_ns": 2470803734958,
+      "algorithm": "uwb.matlab.trilateration",
+      "valid": 1,
+      "estimate_x_m": 6.276098664804006,
+      "estimate_y_m": 6.853179735523418,
+      "estimate_z_m": 2.9641318669203556,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 27,
+      "sample_timestamp_ns": 2470903734959,
+      "algorithm": "uwb.matlab.trilateration",
+      "valid": 1,
+      "estimate_x_m": 6.465480043558926,
+      "estimate_y_m": 6.891274594653135,
+      "estimate_z_m": 3.491458833047598,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 28,
+      "sample_timestamp_ns": 2471003734961,
+      "algorithm": "uwb.matlab.trilateration",
+      "valid": 1,
+      "estimate_x_m": 6.5364599004578,
+      "estimate_y_m": 6.921868688808518,
+      "estimate_z_m": 3.281570256319674,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 29,
+      "sample_timestamp_ns": 2471103734962,
+      "algorithm": "uwb.matlab.trilateration",
+      "valid": 1,
+      "estimate_x_m": 6.643665558532314,
+      "estimate_y_m": 7.001125750259044,
+      "estimate_z_m": 3.298356195359647,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 30,
+      "sample_timestamp_ns": 2471203734964,
+      "algorithm": "uwb.matlab.trilateration",
+      "valid": 1,
+      "estimate_x_m": 6.771401695768802,
+      "estimate_y_m": 6.988873845298863,
+      "estimate_z_m": 2.74058373033107,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 31,
+      "sample_timestamp_ns": 2471303734965,
+      "algorithm": "uwb.matlab.trilateration",
+      "valid": 1,
+      "estimate_x_m": 6.873914029150806,
+      "estimate_y_m": 7.140352789650856,
+      "estimate_z_m": 3.4908338006321973,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 32,
+      "sample_timestamp_ns": 2471403734967,
+      "algorithm": "uwb.matlab.trilateration",
+      "valid": 1,
+      "estimate_x_m": 6.989137643258632,
+      "estimate_y_m": 7.135280636791135,
+      "estimate_z_m": 3.3029288644097505,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 33,
+      "sample_timestamp_ns": 2471503734968,
+      "algorithm": "uwb.matlab.trilateration",
+      "valid": 1,
+      "estimate_x_m": 7.139748953271535,
+      "estimate_y_m": 7.235443435186387,
+      "estimate_z_m": 3.3324503025014223,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 34,
+      "sample_timestamp_ns": 2471603734970,
+      "algorithm": "uwb.matlab.trilateration",
+      "valid": 1,
+      "estimate_x_m": 7.275949973028863,
+      "estimate_y_m": 7.163903921428424,
+      "estimate_z_m": 2.7837663513076225,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 35,
+      "sample_timestamp_ns": 2471703734971,
+      "algorithm": "uwb.matlab.trilateration",
+      "valid": 1,
+      "estimate_x_m": 7.406409152597855,
+      "estimate_y_m": 7.273729455967222,
+      "estimate_z_m": 3.1763566651788846,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 36,
+      "sample_timestamp_ns": 2471803734973,
+      "algorithm": "uwb.matlab.trilateration",
+      "valid": 1,
+      "estimate_x_m": 7.459690569507956,
+      "estimate_y_m": 7.285363693579264,
+      "estimate_z_m": 3.022771917442074,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 37,
+      "sample_timestamp_ns": 2471903734974,
+      "algorithm": "uwb.matlab.trilateration",
+      "valid": 1,
+      "estimate_x_m": 7.587903298942978,
+      "estimate_y_m": 7.414997868781485,
+      "estimate_z_m": 3.4552721866376173,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 38,
+      "sample_timestamp_ns": 2472003734976,
+      "algorithm": "uwb.matlab.trilateration",
+      "valid": 1,
+      "estimate_x_m": 7.6951254041088575,
+      "estimate_y_m": 7.288298779035974,
+      "estimate_z_m": 2.6275434239892235,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 39,
+      "sample_timestamp_ns": 2472103734977,
+      "algorithm": "uwb.matlab.trilateration",
+      "valid": 1,
+      "estimate_x_m": 7.770756778677418,
+      "estimate_y_m": 7.492851064169616,
+      "estimate_z_m": 3.179978481821157,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 40,
+      "sample_timestamp_ns": 2472203734979,
+      "algorithm": "uwb.matlab.trilateration",
+      "valid": 1,
+      "estimate_x_m": 7.869153219691512,
+      "estimate_y_m": 7.428817217571844,
+      "estimate_z_m": 3.289874374881736,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 41,
+      "sample_timestamp_ns": 2472303734980,
+      "algorithm": "uwb.matlab.trilateration",
+      "valid": 1,
+      "estimate_x_m": 8.057864425489239,
+      "estimate_y_m": 7.503411584866462,
+      "estimate_z_m": 3.411098003689363,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 42,
+      "sample_timestamp_ns": 2472403734982,
+      "algorithm": "uwb.matlab.trilateration",
+      "valid": 1,
+      "estimate_x_m": 8.137011274435267,
+      "estimate_y_m": 7.542776158536623,
+      "estimate_z_m": 3.016469205083934,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 43,
+      "sample_timestamp_ns": 2472503734983,
+      "algorithm": "uwb.matlab.trilateration",
+      "valid": 1,
+      "estimate_x_m": 8.25423879288554,
+      "estimate_y_m": 7.558705542063895,
+      "estimate_z_m": 3.1218144346832344,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 44,
+      "sample_timestamp_ns": 2472603734984,
+      "algorithm": "uwb.matlab.trilateration",
+      "valid": 1,
+      "estimate_x_m": 8.380421472432557,
+      "estimate_y_m": 7.67887656395403,
+      "estimate_z_m": 3.376692852603347,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 45,
+      "sample_timestamp_ns": 2472703734986,
+      "algorithm": "uwb.matlab.trilateration",
+      "valid": 1,
+      "estimate_x_m": 8.493864899033932,
+      "estimate_y_m": 7.691549398733449,
+      "estimate_z_m": 3.1804511324004805,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 46,
+      "sample_timestamp_ns": 2472803734987,
+      "algorithm": "uwb.matlab.trilateration",
+      "valid": 1,
+      "estimate_x_m": 8.49978243093859,
+      "estimate_y_m": 7.782450655374275,
+      "estimate_z_m": 3.220644182040899,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 47,
+      "sample_timestamp_ns": 2472903734989,
+      "algorithm": "uwb.matlab.trilateration",
+      "valid": 1,
+      "estimate_x_m": 8.56249562572352,
+      "estimate_y_m": 7.725046207614765,
+      "estimate_z_m": 2.781733703952069,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 48,
+      "sample_timestamp_ns": 2473003734990,
+      "algorithm": "uwb.matlab.trilateration",
+      "valid": 1,
+      "estimate_x_m": 8.695034853445291,
+      "estimate_y_m": 7.8308116501339535,
+      "estimate_z_m": 2.9619626404007793,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 49,
+      "sample_timestamp_ns": 2473103734992,
+      "algorithm": "uwb.matlab.trilateration",
+      "valid": 1,
+      "estimate_x_m": 8.859199200769034,
+      "estimate_y_m": 7.832234897514971,
+      "estimate_z_m": 3.348207113478206,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 50,
+      "sample_timestamp_ns": 2473203734993,
+      "algorithm": "uwb.matlab.trilateration",
+      "valid": 1,
+      "estimate_x_m": 8.932517566639204,
+      "estimate_y_m": 7.875657694971769,
+      "estimate_z_m": 2.936830215012028,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 51,
+      "sample_timestamp_ns": 2473303734995,
+      "algorithm": "uwb.matlab.trilateration",
+      "valid": 1,
+      "estimate_x_m": 8.959276549999746,
+      "estimate_y_m": 7.856069551454938,
+      "estimate_z_m": 2.899379599779193,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 52,
+      "sample_timestamp_ns": 2473403734996,
+      "algorithm": "uwb.matlab.trilateration",
+      "valid": 1,
+      "estimate_x_m": 9.07529413600242,
+      "estimate_y_m": 7.911160504672589,
+      "estimate_z_m": 3.2666155779161627,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 53,
+      "sample_timestamp_ns": 2473503734998,
+      "algorithm": "uwb.matlab.trilateration",
+      "valid": 1,
+      "estimate_x_m": 9.250025494112002,
+      "estimate_y_m": 7.921893530952733,
+      "estimate_z_m": 3.0483789234524012,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 54,
+      "sample_timestamp_ns": 2473603734999,
+      "algorithm": "uwb.matlab.trilateration",
+      "valid": 1,
+      "estimate_x_m": 9.28730209917897,
+      "estimate_y_m": 8.053796139665971,
+      "estimate_z_m": 3.181354284313899,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 55,
+      "sample_timestamp_ns": 2473703735001,
+      "algorithm": "uwb.matlab.trilateration",
+      "valid": 1,
+      "estimate_x_m": 9.366350224276276,
+      "estimate_y_m": 8.045329189349538,
+      "estimate_z_m": 3.249482986999976,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 56,
+      "sample_timestamp_ns": 2473803735002,
+      "algorithm": "uwb.matlab.trilateration",
+      "valid": 1,
+      "estimate_x_m": 9.510710296653437,
+      "estimate_y_m": 7.993309436826642,
+      "estimate_z_m": 2.961594650745749,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 57,
+      "sample_timestamp_ns": 2473903735004,
+      "algorithm": "uwb.matlab.trilateration",
+      "valid": 1,
+      "estimate_x_m": 9.555046116302364,
+      "estimate_y_m": 8.076865788286222,
+      "estimate_z_m": 3.04411226436962,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 58,
+      "sample_timestamp_ns": 2474003735005,
+      "algorithm": "uwb.matlab.trilateration",
+      "valid": 1,
+      "estimate_x_m": 9.640410775443739,
+      "estimate_y_m": 8.175675005381414,
+      "estimate_z_m": 3.1254140798370877,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 59,
+      "sample_timestamp_ns": 2474103735007,
+      "algorithm": "uwb.matlab.trilateration",
+      "valid": 1,
+      "estimate_x_m": 9.687776995287049,
+      "estimate_y_m": 8.093913686835227,
+      "estimate_z_m": 2.778609618568912,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 60,
+      "sample_timestamp_ns": 2474203735008,
+      "algorithm": "uwb.matlab.trilateration",
+      "valid": 1,
+      "estimate_x_m": 9.787896477127031,
+      "estimate_y_m": 8.197391764668195,
+      "estimate_z_m": 3.1408414212118636,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 61,
+      "sample_timestamp_ns": 2474303735010,
+      "algorithm": "uwb.matlab.trilateration",
+      "valid": 1,
+      "estimate_x_m": 10.036704450067566,
+      "estimate_y_m": 8.210503235988146,
+      "estimate_z_m": 3.409426168623694,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 62,
+      "sample_timestamp_ns": 2474403735011,
+      "algorithm": "uwb.matlab.trilateration",
+      "valid": 1,
+      "estimate_x_m": 10.100564135866428,
+      "estimate_y_m": 8.302788346962945,
+      "estimate_z_m": 3.8198993891165256,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 63,
+      "sample_timestamp_ns": 2474503735013,
+      "algorithm": "uwb.matlab.trilateration",
+      "valid": 1,
+      "estimate_x_m": 10.153297218971254,
+      "estimate_y_m": 8.28355034964333,
+      "estimate_z_m": 3.4943862481775514,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 64,
+      "sample_timestamp_ns": 2474603735014,
+      "algorithm": "uwb.matlab.trilateration",
+      "valid": 1,
+      "estimate_x_m": 10.139117382681597,
+      "estimate_y_m": 8.337598981517019,
+      "estimate_z_m": 3.4992702260679867,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 65,
+      "sample_timestamp_ns": 2474703735016,
+      "algorithm": "uwb.matlab.trilateration",
+      "valid": 1,
+      "estimate_x_m": 10.210406658491227,
+      "estimate_y_m": 8.320755714748366,
+      "estimate_z_m": 3.233310763537552,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 66,
+      "sample_timestamp_ns": 2474803735017,
+      "algorithm": "uwb.matlab.trilateration",
+      "valid": 1,
+      "estimate_x_m": 10.301710515518728,
+      "estimate_y_m": 8.376286239331474,
+      "estimate_z_m": 3.061784670090224,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 67,
+      "sample_timestamp_ns": 2474903735019,
+      "algorithm": "uwb.matlab.trilateration",
+      "valid": 1,
+      "estimate_x_m": 10.3851286188559,
+      "estimate_y_m": 8.373417563709806,
+      "estimate_z_m": 3.0789169408401182,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 68,
+      "sample_timestamp_ns": 2475003735020,
+      "algorithm": "uwb.matlab.trilateration",
+      "valid": 1,
+      "estimate_x_m": 10.405279893395223,
+      "estimate_y_m": 8.422934637428845,
+      "estimate_z_m": 2.8537511314402533,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 69,
+      "sample_timestamp_ns": 2475103735022,
+      "algorithm": "uwb.matlab.trilateration",
+      "valid": 1,
+      "estimate_x_m": 10.512776282793483,
+      "estimate_y_m": 8.361644134539949,
+      "estimate_z_m": 3.1408103475050346,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 70,
+      "sample_timestamp_ns": 2475203735023,
+      "algorithm": "uwb.matlab.trilateration",
+      "valid": 1,
+      "estimate_x_m": 10.632016014357404,
+      "estimate_y_m": 8.412000906874285,
+      "estimate_z_m": 3.4357551798349313,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 71,
+      "sample_timestamp_ns": 2475303735025,
+      "algorithm": "uwb.matlab.trilateration",
+      "valid": 1,
+      "estimate_x_m": 10.628169594083344,
+      "estimate_y_m": 8.424893599776425,
+      "estimate_z_m": 2.9805327657843073,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 72,
+      "sample_timestamp_ns": 2475403735026,
+      "algorithm": "uwb.matlab.trilateration",
+      "valid": 1,
+      "estimate_x_m": 10.714540279343009,
+      "estimate_y_m": 8.485471288881373,
+      "estimate_z_m": 3.063504517772898,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 73,
+      "sample_timestamp_ns": 2475503735028,
+      "algorithm": "uwb.matlab.trilateration",
+      "valid": 1,
+      "estimate_x_m": 10.870596926569304,
+      "estimate_y_m": 8.51514839419595,
+      "estimate_z_m": 3.746208262279106,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 74,
+      "sample_timestamp_ns": 2475603735029,
+      "algorithm": "uwb.matlab.trilateration",
+      "valid": 1,
+      "estimate_x_m": 10.873242350552637,
+      "estimate_y_m": 8.550605882565687,
+      "estimate_z_m": 3.1338704268914905,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 75,
+      "sample_timestamp_ns": 2475703735031,
+      "algorithm": "uwb.matlab.trilateration",
+      "valid": 1,
+      "estimate_x_m": 10.966768669593614,
+      "estimate_y_m": 8.59864574933815,
+      "estimate_z_m": 3.7877620255597795,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 76,
+      "sample_timestamp_ns": 2475803735032,
+      "algorithm": "uwb.matlab.trilateration",
+      "valid": 1,
+      "estimate_x_m": 11.009765387307453,
+      "estimate_y_m": 8.531903499962043,
+      "estimate_z_m": 3.0407522643257696,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 77,
+      "sample_timestamp_ns": 2475903735034,
+      "algorithm": "uwb.matlab.trilateration",
+      "valid": 1,
+      "estimate_x_m": 11.010311224338512,
+      "estimate_y_m": 8.650768952026466,
+      "estimate_z_m": 3.0041480329467865,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 78,
+      "sample_timestamp_ns": 2476003735035,
+      "algorithm": "uwb.matlab.trilateration",
+      "valid": 1,
+      "estimate_x_m": 11.107200998846983,
+      "estimate_y_m": 8.705805652765294,
+      "estimate_z_m": 3.5239898745652507,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 79,
+      "sample_timestamp_ns": 2476103735037,
+      "algorithm": "uwb.matlab.trilateration",
+      "valid": 1,
+      "estimate_x_m": 11.114923915598787,
+      "estimate_y_m": 8.665903280763722,
+      "estimate_z_m": 3.473025842471541,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 80,
+      "sample_timestamp_ns": 2476203735038,
+      "algorithm": "uwb.matlab.trilateration",
+      "valid": 1,
+      "estimate_x_m": 11.220574568389269,
+      "estimate_y_m": 8.667442079717395,
+      "estimate_z_m": 3.243095946836075,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 81,
+      "sample_timestamp_ns": 2476303735040,
+      "algorithm": "uwb.matlab.trilateration",
+      "valid": 1,
+      "estimate_x_m": 11.279804710313218,
+      "estimate_y_m": 8.781768154997698,
+      "estimate_z_m": 3.3765189075708752,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 82,
+      "sample_timestamp_ns": 2476403735041,
+      "algorithm": "uwb.matlab.trilateration",
+      "valid": 1,
+      "estimate_x_m": 11.268907249869338,
+      "estimate_y_m": 8.630582791739643,
+      "estimate_z_m": 2.904039639965279,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 83,
+      "sample_timestamp_ns": 2476503735043,
+      "algorithm": "uwb.matlab.trilateration",
+      "valid": 1,
+      "estimate_x_m": 11.304878586469227,
+      "estimate_y_m": 8.714038111122568,
+      "estimate_z_m": 3.3220678920583624,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 84,
+      "sample_timestamp_ns": 2476603735044,
+      "algorithm": "uwb.matlab.trilateration",
+      "valid": 1,
+      "estimate_x_m": 11.364066396739899,
+      "estimate_y_m": 8.704367254000505,
+      "estimate_z_m": 2.8875137863376494,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 85,
+      "sample_timestamp_ns": 2476703735046,
+      "algorithm": "uwb.matlab.trilateration",
+      "valid": 1,
+      "estimate_x_m": 11.364337944788014,
+      "estimate_y_m": 8.675829542004784,
+      "estimate_z_m": 2.540896603054686,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 86,
+      "sample_timestamp_ns": 2476803735047,
+      "algorithm": "uwb.matlab.trilateration",
+      "valid": 1,
+      "estimate_x_m": 11.56584881832979,
+      "estimate_y_m": 8.776066869499006,
+      "estimate_z_m": 3.6222123037114713,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 87,
+      "sample_timestamp_ns": 2476903735049,
+      "algorithm": "uwb.matlab.trilateration",
+      "valid": 1,
+      "estimate_x_m": 11.456533348994242,
+      "estimate_y_m": 8.744428692797467,
+      "estimate_z_m": 2.468350086748161,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 88,
+      "sample_timestamp_ns": 2477003735050,
+      "algorithm": "uwb.matlab.trilateration",
+      "valid": 1,
+      "estimate_x_m": 11.519685241522527,
+      "estimate_y_m": 8.793545275478312,
+      "estimate_z_m": 2.893563667766927,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 89,
+      "sample_timestamp_ns": 2477103735052,
+      "algorithm": "uwb.matlab.trilateration",
+      "valid": 1,
+      "estimate_x_m": 11.59040242311684,
+      "estimate_y_m": 8.845884442399543,
+      "estimate_z_m": 3.132879511256935,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 90,
+      "sample_timestamp_ns": 2477203735053,
+      "algorithm": "uwb.matlab.trilateration",
+      "valid": 1,
+      "estimate_x_m": 11.58540707653819,
+      "estimate_y_m": 8.863756262334764,
+      "estimate_z_m": 3.249066058794196,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 91,
+      "sample_timestamp_ns": 2477303735055,
+      "algorithm": "uwb.matlab.trilateration",
+      "valid": 1,
+      "estimate_x_m": 11.61462312627144,
+      "estimate_y_m": 8.90543216644503,
+      "estimate_z_m": 3.010244170006487,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 92,
+      "sample_timestamp_ns": 2477403735056,
+      "algorithm": "uwb.matlab.trilateration",
+      "valid": 1,
+      "estimate_x_m": 11.713313300541836,
+      "estimate_y_m": 8.851293658941003,
+      "estimate_z_m": 2.8253602273469327,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 93,
+      "sample_timestamp_ns": 2477503735058,
+      "algorithm": "uwb.matlab.trilateration",
+      "valid": 1,
+      "estimate_x_m": 11.78362431121487,
+      "estimate_y_m": 8.855565769491658,
+      "estimate_z_m": 2.811847127165491,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 94,
+      "sample_timestamp_ns": 2477603735059,
+      "algorithm": "uwb.matlab.trilateration",
+      "valid": 1,
+      "estimate_x_m": 11.766262928626372,
+      "estimate_y_m": 8.839479450784193,
+      "estimate_z_m": 3.4644916526512683,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 95,
+      "sample_timestamp_ns": 2477703735060,
+      "algorithm": "uwb.matlab.trilateration",
+      "valid": 1,
+      "estimate_x_m": 11.740862305916634,
+      "estimate_y_m": 8.97437530846552,
+      "estimate_z_m": 3.120638562059601,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 96,
+      "sample_timestamp_ns": 2477803735062,
+      "algorithm": "uwb.matlab.trilateration",
+      "valid": 1,
+      "estimate_x_m": 11.787170112177751,
+      "estimate_y_m": 8.816944438380485,
+      "estimate_z_m": 2.7997048203500072,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 97,
+      "sample_timestamp_ns": 2477903735063,
+      "algorithm": "uwb.matlab.trilateration",
+      "valid": 1,
+      "estimate_x_m": 11.877234425788386,
+      "estimate_y_m": 8.907705841851673,
+      "estimate_z_m": 3.271172331632852,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 98,
+      "sample_timestamp_ns": 2478003735065,
+      "algorithm": "uwb.matlab.trilateration",
+      "valid": 1,
+      "estimate_x_m": 11.83509728809231,
+      "estimate_y_m": 8.913481258707463,
+      "estimate_z_m": 2.9431891180529517,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 99,
+      "sample_timestamp_ns": 2478103735066,
+      "algorithm": "uwb.matlab.trilateration",
+      "valid": 1,
+      "estimate_x_m": 11.877321076405014,
+      "estimate_y_m": 8.985756864622603,
+      "estimate_z_m": 3.3716656654921895,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 0,
+      "sample_timestamp_ns": 2468203734919,
+      "algorithm": "uwb.matlab.multilateration",
+      "valid": 1,
+      "estimate_x_m": 2.88347614516575,
+      "estimate_y_m": 5.473268608279917,
+      "estimate_z_m": 3.198685622076483,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 1,
+      "sample_timestamp_ns": 2468303734920,
+      "algorithm": "uwb.matlab.multilateration",
+      "valid": 1,
+      "estimate_x_m": 2.96766264652011,
+      "estimate_y_m": 5.499042952965234,
+      "estimate_z_m": 2.9757691363557917,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 2,
+      "sample_timestamp_ns": 2468403734922,
+      "algorithm": "uwb.matlab.multilateration",
+      "valid": 1,
+      "estimate_x_m": 3.148543466912251,
+      "estimate_y_m": 5.583535524022575,
+      "estimate_z_m": 3.1563883526898002,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 3,
+      "sample_timestamp_ns": 2468503734923,
+      "algorithm": "uwb.matlab.multilateration",
+      "valid": 1,
+      "estimate_x_m": 3.2323399316991828,
+      "estimate_y_m": 5.724570993553598,
+      "estimate_z_m": 3.070733796928099,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 4,
+      "sample_timestamp_ns": 2468603734925,
+      "algorithm": "uwb.matlab.multilateration",
+      "valid": 1,
+      "estimate_x_m": 3.4226184700142808,
+      "estimate_y_m": 5.720099756374972,
+      "estimate_z_m": 3.3355559632002763,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 5,
+      "sample_timestamp_ns": 2468703734926,
+      "algorithm": "uwb.matlab.multilateration",
+      "valid": 1,
+      "estimate_x_m": 3.538216354504505,
+      "estimate_y_m": 5.764159512733784,
+      "estimate_z_m": 3.2528905700194657,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 6,
+      "sample_timestamp_ns": 2468803734928,
+      "algorithm": "uwb.matlab.multilateration",
+      "valid": 1,
+      "estimate_x_m": 3.6806577868478607,
+      "estimate_y_m": 5.818694314673825,
+      "estimate_z_m": 3.050318966611798,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 7,
+      "sample_timestamp_ns": 2468903734929,
+      "algorithm": "uwb.matlab.multilateration",
+      "valid": 1,
+      "estimate_x_m": 3.7917018891115246,
+      "estimate_y_m": 5.907371630157177,
+      "estimate_z_m": 3.3124354451104883,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 8,
+      "sample_timestamp_ns": 2469003734931,
+      "algorithm": "uwb.matlab.multilateration",
+      "valid": 1,
+      "estimate_x_m": 3.971852513930682,
+      "estimate_y_m": 5.897843900872092,
+      "estimate_z_m": 3.0116703197560195,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 9,
+      "sample_timestamp_ns": 2469103734932,
+      "algorithm": "uwb.matlab.multilateration",
+      "valid": 1,
+      "estimate_x_m": 4.124083287651802,
+      "estimate_y_m": 5.990934230003811,
+      "estimate_z_m": 3.0271468323236608,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 10,
+      "sample_timestamp_ns": 2469203734934,
+      "algorithm": "uwb.matlab.multilateration",
+      "valid": 1,
+      "estimate_x_m": 4.245025886952545,
+      "estimate_y_m": 6.1048910566241,
+      "estimate_z_m": 3.0548396516620433,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 11,
+      "sample_timestamp_ns": 2469303734935,
+      "algorithm": "uwb.matlab.multilateration",
+      "valid": 1,
+      "estimate_x_m": 4.355248004775353,
+      "estimate_y_m": 6.113579153504794,
+      "estimate_z_m": 3.1172416265017238,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 12,
+      "sample_timestamp_ns": 2469403734937,
+      "algorithm": "uwb.matlab.multilateration",
+      "valid": 1,
+      "estimate_x_m": 4.517341064782008,
+      "estimate_y_m": 6.17745572107251,
+      "estimate_z_m": 3.136071146468292,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 13,
+      "sample_timestamp_ns": 2469503734938,
+      "algorithm": "uwb.matlab.multilateration",
+      "valid": 1,
+      "estimate_x_m": 4.59557948384964,
+      "estimate_y_m": 6.1981342588851085,
+      "estimate_z_m": 2.9353337386285494,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 14,
+      "sample_timestamp_ns": 2469603734940,
+      "algorithm": "uwb.matlab.multilateration",
+      "valid": 1,
+      "estimate_x_m": 4.75419783379271,
+      "estimate_y_m": 6.293128529377124,
+      "estimate_z_m": 2.66146160906123,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 15,
+      "sample_timestamp_ns": 2469703734941,
+      "algorithm": "uwb.matlab.multilateration",
+      "valid": 1,
+      "estimate_x_m": 4.869453689301864,
+      "estimate_y_m": 6.259953891416568,
+      "estimate_z_m": 2.7912143167476655,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 16,
+      "sample_timestamp_ns": 2469803734943,
+      "algorithm": "uwb.matlab.multilateration",
+      "valid": 1,
+      "estimate_x_m": 5.021967645910349,
+      "estimate_y_m": 6.432372713727706,
+      "estimate_z_m": 3.1509672965746938,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 17,
+      "sample_timestamp_ns": 2469903734944,
+      "algorithm": "uwb.matlab.multilateration",
+      "valid": 1,
+      "estimate_x_m": 5.170156363910566,
+      "estimate_y_m": 6.491527016372471,
+      "estimate_z_m": 3.329360116094594,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 18,
+      "sample_timestamp_ns": 2470003734946,
+      "algorithm": "uwb.matlab.multilateration",
+      "valid": 1,
+      "estimate_x_m": 5.265310222626864,
+      "estimate_y_m": 6.448832719148085,
+      "estimate_z_m": 2.799230797402195,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 19,
+      "sample_timestamp_ns": 2470103734947,
+      "algorithm": "uwb.matlab.multilateration",
+      "valid": 1,
+      "estimate_x_m": 5.389226170950961,
+      "estimate_y_m": 6.521538810401143,
+      "estimate_z_m": 3.0961827780434654,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 20,
+      "sample_timestamp_ns": 2470203734949,
+      "algorithm": "uwb.matlab.multilateration",
+      "valid": 1,
+      "estimate_x_m": 5.560081314370778,
+      "estimate_y_m": 6.591856510184761,
+      "estimate_z_m": 3.298795579960298,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 21,
+      "sample_timestamp_ns": 2470303734950,
+      "algorithm": "uwb.matlab.multilateration",
+      "valid": 1,
+      "estimate_x_m": 5.636922708799031,
+      "estimate_y_m": 6.610176587842831,
+      "estimate_z_m": 2.8032864091193366,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 22,
+      "sample_timestamp_ns": 2470403734952,
+      "algorithm": "uwb.matlab.multilateration",
+      "valid": 1,
+      "estimate_x_m": 5.790817865969167,
+      "estimate_y_m": 6.696090558528512,
+      "estimate_z_m": 3.196651607637536,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 23,
+      "sample_timestamp_ns": 2470503734953,
+      "algorithm": "uwb.matlab.multilateration",
+      "valid": 1,
+      "estimate_x_m": 5.901406405232726,
+      "estimate_y_m": 6.7630820559701155,
+      "estimate_z_m": 3.131040357551795,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 24,
+      "sample_timestamp_ns": 2470603734955,
+      "algorithm": "uwb.matlab.multilateration",
+      "valid": 1,
+      "estimate_x_m": 6.01186018517405,
+      "estimate_y_m": 6.728799624043665,
+      "estimate_z_m": 3.1610951260978806,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 25,
+      "sample_timestamp_ns": 2470703734956,
+      "algorithm": "uwb.matlab.multilateration",
+      "valid": 1,
+      "estimate_x_m": 6.154644454560942,
+      "estimate_y_m": 6.824749798760677,
+      "estimate_z_m": 2.7565845027230997,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 26,
+      "sample_timestamp_ns": 2470803734958,
+      "algorithm": "uwb.matlab.multilateration",
+      "valid": 1,
+      "estimate_x_m": 6.2760986648040085,
+      "estimate_y_m": 6.853179735523421,
+      "estimate_z_m": 2.964131866920359,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 27,
+      "sample_timestamp_ns": 2470903734959,
+      "algorithm": "uwb.matlab.multilateration",
+      "valid": 1,
+      "estimate_x_m": 6.4654800435589275,
+      "estimate_y_m": 6.891274594653141,
+      "estimate_z_m": 3.4914588330475906,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 28,
+      "sample_timestamp_ns": 2471003734961,
+      "algorithm": "uwb.matlab.multilateration",
+      "valid": 1,
+      "estimate_x_m": 6.536459900457802,
+      "estimate_y_m": 6.921868688808519,
+      "estimate_z_m": 3.2815702563196725,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 29,
+      "sample_timestamp_ns": 2471103734962,
+      "algorithm": "uwb.matlab.multilateration",
+      "valid": 1,
+      "estimate_x_m": 6.6436655585323185,
+      "estimate_y_m": 7.001125750259047,
+      "estimate_z_m": 3.298356195359651,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 30,
+      "sample_timestamp_ns": 2471203734964,
+      "algorithm": "uwb.matlab.multilateration",
+      "valid": 1,
+      "estimate_x_m": 6.771401695768802,
+      "estimate_y_m": 6.988873845298867,
+      "estimate_z_m": 2.7405837303310565,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 31,
+      "sample_timestamp_ns": 2471303734965,
+      "algorithm": "uwb.matlab.multilateration",
+      "valid": 1,
+      "estimate_x_m": 6.873914029150811,
+      "estimate_y_m": 7.140352789650858,
+      "estimate_z_m": 3.4908338006322004,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 32,
+      "sample_timestamp_ns": 2471403734967,
+      "algorithm": "uwb.matlab.multilateration",
+      "valid": 1,
+      "estimate_x_m": 6.989137643258634,
+      "estimate_y_m": 7.135280636791141,
+      "estimate_z_m": 3.302928864409746,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 33,
+      "sample_timestamp_ns": 2471503734968,
+      "algorithm": "uwb.matlab.multilateration",
+      "valid": 1,
+      "estimate_x_m": 7.139748953271538,
+      "estimate_y_m": 7.235443435186389,
+      "estimate_z_m": 3.3324503025014236,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 34,
+      "sample_timestamp_ns": 2471603734970,
+      "algorithm": "uwb.matlab.multilateration",
+      "valid": 1,
+      "estimate_x_m": 7.275949973028864,
+      "estimate_y_m": 7.163903921428429,
+      "estimate_z_m": 2.7837663513076176,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 35,
+      "sample_timestamp_ns": 2471703734971,
+      "algorithm": "uwb.matlab.multilateration",
+      "valid": 1,
+      "estimate_x_m": 7.406409152597861,
+      "estimate_y_m": 7.2737294559672225,
+      "estimate_z_m": 3.176356665178892,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 36,
+      "sample_timestamp_ns": 2471803734973,
+      "algorithm": "uwb.matlab.multilateration",
+      "valid": 1,
+      "estimate_x_m": 7.459690569507961,
+      "estimate_y_m": 7.285363693579266,
+      "estimate_z_m": 3.022771917442077,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 37,
+      "sample_timestamp_ns": 2471903734974,
+      "algorithm": "uwb.matlab.multilateration",
+      "valid": 1,
+      "estimate_x_m": 7.587903298942981,
+      "estimate_y_m": 7.414997868781488,
+      "estimate_z_m": 3.455272186637626,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 38,
+      "sample_timestamp_ns": 2472003734976,
+      "algorithm": "uwb.matlab.multilateration",
+      "valid": 1,
+      "estimate_x_m": 7.69512540410886,
+      "estimate_y_m": 7.288298779035976,
+      "estimate_z_m": 2.6275434239892235,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 39,
+      "sample_timestamp_ns": 2472103734977,
+      "algorithm": "uwb.matlab.multilateration",
+      "valid": 1,
+      "estimate_x_m": 7.7707567786774225,
+      "estimate_y_m": 7.49285106416962,
+      "estimate_z_m": 3.1799784818211623,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 40,
+      "sample_timestamp_ns": 2472203734979,
+      "algorithm": "uwb.matlab.multilateration",
+      "valid": 1,
+      "estimate_x_m": 7.869153219691516,
+      "estimate_y_m": 7.428817217571846,
+      "estimate_z_m": 3.2898743748817343,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 41,
+      "sample_timestamp_ns": 2472303734980,
+      "algorithm": "uwb.matlab.multilateration",
+      "valid": 1,
+      "estimate_x_m": 8.05786442548924,
+      "estimate_y_m": 7.503411584866464,
+      "estimate_z_m": 3.411098003689365,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 42,
+      "sample_timestamp_ns": 2472403734982,
+      "algorithm": "uwb.matlab.multilateration",
+      "valid": 1,
+      "estimate_x_m": 8.13701127443527,
+      "estimate_y_m": 7.542776158536628,
+      "estimate_z_m": 3.0164692050839474,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 43,
+      "sample_timestamp_ns": 2472503734983,
+      "algorithm": "uwb.matlab.multilateration",
+      "valid": 1,
+      "estimate_x_m": 8.254238792885543,
+      "estimate_y_m": 7.5587055420638976,
+      "estimate_z_m": 3.1218144346832335,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 44,
+      "sample_timestamp_ns": 2472603734984,
+      "algorithm": "uwb.matlab.multilateration",
+      "valid": 1,
+      "estimate_x_m": 8.380421472432563,
+      "estimate_y_m": 7.6788765639540335,
+      "estimate_z_m": 3.37669285260336,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 45,
+      "sample_timestamp_ns": 2472703734986,
+      "algorithm": "uwb.matlab.multilateration",
+      "valid": 1,
+      "estimate_x_m": 8.493864899033941,
+      "estimate_y_m": 7.691549398733452,
+      "estimate_z_m": 3.1804511324004796,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 46,
+      "sample_timestamp_ns": 2472803734987,
+      "algorithm": "uwb.matlab.multilateration",
+      "valid": 1,
+      "estimate_x_m": 8.499782430938597,
+      "estimate_y_m": 7.782450655374279,
+      "estimate_z_m": 3.2206441820409006,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 47,
+      "sample_timestamp_ns": 2472903734989,
+      "algorithm": "uwb.matlab.multilateration",
+      "valid": 1,
+      "estimate_x_m": 8.562495625723525,
+      "estimate_y_m": 7.725046207614776,
+      "estimate_z_m": 2.7817337039520593,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 48,
+      "sample_timestamp_ns": 2473003734990,
+      "algorithm": "uwb.matlab.multilateration",
+      "valid": 1,
+      "estimate_x_m": 8.695034853445295,
+      "estimate_y_m": 7.83081165013396,
+      "estimate_z_m": 2.9619626404007793,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 49,
+      "sample_timestamp_ns": 2473103734992,
+      "algorithm": "uwb.matlab.multilateration",
+      "valid": 1,
+      "estimate_x_m": 8.859199200769037,
+      "estimate_y_m": 7.832234897514975,
+      "estimate_z_m": 3.3482071134782037,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 50,
+      "sample_timestamp_ns": 2473203734993,
+      "algorithm": "uwb.matlab.multilateration",
+      "valid": 1,
+      "estimate_x_m": 8.932517566639204,
+      "estimate_y_m": 7.875657694971774,
+      "estimate_z_m": 2.936830215012018,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 51,
+      "sample_timestamp_ns": 2473303734995,
+      "algorithm": "uwb.matlab.multilateration",
+      "valid": 1,
+      "estimate_x_m": 8.959276549999748,
+      "estimate_y_m": 7.856069551454945,
+      "estimate_z_m": 2.8993795997791887,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 52,
+      "sample_timestamp_ns": 2473403734996,
+      "algorithm": "uwb.matlab.multilateration",
+      "valid": 1,
+      "estimate_x_m": 9.075294136002421,
+      "estimate_y_m": 7.911160504672593,
+      "estimate_z_m": 3.26661557791617,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 53,
+      "sample_timestamp_ns": 2473503734998,
+      "algorithm": "uwb.matlab.multilateration",
+      "valid": 1,
+      "estimate_x_m": 9.250025494112004,
+      "estimate_y_m": 7.921893530952743,
+      "estimate_z_m": 3.0483789234523924,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 54,
+      "sample_timestamp_ns": 2473603734999,
+      "algorithm": "uwb.matlab.multilateration",
+      "valid": 1,
+      "estimate_x_m": 9.287302099178971,
+      "estimate_y_m": 8.053796139665977,
+      "estimate_z_m": 3.181354284313883,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 55,
+      "sample_timestamp_ns": 2473703735001,
+      "algorithm": "uwb.matlab.multilateration",
+      "valid": 1,
+      "estimate_x_m": 9.36635022427628,
+      "estimate_y_m": 8.045329189349543,
+      "estimate_z_m": 3.2494829869999746,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 56,
+      "sample_timestamp_ns": 2473803735002,
+      "algorithm": "uwb.matlab.multilateration",
+      "valid": 1,
+      "estimate_x_m": 9.510710296653441,
+      "estimate_y_m": 7.993309436826643,
+      "estimate_z_m": 2.9615946507457442,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 57,
+      "sample_timestamp_ns": 2473903735004,
+      "algorithm": "uwb.matlab.multilateration",
+      "valid": 1,
+      "estimate_x_m": 9.55504611630237,
+      "estimate_y_m": 8.076865788286227,
+      "estimate_z_m": 3.044112264369625,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 58,
+      "sample_timestamp_ns": 2474003735005,
+      "algorithm": "uwb.matlab.multilateration",
+      "valid": 1,
+      "estimate_x_m": 9.640410775443742,
+      "estimate_y_m": 8.175675005381418,
+      "estimate_z_m": 3.125414079837087,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 59,
+      "sample_timestamp_ns": 2474103735007,
+      "algorithm": "uwb.matlab.multilateration",
+      "valid": 1,
+      "estimate_x_m": 9.687776995287052,
+      "estimate_y_m": 8.093913686835233,
+      "estimate_z_m": 2.7786096185689124,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 60,
+      "sample_timestamp_ns": 2474203735008,
+      "algorithm": "uwb.matlab.multilateration",
+      "valid": 1,
+      "estimate_x_m": 9.787896477127036,
+      "estimate_y_m": 8.197391764668197,
+      "estimate_z_m": 3.1408414212118787,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 61,
+      "sample_timestamp_ns": 2474303735010,
+      "algorithm": "uwb.matlab.multilateration",
+      "valid": 1,
+      "estimate_x_m": 10.03670445006757,
+      "estimate_y_m": 8.210503235988151,
+      "estimate_z_m": 3.4094261686236793,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 62,
+      "sample_timestamp_ns": 2474403735011,
+      "algorithm": "uwb.matlab.multilateration",
+      "valid": 1,
+      "estimate_x_m": 10.100564135866437,
+      "estimate_y_m": 8.30278834696295,
+      "estimate_z_m": 3.8198993891165243,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 63,
+      "sample_timestamp_ns": 2474503735013,
+      "algorithm": "uwb.matlab.multilateration",
+      "valid": 1,
+      "estimate_x_m": 10.15329721897126,
+      "estimate_y_m": 8.283550349643336,
+      "estimate_z_m": 3.4943862481775514,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 64,
+      "sample_timestamp_ns": 2474603735014,
+      "algorithm": "uwb.matlab.multilateration",
+      "valid": 1,
+      "estimate_x_m": 10.139117382681599,
+      "estimate_y_m": 8.337598981517022,
+      "estimate_z_m": 3.4992702260679995,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 65,
+      "sample_timestamp_ns": 2474703735016,
+      "algorithm": "uwb.matlab.multilateration",
+      "valid": 1,
+      "estimate_x_m": 10.210406658491232,
+      "estimate_y_m": 8.320755714748369,
+      "estimate_z_m": 3.2333107635375478,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 66,
+      "sample_timestamp_ns": 2474803735017,
+      "algorithm": "uwb.matlab.multilateration",
+      "valid": 1,
+      "estimate_x_m": 10.301710515518733,
+      "estimate_y_m": 8.376286239331476,
+      "estimate_z_m": 3.061784670090232,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 67,
+      "sample_timestamp_ns": 2474903735019,
+      "algorithm": "uwb.matlab.multilateration",
+      "valid": 1,
+      "estimate_x_m": 10.385128618855905,
+      "estimate_y_m": 8.373417563709816,
+      "estimate_z_m": 3.078916940840115,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 68,
+      "sample_timestamp_ns": 2475003735020,
+      "algorithm": "uwb.matlab.multilateration",
+      "valid": 1,
+      "estimate_x_m": 10.405279893395232,
+      "estimate_y_m": 8.422934637428849,
+      "estimate_z_m": 2.853751131440253,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 69,
+      "sample_timestamp_ns": 2475103735022,
+      "algorithm": "uwb.matlab.multilateration",
+      "valid": 1,
+      "estimate_x_m": 10.512776282793489,
+      "estimate_y_m": 8.361644134539958,
+      "estimate_z_m": 3.140810347505033,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 70,
+      "sample_timestamp_ns": 2475203735023,
+      "algorithm": "uwb.matlab.multilateration",
+      "valid": 1,
+      "estimate_x_m": 10.632016014357406,
+      "estimate_y_m": 8.412000906874288,
+      "estimate_z_m": 3.435755179834931,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 71,
+      "sample_timestamp_ns": 2475303735025,
+      "algorithm": "uwb.matlab.multilateration",
+      "valid": 1,
+      "estimate_x_m": 10.62816959408335,
+      "estimate_y_m": 8.424893599776427,
+      "estimate_z_m": 2.9805327657843192,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 72,
+      "sample_timestamp_ns": 2475403735026,
+      "algorithm": "uwb.matlab.multilateration",
+      "valid": 1,
+      "estimate_x_m": 10.714540279343018,
+      "estimate_y_m": 8.485471288881376,
+      "estimate_z_m": 3.0635045177729143,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 73,
+      "sample_timestamp_ns": 2475503735028,
+      "algorithm": "uwb.matlab.multilateration",
+      "valid": 1,
+      "estimate_x_m": 10.87059692656931,
+      "estimate_y_m": 8.515148394195954,
+      "estimate_z_m": 3.746208262279111,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 74,
+      "sample_timestamp_ns": 2475603735029,
+      "algorithm": "uwb.matlab.multilateration",
+      "valid": 1,
+      "estimate_x_m": 10.873242350552646,
+      "estimate_y_m": 8.55060588256569,
+      "estimate_z_m": 3.1338704268915056,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 75,
+      "sample_timestamp_ns": 2475703735031,
+      "algorithm": "uwb.matlab.multilateration",
+      "valid": 1,
+      "estimate_x_m": 10.966768669593625,
+      "estimate_y_m": 8.598645749338155,
+      "estimate_z_m": 3.787762025559786,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 76,
+      "sample_timestamp_ns": 2475803735032,
+      "algorithm": "uwb.matlab.multilateration",
+      "valid": 1,
+      "estimate_x_m": 11.00976538730746,
+      "estimate_y_m": 8.531903499962047,
+      "estimate_z_m": 3.0407522643257736,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 77,
+      "sample_timestamp_ns": 2475903735034,
+      "algorithm": "uwb.matlab.multilateration",
+      "valid": 1,
+      "estimate_x_m": 11.010311224338516,
+      "estimate_y_m": 8.650768952026471,
+      "estimate_z_m": 3.0041480329467922,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 78,
+      "sample_timestamp_ns": 2476003735035,
+      "algorithm": "uwb.matlab.multilateration",
+      "valid": 1,
+      "estimate_x_m": 11.107200998846992,
+      "estimate_y_m": 8.705805652765294,
+      "estimate_z_m": 3.5239898745652556,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 79,
+      "sample_timestamp_ns": 2476103735037,
+      "algorithm": "uwb.matlab.multilateration",
+      "valid": 1,
+      "estimate_x_m": 11.114923915598789,
+      "estimate_y_m": 8.665903280763727,
+      "estimate_z_m": 3.473025842471537,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 80,
+      "sample_timestamp_ns": 2476203735038,
+      "algorithm": "uwb.matlab.multilateration",
+      "valid": 1,
+      "estimate_x_m": 11.220574568389274,
+      "estimate_y_m": 8.6674420797174,
+      "estimate_z_m": 3.24309594683607,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 81,
+      "sample_timestamp_ns": 2476303735040,
+      "algorithm": "uwb.matlab.multilateration",
+      "valid": 1,
+      "estimate_x_m": 11.279804710313224,
+      "estimate_y_m": 8.781768154997705,
+      "estimate_z_m": 3.3765189075708792,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 82,
+      "sample_timestamp_ns": 2476403735041,
+      "algorithm": "uwb.matlab.multilateration",
+      "valid": 1,
+      "estimate_x_m": 11.268907249869342,
+      "estimate_y_m": 8.630582791739647,
+      "estimate_z_m": 2.904039639965291,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 83,
+      "sample_timestamp_ns": 2476503735043,
+      "algorithm": "uwb.matlab.multilateration",
+      "valid": 1,
+      "estimate_x_m": 11.304878586469234,
+      "estimate_y_m": 8.71403811112257,
+      "estimate_z_m": 3.3220678920583624,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 84,
+      "sample_timestamp_ns": 2476603735044,
+      "algorithm": "uwb.matlab.multilateration",
+      "valid": 1,
+      "estimate_x_m": 11.364066396739899,
+      "estimate_y_m": 8.70436725400051,
+      "estimate_z_m": 2.8875137863376423,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 85,
+      "sample_timestamp_ns": 2476703735046,
+      "algorithm": "uwb.matlab.multilateration",
+      "valid": 1,
+      "estimate_x_m": 11.36433794478802,
+      "estimate_y_m": 8.675829542004792,
+      "estimate_z_m": 2.5408966030546827,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 86,
+      "sample_timestamp_ns": 2476803735047,
+      "algorithm": "uwb.matlab.multilateration",
+      "valid": 1,
+      "estimate_x_m": 11.565848818329796,
+      "estimate_y_m": 8.776066869499008,
+      "estimate_z_m": 3.622212303711478,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 87,
+      "sample_timestamp_ns": 2476903735049,
+      "algorithm": "uwb.matlab.multilateration",
+      "valid": 1,
+      "estimate_x_m": 11.456533348994249,
+      "estimate_y_m": 8.744428692797468,
+      "estimate_z_m": 2.4683500867481647,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 88,
+      "sample_timestamp_ns": 2477003735050,
+      "algorithm": "uwb.matlab.multilateration",
+      "valid": 1,
+      "estimate_x_m": 11.519685241522533,
+      "estimate_y_m": 8.793545275478317,
+      "estimate_z_m": 2.8935636677669403,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 89,
+      "sample_timestamp_ns": 2477103735052,
+      "algorithm": "uwb.matlab.multilateration",
+      "valid": 1,
+      "estimate_x_m": 11.590402423116847,
+      "estimate_y_m": 8.845884442399546,
+      "estimate_z_m": 3.132879511256949,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 90,
+      "sample_timestamp_ns": 2477203735053,
+      "algorithm": "uwb.matlab.multilateration",
+      "valid": 1,
+      "estimate_x_m": 11.585407076538194,
+      "estimate_y_m": 8.863756262334766,
+      "estimate_z_m": 3.2490660587942224,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 91,
+      "sample_timestamp_ns": 2477303735055,
+      "algorithm": "uwb.matlab.multilateration",
+      "valid": 1,
+      "estimate_x_m": 11.614623126271443,
+      "estimate_y_m": 8.905432166445028,
+      "estimate_z_m": 3.010244170006494,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 92,
+      "sample_timestamp_ns": 2477403735056,
+      "algorithm": "uwb.matlab.multilateration",
+      "valid": 1,
+      "estimate_x_m": 11.71331330054184,
+      "estimate_y_m": 8.851293658941007,
+      "estimate_z_m": 2.82536022734693,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 93,
+      "sample_timestamp_ns": 2477503735058,
+      "algorithm": "uwb.matlab.multilateration",
+      "valid": 1,
+      "estimate_x_m": 11.783624311214878,
+      "estimate_y_m": 8.855565769491667,
+      "estimate_z_m": 2.8118471271654704,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 94,
+      "sample_timestamp_ns": 2477603735059,
+      "algorithm": "uwb.matlab.multilateration",
+      "valid": 1,
+      "estimate_x_m": 11.76626292862638,
+      "estimate_y_m": 8.839479450784198,
+      "estimate_z_m": 3.4644916526512755,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 95,
+      "sample_timestamp_ns": 2477703735060,
+      "algorithm": "uwb.matlab.multilateration",
+      "valid": 1,
+      "estimate_x_m": 11.74086230591664,
+      "estimate_y_m": 8.97437530846553,
+      "estimate_z_m": 3.1206385620595927,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 96,
+      "sample_timestamp_ns": 2477803735062,
+      "algorithm": "uwb.matlab.multilateration",
+      "valid": 1,
+      "estimate_x_m": 11.787170112177755,
+      "estimate_y_m": 8.816944438380487,
+      "estimate_z_m": 2.799704820350028,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 97,
+      "sample_timestamp_ns": 2477903735063,
+      "algorithm": "uwb.matlab.multilateration",
+      "valid": 1,
+      "estimate_x_m": 11.877234425788389,
+      "estimate_y_m": 8.90770584185168,
+      "estimate_z_m": 3.2711723316328385,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 98,
+      "sample_timestamp_ns": 2478003735065,
+      "algorithm": "uwb.matlab.multilateration",
+      "valid": 1,
+      "estimate_x_m": 11.835097288092319,
+      "estimate_y_m": 8.913481258707462,
+      "estimate_z_m": 2.9431891180529632,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 99,
+      "sample_timestamp_ns": 2478103735066,
+      "algorithm": "uwb.matlab.multilateration",
+      "valid": 1,
+      "estimate_x_m": 11.877321076405018,
+      "estimate_y_m": 8.985756864622608,
+      "estimate_z_m": 3.371665665492187,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 0,
+      "sample_timestamp_ns": 2468203734919,
+      "algorithm": "uwb.matlab.taylor",
+      "valid": 1,
+      "estimate_x_m": 2.885006773414849,
+      "estimate_y_m": 5.477202242277269,
+      "estimate_z_m": 3.2557949858124795,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 1,
+      "sample_timestamp_ns": 2468303734920,
+      "algorithm": "uwb.matlab.taylor",
+      "valid": 1,
+      "estimate_x_m": 2.966165524390192,
+      "estimate_y_m": 5.491674324947381,
+      "estimate_z_m": 2.8893002807181247,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 2,
+      "sample_timestamp_ns": 2468403734922,
+      "algorithm": "uwb.matlab.taylor",
+      "valid": 1,
+      "estimate_x_m": 3.150149129831785,
+      "estimate_y_m": 5.587996673485787,
+      "estimate_z_m": 3.218845310025508,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 3,
+      "sample_timestamp_ns": 2468503734923,
+      "algorithm": "uwb.matlab.taylor",
+      "valid": 1,
+      "estimate_x_m": 3.232863656441625,
+      "estimate_y_m": 5.72628219247242,
+      "estimate_z_m": 3.0930550152907945,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 4,
+      "sample_timestamp_ns": 2468603734925,
+      "algorithm": "uwb.matlab.taylor",
+      "valid": 1,
+      "estimate_x_m": 3.4218983658362574,
+      "estimate_y_m": 5.7182146928083535,
+      "estimate_z_m": 3.308853805768482,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 5,
+      "sample_timestamp_ns": 2468703734926,
+      "algorithm": "uwb.matlab.taylor",
+      "valid": 1,
+      "estimate_x_m": 3.5384078506844507,
+      "estimate_y_m": 5.764692097510666,
+      "estimate_z_m": 3.260253150129582,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 6,
+      "sample_timestamp_ns": 2468803734928,
+      "algorithm": "uwb.matlab.taylor",
+      "valid": 1,
+      "estimate_x_m": 3.6815569471476044,
+      "estimate_y_m": 5.821809944908304,
+      "estimate_z_m": 3.0904821628715964,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 7,
+      "sample_timestamp_ns": 2468903734929,
+      "algorithm": "uwb.matlab.taylor",
+      "valid": 1,
+      "estimate_x_m": 3.795161928985701,
+      "estimate_y_m": 5.915894898918308,
+      "estimate_z_m": 3.433476687799796,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 8,
+      "sample_timestamp_ns": 2469003734931,
+      "algorithm": "uwb.matlab.taylor",
+      "valid": 1,
+      "estimate_x_m": 3.9737942220889373,
+      "estimate_y_m": 5.904670439873923,
+      "estimate_z_m": 3.0992325652332937,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 9,
+      "sample_timestamp_ns": 2469103734932,
+      "algorithm": "uwb.matlab.taylor",
+      "valid": 1,
+      "estimate_x_m": 4.123261239194992,
+      "estimate_y_m": 5.987437938055481,
+      "estimate_z_m": 2.984403242385768,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 10,
+      "sample_timestamp_ns": 2469203734934,
+      "algorithm": "uwb.matlab.taylor",
+      "valid": 1,
+      "estimate_x_m": 4.245383191031449,
+      "estimate_y_m": 6.106202953323759,
+      "estimate_z_m": 3.071252627224633,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 11,
+      "sample_timestamp_ns": 2469303734935,
+      "algorithm": "uwb.matlab.taylor",
+      "valid": 1,
+      "estimate_x_m": 4.357574559558763,
+      "estimate_y_m": 6.12085445154639,
+      "estimate_z_m": 3.2118249241345924,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 12,
+      "sample_timestamp_ns": 2469403734937,
+      "algorithm": "uwb.matlab.taylor",
+      "valid": 1,
+      "estimate_x_m": 4.519416178026647,
+      "estimate_y_m": 6.183950639052169,
+      "estimate_z_m": 3.220079827456251,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 13,
+      "sample_timestamp_ns": 2469503734938,
+      "algorithm": "uwb.matlab.taylor",
+      "valid": 1,
+      "estimate_x_m": 4.594218525162461,
+      "estimate_y_m": 6.190078657067805,
+      "estimate_z_m": 2.8424797487248337,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 14,
+      "sample_timestamp_ns": 2469603734940,
+      "algorithm": "uwb.matlab.taylor",
+      "valid": 1,
+      "estimate_x_m": 4.7557757232758275,
+      "estimate_y_m": 6.304160934636937,
+      "estimate_z_m": 2.7853770202956185,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 15,
+      "sample_timestamp_ns": 2469703734941,
+      "algorithm": "uwb.matlab.taylor",
+      "valid": 1,
+      "estimate_x_m": 4.870204562763646,
+      "estimate_y_m": 6.264355885989267,
+      "estimate_z_m": 2.842186308882705,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 16,
+      "sample_timestamp_ns": 2469803734943,
+      "algorithm": "uwb.matlab.taylor",
+      "valid": 1,
+      "estimate_x_m": 5.021486008112556,
+      "estimate_y_m": 6.430697488764646,
+      "estimate_z_m": 3.1301662327190294,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 17,
+      "sample_timestamp_ns": 2469903734944,
+      "algorithm": "uwb.matlab.taylor",
+      "valid": 1,
+      "estimate_x_m": 5.164822057893392,
+      "estimate_y_m": 6.472086364420024,
+      "estimate_z_m": 3.0905672492782985,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 18,
+      "sample_timestamp_ns": 2470003734946,
+      "algorithm": "uwb.matlab.taylor",
+      "valid": 1,
+      "estimate_x_m": 5.267621251291755,
+      "estimate_y_m": 6.45964268637329,
+      "estimate_z_m": 2.927333384830009,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 19,
+      "sample_timestamp_ns": 2470103734947,
+      "algorithm": "uwb.matlab.taylor",
+      "valid": 1,
+      "estimate_x_m": 5.38988380633189,
+      "estimate_y_m": 6.523858701159435,
+      "estimate_z_m": 3.12474840857449,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 20,
+      "sample_timestamp_ns": 2470203734949,
+      "algorithm": "uwb.matlab.taylor",
+      "valid": 1,
+      "estimate_x_m": 5.5567364446266385,
+      "estimate_y_m": 6.580458710519512,
+      "estimate_z_m": 3.1582538362444543,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 21,
+      "sample_timestamp_ns": 2470303734950,
+      "algorithm": "uwb.matlab.taylor",
+      "valid": 1,
+      "estimate_x_m": 5.637326301301376,
+      "estimate_y_m": 6.612416015454556,
+      "estimate_z_m": 2.829201633097824,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 22,
+      "sample_timestamp_ns": 2470403734952,
+      "algorithm": "uwb.matlab.taylor",
+      "valid": 1,
+      "estimate_x_m": 5.79239907197799,
+      "estimate_y_m": 6.701035850404339,
+      "estimate_z_m": 3.257896769174845,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 23,
+      "sample_timestamp_ns": 2470503734953,
+      "algorithm": "uwb.matlab.taylor",
+      "valid": 1,
+      "estimate_x_m": 5.896838924949805,
+      "estimate_y_m": 6.740620188470009,
+      "estimate_z_m": 2.8688935092974424,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 24,
+      "sample_timestamp_ns": 2470603734955,
+      "algorithm": "uwb.matlab.taylor",
+      "valid": 1,
+      "estimate_x_m": 6.009010418830481,
+      "estimate_y_m": 6.71773685519229,
+      "estimate_z_m": 3.028283620515531,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 25,
+      "sample_timestamp_ns": 2470703734956,
+      "algorithm": "uwb.matlab.taylor",
+      "valid": 1,
+      "estimate_x_m": 6.1582654476804315,
+      "estimate_y_m": 6.8402764770897795,
+      "estimate_z_m": 2.939649055699239,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 26,
+      "sample_timestamp_ns": 2470803734958,
+      "algorithm": "uwb.matlab.taylor",
+      "valid": 1,
+      "estimate_x_m": 6.274376499902601,
+      "estimate_y_m": 6.845009124686843,
+      "estimate_z_m": 2.8685866662009247,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 27,
+      "sample_timestamp_ns": 2470903734959,
+      "algorithm": "uwb.matlab.taylor",
+      "valid": 1,
+      "estimate_x_m": 6.461205945520412,
+      "estimate_y_m": 6.87851217692779,
+      "estimate_z_m": 3.335378062115811,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 28,
+      "sample_timestamp_ns": 2471003734961,
+      "algorithm": "uwb.matlab.taylor",
+      "valid": 1,
+      "estimate_x_m": 6.5321431020996,
+      "estimate_y_m": 6.906659700782416,
+      "estimate_z_m": 3.099214103972664,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 29,
+      "sample_timestamp_ns": 2471103734962,
+      "algorithm": "uwb.matlab.taylor",
+      "valid": 1,
+      "estimate_x_m": 6.645654793053426,
+      "estimate_y_m": 7.006926497387318,
+      "estimate_z_m": 3.3688648916073136,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 30,
+      "sample_timestamp_ns": 2471203734964,
+      "algorithm": "uwb.matlab.taylor",
+      "valid": 1,
+      "estimate_x_m": 6.776688269989181,
+      "estimate_y_m": 7.009412599808365,
+      "estimate_z_m": 2.983332318925987,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 31,
+      "sample_timestamp_ns": 2471303734965,
+      "algorithm": "uwb.matlab.taylor",
+      "valid": 1,
+      "estimate_x_m": 6.871657200484091,
+      "estimate_y_m": 7.1339543802557275,
+      "estimate_z_m": 3.413584909526784,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 32,
+      "sample_timestamp_ns": 2471403734967,
+      "algorithm": "uwb.matlab.taylor",
+      "valid": 1,
+      "estimate_x_m": 6.982735992062117,
+      "estimate_y_m": 7.111984439878357,
+      "estimate_z_m": 3.0276919465860805,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 33,
+      "sample_timestamp_ns": 2471503734968,
+      "algorithm": "uwb.matlab.taylor",
+      "valid": 1,
+      "estimate_x_m": 7.132708434779503,
+      "estimate_y_m": 7.210424197857445,
+      "estimate_z_m": 3.037880330474407,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 34,
+      "sample_timestamp_ns": 2471603734970,
+      "algorithm": "uwb.matlab.taylor",
+      "valid": 1,
+      "estimate_x_m": 7.295847178066176,
+      "estimate_y_m": 7.219657620508843,
+      "estimate_z_m": 3.4502221469883003,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 35,
+      "sample_timestamp_ns": 2471703734971,
+      "algorithm": "uwb.matlab.taylor",
+      "valid": 1,
+      "estimate_x_m": 7.401101175723716,
+      "estimate_y_m": 7.253506915465661,
+      "estimate_z_m": 2.9396435672852466,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 36,
+      "sample_timestamp_ns": 2471803734973,
+      "algorithm": "uwb.matlab.taylor",
+      "valid": 1,
+      "estimate_x_m": 7.458158508584387,
+      "estimate_y_m": 7.279646515298387,
+      "estimate_z_m": 2.955859477469226,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 37,
+      "sample_timestamp_ns": 2471903734974,
+      "algorithm": "uwb.matlab.taylor",
+      "valid": 1,
+      "estimate_x_m": 7.581888189812538,
+      "estimate_y_m": 7.3967924505709775,
+      "estimate_z_m": 3.241240514592234,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 38,
+      "sample_timestamp_ns": 2472003734976,
+      "algorithm": "uwb.matlab.taylor",
+      "valid": 1,
+      "estimate_x_m": 7.701047673241652,
+      "estimate_y_m": 7.311201297746068,
+      "estimate_z_m": 2.895103972501977,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 39,
+      "sample_timestamp_ns": 2472103734977,
+      "algorithm": "uwb.matlab.taylor",
+      "valid": 1,
+      "estimate_x_m": 7.7679634557182835,
+      "estimate_y_m": 7.4836424469487115,
+      "estimate_z_m": 3.0726461497029818,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 40,
+      "sample_timestamp_ns": 2472203734979,
+      "algorithm": "uwb.matlab.taylor",
+      "valid": 1,
+      "estimate_x_m": 7.869355462588364,
+      "estimate_y_m": 7.429409804825606,
+      "estimate_z_m": 3.29681706192164,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 41,
+      "sample_timestamp_ns": 2472303734980,
+      "algorithm": "uwb.matlab.taylor",
+      "valid": 1,
+      "estimate_x_m": 8.05647953974514,
+      "estimate_y_m": 7.499494289154498,
+      "estimate_z_m": 3.3653968303029416,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 42,
+      "sample_timestamp_ns": 2472403734982,
+      "algorithm": "uwb.matlab.taylor",
+      "valid": 1,
+      "estimate_x_m": 8.137630815866231,
+      "estimate_y_m": 7.544810213552849,
+      "estimate_z_m": 3.040097616172254,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 43,
+      "sample_timestamp_ns": 2472503734983,
+      "algorithm": "uwb.matlab.taylor",
+      "valid": 1,
+      "estimate_x_m": 8.249835003136498,
+      "estimate_y_m": 7.543458437046573,
+      "estimate_z_m": 2.9447399821461118,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 44,
+      "sample_timestamp_ns": 2472603734984,
+      "algorithm": "uwb.matlab.taylor",
+      "valid": 1,
+      "estimate_x_m": 8.378335030136764,
+      "estimate_y_m": 7.672952853665845,
+      "estimate_z_m": 3.3082488590051775,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 45,
+      "sample_timestamp_ns": 2472703734986,
+      "algorithm": "uwb.matlab.taylor",
+      "valid": 1,
+      "estimate_x_m": 8.495956235465949,
+      "estimate_y_m": 7.697590524518191,
+      "estimate_z_m": 3.250121606378994,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 46,
+      "sample_timestamp_ns": 2472803734987,
+      "algorithm": "uwb.matlab.taylor",
+      "valid": 1,
+      "estimate_x_m": 8.499008057665783,
+      "estimate_y_m": 7.780175033350859,
+      "estimate_z_m": 3.1944631999526534,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 47,
+      "sample_timestamp_ns": 2472903734989,
+      "algorithm": "uwb.matlab.taylor",
+      "valid": 1,
+      "estimate_x_m": 8.574543038341062,
+      "estimate_y_m": 7.76050051991721,
+      "estimate_z_m": 3.1897642396633796,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 48,
+      "sample_timestamp_ns": 2473003734990,
+      "algorithm": "uwb.matlab.taylor",
+      "valid": 1,
+      "estimate_x_m": 8.694582863448131,
+      "estimate_y_m": 7.829330486971774,
+      "estimate_z_m": 2.9449350366314393,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 49,
+      "sample_timestamp_ns": 2473103734992,
+      "algorithm": "uwb.matlab.taylor",
+      "valid": 1,
+      "estimate_x_m": 8.855177871272424,
+      "estimate_y_m": 7.820728979773279,
+      "estimate_z_m": 3.21645177561779,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 50,
+      "sample_timestamp_ns": 2473203734993,
+      "algorithm": "uwb.matlab.taylor",
+      "valid": 1,
+      "estimate_x_m": 8.940452267343133,
+      "estimate_y_m": 7.898376796026887,
+      "estimate_z_m": 3.1963587743235777,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 51,
+      "sample_timestamp_ns": 2473303734995,
+      "algorithm": "uwb.matlab.taylor",
+      "valid": 1,
+      "estimate_x_m": 8.956793789774407,
+      "estimate_y_m": 7.847397601064486,
+      "estimate_z_m": 2.799323699373351,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 52,
+      "sample_timestamp_ns": 2473403734996,
+      "algorithm": "uwb.matlab.taylor",
+      "valid": 1,
+      "estimate_x_m": 9.071846064655693,
+      "estimate_y_m": 7.9012181155760475,
+      "estimate_z_m": 3.153113766382162,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 53,
+      "sample_timestamp_ns": 2473503734998,
+      "algorithm": "uwb.matlab.taylor",
+      "valid": 1,
+      "estimate_x_m": 9.252298135487322,
+      "estimate_y_m": 7.9284412787582905,
+      "estimate_z_m": 3.123037693236855,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 54,
+      "sample_timestamp_ns": 2473603734999,
+      "algorithm": "uwb.matlab.taylor",
+      "valid": 1,
+      "estimate_x_m": 9.28719864191768,
+      "estimate_y_m": 8.05350575282438,
+      "estimate_z_m": 3.1780611973425255,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 55,
+      "sample_timestamp_ns": 2473703735001,
+      "algorithm": "uwb.matlab.taylor",
+      "valid": 1,
+      "estimate_x_m": 9.362842550462085,
+      "estimate_y_m": 8.035390615592636,
+      "estimate_z_m": 3.136671922480007,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 56,
+      "sample_timestamp_ns": 2473803735002,
+      "algorithm": "uwb.matlab.taylor",
+      "valid": 1,
+      "estimate_x_m": 9.528269752046423,
+      "estimate_y_m": 8.038703709183393,
+      "estimate_z_m": 3.471807338303714,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 57,
+      "sample_timestamp_ns": 2473903735004,
+      "algorithm": "uwb.matlab.taylor",
+      "valid": 1,
+      "estimate_x_m": 9.550499217488447,
+      "estimate_y_m": 8.062899961499099,
+      "estimate_z_m": 2.8844188484323374,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 58,
+      "sample_timestamp_ns": 2474003735005,
+      "algorithm": "uwb.matlab.taylor",
+      "valid": 1,
+      "estimate_x_m": 9.639375622727304,
+      "estimate_y_m": 8.172768364723755,
+      "estimate_z_m": 3.0925699386820886,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 59,
+      "sample_timestamp_ns": 2474103735007,
+      "algorithm": "uwb.matlab.taylor",
+      "valid": 1,
+      "estimate_x_m": 9.6880457476067,
+      "estimate_y_m": 8.094763511997048,
+      "estimate_z_m": 2.7883661996474793,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 60,
+      "sample_timestamp_ns": 2474203735008,
+      "algorithm": "uwb.matlab.taylor",
+      "valid": 1,
+      "estimate_x_m": 9.77945993955344,
+      "estimate_y_m": 8.171829030810692,
+      "estimate_z_m": 2.849184550625889,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 61,
+      "sample_timestamp_ns": 2474303735010,
+      "algorithm": "uwb.matlab.taylor",
+      "valid": 1,
+      "estimate_x_m": 10.030848039244791,
+      "estimate_y_m": 8.19507244144322,
+      "estimate_z_m": 3.236643397072648,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 62,
+      "sample_timestamp_ns": 2474403735011,
+      "algorithm": "uwb.matlab.taylor",
+      "valid": 1,
+      "estimate_x_m": 10.084238207441073,
+      "estimate_y_m": 8.261013974450712,
+      "estimate_z_m": 3.355276903984158,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 63,
+      "sample_timestamp_ns": 2474503735013,
+      "algorithm": "uwb.matlab.taylor",
+      "valid": 1,
+      "estimate_x_m": 10.145753289028194,
+      "estimate_y_m": 8.264006616309091,
+      "estimate_z_m": 3.2765266583118606,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 64,
+      "sample_timestamp_ns": 2474603735014,
+      "algorithm": "uwb.matlab.taylor",
+      "valid": 1,
+      "estimate_x_m": 10.127564254679267,
+      "estimate_y_m": 8.306917730269808,
+      "estimate_z_m": 3.1559922595462364,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 65,
+      "sample_timestamp_ns": 2474703735016,
+      "algorithm": "uwb.matlab.taylor",
+      "valid": 1,
+      "estimate_x_m": 10.20742129643562,
+      "estimate_y_m": 8.312845626030795,
+      "estimate_z_m": 3.144815390557365,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 66,
+      "sample_timestamp_ns": 2474803735017,
+      "algorithm": "uwb.matlab.taylor",
+      "valid": 1,
+      "estimate_x_m": 10.30713604624682,
+      "estimate_y_m": 8.390331852217972,
+      "estimate_z_m": 3.2180262656934024,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 67,
+      "sample_timestamp_ns": 2474903735019,
+      "algorithm": "uwb.matlab.taylor",
+      "valid": 1,
+      "estimate_x_m": 10.385093463211085,
+      "estimate_y_m": 8.37332435205865,
+      "estimate_z_m": 3.07787391817308,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 68,
+      "sample_timestamp_ns": 2475003735020,
+      "algorithm": "uwb.matlab.taylor",
+      "valid": 1,
+      "estimate_x_m": 10.422406328703756,
+      "estimate_y_m": 8.466057712283348,
+      "estimate_z_m": 3.3301236236104774,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 69,
+      "sample_timestamp_ns": 2475103735022,
+      "algorithm": "uwb.matlab.taylor",
+      "valid": 1,
+      "estimate_x_m": 10.514876957148665,
+      "estimate_y_m": 8.36703198489654,
+      "estimate_z_m": 3.2006991524171093,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 70,
+      "sample_timestamp_ns": 2475203735023,
+      "algorithm": "uwb.matlab.taylor",
+      "valid": 1,
+      "estimate_x_m": 10.625955796174019,
+      "estimate_y_m": 8.396750088314597,
+      "estimate_z_m": 3.2671036047858983,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 71,
+      "sample_timestamp_ns": 2475303735025,
+      "algorithm": "uwb.matlab.taylor",
+      "valid": 1,
+      "estimate_x_m": 10.631427250189423,
+      "estimate_y_m": 8.433361499468392,
+      "estimate_z_m": 3.074995586670708,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 72,
+      "sample_timestamp_ns": 2475403735026,
+      "algorithm": "uwb.matlab.taylor",
+      "valid": 1,
+      "estimate_x_m": 10.71563009928983,
+      "estimate_y_m": 8.488271872589733,
+      "estimate_z_m": 3.094644559121541,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 73,
+      "sample_timestamp_ns": 2475503735028,
+      "algorithm": "uwb.matlab.taylor",
+      "valid": 1,
+      "estimate_x_m": 10.851027103759614,
+      "estimate_y_m": 8.466273466577617,
+      "estimate_z_m": 3.2065307429581105,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 74,
+      "sample_timestamp_ns": 2475603735029,
+      "algorithm": "uwb.matlab.taylor",
+      "valid": 1,
+      "estimate_x_m": 10.868058387790189,
+      "estimate_y_m": 8.537197332965526,
+      "estimate_z_m": 2.984219872252198,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 75,
+      "sample_timestamp_ns": 2475703735031,
+      "algorithm": "uwb.matlab.taylor",
+      "valid": 1,
+      "estimate_x_m": 10.949607217815826,
+      "estimate_y_m": 8.556798020980052,
+      "estimate_z_m": 3.3297455177243434,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 76,
+      "sample_timestamp_ns": 2475803735032,
+      "algorithm": "uwb.matlab.taylor",
+      "valid": 1,
+      "estimate_x_m": 11.011989250030592,
+      "estimate_y_m": 8.537477483675403,
+      "estimate_z_m": 3.10248614084994,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 77,
+      "sample_timestamp_ns": 2475903735034,
+      "algorithm": "uwb.matlab.taylor",
+      "valid": 1,
+      "estimate_x_m": 11.022473725489013,
+      "estimate_y_m": 8.680283129552485,
+      "estimate_z_m": 3.326388585285457,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 78,
+      "sample_timestamp_ns": 2476003735035,
+      "algorithm": "uwb.matlab.taylor",
+      "valid": 1,
+      "estimate_x_m": 11.10033949916012,
+      "estimate_y_m": 8.68928003836699,
+      "estimate_z_m": 3.343994392458489,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 79,
+      "sample_timestamp_ns": 2476103735037,
+      "algorithm": "uwb.matlab.taylor",
+      "valid": 1,
+      "estimate_x_m": 11.105376153587208,
+      "estimate_y_m": 8.642552682451658,
+      "estimate_z_m": 3.216972255328484,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 80,
+      "sample_timestamp_ns": 2476203735038,
+      "algorithm": "uwb.matlab.taylor",
+      "valid": 1,
+      "estimate_x_m": 11.223138660697238,
+      "estimate_y_m": 8.673603801507964,
+      "estimate_z_m": 3.3102529886340597,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 81,
+      "sample_timestamp_ns": 2476303735040,
+      "algorithm": "uwb.matlab.taylor",
+      "valid": 1,
+      "estimate_x_m": 11.27033846243625,
+      "estimate_y_m": 8.75865354935597,
+      "estimate_z_m": 3.1229361543641736,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 82,
+      "sample_timestamp_ns": 2476403735041,
+      "algorithm": "uwb.matlab.taylor",
+      "valid": 1,
+      "estimate_x_m": 11.279890087816156,
+      "estimate_y_m": 8.657223741411578,
+      "estimate_z_m": 3.196065241152172,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 83,
+      "sample_timestamp_ns": 2476503735043,
+      "algorithm": "uwb.matlab.taylor",
+      "valid": 1,
+      "estimate_x_m": 11.295175148205267,
+      "estimate_y_m": 8.690179994007776,
+      "estimate_z_m": 3.0589144333029292,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 84,
+      "sample_timestamp_ns": 2476603735044,
+      "algorithm": "uwb.matlab.taylor",
+      "valid": 1,
+      "estimate_x_m": 11.376202561550956,
+      "estimate_y_m": 8.733548831110587,
+      "estimate_z_m": 3.20634354172986,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 85,
+      "sample_timestamp_ns": 2476703735046,
+      "algorithm": "uwb.matlab.taylor",
+      "valid": 1,
+      "estimate_x_m": 11.380066115231022,
+      "estimate_y_m": 8.71470815406922,
+      "estimate_z_m": 2.9718989698608604,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 86,
+      "sample_timestamp_ns": 2476803735047,
+      "algorithm": "uwb.matlab.taylor",
+      "valid": 1,
+      "estimate_x_m": 11.547945764758625,
+      "estimate_y_m": 8.733391510167547,
+      "estimate_z_m": 3.155810974291406,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 87,
+      "sample_timestamp_ns": 2476903735049,
+      "algorithm": "uwb.matlab.taylor",
+      "valid": 1,
+      "estimate_x_m": 11.47958320902699,
+      "estimate_y_m": 8.800167115511735,
+      "estimate_z_m": 3.0801912569636962,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 88,
+      "sample_timestamp_ns": 2477003735050,
+      "algorithm": "uwb.matlab.taylor",
+      "valid": 1,
+      "estimate_x_m": 11.531610858712806,
+      "estimate_y_m": 8.821896460074836,
+      "estimate_z_m": 3.2022667490380616,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 89,
+      "sample_timestamp_ns": 2477103735052,
+      "algorithm": "uwb.matlab.taylor",
+      "valid": 1,
+      "estimate_x_m": 11.58763081855693,
+      "estimate_y_m": 8.839236690514616,
+      "estimate_z_m": 3.0600063405373144,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 90,
+      "sample_timestamp_ns": 2477203735053,
+      "algorithm": "uwb.matlab.taylor",
+      "valid": 1,
+      "estimate_x_m": 11.583484006863497,
+      "estimate_y_m": 8.85920493639144,
+      "estimate_z_m": 3.1995903499957183,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 91,
+      "sample_timestamp_ns": 2477303735055,
+      "algorithm": "uwb.matlab.taylor",
+      "valid": 1,
+      "estimate_x_m": 11.616365823903545,
+      "estimate_y_m": 8.909603677455866,
+      "estimate_z_m": 3.055887817614546,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 92,
+      "sample_timestamp_ns": 2477403735056,
+      "algorithm": "uwb.matlab.taylor",
+      "valid": 1,
+      "estimate_x_m": 11.726336700071919,
+      "estimate_y_m": 8.881933324054623,
+      "estimate_z_m": 3.158690594976363,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 93,
+      "sample_timestamp_ns": 2477503735058,
+      "algorithm": "uwb.matlab.taylor",
+      "valid": 1,
+      "estimate_x_m": 11.59106500366413,
+      "estimate_y_m": 8.490434175041505,
+      "estimate_z_m": -0.3633843561114657,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 94,
+      "sample_timestamp_ns": 2477603735059,
+      "algorithm": "uwb.matlab.taylor",
+      "valid": 1,
+      "estimate_x_m": 11.756195391572614,
+      "estimate_y_m": 8.815945305270349,
+      "estimate_z_m": 3.2090248929003393,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 95,
+      "sample_timestamp_ns": 2477703735060,
+      "algorithm": "uwb.matlab.taylor",
+      "valid": 1,
+      "estimate_x_m": 11.735450669796899,
+      "estimate_y_m": 8.96145505053264,
+      "estimate_z_m": 2.9789470884629243,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 96,
+      "sample_timestamp_ns": 2477803735062,
+      "algorithm": "uwb.matlab.taylor",
+      "valid": 1,
+      "estimate_x_m": 11.796224334689775,
+      "estimate_y_m": 8.838349352393898,
+      "estimate_z_m": 3.034471569741629,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 97,
+      "sample_timestamp_ns": 2477903735063,
+      "algorithm": "uwb.matlab.taylor",
+      "valid": 1,
+      "estimate_x_m": 11.8626260696176,
+      "estimate_y_m": 8.872967742609154,
+      "estimate_z_m": 2.8869061836593395,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 98,
+      "sample_timestamp_ns": 2478003735065,
+      "algorithm": "uwb.matlab.taylor",
+      "valid": 1,
+      "estimate_x_m": 11.843222978556382,
+      "estimate_y_m": 8.932438299181648,
+      "estimate_z_m": 3.1490314029152264,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 99,
+      "sample_timestamp_ns": 2478103735066,
+      "algorithm": "uwb.matlab.taylor",
+      "valid": 1,
+      "estimate_x_m": 11.870288951717075,
+      "estimate_y_m": 8.96945427059713,
+      "estimate_z_m": 3.1953821610532898,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 0,
+      "sample_timestamp_ns": 2468203734919,
+      "algorithm": "uwb.matlab.ekf",
+      "valid": 1,
+      "estimate_x_m": 2.853301553576341,
+      "estimate_y_m": 5.354824252598935,
+      "estimate_z_m": -1.3067167178927148,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 1,
+      "sample_timestamp_ns": 2468303734920,
+      "algorithm": "uwb.matlab.ekf",
+      "valid": 1,
+      "estimate_x_m": 2.8659552805860256,
+      "estimate_y_m": 5.420502456816897,
+      "estimate_z_m": 0.6577111268716254,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 2,
+      "sample_timestamp_ns": 2468403734922,
+      "algorithm": "uwb.matlab.ekf",
+      "valid": 1,
+      "estimate_x_m": 3.049742731448198,
+      "estimate_y_m": 5.536626573457043,
+      "estimate_z_m": 1.7672692915444306,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 3,
+      "sample_timestamp_ns": 2468503734923,
+      "algorithm": "uwb.matlab.ekf",
+      "valid": 1,
+      "estimate_x_m": 3.2057015274924407,
+      "estimate_y_m": 5.694110328769571,
+      "estimate_z_m": 2.8310064014770546,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 4,
+      "sample_timestamp_ns": 2468603734925,
+      "algorithm": "uwb.matlab.ekf",
+      "valid": 1,
+      "estimate_x_m": 3.391830128990953,
+      "estimate_y_m": 5.755287848451606,
+      "estimate_z_m": 3.4781852134271105,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 5,
+      "sample_timestamp_ns": 2468703734926,
+      "algorithm": "uwb.matlab.ekf",
+      "valid": 1,
+      "estimate_x_m": 3.546173045637023,
+      "estimate_y_m": 5.807455092009096,
+      "estimate_z_m": 3.7670842108235023,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 6,
+      "sample_timestamp_ns": 2468803734928,
+      "algorithm": "uwb.matlab.ekf",
+      "valid": 1,
+      "estimate_x_m": 3.7017304157905544,
+      "estimate_y_m": 5.863312025041614,
+      "estimate_z_m": 3.885712304169613,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 7,
+      "sample_timestamp_ns": 2468903734929,
+      "algorithm": "uwb.matlab.ekf",
+      "valid": 1,
+      "estimate_x_m": 3.8361732952471987,
+      "estimate_y_m": 5.933487006012256,
+      "estimate_z_m": 4.069009136968424,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 8,
+      "sample_timestamp_ns": 2469003734931,
+      "algorithm": "uwb.matlab.ekf",
+      "valid": 1,
+      "estimate_x_m": 3.998374565252182,
+      "estimate_y_m": 5.967920876791253,
+      "estimate_z_m": 4.075130004660502,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 9,
+      "sample_timestamp_ns": 2469103734932,
+      "algorithm": "uwb.matlab.ekf",
+      "valid": 1,
+      "estimate_x_m": 4.159330309530057,
+      "estimate_y_m": 6.022645634839348,
+      "estimate_z_m": 4.009432589616681,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 10,
+      "sample_timestamp_ns": 2469203734934,
+      "algorithm": "uwb.matlab.ekf",
+      "valid": 1,
+      "estimate_x_m": 4.3012741500510225,
+      "estimate_y_m": 6.107328079067843,
+      "estimate_z_m": 3.9665134536131648,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 11,
+      "sample_timestamp_ns": 2469303734935,
+      "algorithm": "uwb.matlab.ekf",
+      "valid": 1,
+      "estimate_x_m": 4.421651042397073,
+      "estimate_y_m": 6.158646240967313,
+      "estimate_z_m": 3.9460887285762842,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 12,
+      "sample_timestamp_ns": 2469403734937,
+      "algorithm": "uwb.matlab.ekf",
+      "valid": 1,
+      "estimate_x_m": 4.55811217641322,
+      "estimate_y_m": 6.213027976858346,
+      "estimate_z_m": 3.9019534521749337,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 13,
+      "sample_timestamp_ns": 2469503734938,
+      "algorithm": "uwb.matlab.ekf",
+      "valid": 1,
+      "estimate_x_m": 4.663792668910344,
+      "estimate_y_m": 6.245824324529261,
+      "estimate_z_m": 3.742239286597506,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 14,
+      "sample_timestamp_ns": 2469603734940,
+      "algorithm": "uwb.matlab.ekf",
+      "valid": 1,
+      "estimate_x_m": 4.795777900260065,
+      "estimate_y_m": 6.316327403493949,
+      "estimate_z_m": 3.612261863313942,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 15,
+      "sample_timestamp_ns": 2469703734941,
+      "algorithm": "uwb.matlab.ekf",
+      "valid": 1,
+      "estimate_x_m": 4.913355675486329,
+      "estimate_y_m": 6.33140881675948,
+      "estimate_z_m": 3.4869224194602593,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 16,
+      "sample_timestamp_ns": 2469803734943,
+      "algorithm": "uwb.matlab.ekf",
+      "valid": 1,
+      "estimate_x_m": 5.039973300967562,
+      "estimate_y_m": 6.408875605860206,
+      "estimate_z_m": 3.4190985657821336,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 17,
+      "sample_timestamp_ns": 2469903734944,
+      "algorithm": "uwb.matlab.ekf",
+      "valid": 1,
+      "estimate_x_m": 5.173641607716617,
+      "estimate_y_m": 6.473209875254273,
+      "estimate_z_m": 3.336816716832089,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 18,
+      "sample_timestamp_ns": 2470003734946,
+      "algorithm": "uwb.matlab.ekf",
+      "valid": 1,
+      "estimate_x_m": 5.2930597734792295,
+      "estimate_y_m": 6.502172739125441,
+      "estimate_z_m": 3.243248768315161,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 19,
+      "sample_timestamp_ns": 2470103734947,
+      "algorithm": "uwb.matlab.ekf",
+      "valid": 1,
+      "estimate_x_m": 5.406325080421089,
+      "estimate_y_m": 6.539016438662557,
+      "estimate_z_m": 3.200592076131201,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 20,
+      "sample_timestamp_ns": 2470203734949,
+      "algorithm": "uwb.matlab.ekf",
+      "valid": 1,
+      "estimate_x_m": 5.544577986431655,
+      "estimate_y_m": 6.583092972641358,
+      "estimate_z_m": 3.1720416706726176,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 21,
+      "sample_timestamp_ns": 2470303734950,
+      "algorithm": "uwb.matlab.ekf",
+      "valid": 1,
+      "estimate_x_m": 5.659821322686676,
+      "estimate_y_m": 6.624796441891764,
+      "estimate_z_m": 3.0709161879962235,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 22,
+      "sample_timestamp_ns": 2470403734952,
+      "algorithm": "uwb.matlab.ekf",
+      "valid": 1,
+      "estimate_x_m": 5.7848681134633955,
+      "estimate_y_m": 6.6821983978440205,
+      "estimate_z_m": 3.091043213331754,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 23,
+      "sample_timestamp_ns": 2470503734953,
+      "algorithm": "uwb.matlab.ekf",
+      "valid": 1,
+      "estimate_x_m": 5.905742839305172,
+      "estimate_y_m": 6.738086199749083,
+      "estimate_z_m": 3.006267244428134,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 24,
+      "sample_timestamp_ns": 2470603734955,
+      "algorithm": "uwb.matlab.ekf",
+      "valid": 1,
+      "estimate_x_m": 6.016552837189231,
+      "estimate_y_m": 6.752356579457672,
+      "estimate_z_m": 2.987910235930585,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 25,
+      "sample_timestamp_ns": 2470703734956,
+      "algorithm": "uwb.matlab.ekf",
+      "valid": 1,
+      "estimate_x_m": 6.148349184355522,
+      "estimate_y_m": 6.816146289944079,
+      "estimate_z_m": 2.9496520670665216,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 26,
+      "sample_timestamp_ns": 2470803734958,
+      "algorithm": "uwb.matlab.ekf",
+      "valid": 1,
+      "estimate_x_m": 6.273951471558976,
+      "estimate_y_m": 6.854946281020813,
+      "estimate_z_m": 2.902962490423259,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 27,
+      "sample_timestamp_ns": 2470903734959,
+      "algorithm": "uwb.matlab.ekf",
+      "valid": 1,
+      "estimate_x_m": 6.423237946206497,
+      "estimate_y_m": 6.88345319800578,
+      "estimate_z_m": 3.0035188622769793,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 28,
+      "sample_timestamp_ns": 2471003734961,
+      "algorithm": "uwb.matlab.ekf",
+      "valid": 1,
+      "estimate_x_m": 6.540543824048956,
+      "estimate_y_m": 6.912001413053711,
+      "estimate_z_m": 3.022903037555172,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 29,
+      "sample_timestamp_ns": 2471103734962,
+      "algorithm": "uwb.matlab.ekf",
+      "valid": 1,
+      "estimate_x_m": 6.648959816778572,
+      "estimate_y_m": 6.9711922182745045,
+      "estimate_z_m": 3.1156682272075717,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 30,
+      "sample_timestamp_ns": 2471203734964,
+      "algorithm": "uwb.matlab.ekf",
+      "valid": 1,
+      "estimate_x_m": 6.774854101820219,
+      "estimate_y_m": 7.013373890099065,
+      "estimate_z_m": 3.085649993465402,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 31,
+      "sample_timestamp_ns": 2471303734965,
+      "algorithm": "uwb.matlab.ekf",
+      "valid": 1,
+      "estimate_x_m": 6.8779310722568905,
+      "estimate_y_m": 7.090076233302022,
+      "estimate_z_m": 3.1855642411098346,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 32,
+      "sample_timestamp_ns": 2471403734967,
+      "algorithm": "uwb.matlab.ekf",
+      "valid": 1,
+      "estimate_x_m": 6.989140701659012,
+      "estimate_y_m": 7.129377301987956,
+      "estimate_z_m": 3.146812041769231,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 33,
+      "sample_timestamp_ns": 2471503734968,
+      "algorithm": "uwb.matlab.ekf",
+      "valid": 1,
+      "estimate_x_m": 7.121254792677058,
+      "estimate_y_m": 7.196602029377257,
+      "estimate_z_m": 3.1169390333309255,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 34,
+      "sample_timestamp_ns": 2471603734970,
+      "algorithm": "uwb.matlab.ekf",
+      "valid": 1,
+      "estimate_x_m": 7.262484326832617,
+      "estimate_y_m": 7.230728337955297,
+      "estimate_z_m": 3.200817495213441,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 35,
+      "sample_timestamp_ns": 2471703734971,
+      "algorithm": "uwb.matlab.ekf",
+      "valid": 1,
+      "estimate_x_m": 7.400389640086275,
+      "estimate_y_m": 7.270289535401009,
+      "estimate_z_m": 3.1304352439633933,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 36,
+      "sample_timestamp_ns": 2471803734973,
+      "algorithm": "uwb.matlab.ekf",
+      "valid": 1,
+      "estimate_x_m": 7.495743244318522,
+      "estimate_y_m": 7.299689709566674,
+      "estimate_z_m": 3.084009553059232,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 37,
+      "sample_timestamp_ns": 2471903734974,
+      "algorithm": "uwb.matlab.ekf",
+      "valid": 1,
+      "estimate_x_m": 7.594752519195357,
+      "estimate_y_m": 7.3654302532894445,
+      "estimate_z_m": 3.126729291934223,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 38,
+      "sample_timestamp_ns": 2472003734976,
+      "algorithm": "uwb.matlab.ekf",
+      "valid": 1,
+      "estimate_x_m": 7.706785698917728,
+      "estimate_y_m": 7.366819094411812,
+      "estimate_z_m": 3.0722438037084925,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 39,
+      "sample_timestamp_ns": 2472103734977,
+      "algorithm": "uwb.matlab.ekf",
+      "valid": 1,
+      "estimate_x_m": 7.7926281350924995,
+      "estimate_y_m": 7.440947856257569,
+      "estimate_z_m": 3.0670314050818406,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 40,
+      "sample_timestamp_ns": 2472203734979,
+      "algorithm": "uwb.matlab.ekf",
+      "valid": 1,
+      "estimate_x_m": 7.875186212759144,
+      "estimate_y_m": 7.453763296370122,
+      "estimate_z_m": 3.1319648975652625,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 41,
+      "sample_timestamp_ns": 2472303734980,
+      "algorithm": "uwb.matlab.ekf",
+      "valid": 1,
+      "estimate_x_m": 8.010780739549725,
+      "estimate_y_m": 7.491232836668911,
+      "estimate_z_m": 3.2067829313497,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 42,
+      "sample_timestamp_ns": 2472403734982,
+      "algorithm": "uwb.matlab.ekf",
+      "valid": 1,
+      "estimate_x_m": 8.13299767981659,
+      "estimate_y_m": 7.5391024748239275,
+      "estimate_z_m": 3.1672818945975645,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 43,
+      "sample_timestamp_ns": 2472503734983,
+      "algorithm": "uwb.matlab.ekf",
+      "valid": 1,
+      "estimate_x_m": 8.25279237658886,
+      "estimate_y_m": 7.565552496394924,
+      "estimate_z_m": 3.1055701341114252,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 44,
+      "sample_timestamp_ns": 2472603734984,
+      "algorithm": "uwb.matlab.ekf",
+      "valid": 1,
+      "estimate_x_m": 8.371416852257825,
+      "estimate_y_m": 7.634168024943631,
+      "estimate_z_m": 3.162440497141622,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 45,
+      "sample_timestamp_ns": 2472703734986,
+      "algorithm": "uwb.matlab.ekf",
+      "valid": 1,
+      "estimate_x_m": 8.49111106258668,
+      "estimate_y_m": 7.687934718240652,
+      "estimate_z_m": 3.1922549305580925,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 46,
+      "sample_timestamp_ns": 2472803734987,
+      "algorithm": "uwb.matlab.ekf",
+      "valid": 1,
+      "estimate_x_m": 8.551384971633738,
+      "estimate_y_m": 7.7567506012414835,
+      "estimate_z_m": 3.2022047409901604,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 47,
+      "sample_timestamp_ns": 2472903734989,
+      "algorithm": "uwb.matlab.ekf",
+      "valid": 1,
+      "estimate_x_m": 8.608406546120314,
+      "estimate_y_m": 7.785007947890461,
+      "estimate_z_m": 3.2097036846005627,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 48,
+      "sample_timestamp_ns": 2473003734990,
+      "algorithm": "uwb.matlab.ekf",
+      "valid": 1,
+      "estimate_x_m": 8.698382237132698,
+      "estimate_y_m": 7.835245702120675,
+      "estimate_z_m": 3.1395388846145305,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 49,
+      "sample_timestamp_ns": 2473103734992,
+      "algorithm": "uwb.matlab.ekf",
+      "valid": 1,
+      "estimate_x_m": 8.819145204866091,
+      "estimate_y_m": 7.851680758631806,
+      "estimate_z_m": 3.1610850778284867,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 50,
+      "sample_timestamp_ns": 2473203734993,
+      "algorithm": "uwb.matlab.ekf",
+      "valid": 1,
+      "estimate_x_m": 8.928928217519774,
+      "estimate_y_m": 7.893503170962699,
+      "estimate_z_m": 3.1710673872333124,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 51,
+      "sample_timestamp_ns": 2473303734995,
+      "algorithm": "uwb.matlab.ekf",
+      "valid": 1,
+      "estimate_x_m": 8.998105918314776,
+      "estimate_y_m": 7.896019445759428,
+      "estimate_z_m": 3.067944002262919,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 52,
+      "sample_timestamp_ns": 2473403734996,
+      "algorithm": "uwb.matlab.ekf",
+      "valid": 1,
+      "estimate_x_m": 9.077243891293383,
+      "estimate_y_m": 7.909677085210839,
+      "estimate_z_m": 3.0836754604156638,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 53,
+      "sample_timestamp_ns": 2473503734998,
+      "algorithm": "uwb.matlab.ekf",
+      "valid": 1,
+      "estimate_x_m": 9.209220055727982,
+      "estimate_y_m": 7.930828464708356,
+      "estimate_z_m": 3.0870644298498684,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 54,
+      "sample_timestamp_ns": 2473603734999,
+      "algorithm": "uwb.matlab.ekf",
+      "valid": 1,
+      "estimate_x_m": 9.298706048135433,
+      "estimate_y_m": 8.001138415659266,
+      "estimate_z_m": 3.108272252649732,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 55,
+      "sample_timestamp_ns": 2473703735001,
+      "algorithm": "uwb.matlab.ekf",
+      "valid": 1,
+      "estimate_x_m": 9.378055930526425,
+      "estimate_y_m": 8.036006669902696,
+      "estimate_z_m": 3.1162122629414006,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 56,
+      "sample_timestamp_ns": 2473803735002,
+      "algorithm": "uwb.matlab.ekf",
+      "valid": 1,
+      "estimate_x_m": 9.490518479636897,
+      "estimate_y_m": 8.048993793726876,
+      "estimate_z_m": 3.2262581731253026,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 57,
+      "sample_timestamp_ns": 2473903735004,
+      "algorithm": "uwb.matlab.ekf",
+      "valid": 1,
+      "estimate_x_m": 9.574864053800606,
+      "estimate_y_m": 8.076089103880818,
+      "estimate_z_m": 3.130524455968189,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 58,
+      "sample_timestamp_ns": 2474003735005,
+      "algorithm": "uwb.matlab.ekf",
+      "valid": 1,
+      "estimate_x_m": 9.655652071917384,
+      "estimate_y_m": 8.139310889622873,
+      "estimate_z_m": 3.1169835362900025,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 59,
+      "sample_timestamp_ns": 2474103735007,
+      "algorithm": "uwb.matlab.ekf",
+      "valid": 1,
+      "estimate_x_m": 9.720970595856231,
+      "estimate_y_m": 8.143568691332046,
+      "estimate_z_m": 3.02276347095164,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 60,
+      "sample_timestamp_ns": 2474203735008,
+      "algorithm": "uwb.matlab.ekf",
+      "valid": 1,
+      "estimate_x_m": 9.793997694208993,
+      "estimate_y_m": 8.17542821939432,
+      "estimate_z_m": 2.957620874186229,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 61,
+      "sample_timestamp_ns": 2474303735010,
+      "algorithm": "uwb.matlab.ekf",
+      "valid": 1,
+      "estimate_x_m": 9.948971614643762,
+      "estimate_y_m": 8.197174375445863,
+      "estimate_z_m": 3.0253691989491647,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 62,
+      "sample_timestamp_ns": 2474403735011,
+      "algorithm": "uwb.matlab.ekf",
+      "valid": 1,
+      "estimate_x_m": 10.063618243819544,
+      "estimate_y_m": 8.236708923802949,
+      "estimate_z_m": 3.1336713818358235,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 63,
+      "sample_timestamp_ns": 2474503735013,
+      "algorithm": "uwb.matlab.ekf",
+      "valid": 1,
+      "estimate_x_m": 10.154556545727717,
+      "estimate_y_m": 8.261836595086368,
+      "estimate_z_m": 3.1920070178427786,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 64,
+      "sample_timestamp_ns": 2474603735014,
+      "algorithm": "uwb.matlab.ekf",
+      "valid": 1,
+      "estimate_x_m": 10.188951603620948,
+      "estimate_y_m": 8.296117893389106,
+      "estimate_z_m": 3.195478792433511,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 65,
+      "sample_timestamp_ns": 2474703735016,
+      "algorithm": "uwb.matlab.ekf",
+      "valid": 1,
+      "estimate_x_m": 10.235782966925132,
+      "estimate_y_m": 8.318696974991846,
+      "estimate_z_m": 3.1922348435736216,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 66,
+      "sample_timestamp_ns": 2474803735017,
+      "algorithm": "uwb.matlab.ekf",
+      "valid": 1,
+      "estimate_x_m": 10.30510131349013,
+      "estimate_y_m": 8.367564831024536,
+      "estimate_z_m": 3.2091652172344887,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 67,
+      "sample_timestamp_ns": 2474903735019,
+      "algorithm": "uwb.matlab.ekf",
+      "valid": 1,
+      "estimate_x_m": 10.38191961963122,
+      "estimate_y_m": 8.39111245288193,
+      "estimate_z_m": 3.1766403062566093,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 68,
+      "sample_timestamp_ns": 2475003735020,
+      "algorithm": "uwb.matlab.ekf",
+      "valid": 1,
+      "estimate_x_m": 10.43435685193064,
+      "estimate_y_m": 8.439954305983054,
+      "estimate_z_m": 3.22921371136732,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 69,
+      "sample_timestamp_ns": 2475103735022,
+      "algorithm": "uwb.matlab.ekf",
+      "valid": 1,
+      "estimate_x_m": 10.5054734567622,
+      "estimate_y_m": 8.422452074379638,
+      "estimate_z_m": 3.2325497017257923,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 70,
+      "sample_timestamp_ns": 2475203735023,
+      "algorithm": "uwb.matlab.ekf",
+      "valid": 1,
+      "estimate_x_m": 10.598403283304613,
+      "estimate_y_m": 8.419064362818094,
+      "estimate_z_m": 3.2534424112353837,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 71,
+      "sample_timestamp_ns": 2475303735025,
+      "algorithm": "uwb.matlab.ekf",
+      "valid": 1,
+      "estimate_x_m": 10.655990829878395,
+      "estimate_y_m": 8.4357421440535,
+      "estimate_z_m": 3.206374259765094,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 72,
+      "sample_timestamp_ns": 2475403735026,
+      "algorithm": "uwb.matlab.ekf",
+      "valid": 1,
+      "estimate_x_m": 10.724301918217435,
+      "estimate_y_m": 8.471979176685348,
+      "estimate_z_m": 3.1713885946898266,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 73,
+      "sample_timestamp_ns": 2475503735028,
+      "algorithm": "uwb.matlab.ekf",
+      "valid": 1,
+      "estimate_x_m": 10.822921518734109,
+      "estimate_y_m": 8.480570133251872,
+      "estimate_z_m": 3.1799340450456746,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 74,
+      "sample_timestamp_ns": 2475603735029,
+      "algorithm": "uwb.matlab.ekf",
+      "valid": 1,
+      "estimate_x_m": 10.890272559218522,
+      "estimate_y_m": 8.522466331724539,
+      "estimate_z_m": 3.1135715276170366,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 75,
+      "sample_timestamp_ns": 2475703735031,
+      "algorithm": "uwb.matlab.ekf",
+      "valid": 1,
+      "estimate_x_m": 10.95304377473522,
+      "estimate_y_m": 8.547112593734715,
+      "estimate_z_m": 3.179286307394303,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 76,
+      "sample_timestamp_ns": 2475803735032,
+      "algorithm": "uwb.matlab.ekf",
+      "valid": 1,
+      "estimate_x_m": 11.018389242353507,
+      "estimate_y_m": 8.55602192031694,
+      "estimate_z_m": 3.155522833387699,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 77,
+      "sample_timestamp_ns": 2475903735034,
+      "algorithm": "uwb.matlab.ekf",
+      "valid": 1,
+      "estimate_x_m": 11.051547157002561,
+      "estimate_y_m": 8.621879451274598,
+      "estimate_z_m": 3.210545046436972,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 78,
+      "sample_timestamp_ns": 2476003735035,
+      "algorithm": "uwb.matlab.ekf",
+      "valid": 1,
+      "estimate_x_m": 11.101443337876065,
+      "estimate_y_m": 8.669284664312915,
+      "estimate_z_m": 3.2633227384643404,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 79,
+      "sample_timestamp_ns": 2476103735037,
+      "algorithm": "uwb.matlab.ekf",
+      "valid": 1,
+      "estimate_x_m": 11.128441840024797,
+      "estimate_y_m": 8.67441106656037,
+      "estimate_z_m": 3.260604927422867,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 80,
+      "sample_timestamp_ns": 2476203735038,
+      "algorithm": "uwb.matlab.ekf",
+      "valid": 1,
+      "estimate_x_m": 11.196919963520326,
+      "estimate_y_m": 8.687100869541625,
+      "estimate_z_m": 3.286799722006039,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 81,
+      "sample_timestamp_ns": 2476303735040,
+      "algorithm": "uwb.matlab.ekf",
+      "valid": 1,
+      "estimate_x_m": 11.265358431600156,
+      "estimate_y_m": 8.739263786693028,
+      "estimate_z_m": 3.237769857704857,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 82,
+      "sample_timestamp_ns": 2476403735041,
+      "algorithm": "uwb.matlab.ekf",
+      "valid": 1,
+      "estimate_x_m": 11.299801669271037,
+      "estimate_y_m": 8.714867628715963,
+      "estimate_z_m": 3.2304747132961493,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 83,
+      "sample_timestamp_ns": 2476503735043,
+      "algorithm": "uwb.matlab.ekf",
+      "valid": 1,
+      "estimate_x_m": 11.323939357938643,
+      "estimate_y_m": 8.71233511226121,
+      "estimate_z_m": 3.176297014003869,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 84,
+      "sample_timestamp_ns": 2476603735044,
+      "algorithm": "uwb.matlab.ekf",
+      "valid": 1,
+      "estimate_x_m": 11.370109676411138,
+      "estimate_y_m": 8.72633312104632,
+      "estimate_z_m": 3.179488744075579,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 85,
+      "sample_timestamp_ns": 2476703735046,
+      "algorithm": "uwb.matlab.ekf",
+      "valid": 1,
+      "estimate_x_m": 11.40033870201453,
+      "estimate_y_m": 8.730987785222919,
+      "estimate_z_m": 3.1109671823798664,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 86,
+      "sample_timestamp_ns": 2476803735047,
+      "algorithm": "uwb.matlab.ekf",
+      "valid": 1,
+      "estimate_x_m": 11.49466334578542,
+      "estimate_y_m": 8.737978543440683,
+      "estimate_z_m": 3.1125537333466213,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 87,
+      "sample_timestamp_ns": 2476903735049,
+      "algorithm": "uwb.matlab.ekf",
+      "valid": 1,
+      "estimate_x_m": 11.516936648088205,
+      "estimate_y_m": 8.772611785934746,
+      "estimate_z_m": 3.091744227013563,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 88,
+      "sample_timestamp_ns": 2477003735050,
+      "algorithm": "uwb.matlab.ekf",
+      "valid": 1,
+      "estimate_x_m": 11.544376414994801,
+      "estimate_y_m": 8.801487550463234,
+      "estimate_z_m": 3.1181359249552627,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 89,
+      "sample_timestamp_ns": 2477103735052,
+      "algorithm": "uwb.matlab.ekf",
+      "valid": 1,
+      "estimate_x_m": 11.587139543584883,
+      "estimate_y_m": 8.831952036077109,
+      "estimate_z_m": 3.092219868610054,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 90,
+      "sample_timestamp_ns": 2477203735053,
+      "algorithm": "uwb.matlab.ekf",
+      "valid": 1,
+      "estimate_x_m": 11.602008302829438,
+      "estimate_y_m": 8.85313896821763,
+      "estimate_z_m": 3.1233418934545,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 91,
+      "sample_timestamp_ns": 2477303735055,
+      "algorithm": "uwb.matlab.ekf",
+      "valid": 1,
+      "estimate_x_m": 11.626507749354285,
+      "estimate_y_m": 8.893672739701385,
+      "estimate_z_m": 3.097914950653728,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 92,
+      "sample_timestamp_ns": 2477403735056,
+      "algorithm": "uwb.matlab.ekf",
+      "valid": 1,
+      "estimate_x_m": 11.689668940519221,
+      "estimate_y_m": 8.901720068512006,
+      "estimate_z_m": 3.1136042602013627,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 93,
+      "sample_timestamp_ns": 2477503735058,
+      "algorithm": "uwb.matlab.ekf",
+      "valid": 1,
+      "estimate_x_m": 11.762861918610831,
+      "estimate_y_m": 8.907464817369423,
+      "estimate_z_m": 3.1620999982536424,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 94,
+      "sample_timestamp_ns": 2477603735059,
+      "algorithm": "uwb.matlab.ekf",
+      "valid": 1,
+      "estimate_x_m": 11.780357704525883,
+      "estimate_y_m": 8.86621802940277,
+      "estimate_z_m": 3.1892711290363653,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 95,
+      "sample_timestamp_ns": 2477703735060,
+      "algorithm": "uwb.matlab.ekf",
+      "valid": 1,
+      "estimate_x_m": 11.782133838502478,
+      "estimate_y_m": 8.916262197627358,
+      "estimate_z_m": 3.1244913973835975,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 96,
+      "sample_timestamp_ns": 2477803735062,
+      "algorithm": "uwb.matlab.ekf",
+      "valid": 1,
+      "estimate_x_m": 11.802173698704474,
+      "estimate_y_m": 8.886645210071066,
+      "estimate_z_m": 3.0958441556813194,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 97,
+      "sample_timestamp_ns": 2477903735063,
+      "algorithm": "uwb.matlab.ekf",
+      "valid": 1,
+      "estimate_x_m": 11.84955589244074,
+      "estimate_y_m": 8.886896669646715,
+      "estimate_z_m": 3.0201197971134923,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 98,
+      "sample_timestamp_ns": 2478003735065,
+      "algorithm": "uwb.matlab.ekf",
+      "valid": 1,
+      "estimate_x_m": 11.85993060754456,
+      "estimate_y_m": 8.90491721104431,
+      "estimate_z_m": 3.047899329462346,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 99,
+      "sample_timestamp_ns": 2478103735066,
+      "algorithm": "uwb.matlab.ekf",
+      "valid": 1,
+      "estimate_x_m": 11.874977965183277,
+      "estimate_y_m": 8.935370198345765,
+      "estimate_z_m": 3.091969804676006,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 0,
+      "sample_timestamp_ns": 2468203734919,
+      "algorithm": "uwb.matlab.ukf",
+      "valid": 1,
+      "estimate_x_m": 2.8533015781976845,
+      "estimate_y_m": 5.354824302672564,
+      "estimate_z_m": -0.38280131275533424,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 1,
+      "sample_timestamp_ns": 2468303734920,
+      "algorithm": "uwb.matlab.ukf",
+      "valid": 1,
+      "estimate_x_m": 2.88793955062228,
+      "estimate_y_m": 5.436642960208395,
+      "estimate_z_m": 1.2025454682841519,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 2,
+      "sample_timestamp_ns": 2468403734922,
+      "algorithm": "uwb.matlab.ukf",
+      "valid": 1,
+      "estimate_x_m": 3.0722336694704193,
+      "estimate_y_m": 5.553678962975828,
+      "estimate_z_m": 2.1628392336986924,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 3,
+      "sample_timestamp_ns": 2468503734923,
+      "algorithm": "uwb.matlab.ukf",
+      "valid": 1,
+      "estimate_x_m": 3.218817661676513,
+      "estimate_y_m": 5.702929101445973,
+      "estimate_z_m": 2.9613967965564245,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 4,
+      "sample_timestamp_ns": 2468603734925,
+      "algorithm": "uwb.matlab.ukf",
+      "valid": 1,
+      "estimate_x_m": 3.397660545183018,
+      "estimate_y_m": 5.757516662824661,
+      "estimate_z_m": 3.445256697059731,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 5,
+      "sample_timestamp_ns": 2468703734926,
+      "algorithm": "uwb.matlab.ukf",
+      "valid": 1,
+      "estimate_x_m": 3.5466146027331815,
+      "estimate_y_m": 5.805520527141178,
+      "estimate_z_m": 3.6573852622927667,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 6,
+      "sample_timestamp_ns": 2468803734928,
+      "algorithm": "uwb.matlab.ukf",
+      "valid": 1,
+      "estimate_x_m": 3.6981078307281243,
+      "estimate_y_m": 5.8583184964779536,
+      "estimate_z_m": 3.7196410027781717,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 7,
+      "sample_timestamp_ns": 2468903734929,
+      "algorithm": "uwb.matlab.ukf",
+      "valid": 1,
+      "estimate_x_m": 3.827879602598584,
+      "estimate_y_m": 5.927419782509278,
+      "estimate_z_m": 3.8703558360360906,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 8,
+      "sample_timestamp_ns": 2469003734931,
+      "algorithm": "uwb.matlab.ukf",
+      "valid": 1,
+      "estimate_x_m": 3.9887477010727337,
+      "estimate_y_m": 5.959480549528513,
+      "estimate_z_m": 3.8489892525007354,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 9,
+      "sample_timestamp_ns": 2469103734932,
+      "algorithm": "uwb.matlab.ukf",
+      "valid": 1,
+      "estimate_x_m": 4.148053602768806,
+      "estimate_y_m": 6.0140154530997485,
+      "estimate_z_m": 3.7662395329210865,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 10,
+      "sample_timestamp_ns": 2469203734934,
+      "algorithm": "uwb.matlab.ukf",
+      "valid": 1,
+      "estimate_x_m": 4.287568846748668,
+      "estimate_y_m": 6.09986927702471,
+      "estimate_z_m": 3.7182849451626483,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 11,
+      "sample_timestamp_ns": 2469303734935,
+      "algorithm": "uwb.matlab.ukf",
+      "valid": 1,
+      "estimate_x_m": 4.406083093802981,
+      "estimate_y_m": 6.150361298451734,
+      "estimate_z_m": 3.704595799023959,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 12,
+      "sample_timestamp_ns": 2469403734937,
+      "algorithm": "uwb.matlab.ukf",
+      "valid": 1,
+      "estimate_x_m": 4.543780288709222,
+      "estimate_y_m": 6.204972796349695,
+      "estimate_z_m": 3.6750097918049085,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 13,
+      "sample_timestamp_ns": 2469503734938,
+      "algorithm": "uwb.matlab.ukf",
+      "valid": 1,
+      "estimate_x_m": 4.649686299614447,
+      "estimate_y_m": 6.237088548755835,
+      "estimate_z_m": 3.5294944977297225,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 14,
+      "sample_timestamp_ns": 2469603734940,
+      "algorithm": "uwb.matlab.ukf",
+      "valid": 1,
+      "estimate_x_m": 4.783969013619418,
+      "estimate_y_m": 6.309260411974627,
+      "estimate_z_m": 3.414850403696497,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 15,
+      "sample_timestamp_ns": 2469703734941,
+      "algorithm": "uwb.matlab.ukf",
+      "valid": 1,
+      "estimate_x_m": 4.902552764156038,
+      "estimate_y_m": 6.323047819851288,
+      "estimate_z_m": 3.3121195156791243,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 16,
+      "sample_timestamp_ns": 2469803734943,
+      "algorithm": "uwb.matlab.ukf",
+      "valid": 1,
+      "estimate_x_m": 5.031326282458688,
+      "estimate_y_m": 6.4037159270969966,
+      "estimate_z_m": 3.2755961654747767,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 17,
+      "sample_timestamp_ns": 2469903734944,
+      "algorithm": "uwb.matlab.ukf",
+      "valid": 1,
+      "estimate_x_m": 5.167382569516753,
+      "estimate_y_m": 6.4693069284518065,
+      "estimate_z_m": 3.2265411047662402,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 18,
+      "sample_timestamp_ns": 2470003734946,
+      "algorithm": "uwb.matlab.ukf",
+      "valid": 1,
+      "estimate_x_m": 5.28749488209869,
+      "estimate_y_m": 6.497451627203615,
+      "estimate_z_m": 3.156646524779929,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 19,
+      "sample_timestamp_ns": 2470103734947,
+      "algorithm": "uwb.matlab.ukf",
+      "valid": 1,
+      "estimate_x_m": 5.401750346249694,
+      "estimate_y_m": 6.535215647648034,
+      "estimate_z_m": 3.1395972583918015,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 20,
+      "sample_timestamp_ns": 2470203734949,
+      "algorithm": "uwb.matlab.ukf",
+      "valid": 1,
+      "estimate_x_m": 5.542698712543318,
+      "estimate_y_m": 6.580860837712849,
+      "estimate_z_m": 3.1344159974701777,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 21,
+      "sample_timestamp_ns": 2470303734950,
+      "algorithm": "uwb.matlab.ukf",
+      "valid": 1,
+      "estimate_x_m": 5.6583175937813035,
+      "estimate_y_m": 6.6235296289522045,
+      "estimate_z_m": 3.0485394995843755,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 22,
+      "sample_timestamp_ns": 2470403734952,
+      "algorithm": "uwb.matlab.ukf",
+      "valid": 1,
+      "estimate_x_m": 5.784381620999578,
+      "estimate_y_m": 6.682305551795604,
+      "estimate_z_m": 3.085036741415493,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 23,
+      "sample_timestamp_ns": 2470503734953,
+      "algorithm": "uwb.matlab.ukf",
+      "valid": 1,
+      "estimate_x_m": 5.906017433255649,
+      "estimate_y_m": 6.738884315225698,
+      "estimate_z_m": 3.0091624787744564,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 24,
+      "sample_timestamp_ns": 2470603734955,
+      "algorithm": "uwb.matlab.ukf",
+      "valid": 1,
+      "estimate_x_m": 6.016654461167027,
+      "estimate_y_m": 6.751644732270019,
+      "estimate_z_m": 2.998949691395389,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 25,
+      "sample_timestamp_ns": 2470703734956,
+      "algorithm": "uwb.matlab.ukf",
+      "valid": 1,
+      "estimate_x_m": 6.150079629200085,
+      "estimate_y_m": 6.817545813282805,
+      "estimate_z_m": 2.966278821848515,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 26,
+      "sample_timestamp_ns": 2470803734958,
+      "algorithm": "uwb.matlab.ukf",
+      "valid": 1,
+      "estimate_x_m": 6.275726650192341,
+      "estimate_y_m": 6.855974686628465,
+      "estimate_z_m": 2.9221452274629947,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 27,
+      "sample_timestamp_ns": 2470903734959,
+      "algorithm": "uwb.matlab.ukf",
+      "valid": 1,
+      "estimate_x_m": 6.425708288453464,
+      "estimate_y_m": 6.883725331346693,
+      "estimate_z_m": 3.025274406574227,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 28,
+      "sample_timestamp_ns": 2471003734961,
+      "algorithm": "uwb.matlab.ukf",
+      "valid": 1,
+      "estimate_x_m": 6.541584020314659,
+      "estimate_y_m": 6.912315607269316,
+      "estimate_z_m": 3.0436012245212174,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 29,
+      "sample_timestamp_ns": 2471103734962,
+      "algorithm": "uwb.matlab.ukf",
+      "valid": 1,
+      "estimate_x_m": 6.649163043535632,
+      "estimate_y_m": 6.972838667503838,
+      "estimate_z_m": 3.1356677345718538,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 30,
+      "sample_timestamp_ns": 2471203734964,
+      "algorithm": "uwb.matlab.ukf",
+      "valid": 1,
+      "estimate_x_m": 6.776243092477986,
+      "estimate_y_m": 7.015023685696517,
+      "estimate_z_m": 3.1033728659478736,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 31,
+      "sample_timestamp_ns": 2471303734965,
+      "algorithm": "uwb.matlab.ukf",
+      "valid": 1,
+      "estimate_x_m": 6.8782178856847525,
+      "estimate_y_m": 7.0924523447275165,
+      "estimate_z_m": 3.2011002811381113,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 32,
+      "sample_timestamp_ns": 2471403734967,
+      "algorithm": "uwb.matlab.ukf",
+      "valid": 1,
+      "estimate_x_m": 6.989929431477837,
+      "estimate_y_m": 7.1303485896295005,
+      "estimate_z_m": 3.1585667594316575,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 33,
+      "sample_timestamp_ns": 2471503734968,
+      "algorithm": "uwb.matlab.ukf",
+      "valid": 1,
+      "estimate_x_m": 7.123217467344146,
+      "estimate_y_m": 7.19802692614348,
+      "estimate_z_m": 3.125566926209147,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 34,
+      "sample_timestamp_ns": 2471603734970,
+      "algorithm": "uwb.matlab.ukf",
+      "valid": 1,
+      "estimate_x_m": 7.264384403978372,
+      "estimate_y_m": 7.2303234359905675,
+      "estimate_z_m": 3.2084845851491273,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 35,
+      "sample_timestamp_ns": 2471703734971,
+      "algorithm": "uwb.matlab.ukf",
+      "valid": 1,
+      "estimate_x_m": 7.402106783687652,
+      "estimate_y_m": 7.2699178881241355,
+      "estimate_z_m": 3.1350116333888716,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 36,
+      "sample_timestamp_ns": 2471803734973,
+      "algorithm": "uwb.matlab.ukf",
+      "valid": 1,
+      "estimate_x_m": 7.494785057906782,
+      "estimate_y_m": 7.298811883453133,
+      "estimate_z_m": 3.0866585853895576,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 37,
+      "sample_timestamp_ns": 2471903734974,
+      "algorithm": "uwb.matlab.ukf",
+      "valid": 1,
+      "estimate_x_m": 7.593300389736762,
+      "estimate_y_m": 7.365937238225808,
+      "estimate_z_m": 3.1283908040996034,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 38,
+      "sample_timestamp_ns": 2472003734976,
+      "algorithm": "uwb.matlab.ukf",
+      "valid": 1,
+      "estimate_x_m": 7.70638639561067,
+      "estimate_y_m": 7.365386012247662,
+      "estimate_z_m": 3.072094491908684,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 39,
+      "sample_timestamp_ns": 2472103734977,
+      "algorithm": "uwb.matlab.ukf",
+      "valid": 1,
+      "estimate_x_m": 7.791635974468178,
+      "estimate_y_m": 7.441960501808619,
+      "estimate_z_m": 3.0659144388445165,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 40,
+      "sample_timestamp_ns": 2472203734979,
+      "algorithm": "uwb.matlab.ukf",
+      "valid": 1,
+      "estimate_x_m": 7.8737952486402625,
+      "estimate_y_m": 7.452695059521706,
+      "estimate_z_m": 3.130967328910883,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 41,
+      "sample_timestamp_ns": 2472303734980,
+      "algorithm": "uwb.matlab.ukf",
+      "valid": 1,
+      "estimate_x_m": 8.012405096897162,
+      "estimate_y_m": 7.49091799786733,
+      "estimate_z_m": 3.2054911007710527,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 42,
+      "sample_timestamp_ns": 2472403734982,
+      "algorithm": "uwb.matlab.ukf",
+      "valid": 1,
+      "estimate_x_m": 8.134887015552634,
+      "estimate_y_m": 7.539706967022546,
+      "estimate_z_m": 3.164551143915648,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 43,
+      "sample_timestamp_ns": 2472503734983,
+      "algorithm": "uwb.matlab.ukf",
+      "valid": 1,
+      "estimate_x_m": 8.25398456776419,
+      "estimate_y_m": 7.565374251372968,
+      "estimate_z_m": 3.1018719309989002,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 44,
+      "sample_timestamp_ns": 2472603734984,
+      "algorithm": "uwb.matlab.ukf",
+      "valid": 1,
+      "estimate_x_m": 8.371608395272657,
+      "estimate_y_m": 7.635050554175481,
+      "estimate_z_m": 3.1594352496936313,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 45,
+      "sample_timestamp_ns": 2472703734986,
+      "algorithm": "uwb.matlab.ukf",
+      "valid": 1,
+      "estimate_x_m": 8.490873976612237,
+      "estimate_y_m": 7.688340135717174,
+      "estimate_z_m": 3.1893864848545643,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 46,
+      "sample_timestamp_ns": 2472803734987,
+      "algorithm": "uwb.matlab.ukf",
+      "valid": 1,
+      "estimate_x_m": 8.548362024665394,
+      "estimate_y_m": 7.757251621450339,
+      "estimate_z_m": 3.1992740876571695,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 47,
+      "sample_timestamp_ns": 2472903734989,
+      "algorithm": "uwb.matlab.ukf",
+      "valid": 1,
+      "estimate_x_m": 8.605149593441004,
+      "estimate_y_m": 7.783742574627287,
+      "estimate_z_m": 3.206565626013476,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 48,
+      "sample_timestamp_ns": 2473003734990,
+      "algorithm": "uwb.matlab.ukf",
+      "valid": 1,
+      "estimate_x_m": 8.698068962731694,
+      "estimate_y_m": 7.834917196816409,
+      "estimate_z_m": 3.1351630132124932,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 49,
+      "sample_timestamp_ns": 2473103734992,
+      "algorithm": "uwb.matlab.ukf",
+      "valid": 1,
+      "estimate_x_m": 8.820886510683577,
+      "estimate_y_m": 7.850055019091533,
+      "estimate_z_m": 3.1573806686726993,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 50,
+      "sample_timestamp_ns": 2473203734993,
+      "algorithm": "uwb.matlab.ukf",
+      "valid": 1,
+      "estimate_x_m": 8.930523674758637,
+      "estimate_y_m": 7.892743485577619,
+      "estimate_z_m": 3.167625603213879,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 51,
+      "sample_timestamp_ns": 2473303734995,
+      "algorithm": "uwb.matlab.ukf",
+      "valid": 1,
+      "estimate_x_m": 8.99753360024497,
+      "estimate_y_m": 7.894275421288947,
+      "estimate_z_m": 3.063543121385448,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 52,
+      "sample_timestamp_ns": 2473403734996,
+      "algorithm": "uwb.matlab.ukf",
+      "valid": 1,
+      "estimate_x_m": 9.076268145813287,
+      "estimate_y_m": 7.908246104776452,
+      "estimate_z_m": 3.0802772008701647,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 53,
+      "sample_timestamp_ns": 2473503734998,
+      "algorithm": "uwb.matlab.ukf",
+      "valid": 1,
+      "estimate_x_m": 9.210940223284789,
+      "estimate_y_m": 7.93049038040197,
+      "estimate_z_m": 3.083894579799344,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 54,
+      "sample_timestamp_ns": 2473603734999,
+      "algorithm": "uwb.matlab.ukf",
+      "valid": 1,
+      "estimate_x_m": 9.2988628358746,
+      "estimate_y_m": 8.002981491467667,
+      "estimate_z_m": 3.105754006766064,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 55,
+      "sample_timestamp_ns": 2473703735001,
+      "algorithm": "uwb.matlab.ukf",
+      "valid": 1,
+      "estimate_x_m": 9.376983634820418,
+      "estimate_y_m": 8.036685132934549,
+      "estimate_z_m": 3.1140754854999937,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 56,
+      "sample_timestamp_ns": 2473803735002,
+      "algorithm": "uwb.matlab.ukf",
+      "valid": 1,
+      "estimate_x_m": 9.490445641071613,
+      "estimate_y_m": 8.048020594850575,
+      "estimate_z_m": 3.2254788391313873,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 57,
+      "sample_timestamp_ns": 2473903735004,
+      "algorithm": "uwb.matlab.ukf",
+      "valid": 1,
+      "estimate_x_m": 9.574713844386917,
+      "estimate_y_m": 8.07591903455342,
+      "estimate_z_m": 3.1277524398834893,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 58,
+      "sample_timestamp_ns": 2474003735005,
+      "algorithm": "uwb.matlab.ukf",
+      "valid": 1,
+      "estimate_x_m": 9.655120158478486,
+      "estimate_y_m": 8.140563857289932,
+      "estimate_z_m": 3.1141331048767755,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 59,
+      "sample_timestamp_ns": 2474103735007,
+      "algorithm": "uwb.matlab.ukf",
+      "valid": 1,
+      "estimate_x_m": 9.719751922375599,
+      "estimate_y_m": 8.142699815490312,
+      "estimate_z_m": 3.0190601896640397,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 60,
+      "sample_timestamp_ns": 2474203735008,
+      "algorithm": "uwb.matlab.ukf",
+      "valid": 1,
+      "estimate_x_m": 9.793337825575895,
+      "estimate_y_m": 8.175067539752396,
+      "estimate_z_m": 2.9537610054733245,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 61,
+      "sample_timestamp_ns": 2474303735010,
+      "algorithm": "uwb.matlab.ukf",
+      "valid": 1,
+      "estimate_x_m": 9.951871486645347,
+      "estimate_y_m": 8.196460317711837,
+      "estimate_z_m": 3.0231783968614523,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 62,
+      "sample_timestamp_ns": 2474403735011,
+      "algorithm": "uwb.matlab.ukf",
+      "valid": 1,
+      "estimate_x_m": 10.064916553795912,
+      "estimate_y_m": 8.236330459484988,
+      "estimate_z_m": 3.13334639273607,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 63,
+      "sample_timestamp_ns": 2474503735013,
+      "algorithm": "uwb.matlab.ukf",
+      "valid": 1,
+      "estimate_x_m": 10.153976602143652,
+      "estimate_y_m": 8.261189533491654,
+      "estimate_z_m": 3.1918172258179824,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 64,
+      "sample_timestamp_ns": 2474603735014,
+      "algorithm": "uwb.matlab.ukf",
+      "valid": 1,
+      "estimate_x_m": 10.185621397316664,
+      "estimate_y_m": 8.295967972371766,
+      "estimate_z_m": 3.1944571228814373,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 65,
+      "sample_timestamp_ns": 2474703735016,
+      "algorithm": "uwb.matlab.ukf",
+      "valid": 1,
+      "estimate_x_m": 10.233167045093461,
+      "estimate_y_m": 8.318521268036216,
+      "estimate_z_m": 3.1904224024994394,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 66,
+      "sample_timestamp_ns": 2474803735017,
+      "algorithm": "uwb.matlab.ukf",
+      "valid": 1,
+      "estimate_x_m": 10.304657288824357,
+      "estimate_y_m": 8.368562996593607,
+      "estimate_z_m": 3.2069074270148406,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 67,
+      "sample_timestamp_ns": 2474903735019,
+      "algorithm": "uwb.matlab.ukf",
+      "valid": 1,
+      "estimate_x_m": 10.382781765003436,
+      "estimate_y_m": 8.391324395975632,
+      "estimate_z_m": 3.1736052221191353,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 68,
+      "sample_timestamp_ns": 2475003735020,
+      "algorithm": "uwb.matlab.ukf",
+      "valid": 1,
+      "estimate_x_m": 10.434148085429706,
+      "estimate_y_m": 8.44029965759784,
+      "estimate_z_m": 3.227065658833658,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 69,
+      "sample_timestamp_ns": 2475103735022,
+      "algorithm": "uwb.matlab.ukf",
+      "valid": 1,
+      "estimate_x_m": 10.505823257083058,
+      "estimate_y_m": 8.420282076095106,
+      "estimate_z_m": 3.230320125505768,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 70,
+      "sample_timestamp_ns": 2475203735023,
+      "algorithm": "uwb.matlab.ukf",
+      "valid": 1,
+      "estimate_x_m": 10.59998138669843,
+      "estimate_y_m": 8.417174745931845,
+      "estimate_z_m": 3.2512390682761723,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 71,
+      "sample_timestamp_ns": 2475303735025,
+      "algorithm": "uwb.matlab.ukf",
+      "valid": 1,
+      "estimate_x_m": 10.656298289885896,
+      "estimate_y_m": 8.43530980734535,
+      "estimate_z_m": 3.2032486449665205,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 72,
+      "sample_timestamp_ns": 2475403735026,
+      "algorithm": "uwb.matlab.ukf",
+      "valid": 1,
+      "estimate_x_m": 10.7245297531862,
+      "estimate_y_m": 8.472952567349875,
+      "estimate_z_m": 3.167965528022572,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 73,
+      "sample_timestamp_ns": 2475503735028,
+      "algorithm": "uwb.matlab.ukf",
+      "valid": 1,
+      "estimate_x_m": 10.823966941778142,
+      "estimate_y_m": 8.480541583885776,
+      "estimate_z_m": 3.1773313395491787,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 74,
+      "sample_timestamp_ns": 2475603735029,
+      "algorithm": "uwb.matlab.ukf",
+      "valid": 1,
+      "estimate_x_m": 10.890235237860738,
+      "estimate_y_m": 8.523514755738958,
+      "estimate_z_m": 3.110304876222034,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 75,
+      "sample_timestamp_ns": 2475703735031,
+      "algorithm": "uwb.matlab.ukf",
+      "valid": 1,
+      "estimate_x_m": 10.95170184109458,
+      "estimate_y_m": 8.546934531659897,
+      "estimate_z_m": 3.178112976352018,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 76,
+      "sample_timestamp_ns": 2475803735032,
+      "algorithm": "uwb.matlab.ukf",
+      "valid": 1,
+      "estimate_x_m": 11.017451502873232,
+      "estimate_y_m": 8.555251747703457,
+      "estimate_z_m": 3.153874569763365,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 77,
+      "sample_timestamp_ns": 2475903735034,
+      "algorithm": "uwb.matlab.ukf",
+      "valid": 1,
+      "estimate_x_m": 11.049575168574155,
+      "estimate_y_m": 8.622949701637946,
+      "estimate_z_m": 3.2097500065754527,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 78,
+      "sample_timestamp_ns": 2476003735035,
+      "algorithm": "uwb.matlab.ukf",
+      "valid": 1,
+      "estimate_x_m": 11.10041121509647,
+      "estimate_y_m": 8.670091121856856,
+      "estimate_z_m": 3.262872438894913,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 79,
+      "sample_timestamp_ns": 2476103735037,
+      "algorithm": "uwb.matlab.ukf",
+      "valid": 1,
+      "estimate_x_m": 11.127141155630278,
+      "estimate_y_m": 8.67325612020393,
+      "estimate_z_m": 3.2595376986314784,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 80,
+      "sample_timestamp_ns": 2476203735038,
+      "algorithm": "uwb.matlab.ukf",
+      "valid": 1,
+      "estimate_x_m": 11.197900120993614,
+      "estimate_y_m": 8.685966214129914,
+      "estimate_z_m": 3.285481318052841,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 81,
+      "sample_timestamp_ns": 2476303735040,
+      "algorithm": "uwb.matlab.ukf",
+      "valid": 1,
+      "estimate_x_m": 11.267379990559489,
+      "estimate_y_m": 8.740237487117348,
+      "estimate_z_m": 3.2349461749297177,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 82,
+      "sample_timestamp_ns": 2476403735041,
+      "algorithm": "uwb.matlab.ukf",
+      "valid": 1,
+      "estimate_x_m": 11.299429248075363,
+      "estimate_y_m": 8.71263088159877,
+      "estimate_z_m": 3.2281960385011446,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 83,
+      "sample_timestamp_ns": 2476503735043,
+      "algorithm": "uwb.matlab.ukf",
+      "valid": 1,
+      "estimate_x_m": 11.322907023184746,
+      "estimate_y_m": 8.710725157336457,
+      "estimate_z_m": 3.173306065678951,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 84,
+      "sample_timestamp_ns": 2476603735044,
+      "algorithm": "uwb.matlab.ukf",
+      "valid": 1,
+      "estimate_x_m": 11.370012852768236,
+      "estimate_y_m": 8.72593681224402,
+      "estimate_z_m": 3.176988164518189,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 85,
+      "sample_timestamp_ns": 2476703735046,
+      "algorithm": "uwb.matlab.ukf",
+      "valid": 1,
+      "estimate_x_m": 11.400108052836792,
+      "estimate_y_m": 8.730959830944842,
+      "estimate_z_m": 3.1076625145206576,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 86,
+      "sample_timestamp_ns": 2476803735047,
+      "algorithm": "uwb.matlab.ukf",
+      "valid": 1,
+      "estimate_x_m": 11.496983389765784,
+      "estimate_y_m": 8.738159317622504,
+      "estimate_z_m": 3.1100825423163503,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 87,
+      "sample_timestamp_ns": 2476903735049,
+      "algorithm": "uwb.matlab.ukf",
+      "valid": 1,
+      "estimate_x_m": 11.51639202014091,
+      "estimate_y_m": 8.773558590295437,
+      "estimate_z_m": 3.0896786727158547,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 88,
+      "sample_timestamp_ns": 2477003735050,
+      "algorithm": "uwb.matlab.ukf",
+      "valid": 1,
+      "estimate_x_m": 11.542991800646226,
+      "estimate_y_m": 8.802098402775552,
+      "estimate_z_m": 3.117129703965044,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 89,
+      "sample_timestamp_ns": 2477103735052,
+      "algorithm": "uwb.matlab.ukf",
+      "valid": 1,
+      "estimate_x_m": 11.586781522257963,
+      "estimate_y_m": 8.83269302299779,
+      "estimate_z_m": 3.090707211207708,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 90,
+      "sample_timestamp_ns": 2477203735053,
+      "algorithm": "uwb.matlab.ukf",
+      "valid": 1,
+      "estimate_x_m": 11.600581950629689,
+      "estimate_y_m": 8.85285215962163,
+      "estimate_z_m": 3.122708428757382,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 91,
+      "sample_timestamp_ns": 2477303735055,
+      "algorithm": "uwb.matlab.ukf",
+      "valid": 1,
+      "estimate_x_m": 11.62601107952434,
+      "estimate_y_m": 8.894251050783073,
+      "estimate_z_m": 3.0964223482458713,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 92,
+      "sample_timestamp_ns": 2477403735056,
+      "algorithm": "uwb.matlab.ukf",
+      "valid": 1,
+      "estimate_x_m": 11.690999211491121,
+      "estimate_y_m": 8.900983656834516,
+      "estimate_z_m": 3.1123902437540587,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 93,
+      "sample_timestamp_ns": 2477503735058,
+      "algorithm": "uwb.matlab.ukf",
+      "valid": 1,
+      "estimate_x_m": 11.764806822753085,
+      "estimate_y_m": 8.906135062148614,
+      "estimate_z_m": 3.1615026053235114,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 94,
+      "sample_timestamp_ns": 2477603735059,
+      "algorithm": "uwb.matlab.ukf",
+      "valid": 1,
+      "estimate_x_m": 11.779408357878545,
+      "estimate_y_m": 8.862901525345015,
+      "estimate_z_m": 3.188854957191853,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 95,
+      "sample_timestamp_ns": 2477703735060,
+      "algorithm": "uwb.matlab.ukf",
+      "valid": 1,
+      "estimate_x_m": 11.780828727896504,
+      "estimate_y_m": 8.917455304869103,
+      "estimate_z_m": 3.121892850529338,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 96,
+      "sample_timestamp_ns": 2477803735062,
+      "algorithm": "uwb.matlab.ukf",
+      "valid": 1,
+      "estimate_x_m": 11.801184991146759,
+      "estimate_y_m": 8.885710899262918,
+      "estimate_z_m": 3.093142605503122,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 97,
+      "sample_timestamp_ns": 2477903735063,
+      "algorithm": "uwb.matlab.ukf",
+      "valid": 1,
+      "estimate_x_m": 11.850576842691094,
+      "estimate_y_m": 8.887087854497686,
+      "estimate_z_m": 3.016252205884265,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 98,
+      "sample_timestamp_ns": 2478003735065,
+      "algorithm": "uwb.matlab.ukf",
+      "valid": 1,
+      "estimate_x_m": 11.85929800003318,
+      "estimate_y_m": 8.905356736974326,
+      "estimate_z_m": 3.045726775171743,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 99,
+      "sample_timestamp_ns": 2478103735066,
+      "algorithm": "uwb.matlab.ukf",
+      "valid": 1,
+      "estimate_x_m": 11.874233025754698,
+      "estimate_y_m": 8.9363538922169,
+      "estimate_z_m": 3.090984393304971,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 0,
+      "sample_timestamp_ns": 2468203734919,
+      "algorithm": "uwb.awesome_uwb",
+      "valid": 1,
+      "estimate_x_m": 2.88492085019246,
+      "estimate_y_m": 5.477238772820631,
+      "estimate_z_m": 3.2560720392672597,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 1,
+      "sample_timestamp_ns": 2468303734920,
+      "algorithm": "uwb.awesome_uwb",
+      "valid": 1,
+      "estimate_x_m": 2.967760803176038,
+      "estimate_y_m": 5.492627449093023,
+      "estimate_z_m": 3.0336718297449,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 2,
+      "sample_timestamp_ns": 2468403734922,
+      "algorithm": "uwb.awesome_uwb",
+      "valid": 1,
+      "estimate_x_m": 3.1414701897415824,
+      "estimate_y_m": 5.582269656308018,
+      "estimate_z_m": 3.135021753958245,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 3,
+      "sample_timestamp_ns": 2468503734923,
+      "algorithm": "uwb.awesome_uwb",
+      "valid": 1,
+      "estimate_x_m": 3.23133197036187,
+      "estimate_y_m": 5.72051701742337,
+      "estimate_z_m": 3.1086061324789585,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 4,
+      "sample_timestamp_ns": 2468603734925,
+      "algorithm": "uwb.awesome_uwb",
+      "valid": 1,
+      "estimate_x_m": 3.412564888693162,
+      "estimate_y_m": 5.716252224992128,
+      "estimate_z_m": 3.2226004729017914,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 5,
+      "sample_timestamp_ns": 2468703734926,
+      "algorithm": "uwb.awesome_uwb",
+      "valid": 1,
+      "estimate_x_m": 3.5338038206938838,
+      "estimate_y_m": 5.762135723541938,
+      "estimate_z_m": 3.2402493531147325,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 6,
+      "sample_timestamp_ns": 2468803734928,
+      "algorithm": "uwb.awesome_uwb",
+      "valid": 1,
+      "estimate_x_m": 3.6811263699044985,
+      "estimate_y_m": 5.821747518490878,
+      "estimate_z_m": 3.1536317495198865,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 7,
+      "sample_timestamp_ns": 2468903734929,
+      "algorithm": "uwb.awesome_uwb",
+      "valid": 1,
+      "estimate_x_m": 3.7857506111155126,
+      "estimate_y_m": 5.90904195375196,
+      "estimate_z_m": 3.3046283997350985,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 8,
+      "sample_timestamp_ns": 2469003734931,
+      "algorithm": "uwb.awesome_uwb",
+      "valid": 1,
+      "estimate_x_m": 3.9731441801818907,
+      "estimate_y_m": 5.908280666207293,
+      "estimate_z_m": 3.1825811784813736,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 9,
+      "sample_timestamp_ns": 2469103734932,
+      "algorithm": "uwb.awesome_uwb",
+      "valid": 1,
+      "estimate_x_m": 4.123271818994965,
+      "estimate_y_m": 5.98719604696436,
+      "estimate_z_m": 3.0636436956640463,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 10,
+      "sample_timestamp_ns": 2469203734934,
+      "algorithm": "uwb.awesome_uwb",
+      "valid": 1,
+      "estimate_x_m": 4.241824729483013,
+      "estimate_y_m": 6.100952783376214,
+      "estimate_z_m": 3.0630567163014795,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 11,
+      "sample_timestamp_ns": 2469303734935,
+      "algorithm": "uwb.awesome_uwb",
+      "valid": 1,
+      "estimate_x_m": 4.350130546666029,
+      "estimate_y_m": 6.117994648380023,
+      "estimate_z_m": 3.139864074971857,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 12,
+      "sample_timestamp_ns": 2469403734937,
+      "algorithm": "uwb.awesome_uwb",
+      "valid": 1,
+      "estimate_x_m": 4.512496284543386,
+      "estimate_y_m": 6.1803995819505255,
+      "estimate_z_m": 3.179421121428293,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 13,
+      "sample_timestamp_ns": 2469503734938,
+      "algorithm": "uwb.awesome_uwb",
+      "valid": 1,
+      "estimate_x_m": 4.59808518207763,
+      "estimate_y_m": 6.19458156520452,
+      "estimate_z_m": 2.9980039077296508,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 14,
+      "sample_timestamp_ns": 2469603734940,
+      "algorithm": "uwb.awesome_uwb",
+      "valid": 1,
+      "estimate_x_m": 4.755170297083676,
+      "estimate_y_m": 6.304383484069495,
+      "estimate_z_m": 2.881778863100636,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 15,
+      "sample_timestamp_ns": 2469703734941,
+      "algorithm": "uwb.awesome_uwb",
+      "valid": 1,
+      "estimate_x_m": 4.867684441914782,
+      "estimate_y_m": 6.266940925818703,
+      "estimate_z_m": 2.856549600940152,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 16,
+      "sample_timestamp_ns": 2469803734943,
+      "algorithm": "uwb.awesome_uwb",
+      "valid": 1,
+      "estimate_x_m": 5.011823830555613,
+      "estimate_y_m": 6.419776062377256,
+      "estimate_z_m": 3.015357663484904,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 17,
+      "sample_timestamp_ns": 2469903734944,
+      "algorithm": "uwb.awesome_uwb",
+      "valid": 1,
+      "estimate_x_m": 5.160771137879006,
+      "estimate_y_m": 6.469030717894849,
+      "estimate_z_m": 3.0507596143116027,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 18,
+      "sample_timestamp_ns": 2470003734946,
+      "algorithm": "uwb.awesome_uwb",
+      "valid": 1,
+      "estimate_x_m": 5.266026509300382,
+      "estimate_y_m": 6.46344421473789,
+      "estimate_z_m": 2.9842219367309943,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 19,
+      "sample_timestamp_ns": 2470103734947,
+      "algorithm": "uwb.awesome_uwb",
+      "valid": 1,
+      "estimate_x_m": 5.382801691914281,
+      "estimate_y_m": 6.518719223706271,
+      "estimate_z_m": 3.0610503832796194,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 20,
+      "sample_timestamp_ns": 2470203734949,
+      "algorithm": "uwb.awesome_uwb",
+      "valid": 1,
+      "estimate_x_m": 5.550032269404052,
+      "estimate_y_m": 6.576692793141544,
+      "estimate_z_m": 3.113455347052247,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 21,
+      "sample_timestamp_ns": 2470303734950,
+      "algorithm": "uwb.awesome_uwb",
+      "valid": 1,
+      "estimate_x_m": 5.641973887603306,
+      "estimate_y_m": 6.617428945092332,
+      "estimate_z_m": 2.9541310291497056,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 22,
+      "sample_timestamp_ns": 2470403734952,
+      "algorithm": "uwb.awesome_uwb",
+      "valid": 1,
+      "estimate_x_m": 5.7807630269996215,
+      "estimate_y_m": 6.6920078951674435,
+      "estimate_z_m": 3.1286478272068234,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 23,
+      "sample_timestamp_ns": 2470503734953,
+      "algorithm": "uwb.awesome_uwb",
+      "valid": 1,
+      "estimate_x_m": 5.898151132344044,
+      "estimate_y_m": 6.739678549086343,
+      "estimate_z_m": 2.9932579760567974,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 24,
+      "sample_timestamp_ns": 2470603734955,
+      "algorithm": "uwb.awesome_uwb",
+      "valid": 1,
+      "estimate_x_m": 6.004457537629121,
+      "estimate_y_m": 6.718566587249984,
+      "estimate_z_m": 3.0106468732800833,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 25,
+      "sample_timestamp_ns": 2470703734956,
+      "algorithm": "uwb.awesome_uwb",
+      "valid": 1,
+      "estimate_x_m": 6.15505812020018,
+      "estimate_y_m": 6.8378138356658935,
+      "estimate_z_m": 2.9653810670942313,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 26,
+      "sample_timestamp_ns": 2470803734958,
+      "algorithm": "uwb.awesome_uwb",
+      "valid": 1,
+      "estimate_x_m": 6.272956779957198,
+      "estimate_y_m": 6.847530362731185,
+      "estimate_z_m": 2.909578554410501,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 27,
+      "sample_timestamp_ns": 2470903734959,
+      "algorithm": "uwb.awesome_uwb",
+      "valid": 1,
+      "estimate_x_m": 6.445051776014589,
+      "estimate_y_m": 6.868218650118659,
+      "estimate_z_m": 3.17439685578011,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 28,
+      "sample_timestamp_ns": 2471003734961,
+      "algorithm": "uwb.awesome_uwb",
+      "valid": 1,
+      "estimate_x_m": 6.53176981060162,
+      "estimate_y_m": 6.906435538943834,
+      "estimate_z_m": 3.1237741682521043,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 29,
+      "sample_timestamp_ns": 2471103734962,
+      "algorithm": "uwb.awesome_uwb",
+      "valid": 1,
+      "estimate_x_m": 6.636530929914752,
+      "estimate_y_m": 6.998209480394291,
+      "estimate_z_m": 3.271828534181717,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 30,
+      "sample_timestamp_ns": 2471203734964,
+      "algorithm": "uwb.awesome_uwb",
+      "valid": 1,
+      "estimate_x_m": 6.776985735341146,
+      "estimate_y_m": 7.017805449349071,
+      "estimate_z_m": 3.1052904064334235,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 31,
+      "sample_timestamp_ns": 2471303734965,
+      "algorithm": "uwb.awesome_uwb",
+      "valid": 1,
+      "estimate_x_m": 6.860673204720728,
+      "estimate_y_m": 7.122193523045355,
+      "estimate_z_m": 3.2988004569843388,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 32,
+      "sample_timestamp_ns": 2471403734967,
+      "algorithm": "uwb.awesome_uwb",
+      "valid": 1,
+      "estimate_x_m": 6.986625684831554,
+      "estimate_y_m": 7.117709158370226,
+      "estimate_z_m": 3.1397413207761726,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 33,
+      "sample_timestamp_ns": 2471503734968,
+      "algorithm": "uwb.awesome_uwb",
+      "valid": 1,
+      "estimate_x_m": 7.133703392048624,
+      "estimate_y_m": 7.208712295084902,
+      "estimate_z_m": 3.0713469906243875,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 34,
+      "sample_timestamp_ns": 2471603734970,
+      "algorithm": "uwb.awesome_uwb",
+      "valid": 1,
+      "estimate_x_m": 7.24363955574952,
+      "estimate_y_m": 7.22949436947665,
+      "estimate_z_m": 3.2429441147541196,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 35,
+      "sample_timestamp_ns": 2471703734971,
+      "algorithm": "uwb.awesome_uwb",
+      "valid": 1,
+      "estimate_x_m": 7.402522126720844,
+      "estimate_y_m": 7.258930367520118,
+      "estimate_z_m": 3.052470976455222,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 36,
+      "sample_timestamp_ns": 2471803734973,
+      "algorithm": "uwb.awesome_uwb",
+      "valid": 1,
+      "estimate_x_m": 7.458561908223452,
+      "estimate_y_m": 7.28107241498076,
+      "estimate_z_m": 2.988432507078338,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 37,
+      "sample_timestamp_ns": 2471903734974,
+      "algorithm": "uwb.awesome_uwb",
+      "valid": 1,
+      "estimate_x_m": 7.571382108887535,
+      "estimate_y_m": 7.3849990563615,
+      "estimate_z_m": 3.1396415251004726,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 38,
+      "sample_timestamp_ns": 2472003734976,
+      "algorithm": "uwb.awesome_uwb",
+      "valid": 1,
+      "estimate_x_m": 7.69844180598515,
+      "estimate_y_m": 7.3245770528772125,
+      "estimate_z_m": 2.9979213321589158,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 39,
+      "sample_timestamp_ns": 2472103734977,
+      "algorithm": "uwb.awesome_uwb",
+      "valid": 1,
+      "estimate_x_m": 7.764477541101148,
+      "estimate_y_m": 7.4749867784855235,
+      "estimate_z_m": 3.0411163671943036,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 40,
+      "sample_timestamp_ns": 2472203734979,
+      "algorithm": "uwb.awesome_uwb",
+      "valid": 1,
+      "estimate_x_m": 7.858379633705908,
+      "estimate_y_m": 7.425796534368482,
+      "estimate_z_m": 3.2013836996006932,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 41,
+      "sample_timestamp_ns": 2472303734980,
+      "algorithm": "uwb.awesome_uwb",
+      "valid": 1,
+      "estimate_x_m": 8.04656933111716,
+      "estimate_y_m": 7.493572711547142,
+      "estimate_z_m": 3.306295192508125,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 42,
+      "sample_timestamp_ns": 2472403734982,
+      "algorithm": "uwb.awesome_uwb",
+      "valid": 1,
+      "estimate_x_m": 8.142314179823058,
+      "estimate_y_m": 7.550005451565836,
+      "estimate_z_m": 3.134999947789968,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 43,
+      "sample_timestamp_ns": 2472503734983,
+      "algorithm": "uwb.awesome_uwb",
+      "valid": 1,
+      "estimate_x_m": 8.251289758123628,
+      "estimate_y_m": 7.549392800522395,
+      "estimate_z_m": 3.0162288190541964,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 44,
+      "sample_timestamp_ns": 2472603734984,
+      "algorithm": "uwb.awesome_uwb",
+      "valid": 1,
+      "estimate_x_m": 8.366277826694862,
+      "estimate_y_m": 7.660325864111544,
+      "estimate_z_m": 3.2043541445888244,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 45,
+      "sample_timestamp_ns": 2472703734986,
+      "algorithm": "uwb.awesome_uwb",
+      "valid": 1,
+      "estimate_x_m": 8.490170521060852,
+      "estimate_y_m": 7.695484907039488,
+      "estimate_z_m": 3.230777766970496,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 46,
+      "sample_timestamp_ns": 2472803734987,
+      "algorithm": "uwb.awesome_uwb",
+      "valid": 1,
+      "estimate_x_m": 8.500355157508766,
+      "estimate_y_m": 7.776951039896275,
+      "estimate_z_m": 3.20435851694857,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 47,
+      "sample_timestamp_ns": 2472903734989,
+      "algorithm": "uwb.awesome_uwb",
+      "valid": 1,
+      "estimate_x_m": 8.562374188010494,
+      "estimate_y_m": 7.764559718557325,
+      "estimate_z_m": 3.192008247801151,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 48,
+      "sample_timestamp_ns": 2473003734990,
+      "algorithm": "uwb.awesome_uwb",
+      "valid": 1,
+      "estimate_x_m": 8.697314296570797,
+      "estimate_y_m": 7.8337768778174395,
+      "estimate_z_m": 3.0259383263685,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 49,
+      "sample_timestamp_ns": 2473103734992,
+      "algorithm": "uwb.awesome_uwb",
+      "valid": 1,
+      "estimate_x_m": 8.843873083431816,
+      "estimate_y_m": 7.817101501933919,
+      "estimate_z_m": 3.149285100322488,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 50,
+      "sample_timestamp_ns": 2473203734993,
+      "algorithm": "uwb.awesome_uwb",
+      "valid": 1,
+      "estimate_x_m": 8.933726679456658,
+      "estimate_y_m": 7.893482023385883,
+      "estimate_z_m": 3.174435776194578,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 51,
+      "sample_timestamp_ns": 2473303734995,
+      "algorithm": "uwb.awesome_uwb",
+      "valid": 1,
+      "estimate_x_m": 8.966065453932018,
+      "estimate_y_m": 7.860721714233885,
+      "estimate_z_m": 2.9464282138342823,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 52,
+      "sample_timestamp_ns": 2473403734996,
+      "algorithm": "uwb.awesome_uwb",
+      "valid": 1,
+      "estimate_x_m": 9.061874866211573,
+      "estimate_y_m": 7.893841082323583,
+      "estimate_z_m": 3.0798918846748937,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 53,
+      "sample_timestamp_ns": 2473503734998,
+      "algorithm": "uwb.awesome_uwb",
+      "valid": 1,
+      "estimate_x_m": 9.244713112939912,
+      "estimate_y_m": 7.926939883000195,
+      "estimate_z_m": 3.102534992656191,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 54,
+      "sample_timestamp_ns": 2473603734999,
+      "algorithm": "uwb.awesome_uwb",
+      "valid": 1,
+      "estimate_x_m": 9.284386981329021,
+      "estimate_y_m": 8.045665039553292,
+      "estimate_z_m": 3.148970776700907,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 55,
+      "sample_timestamp_ns": 2473703735001,
+      "algorithm": "uwb.awesome_uwb",
+      "valid": 1,
+      "estimate_x_m": 9.360105812288678,
+      "estimate_y_m": 8.036926133686055,
+      "estimate_z_m": 3.1385576707054232,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 56,
+      "sample_timestamp_ns": 2473803735002,
+      "algorithm": "uwb.awesome_uwb",
+      "valid": 1,
+      "estimate_x_m": 9.49350961374761,
+      "estimate_y_m": 8.037899880794322,
+      "estimate_z_m": 3.3495773827460846,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 57,
+      "sample_timestamp_ns": 2473903735004,
+      "algorithm": "uwb.awesome_uwb",
+      "valid": 1,
+      "estimate_x_m": 9.558978750125808,
+      "estimate_y_m": 8.07309343274868,
+      "estimate_z_m": 3.023410917990895,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 58,
+      "sample_timestamp_ns": 2474003735005,
+      "algorithm": "uwb.awesome_uwb",
+      "valid": 1,
+      "estimate_x_m": 9.63511934407711,
+      "estimate_y_m": 8.166513682584181,
+      "estimate_z_m": 3.0652440775990613,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 59,
+      "sample_timestamp_ns": 2474103735007,
+      "algorithm": "uwb.awesome_uwb",
+      "valid": 1,
+      "estimate_x_m": 9.693938921047573,
+      "estimate_y_m": 8.107903276861252,
+      "estimate_z_m": 2.890123802118371,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 60,
+      "sample_timestamp_ns": 2474203735008,
+      "algorithm": "uwb.awesome_uwb",
+      "valid": 1,
+      "estimate_x_m": 9.779319927699206,
+      "estimate_y_m": 8.170300550173836,
+      "estimate_z_m": 2.859267457063718,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 61,
+      "sample_timestamp_ns": 2474303735010,
+      "algorithm": "uwb.awesome_uwb",
+      "valid": 1,
+      "estimate_x_m": 10.014605513935495,
+      "estimate_y_m": 8.18492925542639,
+      "estimate_z_m": 3.1378972831986855,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 62,
+      "sample_timestamp_ns": 2474403735011,
+      "algorithm": "uwb.awesome_uwb",
+      "valid": 1,
+      "estimate_x_m": 10.07650456124369,
+      "estimate_y_m": 8.246922811855912,
+      "estimate_z_m": 3.2801293955085997,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 63,
+      "sample_timestamp_ns": 2474503735013,
+      "algorithm": "uwb.awesome_uwb",
+      "valid": 1,
+      "estimate_x_m": 10.143310373162905,
+      "estimate_y_m": 8.26376506214978,
+      "estimate_z_m": 3.2747745131875208,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 64,
+      "sample_timestamp_ns": 2474603735014,
+      "algorithm": "uwb.awesome_uwb",
+      "valid": 1,
+      "estimate_x_m": 10.136095780619943,
+      "estimate_y_m": 8.307203922847497,
+      "estimate_z_m": 3.1951080283563558,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 65,
+      "sample_timestamp_ns": 2474703735016,
+      "algorithm": "uwb.awesome_uwb",
+      "valid": 1,
+      "estimate_x_m": 10.20679025257053,
+      "estimate_y_m": 8.31521881089388,
+      "estimate_z_m": 3.163513447864308,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 66,
+      "sample_timestamp_ns": 2474803735017,
+      "algorithm": "uwb.awesome_uwb",
+      "valid": 1,
+      "estimate_x_m": 10.301546022620467,
+      "estimate_y_m": 8.38546792538837,
+      "estimate_z_m": 3.1951087213913265,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 67,
+      "sample_timestamp_ns": 2474903735019,
+      "algorithm": "uwb.awesome_uwb",
+      "valid": 1,
+      "estimate_x_m": 10.384911441937486,
+      "estimate_y_m": 8.378301929231117,
+      "estimate_z_m": 3.111870649517499,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 68,
+      "sample_timestamp_ns": 2475003735020,
+      "algorithm": "uwb.awesome_uwb",
+      "valid": 1,
+      "estimate_x_m": 10.407373911186616,
+      "estimate_y_m": 8.453427530947666,
+      "estimate_z_m": 3.2533821671967265,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 69,
+      "sample_timestamp_ns": 2475103735022,
+      "algorithm": "uwb.awesome_uwb",
+      "valid": 1,
+      "estimate_x_m": 10.511687089994581,
+      "estimate_y_m": 8.373491328207034,
+      "estimate_z_m": 3.2163032960397446,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 70,
+      "sample_timestamp_ns": 2475203735023,
+      "algorithm": "uwb.awesome_uwb",
+      "valid": 1,
+      "estimate_x_m": 10.619771616943217,
+      "estimate_y_m": 8.394810020676656,
+      "estimate_z_m": 3.2481382443704314,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 71,
+      "sample_timestamp_ns": 2475303735025,
+      "algorithm": "uwb.awesome_uwb",
+      "valid": 1,
+      "estimate_x_m": 10.636349014644296,
+      "estimate_y_m": 8.437268746158484,
+      "estimate_z_m": 3.1261783536738443,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 72,
+      "sample_timestamp_ns": 2475403735026,
+      "algorithm": "uwb.awesome_uwb",
+      "valid": 1,
+      "estimate_x_m": 10.713917668495014,
+      "estimate_y_m": 8.487633607105137,
+      "estimate_z_m": 3.1025370884841803,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 73,
+      "sample_timestamp_ns": 2475503735028,
+      "algorithm": "uwb.awesome_uwb",
+      "valid": 1,
+      "estimate_x_m": 10.84069998708369,
+      "estimate_y_m": 8.464773848914454,
+      "estimate_z_m": 3.1624357861153456,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 74,
+      "sample_timestamp_ns": 2475603735029,
+      "algorithm": "uwb.awesome_uwb",
+      "valid": 1,
+      "estimate_x_m": 10.872293523677731,
+      "estimate_y_m": 8.539348107624644,
+      "estimate_z_m": 3.0325623518767277,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 75,
+      "sample_timestamp_ns": 2475703735031,
+      "algorithm": "uwb.awesome_uwb",
+      "valid": 1,
+      "estimate_x_m": 10.933536296135726,
+      "estimate_y_m": 8.540715975268071,
+      "estimate_z_m": 3.235104390302606,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 76,
+      "sample_timestamp_ns": 2475803735032,
+      "algorithm": "uwb.awesome_uwb",
+      "valid": 1,
+      "estimate_x_m": 11.01168954725895,
+      "estimate_y_m": 8.542076870961425,
+      "estimate_z_m": 3.133635126270543,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 77,
+      "sample_timestamp_ns": 2475903735034,
+      "algorithm": "uwb.awesome_uwb",
+      "valid": 1,
+      "estimate_x_m": 11.017277418579573,
+      "estimate_y_m": 8.665853005569714,
+      "estimate_z_m": 3.271281687314406,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 78,
+      "sample_timestamp_ns": 2476003735035,
+      "algorithm": "uwb.awesome_uwb",
+      "valid": 1,
+      "estimate_x_m": 11.09482325134446,
+      "estimate_y_m": 8.686452147933831,
+      "estimate_z_m": 3.3227003783834417,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 79,
+      "sample_timestamp_ns": 2476103735037,
+      "algorithm": "uwb.awesome_uwb",
+      "valid": 1,
+      "estimate_x_m": 11.107880690242187,
+      "estimate_y_m": 8.648984860392298,
+      "estimate_z_m": 3.2472294831215365,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 80,
+      "sample_timestamp_ns": 2476203735038,
+      "algorithm": "uwb.awesome_uwb",
+      "valid": 1,
+      "estimate_x_m": 11.216913198395403,
+      "estimate_y_m": 8.671511509102647,
+      "estimate_z_m": 3.2910472073395884,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 81,
+      "sample_timestamp_ns": 2476303735040,
+      "algorithm": "uwb.awesome_uwb",
+      "valid": 1,
+      "estimate_x_m": 11.274111040377774,
+      "estimate_y_m": 8.759921664419966,
+      "estimate_z_m": 3.1632596007929332,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 82,
+      "sample_timestamp_ns": 2476403735041,
+      "algorithm": "uwb.awesome_uwb",
+      "valid": 1,
+      "estimate_x_m": 11.276167380875906,
+      "estimate_y_m": 8.6625527371145,
+      "estimate_z_m": 3.1904115447689008,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 83,
+      "sample_timestamp_ns": 2476503735043,
+      "algorithm": "uwb.awesome_uwb",
+      "valid": 1,
+      "estimate_x_m": 11.299015323929869,
+      "estimate_y_m": 8.693315846939177,
+      "estimate_z_m": 3.0945884033657802,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 84,
+      "sample_timestamp_ns": 2476603735044,
+      "algorithm": "uwb.awesome_uwb",
+      "valid": 1,
+      "estimate_x_m": 11.3676855824128,
+      "estimate_y_m": 8.728250152279584,
+      "estimate_z_m": 3.172201109163766,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 85,
+      "sample_timestamp_ns": 2476703735046,
+      "algorithm": "uwb.awesome_uwb",
+      "valid": 1,
+      "estimate_x_m": 11.38530264568183,
+      "estimate_y_m": 8.727300983240161,
+      "estimate_z_m": 3.039723673929632,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 86,
+      "sample_timestamp_ns": 2476803735047,
+      "algorithm": "uwb.awesome_uwb",
+      "valid": 1,
+      "estimate_x_m": 11.535318326622267,
+      "estimate_y_m": 8.729277424496,
+      "estimate_z_m": 3.115566848219853,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 87,
+      "sample_timestamp_ns": 2476903735049,
+      "algorithm": "uwb.awesome_uwb",
+      "valid": 1,
+      "estimate_x_m": 11.480652041625692,
+      "estimate_y_m": 8.793842943728507,
+      "estimate_z_m": 3.0934472831425,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 88,
+      "sample_timestamp_ns": 2477003735050,
+      "algorithm": "uwb.awesome_uwb",
+      "valid": 1,
+      "estimate_x_m": 11.525345356628053,
+      "estimate_y_m": 8.817532246620432,
+      "estimate_z_m": 3.1739993999449956,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 89,
+      "sample_timestamp_ns": 2477103735052,
+      "algorithm": "uwb.awesome_uwb",
+      "valid": 1,
+      "estimate_x_m": 11.58796016694606,
+      "estimate_y_m": 8.842413598977538,
+      "estimate_z_m": 3.0866316024568583,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 90,
+      "sample_timestamp_ns": 2477203735053,
+      "algorithm": "uwb.awesome_uwb",
+      "valid": 1,
+      "estimate_x_m": 11.580988552940543,
+      "estimate_y_m": 8.854554387569294,
+      "estimate_z_m": 3.1710463709000405,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 91,
+      "sample_timestamp_ns": 2477303735055,
+      "algorithm": "uwb.awesome_uwb",
+      "valid": 1,
+      "estimate_x_m": 11.618320609604432,
+      "estimate_y_m": 8.910873401380297,
+      "estimate_z_m": 3.0825163316450026,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 92,
+      "sample_timestamp_ns": 2477403735056,
+      "algorithm": "uwb.awesome_uwb",
+      "valid": 1,
+      "estimate_x_m": 11.715619361656962,
+      "estimate_y_m": 8.882979284858202,
+      "estimate_z_m": 3.1369323137402536,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 93,
+      "sample_timestamp_ns": 2477503735058,
+      "algorithm": "uwb.awesome_uwb",
+      "valid": 1,
+      "estimate_x_m": 11.788094606330773,
+      "estimate_y_m": 8.893685140654467,
+      "estimate_z_m": 3.224461947956616,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 94,
+      "sample_timestamp_ns": 2477603735059,
+      "algorithm": "uwb.awesome_uwb",
+      "valid": 1,
+      "estimate_x_m": 11.757721310685973,
+      "estimate_y_m": 8.820761295921958,
+      "estimate_z_m": 3.2157931364818824,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 95,
+      "sample_timestamp_ns": 2477703735060,
+      "algorithm": "uwb.awesome_uwb",
+      "valid": 1,
+      "estimate_x_m": 11.742882366445588,
+      "estimate_y_m": 8.962137087940345,
+      "estimate_z_m": 3.0297405717517516,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 96,
+      "sample_timestamp_ns": 2477803735062,
+      "algorithm": "uwb.awesome_uwb",
+      "valid": 1,
+      "estimate_x_m": 11.79130751862269,
+      "estimate_y_m": 8.845532635918373,
+      "estimate_z_m": 3.034451797258289,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 97,
+      "sample_timestamp_ns": 2477903735063,
+      "algorithm": "uwb.awesome_uwb",
+      "valid": 1,
+      "estimate_x_m": 11.865029821456005,
+      "estimate_y_m": 8.878607647831137,
+      "estimate_z_m": 2.9255212490701745,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 98,
+      "sample_timestamp_ns": 2478003735065,
+      "algorithm": "uwb.awesome_uwb",
+      "valid": 1,
+      "estimate_x_m": 11.839509866147589,
+      "estimate_y_m": 8.922069300500976,
+      "estimate_z_m": 3.0956180703098735,
+      "error_reason": ""
+    },
+    {
+      "frame_seq": 99,
+      "sample_timestamp_ns": 2478103735066,
+      "algorithm": "uwb.awesome_uwb",
+      "valid": 1,
+      "estimate_x_m": 11.866780439945044,
+      "estimate_y_m": 8.963569812851834,
+      "estimate_z_m": 3.169539887768325,
+      "error_reason": ""
+    }
+  ],
+  "metrics": {
+    "uwb.matlab.trilateration": {
+      "total_expected": 100,
+      "valid_count": 100,
+      "success_rate": 1.0,
+      "failure_rate": 0.0,
+      "update_rate_hz": 10.101009951025407,
+      "samples": 100,
+      "unit": "m",
+      "dimension": "3D",
+      "rmse_m": 0.2632436494007992,
+      "mae_m": 0.21499304091332744,
+      "cep50_m": 0.17465607098281616,
+      "cep95_m": 0.524537461960708,
+      "max_error_m": 0.682096513590076,
+      "outlier_count": 0,
+      "runtime_mean_ms": 0.13384213999999997,
+      "runtime_p95_ms": 0.2360567
+    },
+    "uwb.matlab.multilateration": {
+      "total_expected": 100,
+      "valid_count": 100,
+      "success_rate": 1.0,
+      "failure_rate": 0.0,
+      "update_rate_hz": 10.101009951025407,
+      "samples": 100,
+      "unit": "m",
+      "dimension": "3D",
+      "rmse_m": 0.2632436494007997,
+      "mae_m": 0.21499304091332735,
+      "cep50_m": 0.17465607098281552,
+      "cep95_m": 0.5245374619607076,
+      "max_error_m": 0.6820965135900766,
+      "outlier_count": 0,
+      "runtime_mean_ms": 0.11253995,
+      "runtime_p95_ms": 0.13343434999999998
+    },
+    "uwb.matlab.taylor": {
+      "total_expected": 100,
+      "valid_count": 100,
+      "success_rate": 1.0,
+      "failure_rate": 0.0,
+      "update_rate_hz": 10.101009951025407,
+      "samples": 100,
+      "unit": "m",
+      "dimension": "3D",
+      "rmse_m": 0.388634956551483,
+      "mae_m": 0.17910084751036934,
+      "cep50_m": 0.12092461928280324,
+      "cep95_m": 0.3224446913044719,
+      "max_error_m": 3.5028797618433845,
+      "outlier_count": 0,
+      "runtime_mean_ms": 0.8073535700000001,
+      "runtime_p95_ms": 1.2741377999999997
+    },
+    "uwb.matlab.ekf": {
+      "total_expected": 100,
+      "valid_count": 100,
+      "success_rate": 1.0,
+      "failure_rate": 0.0,
+      "update_rate_hz": 10.101009951025407,
+      "samples": 100,
+      "unit": "m",
+      "dimension": "3D",
+      "rmse_m": 0.587832246057356,
+      "mae_m": 0.23673514358564432,
+      "cep50_m": 0.07220312326613568,
+      "cep95_m": 0.9328175221831662,
+      "max_error_m": 4.368180333380994,
+      "outlier_count": 0,
+      "runtime_mean_ms": 0.22410418,
+      "runtime_p95_ms": 0.2951597
+    },
+    "uwb.matlab.ukf": {
+      "total_expected": 100,
+      "valid_count": 100,
+      "success_rate": 1.0,
+      "failure_rate": 0.0,
+      "update_rate_hz": 10.101009951025407,
+      "samples": 100,
+      "unit": "m",
+      "dimension": "3D",
+      "rmse_m": 0.4561987610802583,
+      "mae_m": 0.18924849354635895,
+      "cep50_m": 0.07110536991304794,
+      "cep95_m": 0.6904953603686766,
+      "max_error_m": 3.4450832048599813,
+      "outlier_count": 0,
+      "runtime_mean_ms": 0.66970724,
+      "runtime_p95_ms": 0.7798786
+    },
+    "uwb.awesome_uwb": {
+      "total_expected": 100,
+      "valid_count": 100,
+      "success_rate": 1.0,
+      "failure_rate": 0.0,
+      "update_rate_hz": 10.101009951025407,
+      "samples": 100,
+      "unit": "m",
+      "dimension": "3D",
+      "rmse_m": 0.11921958242534002,
+      "mae_m": 0.10358773728967076,
+      "cep50_m": 0.09473321383894451,
+      "cep95_m": 0.21366274265526858,
+      "max_error_m": 0.29519645600038447,
+      "outlier_count": 0,
+      "runtime_mean_ms": 12.54128246,
+      "runtime_p95_ms": 17.26077435
+    }
+  }
+}

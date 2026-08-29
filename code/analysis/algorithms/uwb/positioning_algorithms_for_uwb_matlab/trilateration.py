@@ -1,10 +1,8 @@
-"""Least-squares trilateration adapted from the MATLAB UWB positioning project.
+"""Trilateration adapted from the MATLAB UWB positioning project.
 
 Source: https://github.com/cliansang/positioning-algorithms-for-uwb-matlab
-The original implementation solves a 2D position from three or more ranges.
-This port keeps the same linear least-squares formulation but accepts 3D
-anchor coordinates and reports the horizontal (XY) estimate explicitly as
-a 2D result; it does not fabricate a z value.
+The adapter keeps the source project's closed-form range-difference solve and
+uses the full three-dimensional anchor geometry for the active runner.
 """
 
 from __future__ import annotations
@@ -44,25 +42,59 @@ def solve_trilateration_2d(anchor_positions, ranges):
     return np.asarray(first[:2], dtype=float) + solution
 
 
+def solve_trilateration_3d(anchor_positions, ranges):
+    """Return a 3D least-squares trilateration estimate from >=4 anchors.
+
+    Four non-coplanar anchors are the minimum geometry for a unique 3D
+    range-difference solution.  The explicit rank check prevents a planar
+    anchor layout from being reported as a valid 3D result.
+    """
+    anchors = np.asarray(anchor_positions, dtype=float)
+    distances = np.asarray(ranges, dtype=float).reshape(-1)
+    if anchors.ndim != 2 or anchors.shape[1] < 3:
+        raise ValueError("anchor_positions must have shape (N, >=3)")
+    if anchors.shape[0] != distances.size or anchors.shape[0] < 4:
+        raise ValueError("at least four matching anchors are required for 3D trilateration")
+    if not np.all(np.isfinite(anchors[:, :3])):
+        raise ValueError("anchor positions must be finite")
+    if np.any(distances <= 0.0) or not np.all(np.isfinite(distances)):
+        raise ValueError("ranges must be positive and finite")
+
+    first = anchors[0, :3]
+    deltas = anchors[1:, :3] - first
+    if np.linalg.matrix_rank(deltas) < 3:
+        raise ValueError("3D trilateration anchors are coplanar or rank deficient")
+    rhs = (
+        distances[0] ** 2
+        - distances[1:] ** 2
+        + np.sum(anchors[1:, :3] ** 2, axis=1)
+        - np.sum(first ** 2)
+    ) / 2.0
+    estimate, _, _, _ = np.linalg.lstsq(deltas, rhs, rcond=None)
+    if not np.all(np.isfinite(estimate)):
+        raise ValueError("3D trilateration failed")
+    return estimate
+
+
 def run_trilateration(*, observation_frame, **_):
     """Algorithm runner registered with the NEXUS router."""
     ranges = [sample.range_m for sample in observation_frame.ranges]
     positions = [sample.anchor_position_m for sample in observation_frame.ranges]
     start_ns = __import__("time").monotonic_ns()
     try:
-        xy = solve_trilateration_2d(positions, ranges)
+        xyz = solve_trilateration_3d(positions, ranges)
         valid = True
-        metadata = {"dimension": "2D", "timestamp_ns": observation_frame.timestamp_ns}
+        metadata = {"dimension": "3D", "timestamp_ns": observation_frame.timestamp_ns}
     except (ValueError, np.linalg.LinAlgError) as exc:
-        xy = np.full(2, np.nan)
+        xyz = np.full(3, np.nan)
         valid = False
         metadata = {"error": str(exc), "timestamp_ns": observation_frame.timestamp_ns}
     runtime_ms = (__import__("time").monotonic_ns() - start_ns) / 1e6
     metadata["runtime_ms"] = runtime_ms
 
-    covariance = np.diag([np.nan, np.nan])
+    covariance = np.diag([np.nan, np.nan, np.nan])
     return AlgorithmResult(
-        estimate=np.asarray(xy),
+        estimate=np.asarray(xyz),
         covariance=covariance,
         algorithm="uwb.matlab.trilateration",
         family="uwb",

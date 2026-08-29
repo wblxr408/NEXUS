@@ -15,10 +15,10 @@ from nexus_uwb_simulation.observation_frame import ObservationFrame as _Observat
 
 
 ANCHORS = [
-    Anchor("A1", (0.30, 0.30, 2.20)),
-    Anchor("A2", (3.70, 0.30, 2.20)),
-    Anchor("A3", (3.70, 4.40, 2.20)),
-    Anchor("A4", (0.30, 4.40, 2.20)),
+    Anchor("A1", (0.30, 0.30, 0.50)),
+    Anchor("A2", (3.70, 0.30, 4.50)),
+    Anchor("A3", (3.70, 4.40, 0.50)),
+    Anchor("A4", (0.30, 4.40, 4.50)),
 ]
 
 
@@ -37,7 +37,7 @@ def test_full_chain_no_noise():
     router = AlgorithmRouter("uwb.matlab.trilateration")
     result = router.run(observation_frame=frames[0])
     assert result.valid
-    assert np.linalg.norm(result.estimate - np.array(gt[:2])) < 1e-9
+    assert np.linalg.norm(result.estimate - np.array(gt)) < 1e-9
 
 
 def test_ground_truth_isolation():
