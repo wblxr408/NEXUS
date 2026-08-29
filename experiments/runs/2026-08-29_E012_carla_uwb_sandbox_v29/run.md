@@ -3,7 +3,8 @@
 - Purpose: run the two requested UWB reproductions on measurements generated
   by a moving UAV actor in the CARLA `sandbox-v29` 3D map.
 - Design: `experiments/designs/E012_carla_uwb_sandbox_v29.md`.
-- Implementation commit: `60e0a2b` (`feat(uwb): run 3D CARLA sandbox-v29 reproduction`).
+- Implementation commits: `60e0a2b` (`feat(uwb): run 3D CARLA sandbox-v29 reproduction`)
+  and `4fd22fc` (`fix(uwb): normalize CARLA CSV artifacts`).
 - Execution time: 2026-08-29 23:47-23:54 UTC+08:00.
 - Environment: Linux container; NVIDIA GeForce RTX 3080 Ti, driver 580.76.05;
   CARLA 0.9.16; client Python 3.12.3; CARLA wheel 0.9.16; NumPy 2.5.2;
