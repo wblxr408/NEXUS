@@ -1,0 +1,103 @@
+# Metadata template for the first physical sandbox UWB static dataset.
+# Replace every TBD value from the field log before declaring this dataset
+# usable for accuracy metrics. Do not store raw logs, video, or rosbag here.
+schema_version: 1
+dataset_id: 2026-08-28_uwb_sandbox_static_v01
+status: planned
+scenario: physical_sandbox_static_uwb
+data_type: measured
+is_measured_result: false
+run_id: 2026-08-28_E004_uwb_real_sandbox_static
+
+source:
+  kind: field_measurement
+  raw_location: TBD
+  raw_size_bytes: TBD
+  raw_sha256: TBD
+  operator: TBD
+  acquisition_start_utc: TBD
+  acquisition_end_utc: TBD
+  notes: Raw data remains in external storage and is not committed to Git.
+
+normalized_files:
+  observations_csv: data/processed/2026-08-28_uwb_sandbox_static_v01/observations.csv
+  observations_sha256: TBD
+  truth_points_csv: data/processed/2026-08-28_uwb_sandbox_static_v01/truth_points.csv
+  truth_points_sha256: TBD
+  row_schema:
+    - frame_seq
+    - sample_timestamp_ns
+    - receive_timestamp_ns
+    - tag_id
+    - anchor_id
+    - anchor_x_m
+    - anchor_y_m
+    - anchor_z_m
+    - range_m
+    - stddev_m
+
+coordinate_frame:
+  name: map
+  origin_definition: TBD
+  axis_definition: TBD
+  handedness: TBD
+  length_unit: m
+  timestamp_unit: ns
+  anchor_coordinate_source: field_measurement
+  anchor_coordinate_version: TBD
+
+anchors:
+  config_path: experiments/runs/2026-08-28_E004_uwb_real_sandbox_static/config/anchors.yaml
+  positions:
+    - id: A1
+      x_m: TBD
+      y_m: TBD
+      z_m: TBD
+    - id: A2
+      x_m: TBD
+      y_m: TBD
+      z_m: TBD
+    - id: A3
+      x_m: TBD
+      y_m: TBD
+      z_m: TBD
+    - id: A4
+      x_m: TBD
+      y_m: TBD
+      z_m: TBD
+
+target:
+  tag_id: target
+  tag_installation: TBD
+  reference_point: TBD
+  tag_to_target_link_offset_m: [TBD, TBD, TBD]
+
+acquisition:
+  required_anchor_count: 4
+  point_count: 8
+  repeats_per_point: 3
+  stabilization_duration_s: 10
+  evaluation_duration_s: 60
+  nominal_rate_hz: TBD
+  sampling_clock: TBD
+  receive_clock: TBD
+  clock_offset_verification: TBD
+  environment: TBD
+  device_configuration: TBD
+  los_nlos_notes: TBD
+
+quality_policy:
+  grouping_key: sample_timestamp_ns
+  timestamp_order: strictly_increasing_per_tag
+  missing_anchor_policy: preserve_missing_do_not_fill
+  invalid_range_policy: reject_nonfinite_or_nonpositive
+  required_anchors_per_frame: 3
+  formal_accuracy_gate: complete_truth_coordinates_units_and_timestamps
+
+provenance:
+  code_commit: TBD
+  config_sha256: TBD
+  normalized_by: TBD
+  normalized_at_utc: TBD
+  completeness_check: pending
+  comments: This template is not an accuracy result until the complete E004 run is recorded.

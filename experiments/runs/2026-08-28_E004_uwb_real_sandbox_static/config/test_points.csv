@@ -1,0 +1,9 @@
+point_id,x_m,y_m,z_m,zone,truth_method,truth_uncertainty_m
+P01,TBD,TBD,TBD,core,TBD,TBD
+P02,TBD,TBD,TBD,core,TBD,TBD
+P03,TBD,TBD,TBD,core,TBD,TBD
+P04,TBD,TBD,TBD,transition,TBD,TBD
+P05,TBD,TBD,TBD,transition,TBD,TBD
+P06,TBD,TBD,TBD,transition,TBD,TBD
+P07,TBD,TBD,TBD,uwb_coverage,TBD,TBD
+P08,TBD,TBD,TBD,uwb_coverage,TBD,TBD

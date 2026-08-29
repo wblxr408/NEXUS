@@ -25,6 +25,7 @@ data/raw/**
 data/interim/**
 data/processed/**
 !data/processed/README.md
+data/gz_parts/
 experiments/runs/**/artifacts/
 *.bag
 *.db3

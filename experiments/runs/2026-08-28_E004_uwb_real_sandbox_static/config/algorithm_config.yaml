@@ -1,0 +1,65 @@
+# Frozen algorithm/evaluation contract for E004.
+# Replace TBD values before acquisition. Do not tune them from a test point's
+# truth value or from another algorithm's output.
+schema_version: 1
+coordinate_frame: map
+range_unit: m
+output_dimension: 2D
+
+algorithms:
+  - id: uwb.matlab.trilateration
+    display_name: Trilateration
+    enabled: true
+  - id: uwb.matlab.multilateration
+    display_name: Multilateration
+    enabled: true
+  - id: uwb.matlab.taylor
+    display_name: Taylor
+    enabled: true
+  - id: uwb.matlab.ekf
+    display_name: EKF
+    enabled: true
+  - id: uwb.matlab.ukf
+    display_name: UKF
+    enabled: true
+
+filter_initialization:
+  initial_xy_m: [TBD, TBD]
+  initial_state_source: fixed_prior_not_test_point_truth
+  reset_before_each_point_and_repeat: true
+  retain_state_within_repeat: true
+  dt_s: 0.1
+  process_noise: TBD
+  measurement_noise: TBD
+
+evaluation:
+  grid_frequency_hz: 10.0
+  grid_interval_ms: 100
+  matching_tolerance_ms: 50
+  missing_match_is_unavailable: true
+  reuse_previous_output: false
+  reuse_other_algorithm_output: false
+  outlier_threshold_m: 0.30
+  percentile_definition: horizontal_euclidean_error
+  metrics_dimension: 2D
+
+input_contract:
+  required_fields:
+    - frame_seq
+    - sample_timestamp_ns
+    - receive_timestamp_ns
+    - tag_id
+    - anchor_id
+    - anchor_x_m
+    - anchor_y_m
+    - anchor_z_m
+    - range_m
+    - stddev_m
+  minimum_anchors_per_frame: 3
+  preserve_missing_anchors: true
+  require_finite_positive_ranges: true
+
+provenance:
+  code_commit: TBD
+  config_version: TBD
+  config_sha256: TBD

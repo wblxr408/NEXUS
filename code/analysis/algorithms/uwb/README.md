@@ -52,4 +52,28 @@ The adapter subscribes to Gazebo odometry, generates ranges using `simulation/co
 
 ## Evaluation and limits
 
-Offline 2D metrics are implemented in `code/analysis/evaluation/metrics.py`, especially `position_metrics_2d` and `success_metrics`. Current runs do not claim 3D accuracy. Anchor coordinates are simulation baseline/provisional, the MATLAB numerical equivalence sweep is not fully archived, and online run-level metric persistence is not yet implemented.
+Offline 2D metrics are implemented in `code/analysis/evaluation/metrics.py`, especially `position_metrics_2d` and `success_metrics`. Current runs do not claim 3D accuracy. Anchor coordinates in simulation remain a baseline; the MATLAB numerical equivalence sweep is not part of the measured experiment.
+
+## 实体沙盘离线入口
+
+现场日志先转换为统一的“一行一个基站测量” CSV。距离单位必须按设备接口明确传入：
+
+```bash
+PYTHONPATH=code/analysis:simulation python3 code/analysis/algorithms/uwb/convert_real_data.py \
+  --input /external/uwb/raw.csv \
+  --anchors experiments/runs/2026-08-28_E004_uwb_real_sandbox_static/config/anchors.yaml \
+  --range-unit mm \
+  --output data/processed/2026-08-28_uwb_sandbox_static_v01/observations.csv
+```
+
+完成真值表后，用同一份输入依次运行五个 Python 算法：
+
+```bash
+PYTHONPATH=code/analysis:simulation python3 code/analysis/algorithms/uwb/run_real_data.py \
+  --input data/processed/2026-08-28_uwb_sandbox_static_v01/observations.csv \
+  --truth data/processed/2026-08-28_uwb_sandbox_static_v01/truth_points.csv \
+  --config experiments/runs/2026-08-28_E004_uwb_real_sandbox_static/config/algorithm_config.yaml \
+  --output experiments/runs/2026-08-28_E004_uwb_real_sandbox_static/metrics/
+```
+
+入口保留缺失基站和无效算法输出，在 `results.csv` 中记录 `valid` 与 `error_reason`；指标使用 10 Hz 公共时间栅格和 50 ms 匹配容差，并标注 `data_type: measured`。没有完整真值和现场坐标时，输出只能作为功能或数据质量检查。
