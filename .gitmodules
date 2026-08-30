@@ -25,3 +25,6 @@
 [submodule "code/analysis/vision/third_party/orb_slam2"]
 	path = code/analysis/vision/third_party/orb_slam2
 	url = https://github.com/raulmur/ORB_SLAM2.git
+[submodule "code/analysis/vision/third_party/lightglue"]
+	path = code/analysis/vision/third_party/lightglue
+	url = https://github.com/cvg/LightGlue.git
