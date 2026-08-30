@@ -1,0 +1,42 @@
+dataset_id: nexus_sandbox_target_detection_pose_v01
+scene_mode: metric_simulation
+unit: m
+coordinate_frame: map
+target_catalog: simulation/target_catalog_v01.yaml
+scene: simulation/sandbox_scene.yaml
+camera:
+  frame_id: nexus_uav_camera_optical_frame
+  calibration_source: docs/2026-08-25_reference_interface_fields.csv
+  calibration_status: gazebo_camera_info_confirmed; real-device fields unavailable -> idealized simulator values
+  image_width_px: 3280
+  image_height_px: 2464
+  distortion_model: plumb_bob
+  K: [[1978.892939, 0.0, 1640.5], [0.0, 1978.892939, 1232.5], [0.0, 0.0, 1.0]]
+  D: [0.0, 0.0, 0.0, 0.0, 0.0]
+  R: [[1.0, 0.0, 0.0], [0.0, 1.0, 0.0], [0.0, 0.0, 1.0]]
+  P: [[1978.892939, 0.0, 1640.5, 0.0], [0.0, 1978.892939, 1232.5, 0.0], [0.0, 0.0, 1.0, 0.0]]
+  base_to_camera_translation_m: [0.0, 0.0, 0.0]
+  base_to_camera_rotation_matrix: [[1.0, 0.0, 0.0], [0.0, 1.0, 0.0], [0.0, 0.0, 1.0]]
+  base_to_camera_status: idealized_identity_until_hardware_extrinsic_calibration
+  pixel_format: rgb8
+  idealized_missing_fields: [exposure, gain, rolling_shutter, base_to_camera_extrinsic]
+platform:
+  frame_id: base_link
+  camera_height_m: [3.05, 3.65]
+  look_at_map_m: [2.0, 2.35, 0.10]
+  sample_rate_hz: 10.0
+splits:
+  train: {trajectory_ids: [train_orbit_west, train_orbit_east, train_diagonal], frames_per_trajectory: 36}
+  val: {trajectory_ids: [val_figure_eight], frames_per_trajectory: 36}
+  test: {trajectory_ids: [test_perimeter_arc], frames_per_trajectory: 36}
+render:
+  image_extension: png
+  texture_landmark_count: 1400
+  seed: 20260830
+  background_rgb: [112, 138, 151]
+  ground_rgb: [74, 102, 68]
+detector_contract:
+  format: coco_instances_and_yolo_txt
+  output_required: [class_id, class_name, bbox_xywh_px, confidence]
+  bbox_coordinate_frame: image_pixels_top_left_xywh
+  visual_algorithm_boundary: detector supplies class+bbox; upstream GDR-Net consumes a crop and does not use ground-truth bbox at inference

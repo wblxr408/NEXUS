@@ -1,4 +1,7 @@
-target_id: target_001
-enabled: false
-source_object_id: null
-note: "目标物体尚未由项目组指定；填写 source_object_id 后生成器可标记 target_link。"
+target_id: target_001_to_target_010
+enabled: true
+mode: fixed_multi_object
+source_object_ids: [NW-T01, NW-T02, NW-T03, NW-T04, NE-T01, NE-T02, NE-T03, NE-T04, SW-T01, SW-T02]
+reference_frame: map
+unit: m
+note: "首轮 metric_simulation 固定目标集合；尺寸/位置来自参数化 YAML，不等同于实体扫描 CAD。详细 BOP/GDR-Net 数据集定义见 gdr_net_dataset.yaml。"

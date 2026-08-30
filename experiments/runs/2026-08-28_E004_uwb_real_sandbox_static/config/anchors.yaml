@@ -1,0 +1,23 @@
+# Physical sandbox anchor calibration placeholder.
+# Fill from an independent map-frame measurement before running algorithms.
+# These are deliberately not the simulation-baseline coordinates.
+schema_version: 1
+coordinate_frame: map
+length_unit: m
+coordinate_source: field_measurement
+calibration_id: TBD
+measured_at_utc: TBD
+measurement_method: TBD
+
+anchors:
+  - id: A1
+    position_m: [TBD, TBD, TBD]
+  - id: A2
+    position_m: [TBD, TBD, TBD]
+  - id: A3
+    position_m: [TBD, TBD, TBD]
+  - id: A4
+    position_m: [TBD, TBD, TBD]
+
+# The 2D algorithms use x/y only; retain z for traceability and later 3D work.
+horizontal_solver_dimension: 2D

@@ -3,10 +3,14 @@ export function installNexusAPI(store) {
   const api = {
     updatePose: (x, y, z, metadata) => store.updatePose(x, y, z, metadata),
     updateCamera: (data) => store.updateCamera(data),
+    updateEgoPose: (data) => store.updateEgoPose(data),
     updateObservations: (data) => store.updateObservations(data),
     updateMetrics: (data) => store.updateMetrics(data),
     updateStatus: (data) => store.updateStatus(data),
     updateHealth: (data) => store.updateHealth(data),
+    updateCarlaStatus: (data) => store.updateCarlaStatus(data),
+    updateAlgorithms: (data) => store.updateAlgorithms(data),
+    appendLog: (entry) => store.appendLog(entry),
     addLatency: (value) => store.addLatency(value),
     reset: () => store.reset(),
   };

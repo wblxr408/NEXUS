@@ -1,0 +1,178 @@
+{
+  "metadata": {
+    "carla_client_version": "294096eb1-dirty",
+    "carla_server_version": "294096eb1-dirty",
+    "carla_map": "CustomMaps/sandbox-v29/sandbox-v29",
+    "coordinate_frame": "carla_uwb_local",
+    "carla_local_origin_world_m": [
+      235.7187042236328,
+      -27.25874900817871,
+      0.5
+    ],
+    "ground_truth_source": "CARLA kinematic UAV actor transform",
+    "algorithm_input": "anchor coordinates, range_m, stddev_m, timestamp only",
+    "ground_truth_used_by_algorithm": false,
+    "tracked_entity": "uav_platform_base_link",
+    "carla_uav_actor": {
+      "blueprint": "static.prop.mobile",
+      "role_name": "nexus_uav",
+      "visual_mesh": "small non-vehicle prop; rendered UAV marker is in the visualization"
+    },
+    "range_model": "euclidean_3d",
+    "dimensions": 3,
+    "uav_altitude_m": 3.0,
+    "frames": 100,
+    "fixed_delta_seconds": 0.1,
+    "range_sigma_m": 0.05,
+    "random_seed": 42,
+    "carla_uav_path_length_m": 9.653393426295057,
+    "sources": {
+      "positioning_algorithms_for_uwb_matlab": "2c24c478ae0c317840fec1c29631c15dbe29a630",
+      "awesome_uwb_localization": "b3cd36e5d78da4daea2f350cfebeb6b8b8378810"
+    }
+  },
+  "anchors": [
+    {
+      "id": "A1",
+      "position_m": [
+        -15.0,
+        -12.0,
+        0.5
+      ]
+    },
+    {
+      "id": "A2",
+      "position_m": [
+        15.0,
+        -12.0,
+        4.5
+      ]
+    },
+    {
+      "id": "A3",
+      "position_m": [
+        15.0,
+        12.0,
+        0.5
+      ]
+    },
+    {
+      "id": "A4",
+      "position_m": [
+        -15.0,
+        12.0,
+        4.5
+      ]
+    }
+  ],
+  "metrics": {
+    "uwb.matlab.trilateration": {
+      "total_expected": 100,
+      "valid_count": 100,
+      "success_rate": 1.0,
+      "failure_rate": 0.0,
+      "update_rate_hz": 10.101009951025407,
+      "samples": 100,
+      "unit": "m",
+      "dimension": "3D",
+      "rmse_m": 0.2632436494007992,
+      "mae_m": 0.21499304091332744,
+      "cep50_m": 0.17465607098281616,
+      "cep95_m": 0.524537461960708,
+      "max_error_m": 0.682096513590076,
+      "outlier_count": 0,
+      "runtime_mean_ms": 0.13627007,
+      "runtime_p95_ms": 0.18071405000000001
+    },
+    "uwb.matlab.multilateration": {
+      "total_expected": 100,
+      "valid_count": 100,
+      "success_rate": 1.0,
+      "failure_rate": 0.0,
+      "update_rate_hz": 10.101009951025407,
+      "samples": 100,
+      "unit": "m",
+      "dimension": "3D",
+      "rmse_m": 0.2632436494007997,
+      "mae_m": 0.21499304091332735,
+      "cep50_m": 0.17465607098281552,
+      "cep95_m": 0.5245374619607076,
+      "max_error_m": 0.6820965135900766,
+      "outlier_count": 0,
+      "runtime_mean_ms": 0.12459485999999999,
+      "runtime_p95_ms": 0.14447885
+    },
+    "uwb.matlab.taylor": {
+      "total_expected": 100,
+      "valid_count": 100,
+      "success_rate": 1.0,
+      "failure_rate": 0.0,
+      "update_rate_hz": 10.101009951025407,
+      "samples": 100,
+      "unit": "m",
+      "dimension": "3D",
+      "rmse_m": 0.388634956551483,
+      "mae_m": 0.17910084751036934,
+      "cep50_m": 0.12092461928280324,
+      "cep95_m": 0.3224446913044719,
+      "max_error_m": 3.5028797618433845,
+      "outlier_count": 0,
+      "runtime_mean_ms": 0.8501283,
+      "runtime_p95_ms": 1.1218340999999998
+    },
+    "uwb.matlab.ekf": {
+      "total_expected": 100,
+      "valid_count": 100,
+      "success_rate": 1.0,
+      "failure_rate": 0.0,
+      "update_rate_hz": 10.101009951025407,
+      "samples": 100,
+      "unit": "m",
+      "dimension": "3D",
+      "rmse_m": 0.5878322460612732,
+      "mae_m": 0.2367351436211761,
+      "cep50_m": 0.0722031233758024,
+      "cep95_m": 0.9328175230125987,
+      "max_error_m": 4.368180333380994,
+      "outlier_count": 0,
+      "runtime_mean_ms": 0.21468977,
+      "runtime_p95_ms": 0.28513700000000003
+    },
+    "uwb.matlab.ukf": {
+      "total_expected": 100,
+      "valid_count": 100,
+      "success_rate": 1.0,
+      "failure_rate": 0.0,
+      "update_rate_hz": 10.101009951025407,
+      "samples": 100,
+      "unit": "m",
+      "dimension": "3D",
+      "rmse_m": 0.4561987605696025,
+      "mae_m": 0.18924849345906375,
+      "cep50_m": 0.07110537384438206,
+      "cep95_m": 0.6904953528881008,
+      "max_error_m": 3.4450832048599813,
+      "outlier_count": 0,
+      "runtime_mean_ms": 0.7546931700000001,
+      "runtime_p95_ms": 0.9492310999999999
+    },
+    "uwb.awesome_uwb": {
+      "total_expected": 100,
+      "valid_count": 100,
+      "success_rate": 1.0,
+      "failure_rate": 0.0,
+      "update_rate_hz": 10.101009951025407,
+      "samples": 100,
+      "unit": "m",
+      "dimension": "3D",
+      "rmse_m": 0.11921958246029869,
+      "mae_m": 0.10358773732052402,
+      "cep50_m": 0.09473321370075875,
+      "cep95_m": 0.21366274265578417,
+      "max_error_m": 0.295196455767759,
+      "outlier_count": 0,
+      "runtime_mean_ms": 11.965634149999996,
+      "runtime_p95_ms": 13.1895534
+    }
+  }
+}

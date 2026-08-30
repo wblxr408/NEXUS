@@ -67,6 +67,14 @@ function previewFromCompressedImage(message) {
 function observationToStore(store, message, kind) {
   const position = message.pose?.position;
   if (!position || message.validity !== 1) return;
+  const algorithm = kind === "uwb" ? "uwb" : kind === "vision" ? "detector" : "fusion";
+  store.updateAlgorithms({
+    [algorithm]: {
+      status: kind === "target" ? "VALID" : "OK",
+      summary: message.target_id ? `${message.target_id} observation` : "target observation",
+      lastUpdate: stampText(message.header),
+    },
+  });
   const metadata = {
     targetId: message.target_id,
     sourceMode: SOURCE_MODES[message.source_mode] || "UNKNOWN",

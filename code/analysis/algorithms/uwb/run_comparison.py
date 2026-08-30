@@ -14,7 +14,7 @@ sys.path.insert(0, str(REPO_ROOT / "code" / "analysis"))
 sys.path.insert(0, str(REPO_ROOT / "simulation"))
 
 from algorithms.router import AlgorithmRouter, register_default_algorithms
-from evaluation.metrics import position_metrics_2d, success_metrics
+from evaluation.metrics import position_metrics, success_metrics
 from generators.range_simulation import load_anchors, simulate_ranges
 
 
@@ -36,18 +36,22 @@ def main():
         "uwb.matlab.taylor",
         "uwb.matlab.ekf",
         "uwb.matlab.ukf",
+        "uwb.awesome_uwb",
     ]
     sigmas = [0.0, 0.02, 0.05, 0.10]
     results = {}
 
     for sigma in sigmas:
-        frames = simulate_ranges(anchors, positions, stamps, sigma_m=sigma, random_seed=42)
+        frames = simulate_ranges(
+            anchors, positions, stamps, sigma_m=sigma, random_seed=42, dimensions=3
+        )
         for name in algorithm_names:
             runner = AlgorithmRouter(name).spec.runner
             if hasattr(runner, "_state"):
                 del runner._state
             estimates = []
             references = []
+            valid_timestamps = []
             valid_count = 0
             runtimes_ms = []
             for index, frame in enumerate(frames):
@@ -55,14 +59,15 @@ def main():
                 if result.valid:
                     valid_count += 1
                     estimates.append(result.estimate)
-                    references.append(positions[index, :2])
+                    references.append(positions[index, :3])
+                    valid_timestamps.append(stamps[index])
                 runtimes_ms.append(result.metadata.get("runtime_ms", float("nan")))
 
             if estimates:
-                metrics = position_metrics_2d(estimates, references)
+                metrics = position_metrics(estimates, references)
             else:
                 metrics = {"rmse_m": float("nan"), "mae_m": float("nan")}
-            success = success_metrics(len(frames), valid_count, stamps[:valid_count])
+            success = success_metrics(len(frames), valid_count, valid_timestamps)
             results[f"{name}@sigma={sigma}"] = {
                 **metrics,
                 **success,

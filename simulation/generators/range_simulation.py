@@ -54,8 +54,14 @@ def simulate_ranges(
     sigma_m=0.0,
     random_seed=42,
     tag_id="target",
+    dimensions=3,
 ):
-    """Return one UwbObservationFrame per timestamp with noisy anchor ranges."""
+    """Return one UwbObservationFrame per timestamp with noisy anchor ranges.
+
+    The active CARLA path uses ``dimensions=3`` and computes Euclidean XYZ
+    ranges. ``dimensions=2`` is retained only for legacy horizontal-only
+    fixtures; it does not make a 3D algorithm input.
+    """
     positions = np.asarray(positions_m, dtype=float)
     stamps = np.asarray(timestamps_ns, dtype=np.int64)
     if positions.ndim != 2 or positions.shape[1] != 3:
@@ -66,13 +72,19 @@ def simulate_ranges(
         raise ValueError("at least one anchor is required")
     if sigma_m < 0.0:
         raise ValueError("sigma_m must be non-negative")
+    if dimensions not in (2, 3):
+        raise ValueError("dimensions must be 2 or 3")
 
     rng = np.random.default_rng(random_seed)
     frames = []
     for index in range(stamps.size):
         samples = []
         for anchor in anchors:
-            ideal = float(np.linalg.norm(positions[index] - np.asarray(anchor.position_m)))
+            if dimensions == 2:
+                ideal = float(np.linalg.norm(
+                    positions[index, :2] - np.asarray(anchor.position_m[:2])))
+            else:
+                ideal = float(np.linalg.norm(positions[index] - np.asarray(anchor.position_m)))
             noise = rng.normal(0.0, sigma_m) if sigma_m > 0.0 else 0.0
             samples.append(RangeSample(
                 anchor_id=anchor.id,

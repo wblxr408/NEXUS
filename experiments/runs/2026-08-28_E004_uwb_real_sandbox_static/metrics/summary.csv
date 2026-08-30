@@ -1,0 +1,1 @@
+algorithm,run_id,point_id,repeat_id,zone,samples_total,samples_valid,availability,rmse_xy_m,mae_xy_m,p50_xy_m,p95_xy_m,max_error_m,bias_x_m,bias_y_m,outlier_count,update_frequency_hz,mean_runtime_ms,mean_latency_ms,p95_latency_ms,max_latency_ms,failure_count,error_reasons,data_type,is_measured_result,code_commit,config_sha256,truth_uncertainty_m

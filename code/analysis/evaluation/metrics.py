@@ -23,7 +23,9 @@ def position_metrics(estimates, references, outlier_threshold_m=None):
     return {
         "samples": int(distances.size),
         "unit": "m",
+        "dimension": "3D",
         "rmse_m": float(np.sqrt(np.mean(distances ** 2))),
+        "mae_m": float(np.mean(distances)),
         "cep50_m": float(np.percentile(distances, 50)),
         "cep95_m": float(np.percentile(distances, 95)),
         "max_error_m": float(np.max(distances)),

@@ -1,8 +1,8 @@
 """Weighted least-squares multilateration adapted from the MATLAB project.
 
 Source: https://github.com/cliansang/positioning-algorithms-for-uwb-matlab
-Port of performMultilateration.m.  Uses the linearised range-difference
-equations solved by weighted least squares; supports >=3 anchors in 2D.
+Port of ``performMultilateration.m``.  The active runner uses the source
+project's 3D branch with four or more non-coplanar anchors.
 """
 
 from __future__ import annotations
@@ -42,6 +42,50 @@ def solve_multilateration_2d(anchor_positions, ranges, weights=None):
     return solution
 
 
+def solve_multilateration_3d(anchor_positions, ranges, weights=None):
+    """Return the source-style weighted 3D linearized solution."""
+    anchors = np.asarray(anchor_positions, dtype=float)
+    distances = np.asarray(ranges, dtype=float).reshape(-1)
+    if anchors.ndim != 2 or anchors.shape[1] < 3:
+        raise ValueError("anchor_positions must have shape (N, >=3)")
+    n = anchors.shape[0]
+    if n < 4 or n != distances.size:
+        raise ValueError("at least four matching anchor-range pairs are required")
+    if not np.all(np.isfinite(anchors[:, :3])):
+        raise ValueError("anchor positions must be finite")
+    if np.any(distances <= 0.0) or not np.all(np.isfinite(distances)):
+        raise ValueError("ranges must be positive and finite")
+
+    anchors = anchors[:, :3]
+    deltas = anchors[1:] - anchors[0]
+    if np.linalg.matrix_rank(deltas) < 3:
+        raise ValueError("3D multilateration anchors are coplanar or rank deficient")
+    b = (
+        distances[0] ** 2
+        - distances[1:] ** 2
+        + np.sum(anchors[1:] ** 2, axis=1)
+        - np.sum(anchors[0] ** 2)
+    ) / 2.0
+
+    if weights is None:
+        difference_weights = np.ones(n - 1, dtype=float)
+    else:
+        supplied = np.asarray(weights, dtype=float).reshape(-1)
+        if supplied.size == n:
+            supplied = supplied[1:]
+        if supplied.size != n - 1 or np.any(supplied <= 0.0) or not np.all(np.isfinite(supplied)):
+            raise ValueError("weights must contain one positive finite value per range difference")
+        difference_weights = supplied
+    normal = deltas.T @ (difference_weights[:, None] ** 2 * deltas)
+    estimate = np.linalg.solve(
+        normal,
+        deltas.T @ (difference_weights ** 2 * b),
+    )
+    if not np.all(np.isfinite(estimate)):
+        raise ValueError("3D multilateration failed")
+    return estimate
+
+
 def run_multilateration(*, observation_frame, **_):
     import time as time_module
 
@@ -54,18 +98,18 @@ def run_multilateration(*, observation_frame, **_):
             1.0 / max(sigma, 1e-12) if sigma > 0 else 1.0
             for sigma in stddevs
         ]
-        xy = solve_multilateration_2d(positions, ranges, weights=inverse_variance)
+        xyz = solve_multilateration_3d(positions, ranges, weights=inverse_variance)
         valid = True
-        metadata = {"dimension": "2D", "timestamp_ns": observation_frame.timestamp_ns}
+        metadata = {"dimension": "3D", "timestamp_ns": observation_frame.timestamp_ns}
     except (ValueError, np.linalg.LinAlgError) as exc:
-        xy = np.full(2, np.nan)
+        xyz = np.full(3, np.nan)
         valid = False
         metadata = {"error": str(exc), "timestamp_ns": observation_frame.timestamp_ns}
     runtime_ms = (time_module.monotonic_ns() - start_ns) / 1e6
     metadata["runtime_ms"] = runtime_ms
     return AlgorithmResult(
-        estimate=np.asarray(xy),
-        covariance=np.diag([np.nan, np.nan]),
+        estimate=np.asarray(xyz),
+        covariance=np.diag([np.nan, np.nan, np.nan]),
         algorithm="uwb.matlab.multilateration",
         family="uwb", valid=valid, metadata=metadata,
     )

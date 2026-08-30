@@ -1,0 +1,45 @@
+# Training counterpart for the held-out nexus_sandbox_gdr_net_v02 evaluation
+# set. Its random seed differs from v02, so no UAV/camera pose is shared.
+dataset_id: nexus_sandbox_gdr_net_train_v01
+scene_mode: metric_simulation
+coordinate_frame: map
+unit: m
+random_seed: 20260827
+scene_split: train_pbr
+image:
+  width_px: 960
+  height_px: 720
+  horizontal_fov_deg: 79.3
+  background_rgb: [125, 155, 175]
+  ground_rgb: [67, 104, 58]
+camera:
+  frame_id: camera_0
+  base_to_camera_translation_m: [0.0, 0.0, 0.0]
+  base_to_camera_rotation_matrix: [[1.0, 0.0, 0.0], [0.0, 1.0, 0.0], [0.0, 0.0, 1.0]]
+platform:
+  frame_id: base_link
+  sample_rate_hz: 2.0
+  hover_count: 40
+  hover_xy_bounds_m: [[1.05, 2.95], [1.25, 3.45]]
+  hover_height_m: [2.65, 3.05]
+  look_at_map_m: [2.0, 2.35, 0.05]
+uwb:
+  anchors_m:
+    - {id: anchor_0, position_m: [0.15, 0.15, 0.40]}
+    - {id: anchor_1, position_m: [3.85, 0.15, 2.40]}
+    - {id: anchor_2, position_m: [3.85, 4.55, 4.40]}
+    - {id: anchor_3, position_m: [0.15, 4.55, 1.40]}
+  range_noise_std_m: 0.015
+  range_bias_m: 0.0
+  tag_to_base_translation_m: [0.0, 0.0, 0.0]
+targets:
+  - {object_id: 1, source_object_id: NW-T01, symmetry: continuous_z}
+  - {object_id: 2, source_object_id: NW-T02, symmetry: continuous_z}
+  - {object_id: 3, source_object_id: NW-T03, symmetry: continuous_z}
+  - {object_id: 4, source_object_id: NW-T04, symmetry: continuous_z}
+  - {object_id: 5, source_object_id: NE-T01, symmetry: continuous_z}
+  - {object_id: 6, source_object_id: NE-T02, symmetry: continuous_z}
+  - {object_id: 7, source_object_id: NE-T03, symmetry: continuous_z}
+  - {object_id: 8, source_object_id: NE-T04, symmetry: continuous_z}
+  - {object_id: 9, source_object_id: SW-T01, symmetry: continuous_z}
+  - {object_id: 10, source_object_id: SW-T02, symmetry: continuous_z}

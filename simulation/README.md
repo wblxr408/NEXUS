@@ -39,3 +39,100 @@ python3 generate_sandbox.py
 仿真/回放只负责把同一份输入交给路由选中的 runner；不会读取预先保存的结果。
 将来前端传递完整算法名称即可切换，前端不实现算法。未注册的算法会明确报错，
 不会用仿真真值冒充算法结果。
+
+## GDR-Net 合成数据集
+
+`gdr_net_dataset.yaml` 定义十个固定中央储罐和五个确定性随机的无人机悬停位姿。
+使用以下命令生成参数化简化 CAD（PLY）、RGB、实例掩码、相机/物体真值、BOP 风格
+标注和带噪 UWB 测距：
+
+```bash
+python3 simulation/generate_gdr_net_dataset.py \
+  --out data/processed/nexus_sandbox_gdr_net_v01
+```
+
+输出数据是 `metric_simulation` 的几何渲染基线：模型尺寸/位置来自 YAML，而不是
+实体扫描 CAD；RGB 没有照片纹理、逼真光照或遮挡。因此它能用于验证 GDR-Net 的数据
+格式、相机坐标、相对位姿和 UWB+视觉坐标链，不能作为真实沙盘性能结论。所有选中的
+圆柱目标均标记为连续绕 z 轴对称，最终评估须使用 ADD-S/对称性处理而不是普通旋转
+误差或 ADD。
+
+`trajectory.csv` 仅包含算法可见的带噪 UWB 测距；平台真值单独写入
+`ground_truth/platform_pose.csv`，十个目标的 `map` 真值写入
+`ground_truth/target_pose_map.csv`。评估器读取真值目录，UWB/视觉算法不得读取它。
+
+注意：上游发布的 GDR-Net 权重对应 LINEMOD/LM-O/YCB-V 等目标，不会直接识别本
+项目的十个自定义沙盘物体。要做这些目标的真实算法实验，需用本项目目标模型和
+训练/验证轨迹制作目标专属配置并训练或微调 checkpoint；本数据集当前只有 5 帧，
+只够检查格式、坐标和融合链路，不能单独作为训练集或精度证据。
+
+`gdr_net_dataset_v02.yaml` 是评测数据版本：它生成到 BOP 标准的 `test/000001/`，
+`scene_camera.json` 只含相机内参与深度比例；`map -> base_link` 与
+`map -> target_link` 完整真值（含旋转）只在 `ground_truth/` 中，供评估器使用。
+这样视觉推理从 BOP 元数据无法读取平台的地图真值。可用以下命令生成：
+
+```bash
+python3 simulation/generate_gdr_net_dataset.py \
+  --config simulation/gdr_net_dataset_v02.yaml \
+  --out data/processed/nexus_sandbox_gdr_net_v02
+```
+
+`gdr_net_dataset_train_v01.yaml` 是与 v02 独立的训练划分：随机种子为
+`20260827`，生成 40 个无人机视角和 400 个目标实例到 `train_pbr/000001/`。
+它只可用于训练；最终指标始终在 v02 的五个未见视角上计算。
+
+`gdr_net_dataset_v03.yaml` 固定沿用 v02 的五个评测视角及 RGB/BOP 标注，另增加
+算法可见的 `platform_attitude.csv`。它模拟机载 IMU/飞控姿态观测（当前额外噪声为
+零）；UWB 仍只提供 `trajectory.csv` 中的测距。该文件用于把视觉
+`camera -> target_link` 与 UWB `map -> base_link` 合成为端到端
+`map -> target_link`，不从 `ground_truth/` 读取姿态。
+
+## ORB-SLAM2 单目连续序列
+
+使用 `python3 simulation/generate_orb_slam2_dataset.py` 可生成 180 帧以上的连续
+单目 RGB 序列、相机真值和 ORB-SLAM2 相机 YAML。`simulation/run_orb_slam2.py` 调用
+上游 `mono_tum` 并写出日志与 `metrics.json`。单目尺度默认不对齐；UWB 只能在轨迹
+成功后用于尺度和 `map` 坐标恢复。当前 Linux 兼容构建的实测记录见
+`experiments/runs/2026-08-27_E007_orb_slam2_mono_simulation/`。
+Windows Conda/MSVC 的构建与运行命令见
+`simulation/2026-08-27_orb_slam2_windows.md`；Windows 兼容副本和依赖均保留在用户
+本机，不进入仓库。
+
+要在同一时空数据上联调 ORB、UWB 和 GDR-Net，使用
+`simulation/generate_orb_gdrn_dataset.py`。它让 ORB 的 `rgb.txt` 与 BOP 测试集引用
+同一批 RGB 文件，并同时生成独立 UWB 测距、相机/平台真值和十个目标模型；完整实测
+记录见 `experiments/runs/2026-08-27_E008_orb_gdrn_uwb_end_to_end/`。
+
+## 十类目标检测与 6D 姿态数据
+
+`target_catalog_v01.yaml` 定义了十个无 CAD 的可区分参数化代理目标。它们的形状、尺寸
+和位置是仿真设计值，不可表述为实体测量真值。使用下列命令生成 RGB、COCO/YOLO bbox、
+实例掩码、BOP `camera → target` 位姿和相机标定文件；训练、验证、测试按完整飞行轨迹
+隔离，绝不随机拆分相邻视频帧：
+
+```bash
+python3 simulation/generate_target_detection_dataset.py \
+  --config simulation/target_detection_dataset_v01.yaml \
+  --out /mnt/c/Users/wblxr/nexus_target_detection_pose_v02 \
+  --yolo-assets copy
+```
+
+`--yolo-assets copy` 是 Windows 训练必需项，因为 Windows 不能读取 WSL 生成的相对符号链接。
+相机参数优先使用 `docs/2026-08-25_reference_interface_fields.csv` 中确认的 Gazebo IMX219
+CameraInfo；CSV 未确认的实机畸变、外参、曝光等字段在 YAML 中显式理想化。数据与外部
+YOLO 的实测结果见 `experiments/runs/2026-08-27_E009_target_detector_dataset/` 与
+`experiments/runs/2026-08-27_E010_target_detector_scene_context_v02/`。v02 还渲染
+`sandbox_scene.yaml` 的道路、工业岛、建筑、树列、交通标线等无标签背景。
+
+## CARLA 0.9.16 Linux UWB 联调
+
+当前环境已验证 Linux CARLA Vulkan offscreen 服务、运动 UAV actor 与 RGB 相机同步 tick。启动命令、
+NVIDIA ICD 条件和冒烟验收见 [`carla_linux_setup.md`](carla_linux_setup.md)。Windows 文档
+只作为历史部署备选保留。
+
+UWB 端到端入口为 `simulation/run_carla_uwb_reproduction.py`。它只运行指定的两个上游
+项目：第一个项目的 Trilateration、Multilateration、Taylor、EKF、UKF，以及第二个项目
+的 UWB-only range graph。实验固定加载 `gz_parts` 中恢复的
+`CustomMaps/sandbox-v29/sandbox-v29` 三维地图；CARLA UAV actor 真值只生成 3D ranges
+和计算指标，不进入算法输入。可视化入口为
+`simulation/visualize_carla_uwb.py`，输出沙盘俯视投影、UAV、四个非共面锚点和六条估计轨迹。

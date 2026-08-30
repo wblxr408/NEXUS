@@ -20,8 +20,8 @@ def generate_launch_description():
         DeclareLaunchArgument("use_gui", default_value="true"),
         DeclareLaunchArgument("follow_route", default_value="true"),
         DeclareLaunchArgument("config_file", default_value=default_config),
-        DeclareLaunchArgument("sigma_m", default_value="0.0"),
-        DeclareLaunchArgument("random_seed", default_value="42"),
+        DeclareLaunchArgument("sigma_m", default_value="-1.0"),
+        DeclareLaunchArgument("random_seed", default_value="-1"),
         IncludeLaunchDescription(
             PythonLaunchDescriptionSource(PathJoinSubstitution([
                 FindPackageShare("nexus_bringup"), "launch", "gazebo_sandbox.launch.py"])),

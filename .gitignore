@@ -24,6 +24,8 @@ downloads/
 data/raw/**
 data/interim/**
 data/processed/**
+!data/processed/README.md
+data/gz_parts/
 experiments/runs/**/artifacts/
 *.bag
 *.db3
@@ -39,3 +41,11 @@ experiments/runs/**/artifacts/
 
 # Keep directory contracts visible
 !.gitkeep
+
+# CARLA simulator (large, local-only)
+simulation/carla/
+# Keep the small WSL dashboard bridge and its dependency contract versioned.
+!simulation/carla/
+simulation/carla/*
+!simulation/carla/carla_status_bridge.py
+!simulation/carla/requirements_bridge.txt
