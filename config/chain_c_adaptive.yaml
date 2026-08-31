@@ -1,0 +1,21 @@
+schema_version: 1
+chain: chain_c_adaptive
+description: Quality gate selecting the shared precision or robust factor weighting.
+precision_config: config/chain_a_precision.yaml
+robust_config: config/chain_b_robust.yaml
+adaptive_gates:
+  precision_minimum_views: 8
+  precision_minimum_baseline_m: 0.30
+  precision_minimum_confidence: 0.70
+  precision_maximum_pose_sigma_m: 0.04
+  precision_maximum_channel_disagreement_m: 0.08
+  precision_minimum_blur_metric: 80.0
+  exposure_minimum: 0.15
+  exposure_maximum: 0.90
+  transition_minimum_views: 2
+  transition_minimum_confidence: 0.35
+  hard_channel_disagreement_m: 0.30
+  hard_uwb_residual_m: 0.50
+output:
+  invalid_policy: publish_nan_with_reason
+  network_depth_allowed: false

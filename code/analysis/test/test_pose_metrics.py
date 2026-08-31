@@ -8,7 +8,7 @@ import numpy as np
 ROOT = Path(__file__).parents[1]
 sys.path.insert(0, str(ROOT))
 
-from evaluation.pose_metrics import evaluate_bop_predictions, evaluate_map_target_predictions, evaluate_pose_records, rotation_error_deg
+from evaluation.pose_metrics import evaluate_bop_predictions, evaluate_map_target_predictions, evaluate_pose_records, model_is_symmetric, rotation_error_deg, rotation_error_symmetric_deg, symmetry_rotations
 from vision.gdr_net_numpy_compat import apply_numpy2_compat
 
 
@@ -32,6 +32,15 @@ def test_pose_records_report_zero_for_identical_pose():
     assert result["translation_rmse_3d_m"] == 0.0
     assert result["rotation_rmse_deg"] == 0.0
     assert result["add_m"] == 0.0
+
+
+def test_bop_discrete_symmetry_is_used_for_rotation_metric():
+    half_turn = np.eye(4)
+    half_turn[:3, :3] = np.diag([-1.0, -1.0, 1.0])
+    details = {"symmetries_discrete": [half_turn.reshape(-1).tolist()]}
+    rotations = symmetry_rotations(details)
+    assert model_is_symmetric(details)
+    assert rotation_error_symmetric_deg(half_turn[:3, :3], np.eye(3), rotations) < 1e-6
 
 
 def test_generated_dataset_gt_can_be_round_tripped(tmp_path):

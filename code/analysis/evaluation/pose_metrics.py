@@ -33,6 +33,30 @@ def rotation_error_deg(rotation_est: Any, rotation_gt: Any) -> float:
     return float(np.degrees(np.arccos(cosine)))
 
 
+def symmetry_rotations(model_info: dict[str, Any], continuous_steps: int = 72) -> list[np.ndarray]:
+    """Expand standard BOP symmetry fields into model-frame rotations."""
+    rotations = [np.eye(3)]
+    for value in model_info.get("symmetries_discrete", []):
+        rotations.append(_array(value, (16,), "symmetries_discrete").reshape(4, 4)[:3, :3])
+    for item in model_info.get("symmetries_continuous", []):
+        axis = _array(item["axis"], (3,), "symmetry axis")
+        axis /= np.linalg.norm(axis)
+        for angle in np.linspace(0.0, 2.0 * np.pi, continuous_steps, endpoint=False)[1:]:
+            rotations.append(cv2.Rodrigues(axis * angle)[0])
+    return rotations
+
+
+def model_is_symmetric(model_info: dict[str, Any]) -> bool:
+    """Use BOP keys as authority while retaining frozen legacy datasets."""
+    if model_info.get("symmetries_discrete") or model_info.get("symmetries_continuous"):
+        return True
+    return str(model_info.get("symmetry", "none")) not in {"", "none", "false"}
+
+
+def rotation_error_symmetric_deg(rotation_est: Any, rotation_gt: Any, rotations: list[np.ndarray]) -> float:
+    return min(rotation_error_deg(rotation_est, np.asarray(rotation_gt) @ symmetry) for symmetry in rotations)
+
+
 def _distances(rotation_est, translation_est, rotation_gt, translation_gt, model_points, symmetric):
     estimated_points = (rotation_est @ model_points.T).T + translation_est
     if not symmetric:
@@ -81,7 +105,8 @@ def evaluate_pose_records(records, *, diameter_by_object=None, add_threshold_fra
         translation_delta = translation_est - translation_gt
         translation_errors.append(float(np.linalg.norm(translation_delta)))
         translation_deltas.append(translation_delta)
-        rotation_error = rotation_error_deg(rotation_est, rotation_gt)
+        rotations = record.get("symmetry_rotations", [np.eye(3)])
+        rotation_error = rotation_error_symmetric_deg(rotation_est, rotation_gt, rotations)
         rotation_errors.append(rotation_error)
         pose_2deg_2cm.append(bool(rotation_error <= 2.0 and np.linalg.norm(translation_delta) <= 0.02))
         rotation_2deg.append(bool(rotation_error <= 2.0))
@@ -239,7 +264,8 @@ def evaluate_bop_predictions(dataset_root: str | Path, predictions: dict[str, An
                 "rotation_gt": gt_rotation,
                 "translation_gt_m": gt_translation,
                 "model_points_m": model_cache[object_id],
-                "symmetric": model_info.get("symmetry") == "continuous_z",
+                "symmetric": model_is_symmetric(model_info),
+                "symmetry_rotations": symmetry_rotations(model_info),
                 "diameter_m": float(model_info["diameter"]) * 0.001,
                 "camera_matrix": camera,
                 **({"runtime_ms": prediction["runtime_ms"]} if "runtime_ms" in prediction else {}),
@@ -294,7 +320,8 @@ def evaluate_map_target_predictions(dataset_root: str | Path, predictions: dict[
             "rotation_gt": target_truth["rotation"],
             "translation_gt_m": target_truth["translation"],
             "model_points_m": model_cache[object_id],
-            "symmetric": details.get("symmetry") == "continuous_z",
+            "symmetric": model_is_symmetric(details),
+            "symmetry_rotations": symmetry_rotations(details),
             "diameter_m": float(details["diameter"]) * 0.001,
             **({"runtime_ms": prediction["runtime_ms"]} if "runtime_ms" in prediction else {}),
             **({"latency_ms": prediction["latency_ms"]} if "latency_ms" in prediction else {}),

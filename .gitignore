@@ -17,6 +17,9 @@ data/raw/**
 data/interim/**
 data/processed/**
 !data/processed/README.md
+# Generated metadata and model weights (keep out of version control)
+*.json
+*.pt
 experiments/runs/**/artifacts/
 *.bag
 *.db3
