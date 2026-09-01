@@ -88,12 +88,18 @@ def main(argv=None):
     parser.add_argument("--baud", type=int, default=115200)
     parser.add_argument("--udp-host", default="192.168.1.140")
     parser.add_argument("--udp-port", type=int, default=14550)
+    parser.add_argument("--bind-host", default="0.0.0.0",
+                        help="local UDP address for receiving Ubuntu control MAVLink")
     args = parser.parse_args(argv)
     try:
         import serial
         from pymavlink.dialects.v10 import common as mavlink
         serial_port = serial.Serial(args.serial, args.baud, timeout=0)
         udp_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+        # The bridge must receive Ubuntu's control datagrams on the Pi's
+        # MAVLink port as well as send telemetry to the Ubuntu endpoint.
+        udp_socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+        udp_socket.bind((args.bind_host, args.udp_port))
         bridge = TransparentBridge(serial_port, udp_socket, (args.udp_host, args.udp_port), mavlink=mavlink)
         bridge.run()
     except KeyboardInterrupt:
