@@ -22,7 +22,9 @@ class CoordTransformNode(Node):
         super().__init__("nexus_coord_transform")
         self.declare_parameter("transform_file", "")
         self.declare_parameter("target_frame", "map")
-        self.declare_parameter("transform_timeout_ms", 100.0)
+        # Subscription callbacks must not wait for TF; unavailable transforms
+        # are represented by an explicit INVALID message instead.
+        self.declare_parameter("transform_timeout_ms", 0.0)
         self.declare_parameter("vision_input_topic", "/nexus/vision/target_observation")
         self.declare_parameter("vision_output_topic", "/nexus/vision/map_target_observation")
         self.declare_parameter("uwb_input_topic", "/nexus/uwb/raw_target_observation")

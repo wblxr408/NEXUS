@@ -5,3 +5,14 @@ nexus_fusion_localization:
     max_pair_delta_ms: 50.0
     vision_topic: /nexus/vision/map_target_observation
     uwb_topic: /nexus/uwb/target_observation
+    fusion_mode: robust
+    prediction_horizon_ms: 500.0
+    acceleration_sigma_mps2: 2.0
+    initial_velocity_sigma_mps: 1.0
+    innovation_soft_d2: 7.815
+    innovation_hard_d2: 16.266
+    confirmation_hits: 3
+    maximum_speed_mps: 10.0
+    reliability_mode: fixed
+    reliability_model: ""
+    quality_topic: /nexus/observations/quality

@@ -16,6 +16,7 @@ def generate_launch_description():
     transform_file = LaunchConfiguration("transform_file")
     use_rviz = LaunchConfiguration("use_rviz")
     max_pair_delta_ms = LaunchConfiguration("max_pair_delta_ms")
+    telemetry_udp_port = LaunchConfiguration("telemetry_udp_port")
     default_transform_file = PathJoinSubstitution([
         FindPackageShare("nexus_bringup"), "config", "pre_hardware_transforms.yaml"])
     rviz_config = PathJoinSubstitution([
@@ -29,6 +30,7 @@ def generate_launch_description():
         DeclareLaunchArgument("transform_file", default_value=default_transform_file),
         DeclareLaunchArgument("use_rviz", default_value="true"),
         DeclareLaunchArgument("max_pair_delta_ms", default_value="50.0"),
+        DeclareLaunchArgument("telemetry_udp_port", default_value="14551"),
         Node(
             package="nexus_bringup",
             executable="preflight_node",
@@ -55,6 +57,13 @@ def generate_launch_description():
             name="nexus_coord_transform",
             output="screen",
             parameters=[{"transform_file": transform_file}],
+        ),
+        Node(
+            package="nexus_bringup",
+            executable="telemetry_udp_node",
+            name="nexus_telemetry_udp",
+            output="screen",
+            parameters=[{"listen_port": telemetry_udp_port}],
         ),
         Node(
             package="nexus_fusion_localization",

@@ -122,6 +122,11 @@ function render(state) {
   setText("ui-source", state.sourceMode || "UNKNOWN");
   setText("ui-session", state.session || "WAITING_FOR_INPUT");
   ["x", "y", "z"].forEach((axis) => setText(`ui-${axis}`, formatNumber(state.pose[axis])));
+  ["x", "y", "z"].forEach((axis) => setText(`ui-sigma-${axis}`, state.sigma[axis] == null ? "—" : formatNumber(state.sigma[axis], 3) + " m"));
+  setText("ui-n-views", state.nViews == null ? "—" : String(state.nViews));
+  setText("ui-baseline", metricText(state.baselineM, " m"));
+  setText("ui-depth-source", state.depthSource || "—");
+  setText("ui-chain", state.chain || "—");
   setText("ui-frame", `frame: ${state.frameId || "—"}`);
   setText("ui-pose-time", state.poseTimestamp || "unknown");
   setText("ui-cam-conf", metricText(state.camera.confidence, ""));

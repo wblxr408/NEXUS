@@ -1,0 +1,110 @@
+[0.020s] Invoking command in '/root/nexus_workspace/NEXUS/fcu_core_gcs/build/fcu_core': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake /root/nexus_workspace/NEXUS/fcu_core_gcs/src/fcu_core_ros2 -DCMAKE_INSTALL_PREFIX=/root/nexus_workspace/NEXUS/fcu_core_gcs/install/fcu_core
+[0.379s] -- The C compiler identification is GNU 11.4.0
+[1.208s] -- The CXX compiler identification is GNU 11.4.0
+[1.752s] -- Detecting C compiler ABI info
+[1.970s] -- Detecting C compiler ABI info - done
+[1.975s] -- Check for working C compiler: /usr/bin/cc - skipped
+[1.975s] -- Detecting C compile features
+[1.976s] -- Detecting C compile features - done
+[1.979s] -- Detecting CXX compiler ABI info
+[2.175s] -- Detecting CXX compiler ABI info - done
+[2.180s] -- Check for working CXX compiler: /usr/bin/c++ - skipped
+[2.180s] -- Detecting CXX compile features
+[2.180s] -- Detecting CXX compile features - done
+[2.185s] -- Found ament_cmake: 1.3.14 (/opt/ros/humble/share/ament_cmake/cmake)
+[2.306s] -- Found Python3: /usr/bin/python3 (found version "3.10.12") found components: Interpreter 
+[2.389s] -- Found rclcpp: 16.0.19 (/opt/ros/humble/share/rclcpp/cmake)
+[2.572s] -- Found rosidl_generator_c: 3.1.9 (/opt/ros/humble/share/rosidl_generator_c/cmake)
+[2.576s] -- Found rosidl_adapter: 3.1.9 (/opt/ros/humble/share/rosidl_adapter/cmake)
+[2.583s] -- Found rosidl_generator_cpp: 3.1.9 (/opt/ros/humble/share/rosidl_generator_cpp/cmake)
+[2.594s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[2.607s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[2.647s] -- Found rmw_implementation_cmake: 6.1.3 (/opt/ros/humble/share/rmw_implementation_cmake/cmake)
+[2.649s] -- Found rmw_fastrtps_cpp: 6.2.10 (/opt/ros/humble/share/rmw_fastrtps_cpp/cmake)
+[4.783s] -- Found OpenSSL: /usr/lib/x86_64-linux-gnu/libcrypto.so (found version "3.0.2")  
+[7.145s] -- Found FastRTPS: /opt/ros/humble/include  
+[11.979s] -- Using RMW implementation 'rmw_fastrtps_cpp' as default
+[11.993s] -- Looking for pthread.h
+[12.278s] -- Looking for pthread.h - found
+[12.279s] -- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+[12.539s] -- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success
+[12.539s] -- Found Threads: TRUE  
+[12.617s] -- Found ament_lint_auto: 0.12.15 (/opt/ros/humble/share/ament_lint_auto/cmake)
+[12.701s] -- Added test 'cppcheck' to perform static code analysis on C / C++ code
+[12.701s] -- Configured cppcheck include dirs: 
+[12.701s] -- Configured cppcheck exclude dirs and/or files: 
+[12.702s] -- Added test 'flake8' to check Python code syntax and style conventions
+[12.703s] -- Added test 'lint_cmake' to check CMake code style
+[12.704s] -- Added test 'pep257' to check Python code against some of the docstring style conventions in PEP 257
+[12.706s] -- Added test 'uncrustify' to check C / C++ code style
+[12.706s] -- Configured uncrustify additional arguments: 
+[12.707s] -- Added test 'xmllint' to check XML markup files
+[12.709s] -- Configuring done
+[12.731s] -- Generating done
+[12.739s] -- Build files have been written to: /root/nexus_workspace/NEXUS/fcu_core_gcs/build/fcu_core
+[12.753s] Invoked command in '/root/nexus_workspace/NEXUS/fcu_core_gcs/build/fcu_core' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake /root/nexus_workspace/NEXUS/fcu_core_gcs/src/fcu_core_ros2 -DCMAKE_INSTALL_PREFIX=/root/nexus_workspace/NEXUS/fcu_core_gcs/install/fcu_core
+[12.756s] Invoking command in '/root/nexus_workspace/NEXUS/fcu_core_gcs/build/fcu_core': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /root/nexus_workspace/NEXUS/fcu_core_gcs/build/fcu_core -- -j8 -l8
+[12.812s] [ 50%] [32mBuilding CXX object CMakeFiles/fcu_command.dir/src/fcu_command.cpp.o[0m
+[15.872s] In file included from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/logging.hpp:24[m[K,
+[15.872s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/client.hpp:40[m[K,
+[15.872s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/callback_group.hpp:24[m[K,
+[15.873s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/any_executable.hpp:20[m[K,
+[15.873s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategy.hpp:25[m[K,
+[15.873s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategies.hpp:18[m[K,
+[15.873s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executor_options.hpp:20[m[K,
+[15.873s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executor.hpp:37[m[K,
+[15.873s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executors/multi_threaded_executor.hpp:25[m[K,
+[15.873s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executors.hpp:21[m[K,
+[15.873s]                  from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:155[m[K,
+[15.873s]                  from [01m[K/root/nexus_workspace/NEXUS/fcu_core_gcs/src/fcu_core_ros2/src/fcu_command.cpp:5[m[K:
+[15.873s] [01m[K/root/nexus_workspace/NEXUS/fcu_core_gcs/src/fcu_core_ros2/src/fcu_command.cpp:[m[K In function ‘[01m[Kvoid print_help()[m[K’:
+[15.873s] [01m[K/root/nexus_workspace/NEXUS/fcu_core_gcs/src/fcu_core_ros2/src/fcu_command.cpp:13:50:[m[K [01;35m[Kwarning: [m[Kzero-length gnu_printf format string [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wformat-zero-length-Wformat-zero-length]8;;[m[K]
+[15.873s]    13 |   RCLCPP_INFO(rclcpp::get_logger("fcu_command"), [01;35m[K""[m[K);
+[15.873s]       |                                                  [01;35m[K^~[m[K
+[15.874s] [01m[K/root/nexus_workspace/NEXUS/fcu_core_gcs/src/fcu_core_ros2/src/fcu_command.cpp:20:50:[m[K [01;35m[Kwarning: [m[Kzero-length gnu_printf format string [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wformat-zero-length-Wformat-zero-length]8;;[m[K]
+[15.874s]    20 |   RCLCPP_INFO(rclcpp::get_logger("fcu_command"), [01;35m[K""[m[K);
+[15.875s]       |                                                  [01;35m[K^~[m[K
+[15.876s] [01m[K/root/nexus_workspace/NEXUS/fcu_core_gcs/src/fcu_core_ros2/src/fcu_command.cpp:26:50:[m[K [01;35m[Kwarning: [m[Kzero-length gnu_printf format string [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wformat-zero-length-Wformat-zero-length]8;;[m[K]
+[15.876s]    26 |   RCLCPP_INFO(rclcpp::get_logger("fcu_command"), [01;35m[K""[m[K);
+[15.876s]       |                                                  [01;35m[K^~[m[K
+[15.877s] [01m[K/root/nexus_workspace/NEXUS/fcu_core_gcs/src/fcu_core_ros2/src/fcu_command.cpp:32:50:[m[K [01;35m[Kwarning: [m[Kzero-length gnu_printf format string [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wformat-zero-length-Wformat-zero-length]8;;[m[K]
+[15.877s]    32 |   RCLCPP_INFO(rclcpp::get_logger("fcu_command"), [01;35m[K""[m[K);
+[15.877s]       |                                                  [01;35m[K^~[m[K
+[15.878s] [01m[K/root/nexus_workspace/NEXUS/fcu_core_gcs/src/fcu_core_ros2/src/fcu_command.cpp:35:50:[m[K [01;35m[Kwarning: [m[Kzero-length gnu_printf format string [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wformat-zero-length-Wformat-zero-length]8;;[m[K]
+[15.878s]    35 |   RCLCPP_INFO(rclcpp::get_logger("fcu_command"), [01;35m[K""[m[K);
+[15.878s]       |                                                  [01;35m[K^~[m[K
+[15.879s] [01m[K/root/nexus_workspace/NEXUS/fcu_core_gcs/src/fcu_core_ros2/src/fcu_command.cpp:40:50:[m[K [01;35m[Kwarning: [m[Kzero-length gnu_printf format string [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wformat-zero-length-Wformat-zero-length]8;;[m[K]
+[15.879s]    40 |   RCLCPP_INFO(rclcpp::get_logger("fcu_command"), [01;35m[K""[m[K);
+[15.879s]       |                                                  [01;35m[K^~[m[K
+[15.880s] [01m[K/root/nexus_workspace/NEXUS/fcu_core_gcs/src/fcu_core_ros2/src/fcu_command.cpp:45:50:[m[K [01;35m[Kwarning: [m[Kzero-length gnu_printf format string [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wformat-zero-length-Wformat-zero-length]8;;[m[K]
+[15.880s]    45 |   RCLCPP_INFO(rclcpp::get_logger("fcu_command"), [01;35m[K""[m[K);
+[15.880s]       |                                                  [01;35m[K^~[m[K
+[17.584s] [100%] [32m[1mLinking CXX executable fcu_command[0m
+[17.889s] [100%] Built target fcu_command
+[17.905s] Invoked command in '/root/nexus_workspace/NEXUS/fcu_core_gcs/build/fcu_core' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /root/nexus_workspace/NEXUS/fcu_core_gcs/build/fcu_core -- -j8 -l8
+[17.919s] Invoking command in '/root/nexus_workspace/NEXUS/fcu_core_gcs/build/fcu_core': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --install /root/nexus_workspace/NEXUS/fcu_core_gcs/build/fcu_core
+[17.927s] -- Install configuration: ""
+[17.929s] -- Installing: /root/nexus_workspace/NEXUS/fcu_core_gcs/install/fcu_core/lib/fcu_core/fcu_command
+[17.931s] -- Set runtime path of "/root/nexus_workspace/NEXUS/fcu_core_gcs/install/fcu_core/lib/fcu_core/fcu_command" to ""
+[17.931s] -- Installing: /root/nexus_workspace/NEXUS/fcu_core_gcs/install/fcu_core/share/fcu_core/launch
+[17.933s] -- Installing: /root/nexus_workspace/NEXUS/fcu_core_gcs/install/fcu_core/share/fcu_core/launch/fcu_core_launch.py:Zone.Identifier
+[17.933s] -- Installing: /root/nexus_workspace/NEXUS/fcu_core_gcs/install/fcu_core/share/fcu_core/launch/fcu_core_launch.py
+[17.933s] -- Installing: /root/nexus_workspace/NEXUS/fcu_core_gcs/install/fcu_core/share/fcu_core/rviz
+[17.933s] -- Installing: /root/nexus_workspace/NEXUS/fcu_core_gcs/install/fcu_core/share/fcu_core/rviz/default.rviz:Zone.Identifier
+[17.934s] -- Installing: /root/nexus_workspace/NEXUS/fcu_core_gcs/install/fcu_core/share/fcu_core/rviz/default.rviz
+[17.935s] -- Installing: /root/nexus_workspace/NEXUS/fcu_core_gcs/install/fcu_core/share/ament_index/resource_index/package_run_dependencies/fcu_core
+[17.936s] -- Installing: /root/nexus_workspace/NEXUS/fcu_core_gcs/install/fcu_core/share/ament_index/resource_index/parent_prefix_path/fcu_core
+[17.936s] -- Installing: /root/nexus_workspace/NEXUS/fcu_core_gcs/install/fcu_core/share/fcu_core/environment/ament_prefix_path.sh
+[17.937s] -- Installing: /root/nexus_workspace/NEXUS/fcu_core_gcs/install/fcu_core/share/fcu_core/environment/ament_prefix_path.dsv
+[17.937s] -- Installing: /root/nexus_workspace/NEXUS/fcu_core_gcs/install/fcu_core/share/fcu_core/environment/path.sh
+[17.937s] -- Installing: /root/nexus_workspace/NEXUS/fcu_core_gcs/install/fcu_core/share/fcu_core/environment/path.dsv
+[17.937s] -- Installing: /root/nexus_workspace/NEXUS/fcu_core_gcs/install/fcu_core/share/fcu_core/local_setup.bash
+[17.938s] -- Installing: /root/nexus_workspace/NEXUS/fcu_core_gcs/install/fcu_core/share/fcu_core/local_setup.sh
+[17.938s] -- Installing: /root/nexus_workspace/NEXUS/fcu_core_gcs/install/fcu_core/share/fcu_core/local_setup.zsh
+[17.938s] -- Installing: /root/nexus_workspace/NEXUS/fcu_core_gcs/install/fcu_core/share/fcu_core/local_setup.dsv
+[17.939s] -- Installing: /root/nexus_workspace/NEXUS/fcu_core_gcs/install/fcu_core/share/fcu_core/package.dsv
+[17.939s] -- Installing: /root/nexus_workspace/NEXUS/fcu_core_gcs/install/fcu_core/share/ament_index/resource_index/packages/fcu_core
+[17.940s] -- Installing: /root/nexus_workspace/NEXUS/fcu_core_gcs/install/fcu_core/share/fcu_core/cmake/fcu_coreConfig.cmake
+[17.940s] -- Installing: /root/nexus_workspace/NEXUS/fcu_core_gcs/install/fcu_core/share/fcu_core/cmake/fcu_coreConfig-version.cmake
+[17.940s] -- Installing: /root/nexus_workspace/NEXUS/fcu_core_gcs/install/fcu_core/share/fcu_core/package.xml
+[17.944s] Invoked command in '/root/nexus_workspace/NEXUS/fcu_core_gcs/build/fcu_core' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --install /root/nexus_workspace/NEXUS/fcu_core_gcs/build/fcu_core

@@ -4,7 +4,19 @@ from __future__ import annotations
 
 import numpy as np
 
+from evaluation.pose_metrics import symmetry_rotations
+
 from .factors import BearingFactor, SupportPlaneFactor, normalized_from_pixel
+
+
+def factor_symmetries(model_info: dict, continuous_steps: int = 12) -> tuple[np.ndarray, ...]:
+    """Symmetry rotations for F1/F2 residual minimisation.
+
+    Same BOP fields the metrics use (ADR-009 ruling 3), but coarser on continuous
+    axes: the solver evaluates this set per residual, while the metric script can
+    afford the 72-step expansion.
+    """
+    return tuple(symmetry_rotations(model_info, continuous_steps=continuous_steps))
 
 
 def dense_correspondence_factors(

@@ -1,6 +1,6 @@
 import numpy as np
 
-from nexus_fusion_localization.fusion import Observation, fuse_observations, is_stale
+from nexus_fusion_localization.fusion import Observation, fuse_observations, is_stale, validate_observation
 
 
 def observation(position, source=2, confidence=1.0, stamp=1_000_000_000):
@@ -54,3 +54,11 @@ def test_invalid_status_and_unit_are_rejected():
     wrong_unit = Observation(**{**wrong_unit.__dict__, "unit": "cm"})
     assert fuse_observations(
         [invalid, wrong_unit], "map", 1_100_000_000, 250_000_000, 50_000_000) is None
+
+
+def test_zero_quaternion_is_rejected_and_valid_quaternion_is_normalized():
+    invalid = Observation(**{**observation([1, 2, 3]).__dict__, "orientation_xyzw": np.zeros(4)})
+    assert not validate_observation(invalid, "map")
+    scaled = Observation(**{**observation([1, 2, 3]).__dict__, "orientation_xyzw": np.array([0., 0., 0., 2.])})
+    result = fuse_observations([scaled], "map", 1_100_000_000, 250_000_000)
+    assert np.allclose(result["orientation_xyzw"], [0., 0., 0., 1.])

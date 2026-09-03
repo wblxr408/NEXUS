@@ -34,6 +34,10 @@ attitude_observation:
   source: simulated_onboard_imu
   rotation_noise_std_deg: 0.0
 uwb:
+  # ADR-009 makes this the single anchor caliber for the whole repository. These
+  # are simulation design values, not a survey: an anchor error is a gauge error
+  # and shifts the entire map frame instead of averaging out over frames.
+  survey_status: simulation_only_not_surveyed
   anchors_m:
     - {id: anchor_0, position_m: [0.15, 0.15, 0.40]}
     - {id: anchor_1, position_m: [3.85, 0.15, 2.40]}
@@ -42,14 +46,17 @@ uwb:
   range_noise_std_m: 0.015
   range_bias_m: 0.0
   tag_to_base_translation_m: [0.0, 0.0, 0.0]
+# Symmetry labels corrected by ADR-009; the previous blanket continuous_z was
+# wrong for seven of ten targets. target_catalog_v01.yaml holds the structured
+# group that the BOP symmetries_* export is derived from.
 targets:
   - {object_id: 1, source_object_id: NW-T01, symmetry: continuous_z}
-  - {object_id: 2, source_object_id: NW-T02, symmetry: continuous_z}
+  - {object_id: 2, source_object_id: NW-T02, symmetry: continuous_x_and_z2}
   - {object_id: 3, source_object_id: NW-T03, symmetry: continuous_z}
-  - {object_id: 4, source_object_id: NW-T04, symmetry: continuous_z}
-  - {object_id: 5, source_object_id: NE-T01, symmetry: continuous_z}
-  - {object_id: 6, source_object_id: NE-T02, symmetry: continuous_z}
-  - {object_id: 7, source_object_id: NE-T03, symmetry: continuous_z}
-  - {object_id: 8, source_object_id: NE-T04, symmetry: continuous_z}
+  - {object_id: 4, source_object_id: NW-T04, symmetry: none}
+  - {object_id: 5, source_object_id: NE-T01, symmetry: discrete_z6}
+  - {object_id: 6, source_object_id: NE-T02, symmetry: discrete_z2}
+  - {object_id: 7, source_object_id: NE-T03, symmetry: none}
+  - {object_id: 8, source_object_id: NE-T04, symmetry: discrete_z4}
   - {object_id: 9, source_object_id: SW-T01, symmetry: continuous_z}
-  - {object_id: 10, source_object_id: SW-T02, symmetry: continuous_z}
+  - {object_id: 10, source_object_id: SW-T02, symmetry: discrete_z2}

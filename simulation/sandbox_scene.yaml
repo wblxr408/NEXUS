@@ -135,4 +135,16 @@ cone_groups:
   - {id: NE-C, center: [2500, 2950], count: 8, radius: 300, diameter: 25, height: 50, confidence: C}
   - {id: SW-C, center: [1500, 1750], count: 8, radius: 300, diameter: 25, height: 50, confidence: C}
   - {id: SE-C, center: [2500, 1750], count: 8, radius: 300, diameter: 25, height: 50, confidence: C}
-uwb_anchors: []
+# Single UWB anchor caliber ruled by ADR-009: these are simulation design values
+# copied from gdr_net_dataset_v03.yaml, not a survey.  Anchor coordinates are a
+# gauge, not an observation: an error here shifts the whole map frame and does
+# not average out over frames.  Units mm to match this file.
+uwb_anchors:
+  survey_status: simulation_only_not_surveyed
+  source: simulation/gdr_net_dataset_v03.yaml
+  authority: docs/decisions/2026-08-29_ADR-009_markerless_depth_channel_and_symmetry.md
+  anchors:
+    - {id: anchor_0, position: [150, 150, 400]}
+    - {id: anchor_1, position: [3850, 150, 2400]}
+    - {id: anchor_2, position: [3850, 4550, 4400]}
+    - {id: anchor_3, position: [150, 4550, 1400]}

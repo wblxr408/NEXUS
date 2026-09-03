@@ -124,6 +124,39 @@ YOLO 的实测结果见 `experiments/runs/2026-08-27_E009_target_detector_datase
 `experiments/runs/2026-08-27_E010_target_detector_scene_context_v02/`。v02 还渲染
 `sandbox_scene.yaml` 的道路、工业岛、建筑、树列、交通标线等无标签背景。
 
+### 无标记定位优化后的口径（ADR-009，E013 起）
+
+口径来源：[设计文档](../docs/2026-08-29_design_markerless_target_localization_optimization_v01.md)、
+[ADR-009](../docs/decisions/2026-08-29_ADR-009_markerless_depth_channel_and_symmetry.md)。
+
+- `target_catalog_v01.yaml` 的 `symmetry` 已从字符串 `none` 改为结构化对称群
+  （`label` / `continuous_axes` / `discrete_folds`），并新增每目标 `base_z_mm`
+  与 `support_deck_z_mm`。生成器把对称群展开为 BOP `symmetries_continuous` /
+  `symmetries_discrete` 写入 `models/models_info.json`，指标脚本以这两个 BOP 键为权威。
+- `decoration` 现在会渲染，但**只按面着色、不加网格**，所以 `models/*.ply`
+  与导出的对称群保持一致，掩膜和 bbox 不受影响。
+- 姿态多样性（相机 roll 放开、目标朝向按轨迹变化）只在
+  `target_detection_dataset_v02.yaml` 打开；`target_detection_dataset_v01.yaml`
+  保持原样，E009/E010 仍可复现。E013 数据集用 v02 生成：
+
+```bash
+python3 simulation/generate_target_detection_dataset.py \
+  --config simulation/target_detection_dataset_v02.yaml \
+  --out <数据集目录> --yolo-assets copy
+python3 simulation/generate_gdrn_geometry_labels.py --dataset <数据集目录>
+```
+
+- `inject_degradations.py` 按设计文档 8.1 生成链路 B/C 的退化与压力评测输入
+  （遮挡 / 曝光 / 运动模糊 / 背景杂乱 / UWB NLOS 正偏置 / 印刷图案 / ROI 推移）。
+  它写出的图像**不是真值**，manifest 里带 `not_ground_truth: true`；后门与
+  基于梯度的对抗样本生成按设计文档 8.1 只作威胁分析，本仓库不实现。
+- `uwb_anchors` 现在在 `sandbox_scene.yaml` 与 `gdr_net_dataset_v03.yaml` 里是同一组四点，
+  都带 `survey_status: simulation_only_not_surveyed`。锚点坐标是基准量（gauge）不是观测量，
+  错了会整体平移 `map`，不随帧数平均。
+- `nexus_sandbox_imx219.world` 的 planar_move 插件已把 `publish_odom_tf` 打开：
+  这是仓库里 `map → base_link` 的唯一广播者，不打开则 `coord_transform_node`
+  永远返回 `transform_unavailable`，`/nexus/target/pose` 出不来。
+
 ## CARLA 0.9.16 Windows 联调
 
 CARLA 服务端只走 Windows `CARLA_0.9.16.zip`（低画质、RPC 端口 2000）；WSL 侧只运行

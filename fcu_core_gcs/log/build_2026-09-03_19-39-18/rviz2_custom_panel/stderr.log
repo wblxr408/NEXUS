@@ -1,0 +1,4 @@
+[01m[K/root/nexus_workspace/NEXUS/fcu_core_gcs/src/rviz2_custom_panel/src/mypanel.cpp:[m[K In constructor ‘[01m[Krviz2_custom_panel::Rviz2Panel::Rviz2Panel(QWidget*)[m[K’:
+[01m[K/root/nexus_workspace/NEXUS/fcu_core_gcs/src/rviz2_custom_panel/src/mypanel.cpp:21:53:[m[K [01;35m[Kwarning: [m[Kunused parameter ‘[01m[Kparent[m[K’ [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wunused-parameter-Wunused-parameter]8;;[m[K]
+   21 | rviz2_custom_panel::Rviz2Panel::Rviz2Panel([01;35m[KQWidget *parent[m[K)
+      |                                            [01;35m[K~~~~~~~~~^~~~~~[m[K

@@ -30,6 +30,13 @@ const initialState = () => ({
   targetId: null,
   sourceMode: SOURCE_MODES.UNKNOWN,
   pose: { x: null, y: null, z: null },
+  sigma: { x: null, y: null, z: null },
+  // 求解侧溯源字段；TargetObservation.msg 没有对应字段，只能由落盘 CSV/JSON 经
+  // updateSolverProvenance() 注入，无数据时保持 null。
+  nViews: null,
+  baselineM: null,
+  depthSource: null,
+  chain: null,
   ego: { x: null, y: null, z: null, roll: null, pitch: null, yaw: null, speed: null },
   platform: { x: null, y: null, z: null },
   frameId: null,
@@ -83,8 +90,14 @@ export function createDashboardStore() {
     updatePose(x, y, z, metadata = {}) {
       const pose = { x: finiteOrNull(x), y: finiteOrNull(y), z: finiteOrNull(z) };
       if (Object.values(pose).some((value) => value === null)) return;
+      const sigma = metadata.sigma === undefined ? state.sigma : {
+        x: finiteOrNull(metadata.sigma?.x),
+        y: finiteOrNull(metadata.sigma?.y),
+        z: finiteOrNull(metadata.sigma?.z),
+      };
       patch({
         pose,
+        sigma,
         targetId: metadata.targetId ?? state.targetId,
         sourceMode: metadata.sourceMode ?? state.sourceMode,
         frameId: metadata.frameId ?? state.frameId,
@@ -93,6 +106,15 @@ export function createDashboardStore() {
         mode: metadata.mode ?? state.mode,
         session: metadata.session ?? (state.mode === INPUT_MODES.NO_INPUT ? "LIVE" : state.session),
         trajectory: [...state.trajectory, { ...pose, timestamp: metadata.timestamp ?? null }].slice(-120),
+      });
+    },
+    updateSolverProvenance(data = {}) {
+      // 求解侧落盘记录的接入点（4.5 节的 n_views / baseline_m / depth_source / chain）。
+      patch({
+        nViews: data.nViews === undefined ? state.nViews : finiteOrNull(data.nViews),
+        baselineM: data.baselineM === undefined ? state.baselineM : finiteOrNull(data.baselineM),
+        depthSource: data.depthSource ?? state.depthSource,
+        chain: data.chain ?? state.chain,
       });
     },
     updateCamera(data = {}) { patch({ camera: { ...state.camera, ...data } }); },

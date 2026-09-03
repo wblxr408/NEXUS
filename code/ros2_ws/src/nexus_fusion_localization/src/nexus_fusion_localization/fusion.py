@@ -43,7 +43,14 @@ def validate_observation(observation, expected_frame):
         return False
     if np.asarray(observation.covariance).size != 9:
         return False
+    covariance = np.asarray(observation.covariance, dtype=float).reshape(3, 3)
+    if (not np.all(np.isfinite(covariance)) or not np.allclose(covariance, covariance.T, atol=1e-9)
+            or np.any(np.linalg.eigvalsh(covariance) <= 0.0)):
+        return False
     if observation.orientation_xyzw.shape != (4,) or not np.all(np.isfinite(observation.orientation_xyzw)):
+        return False
+    orientation_norm = float(np.linalg.norm(observation.orientation_xyzw))
+    if orientation_norm <= 1e-9:
         return False
     return True
 
@@ -91,7 +98,7 @@ def fuse_observations(observations, expected_frame, now_ns, max_age_ns,
             "covariance": _effective_covariance(item),
             "confidence": float(item.confidence),
             "source_mode": item.source_mode,
-            "orientation_xyzw": item.orientation_xyzw.copy(),
+            "orientation_xyzw": item.orientation_xyzw / np.linalg.norm(item.orientation_xyzw),
             "degraded_reason": degraded_reason,
         }
     information = np.zeros((3, 3))
@@ -111,6 +118,6 @@ def fuse_observations(observations, expected_frame, now_ns, max_age_ns,
         "covariance": covariance,
         "confidence": float(max(item.confidence for item in valid)),
         "source_mode": 4,
-        "orientation_xyzw": best.orientation_xyzw.copy(),
+        "orientation_xyzw": best.orientation_xyzw / np.linalg.norm(best.orientation_xyzw),
         "degraded_reason": "",
     }

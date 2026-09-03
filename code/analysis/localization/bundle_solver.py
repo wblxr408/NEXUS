@@ -14,6 +14,7 @@ from scipy.sparse import lil_matrix
 from scipy.spatial.transform import Rotation
 
 from .factors import Factor
+from .bundle_marginalization import GeometryEvidence, MarginalFactor, robust_rho
 
 
 @dataclass(frozen=True)
@@ -55,6 +56,10 @@ class BundleConfig:
     second_pass: bool = True
     minimum_views: int = 2
     minimum_baseline_m: float = 0.10
+    # Sequential factor schedule.  Chain A localises with F1+F3+F6 first and only
+    # then refines attitude with the contour factor, so a bad contour initial
+    # guess cannot drag the position solution (design section 7).
+    stages: tuple[tuple[str, ...], ...] = ()
 
 
 @dataclass(frozen=True)
@@ -72,6 +77,10 @@ class BundleSolution:
     depth_source: str
     segment_scale: float
     segment_bias_m: np.ndarray
+    stage_costs: tuple[float, ...] = ()
+    view_count: int = 0
+    baseline_m: float = 0.0
+    unobservable_target_dofs: dict[int, tuple[int, ...]] = field(default_factory=dict)
 
 
 class _Layout:
@@ -148,12 +157,14 @@ def load_chain_config(path: str | Path) -> BundleConfig:
         second_pass=bool(solver.get("second_pass", True)),
         minimum_views=int(raw.get("gates", {}).get("minimum_views", 2)),
         minimum_baseline_m=float(raw.get("gates", {}).get("minimum_baseline_m", 0.10)),
+        stages=tuple(tuple(str(kind) for kind in stage) for stage in solver.get("stages", ())),
     )
 
 
 def _active_factors(problem: BundleProblem, config: BundleConfig) -> list[Factor]:
     enabled = set(config.enabled_factors)
-    factors = [factor for factor in problem.factors if factor.kind in enabled and config.factor_weights.get(factor.kind, 1.0) > 0.0]
+    factors = [factor for factor in problem.factors if isinstance(factor, MarginalFactor)
+               or (factor.kind in enabled and config.factor_weights.get(factor.kind, 1.0) > 0.0)]
     if not factors:
         raise ValueError("bundle has no enabled factors")
     return factors
@@ -161,7 +172,8 @@ def _active_factors(problem: BundleProblem, config: BundleConfig) -> list[Factor
 
 def _residual_blocks(vector: np.ndarray, layout: _Layout, problem: BundleProblem, factors: Iterable[Factor], config: BundleConfig) -> list[np.ndarray]:
     state = _State(vector, layout, problem)
-    return [np.sqrt(config.factor_weights.get(factor.kind, 1.0)) * np.ravel(factor.residual(state)) for factor in factors]
+    return [(1. if isinstance(factor, MarginalFactor) else np.sqrt(config.factor_weights.get(factor.kind, 1.0)))
+            * np.ravel(factor.residual(state)) for factor in factors]
 
 
 def _residual(vector: np.ndarray, layout: _Layout, problem: BundleProblem, factors: list[Factor], config: BundleConfig) -> np.ndarray:
@@ -204,72 +216,154 @@ def _covariances(result, layout: _Layout) -> dict[int, np.ndarray]:
     jacobian = result.jac.toarray() if hasattr(result.jac, "toarray") else np.asarray(result.jac)
     dof = max(1, jacobian.shape[0] - jacobian.shape[1])
     variance = float(2.0 * result.cost / dof)
-    covariance = np.linalg.pinv(jacobian.T @ jacobian, rcond=1e-10) * variance
+    # Factors already declare absolute measurement sigmas. A noise-free fit
+    # cannot imply zero uncertainty, nor can a pseudoinverse make null-space
+    # directions appear perfectly observed.
+    eigenvalues, eigenvectors = np.linalg.eigh(jacobian.T @ jacobian)
+    threshold = max(0.0, float(eigenvalues[-1])) * 1e-10
+    observed = eigenvalues > threshold
+    inverse = np.zeros_like(eigenvalues)
+    inverse[observed] = 1.0 / eigenvalues[observed]
+    covariance = (eigenvectors * inverse) @ eigenvectors.T * max(1.0, variance)
+    null_energy = np.sum(eigenvectors[:, ~observed] ** 2, axis=1)
+    covariance[np.diag_indices_from(covariance)] = np.where(
+        null_energy > 1e-8, np.inf, np.diag(covariance))
     return {identifier: covariance[block, block].copy() for identifier, block in layout.target_slices.items()}
+
+
+def _stage_factor_sets(config: BundleConfig, factors: list[Factor]) -> list[list[Factor]]:
+    if not config.stages:
+        return [factors]
+    schedule = [[factor for factor in factors if isinstance(factor, MarginalFactor) or factor.kind in set(stage)] for stage in config.stages]
+    return [stage for stage in schedule if stage] or [factors]
+
+
+def _least_squares(problem: BundleProblem, config: BundleConfig, factors: list[Factor], layout: _Layout, x0: np.ndarray):
+    loss = config.loss
+    if any(isinstance(factor, MarginalFactor) for factor in factors):
+        blocks = _residual_blocks(x0, layout, problem, factors, config)
+        prior_rows = np.concatenate([np.full(len(block), isinstance(factor, MarginalFactor)) for factor, block in zip(factors, blocks)])
+
+        def loss(squared):
+            values = robust_rho(squared, config.loss)
+            values[0, prior_rows], values[1, prior_rows], values[2, prior_rows] = squared[prior_rows], 1., 0.
+            return values
+
+    return least_squares(
+        _residual, x0, args=(layout, problem, factors, config), method="trf",
+        loss=loss, f_scale=config.f_scale,
+        jac_sparsity=_jacobian_sparsity(x0, layout, problem, factors, config),
+        max_nfev=config.max_nfev, x_scale="jac",
+    )
+
+
+def _reject_outliers(problem: BundleProblem, config: BundleConfig, factors: list[Factor], layout: _Layout, result):
+    """Drop whole factors whose whitened residual block exceeds the sigma gate."""
+    blocks = _residual_blocks(result.x, layout, problem, factors, config)
+    keep_flags = [isinstance(factor, MarginalFactor) or np.linalg.norm(block) <= config.outlier_sigma * np.sqrt(len(block))
+                  for factor, block in zip(factors, blocks)]
+    keep = [factor for factor, flag in zip(factors, keep_flags) if flag]
+    rejected = sum(len(block) for block, flag in zip(blocks, keep_flags) if not flag)
+    if not keep:
+        return result, [], rejected
+    if len(keep) == len(factors):
+        return result, factors, rejected
+    return _least_squares(problem, config, keep, layout, result.x), keep, rejected
+
+
+def _advance(problem: BundleProblem, result, layout: _Layout) -> BundleProblem:
+    scale, bias = _State(result.x, layout, problem).segment_alignment()
+    return BundleProblem(
+        target_poses={**problem.target_poses, **_pose_dict(result.x, layout.target_slices, layout)},
+        camera_poses={**problem.camera_poses, **_pose_dict(result.x, layout.camera_slices, layout)},
+        factors=problem.factors, segment_scale=scale, segment_bias_m=np.asarray(bias).copy(),
+    )
+
+
+def _view_geometry(factors: list[Factor], camera_poses: dict[int, PoseState], target_id=None) -> tuple[int, float]:
+    camera_ids = sorted({factor.camera_id for factor in factors if factor.kind == "F1"})
+    baseline = 0.0
+    for first in camera_ids:
+        for second in camera_ids:
+            baseline = max(baseline, float(np.linalg.norm(camera_poses[first].translation_m - camera_poses[second].translation_m)))
+    current = GeometryEvidence(len(camera_ids), tuple(tuple(camera_poses[key].translation_m) for key in camera_ids), baseline)
+    for factor in factors:
+        if isinstance(factor, MarginalFactor):
+            current = current.merge(factor.geometry.get(target_id, GeometryEvidence()))
+    return current.view_count, current.baseline_m
 
 
 def solve_bundle(problem: BundleProblem, config: BundleConfig) -> BundleSolution:
     """Solve an F1--F8 bundle and return explicit validity/provenance fields."""
     started = perf_counter()
-    factors = _active_factors(problem, config)
-    layout = _Layout(problem, config, factors)
-    x0 = layout.initial(problem)
-    sparsity = _jacobian_sparsity(x0, layout, problem, factors, config)
-    result = least_squares(
-        _residual, x0, args=(layout, problem, factors, config), method="trf",
-        loss=config.loss, f_scale=config.f_scale, jac_sparsity=sparsity,
-        max_nfev=config.max_nfev, x_scale="jac",
-    )
-    rejected = 0
-    if config.second_pass and result.fun.size:
-        blocks = _residual_blocks(result.x, layout, problem, factors, config)
-        keep_flags = [np.linalg.norm(block) <= config.outlier_sigma * np.sqrt(len(block)) for block in blocks]
-        keep = [factor for factor, flag in zip(factors, keep_flags) if flag]
-        rejected = sum(len(block) for block, flag in zip(blocks, keep_flags) if not flag)
-        if keep and len(keep) < len(factors):
-            result = least_squares(
-                _residual, result.x, args=(layout, problem, keep, config), method="trf",
-                loss=config.loss, f_scale=config.f_scale,
-                jac_sparsity=_jacobian_sparsity(result.x, layout, problem, keep, config),
-                max_nfev=config.max_nfev, x_scale="jac",
-            )
-            factors = keep
-    target_poses = _pose_dict(result.x, layout.target_slices, layout)
-    camera_poses = _pose_dict(result.x, layout.camera_slices, layout)
-    camera_poses = {**problem.camera_poses, **camera_poses}
-    scale, bias = _State(result.x, layout, problem).segment_alignment()
-    bearing_factors = [factor for factor in factors if factor.kind == "F1"]
-    camera_ids = sorted({factor.camera_id for factor in bearing_factors})
-    baseline = 0.0
-    for first in camera_ids:
-        for second in camera_ids:
-            baseline = max(baseline, float(np.linalg.norm(camera_poses[first].translation_m - camera_poses[second].translation_m)))
-    triangulated = len(camera_ids) >= config.minimum_views and baseline >= config.minimum_baseline_m
-    has_support = any(f.kind == "F3" for f in factors)
-    source = "triangulation" if triangulated else "support_plane" if has_support else "uwb_fallback"
+    active = _active_factors(problem, config)
+    schedule = _stage_factor_sets(config, active)
+    current, stage_costs, rejected = problem, [], 0
+    result = layout = factors = None
+    for index, stage_factors in enumerate(schedule):
+        factors = stage_factors
+        layout = _Layout(current, config, factors)
+        result = _least_squares(current, config, factors, layout, layout.initial(current))
+        if index == len(schedule) - 1 and config.second_pass and result.fun.size:
+            result, factors, rejected = _reject_outliers(current, config, factors, layout, result)
+        stage_costs.append(float(result.cost))
+        current = _advance(current, result, layout)
+    camera_poses = current.camera_poses
+    view_count, baseline = _view_geometry(factors, camera_poses)
+    triangulated = view_count >= config.minimum_views and baseline >= config.minimum_baseline_m
+    has_support = any(factor.kind == "F3" or (isinstance(factor, MarginalFactor)
+                      and factor.geometry.get(None, GeometryEvidence()).support) for factor in factors)
+    source = "triangulation" if triangulated else "support_plane" if has_support else "unavailable"
     finite = np.all(np.isfinite(result.x)) and np.all(np.isfinite(result.fun))
-    constrained_targets = {int(identifier) for factor in factors if factor.kind in {"F1", "F2", "F3"} for kind, identifier in factor.dependencies() if kind == "target"}
+    # Evaluate retained measurements per target. A support plane alone only
+    # constrains height; another target's views cannot supply missing geometry.
+    constrained_targets = set()
+    for target_id in problem.target_poses:
+        target_factors = [factor for factor in factors
+                          if ("target", target_id) in factor.dependencies()]
+        target_views, target_baseline = _view_geometry(target_factors, camera_poses, target_id)
+        has_bearing = target_views > 0
+        support = any(factor.kind == "F3" or (isinstance(factor, MarginalFactor)
+                      and factor.geometry.get(target_id, GeometryEvidence()).support)
+                      for factor in target_factors)
+        target_triangulated = target_views >= config.minimum_views and target_baseline >= config.minimum_baseline_m
+        if has_bearing and (support or target_triangulated):
+            constrained_targets.add(target_id)
     missing_targets = sorted(set(problem.target_poses) - constrained_targets)
-    observable = (triangulated or has_support) and not missing_targets
+    covariances = _covariances(result, layout) if finite and factors else {}
+    unobservable_dofs = {
+        identifier: tuple(np.flatnonzero(~np.isfinite(np.diag(covariance))).tolist())
+        for identifier, covariance in covariances.items()
+        if not np.all(np.isfinite(np.diag(covariance)))
+    }
+    missing_positions = sorted(identifier for identifier, dofs in unobservable_dofs.items()
+                               if any(dof >= 3 for dof in dofs))
+    observable = (triangulated or has_support) and not missing_targets and not missing_positions
     valid = bool(result.success and finite and observable)
     if missing_targets:
         reason = f"unconstrained_targets:{','.join(map(str, missing_targets))}"
+    elif missing_positions:
+        reason = f"unobservable_target_positions:{','.join(map(str, missing_positions))}"
     elif not observable:
         reason = "insufficient_geometric_depth_constraint"
     else:
         reason = "" if valid else (result.message if result.message else "solver_failed")
     return BundleSolution(
-        target_poses=target_poses,
+        target_poses=current.target_poses,
         camera_poses=camera_poses,
-        target_covariances=_covariances(result, layout) if finite else {},
+        target_covariances=covariances,
         valid=valid,
         degraded_reason=str(reason),
         cost=float(result.cost),
         optimality=float(result.optimality),
-        residual_count=int(result.fun.size),
+        residual_count=int(result.fun.size) if factors else 0,
         rejected_residual_count=int(rejected),
         runtime_ms=(perf_counter() - started) * 1000.0,
         depth_source=source,
-        segment_scale=scale,
-        segment_bias_m=np.asarray(bias).copy(),
+        segment_scale=current.segment_scale,
+        segment_bias_m=np.asarray(current.segment_bias_m).copy(),
+        stage_costs=tuple(stage_costs),
+        view_count=view_count,
+        baseline_m=baseline,
+        unobservable_target_dofs=unobservable_dofs,
     )

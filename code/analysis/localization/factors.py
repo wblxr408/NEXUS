@@ -14,16 +14,23 @@ from typing import Protocol
 import numpy as np
 from scipy.spatial.transform import Rotation
 
+from .bundle_marginalization import MarginalFactor
+
 
 class StateView(Protocol):
-    def target_pose(self, target_id: int) -> tuple[np.ndarray, np.ndarray]: ...
-    def camera_pose(self, camera_id: int) -> tuple[np.ndarray, np.ndarray]: ...
-    def segment_alignment(self) -> tuple[float, np.ndarray]: ...
+    def target_pose(self, target_id: int) -> tuple[np.ndarray, np.ndarray]:
+        ...
+
+    def camera_pose(self, camera_id: int) -> tuple[np.ndarray, np.ndarray]:
+        ...
+
+    def segment_alignment(self) -> tuple[float, np.ndarray]:
+        ...
 
 
 def _sigma(value: float) -> float:
-    if value <= 0.0:
-        raise ValueError("factor sigma must be positive")
+    if not np.isfinite(value) or value <= 0.0:
+        raise ValueError("factor sigma must be finite and positive")
     return float(value)
 
 
@@ -92,7 +99,7 @@ class ContourFactor:
     kind: str = field(default="F2", init=False)
 
     def residual(self, state: StateView) -> np.ndarray:
-        normal = np.asarray(self.normal_xy, dtype=float)
+        normal = np.array(self.normal_xy, dtype=float, copy=True)
         normal /= max(float(np.linalg.norm(normal)), 1e-12)
         observed = np.asarray(self.observed_pixel_xy, dtype=float)
         candidates = []
@@ -240,7 +247,7 @@ class CatalogPriorFactor:
         return (("target", self.target_id),)
 
 
-Factor = BearingFactor | ContourFactor | SupportPlaneFactor | ControlPointFactor | RelativePoseFactor | SegmentUwbFactor | PlatformPoseFactor | CatalogPriorFactor
+Factor = BearingFactor | ContourFactor | SupportPlaneFactor | ControlPointFactor | RelativePoseFactor | SegmentUwbFactor | PlatformPoseFactor | CatalogPriorFactor | MarginalFactor
 
 
 def normalized_from_pixel(pixel_xy: np.ndarray, camera_matrix: np.ndarray) -> np.ndarray:

@@ -8,6 +8,23 @@
 
 ## Humble 构建基线
 
+先安装本工作空间的 Python/ament 测试依赖：
+
+```bash
+sudo apt-get update
+sudo apt-get install python3-ament-package python3-pytest
+```
+
+每个新终端进入工作空间后，先加载项目环境：
+
+```bash
+source scripts/activate_humble.sh
+```
+
+该脚本会加载 ROS 2 Humble，并在 WSL 中把 `TMPDIR` 固定到 Linux 的
+`/tmp`。这避免继承 Windows 挂载路径的 `TMP`/`TEMP` 时，`pytest` 在
+ament CMake 配置检查中失败、从而使 Python 测试未被登记的问题。
+
 无标签纯视觉是当前算法复现主线；工作空间中的 `apriltag_ros` 仅作为延后 AprilTag 36h11 工程基线保留。需要复现该基线时，在 Ubuntu 22.04 + ROS2 Humble 主机上安装其系统依赖：
 
 ```bash
@@ -17,6 +34,7 @@ sudo apt-get install ros-humble-apriltag ros-humble-apriltag-msgs
 随后在本目录执行完整检查：
 
 ```bash
+source scripts/activate_humble.sh
 colcon build --symlink-install
 colcon test
 colcon test-result --verbose

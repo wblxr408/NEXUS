@@ -1,0 +1,29 @@
+# TEMPLATE ONLY: replace nulls with measured calibration and its run identifier.
+schema_version: 1
+calibration_id: replace_with_measured_calibration_id
+calibration_status: unmeasured
+camera_frame: camera_optical_frame
+image_rectified: true
+# T_body_camera, translation metres; optical x right / y down / z forward.
+transform_body_camera: null
+# 6x6 [body translation, right camera rotation], m/rad; not an invented zero.
+extrinsic_covariance: null
+# Estimated from real keypoint localization residuals, in pixels.
+pixel_sigma_px: null
+# Algorithm bounds/noise assumptions below are configurable, not measured facts.
+target_pose_timeline:
+  maximum_gap_s: 0.25
+  retention_s: 5.0
+  maximum_samples: 256
+  acceleration_sigma_mps2: 2.0
+  angular_acceleration_sigma_rps2: 2.0
+target_geometry:
+  minimum_views: 3
+  minimum_inlier_ratio: 0.6
+  maximum_reprojection_px: 3.0
+  minimum_parallax_deg: 0.25
+  maximum_condition_number: 10000000.0
+  maximum_speed_mps: 10.0
+  minimum_depth_m: 0.05
+  maximum_depth_m: 100.0
+  ransac_iterations: 64

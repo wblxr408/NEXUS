@@ -9,6 +9,7 @@ find_package(launch_testing_ament_cmake REQUIRED)
 ament_python_install_package(${PROJECT_NAME} PACKAGE_DIR src/${PROJECT_NAME})
 install(PROGRAMS src/${PROJECT_NAME}/preflight_node.py DESTINATION lib/${PROJECT_NAME} RENAME preflight_node)
 install(PROGRAMS src/${PROJECT_NAME}/uav_route_node.py DESTINATION lib/${PROJECT_NAME} RENAME uav_route_node)
+install(PROGRAMS src/${PROJECT_NAME}/telemetry_udp_node.py DESTINATION lib/${PROJECT_NAME} RENAME telemetry_udp_node)
 install(DIRECTORY config launch DESTINATION share/${PROJECT_NAME})
 install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/../../../../simulation/
   DESTINATION share/${PROJECT_NAME}/simulation

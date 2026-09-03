@@ -35,3 +35,19 @@ def test_uav_is_movable_and_exposes_one_odom_source():
     assert move_plugin.findtext("ros/remapping") == "cmd_vel:=cmd_vel"
     assert move_plugin.findtext("publish_odom") == "true"
     assert uav.find("plugin[@filename='libgazebo_ros_p3d.so']") is None
+
+
+def test_simulation_broadcasts_the_single_map_to_base_link_edge():
+    """The one publisher of map -> base_link, without which the chain is dead.
+
+    coord_transform_node looks this edge up per sample and answers
+    transform_unavailable when it is missing, so /nexus/target/pose never
+    appears.  pre_hardware_transforms.yaml must not also publish it statically.
+    """
+    world = ET.parse(REPOSITORY_ROOT / "simulation" / "nexus_sandbox_imx219.world")
+    move_plugin = world.find(".//model[@name='nexus_uav']/plugin[@filename='libgazebo_ros_planar_move.so']")
+    assert move_plugin.findtext("publish_odom_tf") == "true"
+    assert move_plugin.findtext("odometry_frame") == "map"
+    assert move_plugin.findtext("robot_base_frame") == "base_link"
+    transforms = yaml.safe_load((REPOSITORY_ROOT / "code/ros2_ws/src/nexus_bringup/config/pre_hardware_transforms.yaml").read_text())
+    assert all(item["child"] != "base_link" for item in transforms["transforms"])

@@ -1,7 +1,65 @@
-# This file deliberately contains no physical sandbox transform.
-# After hardware arrival, copy it into an experiment/calibration run and fill
-# measured values there. Do not commit guessed map origins or camera extrinsics.
-calibration_version: "1.0"
-data_status: "tbd_until_hardware_calibration"
-map_definition: "TBD: physical origin and +x/+y reference points"
-transforms: []
+# Simulation-only transform table for the pre-hardware demo chain.
+# Every number here comes from simulation design files, NOT from a measured
+# calibration: simulation/nexus_sandbox_imx219.world (camera mount) and
+# simulation/sandbox_scene.yaml (sandbox envelope). After hardware arrival,
+# copy this file into an experiment/calibration run and replace the values with
+# measured ones there. Do not commit guessed map origins or camera extrinsics.
+calibration_version: "1.1"
+data_status: "simulation_only_pending_hardware_calibration"
+map_definition:
+  frame_id: "map"
+  origin: "sandbox corner (x=0, y=0) at deck support level; right-handed, +z up"
+  axis: "x=east, y=north, z=up (simulation/sandbox_scene.yaml: axis)"
+  unit: "m"
+  deck_height_m: 0.050
+  envelope_x_m: 4.000
+  envelope_y_m: 4.700
+  source: "simulation/sandbox_scene.yaml (scene_id sandbox_4000x4700_v03, unit mm)"
+  survey_status: "simulation_only_not_surveyed"
+
+# Only static transforms belong in `transforms`: coord_transform_node publishes
+# this list through a StaticTransformBroadcaster.
+transforms:
+  # base_link (REP-103: +x forward, +y left, +z up) -> camera optical frame
+  # (+x right, +y down, +z along the optical axis).
+  #
+  # Two rotations compose into this entry:
+  #   1. REP-103 -> optical axis swap for a FORWARD looking camera:
+  #        x_opt = -y_base, y_opt = -z_base, z_opt = +x_base
+  #        R_swap = [[0, 0, 1], [-1, 0, 0], [0, -1, 0]]
+  #        rotation_xyzw = [0.5, -0.5, 0.5, -0.5]
+  #      i.e. base_link and the optical frame are never identity, so the
+  #      idealized identity matrix recorded in
+  #      simulation/target_detection_dataset_v01.yaml
+  #      (base_to_camera_rotation_matrix, base_to_camera_status
+  #      idealized_identity_until_hardware_extrinsic_calibration) is a
+  #      placeholder only; this table gives the REP-103 optical convention.
+  #   2. The simulated mount is nadir, not forward: the imx219 sensor pose in
+  #      simulation/nexus_sandbox_imx219.world is "0 0 -0.06 0 1.57079632679 0",
+  #      i.e. 0.060 m below base_link and pitched +90 deg about +y_base so the
+  #      Gazebo camera (+x = view axis) looks along -z_base.
+  #
+  # R_base_optical = Ry(+90 deg) @ R_swap = [[0, -1, 0], [-1, 0, 0], [0, 0, -1]]
+  #   x_opt = -y_base (image right = aircraft right)
+  #   y_opt = -x_base (image down  = aircraft aft)
+  #   z_opt = -z_base (optical axis points down at the sandbox deck)
+  - parent: "base_link"
+    child: "nexus_uav_camera_optical_frame"
+    translation: [0.0, 0.0, -0.06]
+    rotation_xyzw: [0.70710678118654752, -0.70710678118654752, 0.0, 0.0]
+    source: "simulation/nexus_sandbox_imx219.world sensor[@name='imx219']/pose"
+    status: "simulation_design_value_not_measured"
+
+# map -> base_link is deliberately absent from `transforms`: it is a moving
+# platform pose, not a static extrinsic. Publishing it statically would freeze
+# the aircraft at one pose and silently corrupt every map-frame target.
+dynamic_transforms:
+  - parent: "map"
+    child: "base_link"
+    provider: "UWB/FCU odometry (/nexus/fcu/odom) or the Gazebo planar-move plugin"
+    note: >-
+      simulation/nexus_sandbox_imx219.world sets publish_odom_tf=false on
+      libgazebo_ros_planar_move.so, so nothing broadcasts map->base_link yet.
+      Until an odometry-to-tf broadcaster is enabled, coord_transform_node still
+      answers transform_unavailable for camera-frame observations.
+    status: "runtime_dynamic_not_a_static_extrinsic"

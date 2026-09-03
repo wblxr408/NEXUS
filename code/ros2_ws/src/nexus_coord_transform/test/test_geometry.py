@@ -2,6 +2,13 @@ import numpy as np
 import pytest
 
 from nexus_coord_transform.geometry import (
+    BODY_TO_OPTICAL,
+    CARLA_ACTOR_TO_OPTICAL,
+    carla_camera_pose,
+    carla_point_to_map,
+    carla_rotation_matrix,
+    carla_rotation_to_map,
+    body_to_camera_rotation,
     direct_target_measurement,
     centimeters_to_meters,
     matrix_to_quaternion,
@@ -12,6 +19,21 @@ from nexus_coord_transform.geometry import (
     platform_relative_measurement,
     rotate_position_covariance,
 )
+
+
+def test_carla_axis_swap_and_optical_pose_preserve_proper_rotation():
+    assert np.allclose(carla_point_to_map([1.0, 2.0, 3.0]), [1.0, -2.0, 3.0])
+    actor = carla_rotation_matrix(0.0, 0.0, 0.0)
+    assert np.isclose(np.linalg.det(carla_rotation_to_map(actor)), 1.0)
+    camera_rotation, camera_translation = carla_camera_pose([1.0, 2.0, 3.0], 0.0, 0.0, 0.0)
+    assert np.isclose(np.linalg.det(camera_rotation), 1.0)
+    assert np.allclose(camera_translation, [1.0, -2.0, 3.0])
+    assert np.allclose(CARLA_ACTOR_TO_OPTICAL[:, 0], [0.0, 1.0, 0.0])
+
+
+def test_body_optical_axis_swap_has_expected_handedness():
+    assert np.isclose(np.linalg.det(BODY_TO_OPTICAL), 1.0)
+    assert np.isclose(np.linalg.det(body_to_camera_rotation(-90.0)), 1.0)
 
 
 def test_unit_and_axis_conversion_are_explicit():

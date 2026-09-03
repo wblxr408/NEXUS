@@ -1,0 +1,6 @@
+Invoking command in '/root/nexus_workspace/NEXUS/fcu_core_gcs/build/fcu_core': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake /root/nexus_workspace/NEXUS/fcu_core_gcs/src/fcu_core_ros2 -DCMAKE_INSTALL_PREFIX=/root/nexus_workspace/NEXUS/fcu_core_gcs/install/fcu_core
+Invoked command in '/root/nexus_workspace/NEXUS/fcu_core_gcs/build/fcu_core' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake /root/nexus_workspace/NEXUS/fcu_core_gcs/src/fcu_core_ros2 -DCMAKE_INSTALL_PREFIX=/root/nexus_workspace/NEXUS/fcu_core_gcs/install/fcu_core
+Invoking command in '/root/nexus_workspace/NEXUS/fcu_core_gcs/build/fcu_core': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /root/nexus_workspace/NEXUS/fcu_core_gcs/build/fcu_core -- -j8 -l8
+Invoked command in '/root/nexus_workspace/NEXUS/fcu_core_gcs/build/fcu_core' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /root/nexus_workspace/NEXUS/fcu_core_gcs/build/fcu_core -- -j8 -l8
+Invoking command in '/root/nexus_workspace/NEXUS/fcu_core_gcs/build/fcu_core': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --install /root/nexus_workspace/NEXUS/fcu_core_gcs/build/fcu_core
+Invoked command in '/root/nexus_workspace/NEXUS/fcu_core_gcs/build/fcu_core' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --install /root/nexus_workspace/NEXUS/fcu_core_gcs/build/fcu_core

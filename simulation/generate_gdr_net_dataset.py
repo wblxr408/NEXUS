@@ -108,22 +108,29 @@ def _project(points_world, camera_position, rotation_camera_map, camera):
     return pixels, points_camera[:, 2]
 
 
-def _draw_mesh(image, mask, vertices_world, faces, color, camera_position, rotation_camera_map, camera, object_id=0):
+def _draw_mesh(image, mask, vertices_world, faces, color, camera_position, rotation_camera_map, camera, object_id=0, face_colors=None):
+    """Render a mesh with painter ordering.
+
+    ``face_colors`` optionally supplies one RGB triple per face so decoration
+    can be drawn as appearance only; the geometry, mask and bounding box are
+    unchanged by it.  All faces stay in one depth sort, so decoration cannot
+    paint over a nearer face.
+    """
     pixels, depth = _project(vertices_world, camera_position, rotation_camera_map, camera)
     draws = []
-    for face in faces:
+    for index, face in enumerate(faces):
         z = depth[face]
         if np.any(z <= 0.03):
             continue
         polygon = np.rint(pixels[face]).astype(np.int32)
         if cv2.contourArea(polygon) == 0:
             continue
-        draws.append((float(np.mean(z)), polygon))
+        draws.append((float(np.mean(z)), polygon, color if face_colors is None else tuple(face_colors[index])))
     # Far faces are drawn first. This is sufficient for the opaque convex
     # primitives in this initial model asset set.
-    for z, polygon in sorted(draws, key=lambda item: item[0], reverse=True):
+    for z, polygon, face_color in sorted(draws, key=lambda item: item[0], reverse=True):
         shade = max(0.55, min(1.0, 1.15 - 0.10 * z))
-        shaded = tuple(int(max(0, min(255, value * shade))) for value in color)
+        shaded = tuple(int(max(0, min(255, value * shade))) for value in face_color)
         cv2.fillConvexPoly(image, polygon, shaded)
         if object_id:
             cv2.fillConvexPoly(mask, polygon, int(object_id))

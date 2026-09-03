@@ -20,5 +20,6 @@ setup(
     entry_points={"console_scripts": [
         "preflight_node = nexus_bringup.preflight_node:main",
         "uav_route_node = nexus_bringup.uav_route_node:main",
+        "telemetry_udp_node = nexus_bringup.telemetry_udp_node:main",
     ]},
 )

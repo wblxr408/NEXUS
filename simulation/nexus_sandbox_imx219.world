@@ -42,7 +42,14 @@
     <update_rate>100</update_rate>
     <publish_rate>30</publish_rate>
     <publish_odom>true</publish_odom>
-    <publish_odom_tf>false</publish_odom_tf>
+    <!-- Broadcasts map -> base_link.  Without it nothing in the repository
+         publishes that edge, coord_transform_node always answers
+         transform_unavailable and /nexus/target/pose never appears (design
+         section 11.5).  This is a simulation-only source of the map frame; the
+         physical map origin still needs a survey.  pre_hardware_transforms.yaml
+         deliberately keeps map -> base_link out of its static table so the two
+         cannot fight over the same edge. -->
+    <publish_odom_tf>true</publish_odom_tf>
     <odometry_frame>map</odometry_frame>
     <robot_base_frame>base_link</robot_base_frame>
   </plugin>

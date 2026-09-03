@@ -1,0 +1,34 @@
+In file included from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/logging.hpp:24[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/client.hpp:40[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/callback_group.hpp:24[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/any_executable.hpp:20[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategy.hpp:25[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategies.hpp:18[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executor_options.hpp:20[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executor.hpp:37[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executors/multi_threaded_executor.hpp:25[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/executors.hpp:21[m[K,
+                 from [01m[K/opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:155[m[K,
+                 from [01m[K/root/nexus_workspace/NEXUS/fcu_core_gcs/src/fcu_core_ros2/src/fcu_command.cpp:5[m[K:
+[01m[K/root/nexus_workspace/NEXUS/fcu_core_gcs/src/fcu_core_ros2/src/fcu_command.cpp:[m[K In function ‘[01m[Kvoid print_help()[m[K’:
+[01m[K/root/nexus_workspace/NEXUS/fcu_core_gcs/src/fcu_core_ros2/src/fcu_command.cpp:13:50:[m[K [01;35m[Kwarning: [m[Kzero-length gnu_printf format string [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wformat-zero-length-Wformat-zero-length]8;;[m[K]
+   13 |   RCLCPP_INFO(rclcpp::get_logger("fcu_command"), [01;35m[K""[m[K);
+      |                                                  [01;35m[K^~[m[K
+[01m[K/root/nexus_workspace/NEXUS/fcu_core_gcs/src/fcu_core_ros2/src/fcu_command.cpp:20:50:[m[K [01;35m[Kwarning: [m[Kzero-length gnu_printf format string [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wformat-zero-length-Wformat-zero-length]8;;[m[K]
+   20 |   RCLCPP_INFO(rclcpp::get_logger("fcu_command"), [01;35m[K""[m[K);
+      |                                                  [01;35m[K^~[m[K
+[01m[K/root/nexus_workspace/NEXUS/fcu_core_gcs/src/fcu_core_ros2/src/fcu_command.cpp:26:50:[m[K [01;35m[Kwarning: [m[Kzero-length gnu_printf format string [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wformat-zero-length-Wformat-zero-length]8;;[m[K]
+   26 |   RCLCPP_INFO(rclcpp::get_logger("fcu_command"), [01;35m[K""[m[K);
+      |                                                  [01;35m[K^~[m[K
+[01m[K/root/nexus_workspace/NEXUS/fcu_core_gcs/src/fcu_core_ros2/src/fcu_command.cpp:32:50:[m[K [01;35m[Kwarning: [m[Kzero-length gnu_printf format string [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wformat-zero-length-Wformat-zero-length]8;;[m[K]
+   32 |   RCLCPP_INFO(rclcpp::get_logger("fcu_command"), [01;35m[K""[m[K);
+      |                                                  [01;35m[K^~[m[K
+[01m[K/root/nexus_workspace/NEXUS/fcu_core_gcs/src/fcu_core_ros2/src/fcu_command.cpp:35:50:[m[K [01;35m[Kwarning: [m[Kzero-length gnu_printf format string [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wformat-zero-length-Wformat-zero-length]8;;[m[K]
+   35 |   RCLCPP_INFO(rclcpp::get_logger("fcu_command"), [01;35m[K""[m[K);
+      |                                                  [01;35m[K^~[m[K
+[01m[K/root/nexus_workspace/NEXUS/fcu_core_gcs/src/fcu_core_ros2/src/fcu_command.cpp:40:50:[m[K [01;35m[Kwarning: [m[Kzero-length gnu_printf format string [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wformat-zero-length-Wformat-zero-length]8;;[m[K]
+   40 |   RCLCPP_INFO(rclcpp::get_logger("fcu_command"), [01;35m[K""[m[K);
+      |                                                  [01;35m[K^~[m[K
+[01m[K/root/nexus_workspace/NEXUS/fcu_core_gcs/src/fcu_core_ros2/src/fcu_command.cpp:45:50:[m[K [01;35m[Kwarning: [m[Kzero-length gnu_printf format string [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wformat-zero-length-Wformat-zero-length]8;;[m[K]
+   45 |   RCLCPP_INFO(rclcpp::get_logger("fcu_command"), [01;35m[K""[m[K);
+      |                                                  [01;35m[K^~[m[K

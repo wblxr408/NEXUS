@@ -14,6 +14,7 @@ import json
 import math
 import os
 import shutil
+import zlib
 from pathlib import Path
 
 import cv2
@@ -127,7 +128,70 @@ def _rotation_z(degrees: float) -> np.ndarray:
     return np.array([[cosine, -sine, 0.0], [sine, cosine, 0.0], [0.0, 0.0, 1.0]])
 
 
-def _look_at(position: np.ndarray, target: np.ndarray) -> np.ndarray:
+def _rotation_about(axis: np.ndarray, radians: float) -> np.ndarray:
+    unit = np.asarray(axis, dtype=float) / np.linalg.norm(axis)
+    return cv2.Rodrigues(unit * radians)[0]
+
+
+def _bop_symmetries(symmetry: dict, continuous_offset=(0.0, 0.0, 0.0)) -> dict:
+    """Expand the catalog symmetry block into BOP ``symmetries_*`` fields.
+
+    ADR-009 makes this the authority for ADD-S and symmetry-minimised rotation
+    error.  ``symmetries_discrete`` holds flattened 4x4 transforms excluding the
+    identity, matching ``lib/pysixd/misc.get_symmetry_transformations``.
+    """
+    discrete = []
+    for entry in symmetry.get("discrete_folds") or []:
+        fold = int(entry["fold"])
+        for step in range(1, fold):
+            transform = np.eye(4)
+            transform[:3, :3] = _rotation_about(entry["axis"], 2.0 * math.pi * step / fold)
+            discrete.append([round(float(value), 12) for value in transform.reshape(-1)])
+    continuous = [{"axis": [float(value) for value in axis], "offset": list(continuous_offset)}
+                  for axis in symmetry.get("continuous_axes") or []]
+    fields = {"symmetry": str(symmetry.get("label", "none"))}
+    if discrete:
+        fields["symmetries_discrete"] = discrete
+    if continuous:
+        fields["symmetries_continuous"] = continuous
+    return fields
+
+
+# Decoration is appearance only (ADR-009): every rule selects existing faces by
+# their target_link centroid, so the mesh, mask and bounding box are untouched.
+# `mix` > 0 blends the base colour toward white, `mix` < 0 darkens it.
+_DECORATION_RULES = {
+    "vertical_stripes": (lambda height_fraction, radial_fraction, azimuth: (np.floor(azimuth / (2.0 * np.pi / 10.0)) % 2) == 0, -0.38),
+    "end_bands": (lambda height_fraction, radial_fraction, azimuth: radial_fraction > 0.72, 0.55),
+    "roof_cap": (lambda height_fraction, radial_fraction, azimuth: height_fraction > 0.62, 0.45),
+    "dark_base": (lambda height_fraction, radial_fraction, azimuth: height_fraction < 0.30, -0.55),
+    "light_cap": (lambda height_fraction, radial_fraction, azimuth: height_fraction > 0.80, 0.65),
+    "two_stage": (lambda height_fraction, radial_fraction, azimuth: height_fraction > 0.55, -0.30),
+    "white_roof": (lambda height_fraction, radial_fraction, azimuth: height_fraction > 0.88, 0.85),
+    "central_cap": (lambda height_fraction, radial_fraction, azimuth: height_fraction > 0.85, 0.60),
+    "top_ring": (lambda height_fraction, radial_fraction, azimuth: (height_fraction > 0.50) & (height_fraction < 0.90), -0.45),
+    "connector": (lambda height_fraction, radial_fraction, azimuth: (radial_fraction < 0.35) & (height_fraction > 0.55), -0.32),
+}
+
+
+def _decoration_face_colors(decoration: str, vertices: np.ndarray, faces: np.ndarray, base_color) -> np.ndarray | None:
+    rule = _DECORATION_RULES.get(str(decoration))
+    if rule is None:
+        return None
+    select, mix = rule
+    centroids = vertices[faces].mean(axis=1)
+    span = float(vertices[:, 2].max() - vertices[:, 2].min())
+    height_fraction = (centroids[:, 2] - vertices[:, 2].min()) / max(span, 1e-9)
+    radial_fraction = np.abs(centroids[:, 0]) / max(float(np.abs(vertices[:, 0]).max()), 1e-9)
+    azimuth = np.mod(np.arctan2(centroids[:, 1], centroids[:, 0]), 2.0 * np.pi)
+    base = np.asarray(base_color, dtype=float)
+    accent = base + (255.0 - base) * mix if mix > 0 else base * (1.0 + mix)
+    colors = np.tile(base, (len(faces), 1))
+    colors[np.asarray(select(height_fraction, radial_fraction, azimuth), dtype=bool)] = accent
+    return np.clip(colors, 0, 255).astype(int)
+
+
+def _look_at(position: np.ndarray, target: np.ndarray, roll_deg: float = 0.0) -> np.ndarray:
     forward = target - position
     forward /= np.linalg.norm(forward)
     right = np.cross(forward, np.array([0.0, 0.0, 1.0]))
@@ -139,7 +203,32 @@ def _look_at(position: np.ndarray, target: np.ndarray) -> np.ndarray:
     else:
         right /= right_norm
     down = np.cross(forward, right)
-    return np.vstack((right, down, forward))
+    rotation = np.vstack((right, down, forward))
+    # Rolling about the optical axis is the physical degree of freedom the v01
+    # generator locked; releasing it is what widens relative-rotation coverage
+    # beyond a 1-D curve in SO(3) (design doc L0-7).
+    return _rotation_z(roll_deg) @ rotation if roll_deg else rotation
+
+
+def _target_rotation(yaw_deg: float, rng: np.random.Generator, diversity: dict) -> np.ndarray:
+    """Map->target rotation for one trajectory.
+
+    Targets are fixed objects, so orientation may vary per trajectory (each
+    trajectory is a separate arrangement) but never per frame: the multi-view
+    bundle in the design doc requires one static target pose per segment.
+    """
+    mode = str(diversity.get("target_orientation_mode", "fixed"))
+    if mode == "fixed":
+        return _rotation_z(yaw_deg)
+    if mode != "per_trajectory":
+        raise ValueError(f"unsupported target_orientation_mode: {mode}")
+    rotation = _rotation_z(yaw_deg + float(rng.uniform(*diversity.get("target_yaw_jitter_deg", (-180.0, 180.0)))))
+    tilt_deg = float(diversity.get("target_tilt_deg", 0.0))
+    if tilt_deg <= 0.0:
+        return rotation
+    azimuth = float(rng.uniform(0.0, 2.0 * np.pi))
+    axis = np.array([math.cos(azimuth), math.sin(azimuth), 0.0])
+    return _rotation_about(axis, math.radians(float(rng.uniform(-tilt_deg, tilt_deg)))) @ rotation
 
 
 def _trajectory(name: str, frame: int, count: int, height_range: list[float]) -> np.ndarray:
@@ -278,13 +367,16 @@ def main() -> None:
     scene_path = Path(config["scene"])
     scene = yaml.safe_load(scene_path.read_text(encoding="utf-8"))
     scale = 0.001 if catalog.get("unit") == "mm" else 1.0
+    diversity = config["render"].get("pose_diversity", {})
+    deck_z_m = float(catalog["support_deck_z_mm"]) * scale
     targets = []
     for raw in catalog["targets"]:
         size = np.asarray(raw["size_mm"], dtype=float) * scale
         mesh = _target_mesh(raw["shape"], size)
-        rotation_map_target = _rotation_z(float(raw["yaw_deg"]))
         targets.append({**raw, "size_m": size, "mesh": mesh, "position_m": np.asarray(raw["position_mm"], dtype=float) * scale,
-                        "rotation_map_target": rotation_map_target})
+                        "base_z_m": float(raw["base_z_mm"]) * scale,
+                        "face_colors": _decoration_face_colors(raw["decoration"], mesh[0], mesh[1], raw["color_rgb"]),
+                        "rotation_map_target": _rotation_z(float(raw["yaw_deg"]))})
     static_scene = _static_scene_meshes(scene, {str(target["source_object_id"]) for target in targets})
     camera = config["camera"]
     width, height = int(camera["image_width_px"]), int(camera["image_height_px"])
@@ -308,7 +400,9 @@ def main() -> None:
         model_info[str(target["object_id"])] = {"diameter": float(np.max(np.linalg.norm(vertices[:, None] - vertices[None, :], axis=2)) * 1000.0),
                                                   "min_x": float(low[0]), "min_y": float(low[1]), "min_z": float(low[2]),
                                                   "size_x": float(high[0] - low[0]), "size_y": float(high[1] - low[1]), "size_z": float(high[2] - low[2]),
-                                                  "symmetry": target["symmetry"], "class_name": target["class_name"], "source_object_id": target["source_object_id"]}
+                                                  **_bop_symmetries(target["symmetry"]),
+                                                  "base_z_mm": float(target["base_z_mm"]), "support_deck_z_mm": float(catalog["support_deck_z_mm"]),
+                                                  "class_name": target["class_name"], "source_object_id": target["source_object_id"]}
     (output / "models" / "models_info.json").write_text(json.dumps(model_info, indent=2) + "\n", encoding="utf-8")
     (output / "target_classes.json").write_text(json.dumps({"categories": [{"id": int(t["object_id"]), "name": t["class_name"], "source_object_id": t["source_object_id"], "shape": t["shape"], "proxy_cad": False} for t in targets]}, indent=2) + "\n", encoding="utf-8")
 
@@ -326,10 +420,15 @@ def main() -> None:
         split_manifest["splits"][split] = {"trajectory_ids": trajectory_ids, "frame_count": 0}
         frame_number = 0
         for trajectory_id in trajectory_ids:
+            # One deterministic stream per trajectory: target arrangement is drawn
+            # once (targets are static within a segment) and camera roll per frame.
+            pose_rng = np.random.default_rng([int(config["render"]["seed"]), zlib.crc32(trajectory_id.encode("ascii"))])
+            rotation_map_target = {int(target["object_id"]): _target_rotation(float(target["yaw_deg"]), pose_rng, diversity) for target in targets}
+            roll_range = diversity.get("camera_roll_deg", (0.0, 0.0))
             for frame_in_trajectory in range(int(split_config["frames_per_trajectory"])):
                 sequence = frame_number
                 position = _trajectory(trajectory_id, frame_in_trajectory, int(split_config["frames_per_trajectory"]), config["platform"]["camera_height_m"])
-                rotation_camera_map = _look_at(position, np.asarray(config["platform"]["look_at_map_m"], dtype=float))
+                rotation_camera_map = _look_at(position, np.asarray(config["platform"]["look_at_map_m"], dtype=float), float(pose_rng.uniform(*roll_range)))
                 image = np.full((height, width, 3), tuple(config["render"]["background_rgb"]), dtype=np.uint8)
                 image[:, :] = tuple(config["render"]["ground_rgb"])
                 points_camera = (rotation_camera_map @ (landmarks - position).T).T
@@ -351,9 +450,10 @@ def main() -> None:
                 timestamp = timestamp_base_ns + (sum(len(s["trajectory_ids"]) * int(s["frames_per_trajectory"]) for s in list(config["splits"].values())[:list(config["splits"]).index(split)]) + sequence) * sample_step_ns
                 for target in targets:
                     local_vertices, faces = target["mesh"]
-                    world_vertices = (target["rotation_map_target"] @ local_vertices.T).T + target["position_m"]
-                    _draw_mesh(image, instance_mask, world_vertices, faces, tuple(target["color_rgb"]), position, rotation_camera_map, matrix, int(target["object_id"]))
-                    rotation_camera_target = rotation_camera_map @ target["rotation_map_target"]
+                    rotation = rotation_map_target[int(target["object_id"])]
+                    world_vertices = (rotation @ local_vertices.T).T + target["position_m"]
+                    _draw_mesh(image, instance_mask, world_vertices, faces, tuple(target["color_rgb"]), position, rotation_camera_map, matrix, int(target["object_id"]), target["face_colors"])
+                    rotation_camera_target = rotation_camera_map @ rotation
                     translation_camera_target = rotation_camera_map @ (target["position_m"] - position)
                     bbox, pixel_count = _bbox(instance_mask, int(target["object_id"]))
                     frame_gt.append({"obj_id": int(target["object_id"]), "cam_R_m2c": rotation_camera_target.reshape(-1).round(12).tolist(), "cam_t_m2c": (translation_camera_target * 1000.0).round(8).tolist()})
@@ -369,7 +469,8 @@ def main() -> None:
                         annotation_id += 1
                     all_target_rows.append({"split": split, "trajectory_id": trajectory_id, "sequence": sequence, "sample_timestamp_ns": timestamp, "object_id": int(target["object_id"]),
                                             "target_x_m": target["position_m"][0], "target_y_m": target["position_m"][1], "target_z_m": target["position_m"][2],
-                                            **{f"map_R_target_{r}{c}": target["rotation_map_target"][r, c] for r in range(3) for c in range(3)}})
+                                            "target_base_z_m": target["base_z_m"], "support_deck_z_m": deck_z_m,
+                                            **{f"map_R_target_{r}{c}": rotation[r, c] for r in range(3) for c in range(3)}})
                 file_name = f"{sequence:06d}.png"
                 cv2.imwrite(str(split_root / "rgb" / file_name), cv2.cvtColor(image, cv2.COLOR_RGB2BGR))
                 (split_root / "labels" / f"{sequence:06d}.txt").write_text("\n".join(yolo_lines) + ("\n" if yolo_lines else ""), encoding="utf-8")
@@ -378,6 +479,10 @@ def main() -> None:
                 coco["images"].append({"id": image_id, "file_name": f"rgb/{file_name}", "width": width, "height": height, "sequence": sequence, "trajectory_id": trajectory_id, "sample_timestamp_ns": timestamp})
                 all_camera_rows.append({"split": split, "trajectory_id": trajectory_id, "sequence": sequence, "sample_timestamp_ns": timestamp,
                                         "camera_x_m": position[0], "camera_y_m": position[1], "camera_z_m": position[2],
+                                        # Header kept for schema compatibility with the other generators and
+                                        # with E007, but the stored matrix maps map -> camera (rows are the
+                                        # camera axes in map), i.e. R_camera_map under the repository's
+                                        # T_a_b convention.  See camera_rotation_convention in the manifest.
                                         **{f"R_map_camera_{r}{c}": rotation_camera_map[r, c] for r in range(3) for c in range(3)}})
                 image_id += 1
                 frame_number += 1
@@ -415,7 +520,9 @@ def main() -> None:
     }, sort_keys=False), encoding="utf-8")
     (output / "dataset_manifest.json").write_text(json.dumps({"dataset_id": config["dataset_id"], "config": str(config_path), "target_catalog": str(catalog_path), "scene": str(scene_path), "scene_id": scene.get("scene_id"), "image_size": [width, height],
                                                               "calibration_status": camera["calibration_status"], "detector_contract": config["detector_contract"], "yolo_assets": args.yolo_assets,
-                                                              "truth_not_for_inference": True, "limitations": ["Target geometry is designed parameterized proxy geometry, not surveyed CAD.", "Scene context is an authored metric proxy based on sandbox_scene.yaml, not a photorealistic reconstruction.", "Camera K is the confirmed Gazebo IMX219 CameraInfo; hardware calibration remains required before physical precision claims."]}, indent=2) + "\n", encoding="utf-8")
+                                                              "pose_diversity": diversity, "symmetry_authority": catalog.get("symmetry_authority"), "support_deck_z_m": deck_z_m,
+                                                              "camera_rotation_convention": "ground_truth/camera_pose_map.csv columns R_map_camera_<r><c> store the map -> camera matrix (R_camera_map under the repository T_a_b convention); the header name is retained for schema compatibility with the other generators and with E007",
+                                                              "truth_not_for_inference": True, "limitations": ["Target geometry is designed parameterized proxy geometry, not surveyed CAD.", "Decoration is rendered as face colour only and is absent from models/*.ply, so the BOP symmetry groups describe the exported meshes.", "Scene context is an authored metric proxy based on sandbox_scene.yaml, not a photorealistic reconstruction.", "Camera K is the confirmed Gazebo IMX219 CameraInfo; hardware calibration remains required before physical precision claims."]}, indent=2) + "\n", encoding="utf-8")
     print(f"generated trajectory-disjoint dataset at {output}")
 
 

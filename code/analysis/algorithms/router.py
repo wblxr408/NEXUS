@@ -10,7 +10,7 @@ from typing import Any, Callable
 from .contracts import AlgorithmResult
 from vision.gdr_net import run_gdr_net
 from uwb.multilateration import run_multilateration
-from localization.chain_runner import run_chain_a, run_chain_b, run_chain_c
+from localization.chain_runner import run_chain_a, run_chain_b, run_chain_c, run_chain_d
 
 
 @dataclass(frozen=True)
@@ -59,6 +59,7 @@ register_algorithm("uwb.multilateration", "uwb", run_multilateration, source="pr
 register_algorithm("vision.bundle_a", "vision", run_chain_a, source="project:markerless_optimization_v01")
 register_algorithm("vision.bundle_b", "vision", run_chain_b, source="project:markerless_optimization_v01")
 register_algorithm("vision.bundle_c", "vision", run_chain_c, source="project:markerless_optimization_v01")
+register_algorithm("vision.bundle_d", "vision", run_chain_d, source="project:online_target_localization_framework_v01")
 
 
 def available_algorithms(family=None):

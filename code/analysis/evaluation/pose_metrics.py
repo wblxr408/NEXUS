@@ -34,16 +34,22 @@ def rotation_error_deg(rotation_est: Any, rotation_gt: Any) -> float:
 
 
 def symmetry_rotations(model_info: dict[str, Any], continuous_steps: int = 72) -> list[np.ndarray]:
-    """Expand standard BOP symmetry fields into model-frame rotations."""
-    rotations = [np.eye(3)]
+    """Expand standard BOP symmetry fields into model-frame rotations.
+
+    Discrete and continuous generators are composed, so a group such as
+    "continuous about x plus a 180 deg flip about z" (obj2 under ADR-009) is
+    represented by the full product rather than by the two subsets separately.
+    """
+    discrete = [np.eye(3)]
     for value in model_info.get("symmetries_discrete", []):
-        rotations.append(_array(value, (16,), "symmetries_discrete").reshape(4, 4)[:3, :3])
+        discrete.append(_array(value, (16,), "symmetries_discrete").reshape(4, 4)[:3, :3])
+    continuous = [np.eye(3)]
     for item in model_info.get("symmetries_continuous", []):
         axis = _array(item["axis"], (3,), "symmetry axis")
         axis /= np.linalg.norm(axis)
         for angle in np.linspace(0.0, 2.0 * np.pi, continuous_steps, endpoint=False)[1:]:
-            rotations.append(cv2.Rodrigues(axis * angle)[0])
-    return rotations
+            continuous.append(cv2.Rodrigues(axis * angle)[0])
+    return [rotation_continuous @ rotation_discrete for rotation_discrete in discrete for rotation_continuous in continuous]
 
 
 def model_is_symmetric(model_info: dict[str, Any]) -> bool:

@@ -24,6 +24,9 @@
 - [实施规划书](<无人机高精度目标定位项目规划 (2).md>)：已按幻思硬件资料修订的方案与四周计划。
 - [当前执行基线](2026-08-25_plan_current_execution_baseline.md)：整合无标签纯视觉优先的复现顺序、验收矩阵和最新代码接口。
 - [无标签纯视觉仿真准备、方法与实施步骤](2026-08-25_plan_markerless_visual_simulation_preparation.md)：实机验证前的沙盘 3D 建模、UWB/GNSS/单目视觉仿真、字段映射、实验矩阵和迁移准入。
+- [无标记目标定位优化方案 v01](2026-08-29_design_markerless_target_localization_optimization_v01.md)：把深度从网络回归量改为几何求解量，统一稀疏最小二乘求解器与精度/鲁棒/自适应三条可并列对比的链路，`2 cm` 是 TARGET 且仅对仿真成立。**2026-09-01 修订**：沙盘已换成 CARLA RRD 地图，0–16 节的参数化沙盘前提作废，受限条件下的因子集与误差预算重算见附二、在线增量定位见附三、未实现清单见附四；附二.3 指出当前 RRD 采集配置的地面采样距离是 `45.62 mm/px`，`2 cm` 与 `≤5 cm` 都不可达，需先改采集配置重采。**在线算法框架定稿见附五**（实机实测：Pi 5 四核 A76 / IMX219 四个模式 / 飞控 `SCALED_IMU 188.9 Hz` 且加速度单位是 `mm/s²`；平台端采用现成 UWB-aided VIO，目标端沿用滑窗捆绑，两端以 F5/F6/F7 因子接口解耦）。
+- [在线目标定位算法框架设计 v01](2026-09-02_design_online_target_localization_framework_v01.md)：单目 + UWB + IMU 的在线框架独立成文——坐标系与转换公式（LaTeX）、输入清单与获取方式（含实测速率、厂商单位 `mm/s²` 与哨兵值、串口独占约束）、输出契约（2D 主输出 + 3D 并行 + 高度交叉校验）、八个因子的残差式、所用开源件与许可、算力预算，以及 2D `5.68 mm` / 3D `16.30 mm` 的蒙特卡洛实算与灵敏度。
+- [ADR-009：无标记定位的深度观测通道与十目标对称群口径](decisions/2026-08-29_ADR-009_markerless_depth_channel_and_symmetry.md)：裁定深度观测通道、十目标对称群与 BOP 键名、相机高度、UWB 锚点与角色、`2 cm` 的标签口径。
 - [参数化沙盘模型](../simulation/README.md)：基于 `4.0 m × 4.7 m` 外包络和 `2.0 m × 2.3 m` 中央工业区参数生成 Gazebo SDF、OBJ 与 Web 场景 JSON。
 - [完整执行步骤](2026-08-19_plan_project_execution_steps.md)：从范围定义、软件骨架、硬件接入、标定、实验到答辩交付的实际顺序。
 - [执行步骤详细指导](2026-08-19_guide_project_execution_steps_detailed.md)：每阶段准备、决策、复用模块、自研边界、产出和验收条件。

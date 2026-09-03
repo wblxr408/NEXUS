@@ -1,6 +1,68 @@
 import numpy as np
 
 
+CARLA_TO_MAP_AXIS = np.diag([1.0, -1.0, 1.0])
+CARLA_ACTOR_TO_OPTICAL = np.array([[0.0, 0.0, 1.0],
+                                    [1.0, 0.0, 0.0],
+                                    [0.0, -1.0, 0.0]])
+BODY_TO_OPTICAL = np.array([[0.0, 0.0, 1.0],
+                            [-1.0, 0.0, 0.0],
+                            [0.0, -1.0, 0.0]])
+
+
+def carla_rotation_matrix(pitch_deg, yaw_deg, roll_deg):
+    """Return CARLA's actor-to-world rotation (pitch, yaw, roll in degrees).
+
+    CARLA's ``get_matrix`` convention is not the generic RzRyRx expression;
+    retaining the explicit formula avoids a silent sign/axis inversion.
+    """
+    theta, psi, phi = np.radians([pitch_deg, yaw_deg, roll_deg])
+    ct, st, cp, sp, cf, sf = np.cos(theta), np.sin(theta), np.cos(psi), np.sin(psi), np.cos(phi), np.sin(phi)
+    return np.array([
+        [ct * cp, cp * st * sf - sp * cf, -cp * st * cf - sp * sf],
+        [ct * sp, sp * st * sf + cp * cf, -sp * st * cf + cp * sf],
+        [st, -ct * sf, ct * cf],
+    ])
+
+
+def carla_point_to_map(point_world_c):
+    point = np.asarray(point_world_c, dtype=float).reshape(3)
+    if not np.all(np.isfinite(point)):
+        raise ValueError("CARLA point must be finite")
+    return CARLA_TO_MAP_AXIS @ point
+
+
+def carla_rotation_to_map(rotation_world_c):
+    rotation = np.asarray(rotation_world_c, dtype=float).reshape(3, 3)
+    if not np.all(np.isfinite(rotation)) or not np.allclose(rotation.T @ rotation, np.eye(3), atol=1e-6):
+        raise ValueError("CARLA rotation must be orthonormal")
+    result = CARLA_TO_MAP_AXIS @ rotation @ CARLA_TO_MAP_AXIS
+    if np.linalg.det(result) <= 0:
+        raise ValueError("converted CARLA rotation must be proper")
+    return result
+
+
+def carla_camera_pose(location_world_c, pitch_deg, yaw_deg, roll_deg):
+    """Convert a CARLA camera actor pose to ``R_map_camera, t_map_camera``."""
+    rotation_actor = carla_rotation_matrix(pitch_deg, yaw_deg, roll_deg)
+    rotation_map_camera = CARLA_TO_MAP_AXIS @ rotation_actor @ CARLA_ACTOR_TO_OPTICAL
+    translation_map_camera = carla_point_to_map(location_world_c)
+    if np.linalg.det(rotation_map_camera) <= 0 or not np.allclose(rotation_map_camera.T @ rotation_map_camera, np.eye(3), atol=1e-6):
+        raise ValueError("CARLA camera conversion did not produce a proper rotation")
+    return rotation_map_camera, translation_map_camera
+
+
+def body_to_camera_rotation(mount_pitch_deg=0.0):
+    """REP-103 body (x forward, y left, z up) to optical (x right, y down, z forward)."""
+    angle = np.radians(float(mount_pitch_deg))
+    cy, sy = np.cos(angle), np.sin(angle)
+    mount = np.array([[cy, 0.0, sy], [0.0, 1.0, 0.0], [-sy, 0.0, cy]])
+    result = mount @ BODY_TO_OPTICAL
+    if np.linalg.det(result) <= 0:
+        raise ValueError("body-to-camera rotation must be proper")
+    return result
+
+
 def apply_rigid_transform(rotation, translation, point):
     rotation = np.asarray(rotation, dtype=float).reshape(3, 3)
     translation = np.asarray(translation, dtype=float).reshape(3)

@@ -13,6 +13,11 @@ solver:
   second_pass: true
   optimize_camera_poses: true
   optimize_segment_alignment: true
+  # Two rounds: locate with bearing + support plane + segment gauge, then add the
+  # contour and anchoring factors to refine attitude and lateral position.
+  stages:
+    - [F1, F3, F6, F8]
+    - [F1, F2, F3, F4, F5, F6, F7, F8]
 gates:
   minimum_views: 3
   minimum_baseline_m: 0.10

@@ -1,0 +1,551 @@
+[0.000000] (-) TimerEvent: {}
+[0.000851] (fcu_core) JobQueued: {'identifier': 'fcu_core', 'dependencies': OrderedDict()}
+[0.001068] (rviz2_custom_panel) JobQueued: {'identifier': 'rviz2_custom_panel', 'dependencies': OrderedDict()}
+[0.001115] (fcu_core) JobStarted: {'identifier': 'fcu_core'}
+[0.009972] (rviz2_custom_panel) JobStarted: {'identifier': 'rviz2_custom_panel'}
+[0.014361] (fcu_core) JobProgress: {'identifier': 'fcu_core', 'progress': 'cmake'}
+[0.017356] (fcu_core) Command: {'cmd': ['/usr/bin/cmake', '/root/nexus_workspace/NEXUS/fcu_core_gcs/src/fcu_core_ros2', '-DCMAKE_INSTALL_PREFIX=/root/nexus_workspace/NEXUS/fcu_core_gcs/install/fcu_core'], 'cwd': '/root/nexus_workspace/NEXUS/fcu_core_gcs/build/fcu_core', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'root'), ('GIT_ASKPASS', '/root/.vscode-server/bin/520fb30b2d3d324b4cb2342f6e88e2cd93751de1/extensions/git/dist/askpass.sh'), ('SHLVL', '2'), ('LD_LIBRARY_PATH', '/usr/lib/x86_64-linux-gnu/gazebo-11/plugins:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib'), ('HOME', '/root'), ('OLDPWD', '/root/nexus_workspace/NEXUS/fcu_core_gcs'), ('TERM_PROGRAM_VERSION', '1.136.0'), ('VSCODE_IPC_HOOK_CLI', '/mnt/wslg/runtime-dir/vscode-ipc-c1252c36-f78d-4bf2-96d3-02190cac82b5.sock'), ('ROS_PYTHON_VERSION', '3'), ('VSCODE_GIT_ASKPASS_MAIN', '/root/.vscode-server/bin/520fb30b2d3d324b4cb2342f6e88e2cd93751de1/extensions/git/dist/askpass-main.js'), ('VSCODE_GIT_ASKPASS_NODE', '/root/.vscode-server/bin/520fb30b2d3d324b4cb2342f6e88e2cd93751de1/node'), ('VSCODE_PYTHON_AUTOACTIVATE_GUARD', '1'), ('COLORTERM', 'truecolor'), ('WSL_DISTRO_NAME', 'Ubuntu-22.04'), ('WAYLAND_DISPLAY', 'wayland-0'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'root'), ('NAME', 'wblxr'), ('WSL_INTEROP', '/run/WSL/8708_interop'), ('PULSE_SERVER', 'unix:/mnt/wslg/PulseServer'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('CLAUDE_CODE_SSE_PORT', '18421'), ('TERM', 'xterm-256color'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/root/.vscode-server/data/User/globalStorage/github.copilot-chat/debugCommand:/root/.vscode-server/data/User/globalStorage/github.copilot-chat/copilotCli:/root/.vscode-server/bin/520fb30b2d3d324b4cb2342f6e88e2cd93751de1/bin/remote-cli:/root/.local/bin:/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/lib/wsl/lib:/mnt/c/Program Files (x86)/VMware/VMware Workstation/bin/:/mnt/c/Program Files/Python313/Scripts/:/mnt/c/Program Files/Python313/:/mnt/c/WINDOWS/system32:/mnt/c/WINDOWS:/mnt/c/WINDOWS/System32/Wbem:/mnt/c/WINDOWS/System32/WindowsPowerShell/v1.0/:/mnt/c/WINDOWS/System32/OpenSSH/:/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common:/mnt/c/Program Files/dotnet/:/mnt/c/altera/91sp2/quartus/bin:/mnt/d/lingo/:/mnt/c/Program Files/mingw64/bin:/mnt/d/New Folder/:/mnt/c/Program Files/Git/cmd:/mnt/c/Program Files/StarUML/StarUML.exe:/mnt/c/Program Files/NVIDIA Corporation/NVIDIA App/NvDLISR:/mnt/c/ProgramData/chocolatey/bin:/mnt/c/ProgramData/chocolatey/lib/maven/apache-maven-3.9.13/bin:/mnt/c/Program Files/Memurai/:/mnt/c/Program Files/k6/:/mnt/c/Program Files/Docker/Docker/resources/bin:/mnt/c/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/:/mnt/c/Program Files/Microsoft SQL Server/170/Tools/Binn/:/mnt/c/Program Files/Go/bin:/mnt/c/Users/wblxr/.local/bin:/mnt/c/Users/wblxr/.cargo/bin:/mnt/d/texlive/2025/bin/windows:/mnt/c/Users/wblxr/AppData/Local/Microsoft/WindowsApps:/mnt/c/Users/wblxr/.dotnet/tools:/mnt/c/msys64/clang64/bin:/mnt/d/MIKTeX/miktex/bin/x64/:/mnt/d/pycharm/PyCharm Community Edition 2024.1/bin:/mnt/c/Users/wblxr/AppData/Roaming/npm:/mnt/d/Kiro/bin:/mnt/d/IntelliJ IDEA 2025.1.3/bin:/mnt/c/Users/wblxr/AppData/Local/Pandoc/:/mnt/c/Users/wblxr/AppData/Local/Programs/MiKTeX/miktex/bin/x64/:/mnt/d/IntelliJ_IDEA/IntelliJ IDEA Community Edition 2025.2.1/bin:/mnt/c/Program Files/Graphviz/bin:/mnt/c/Users/wblxr/AppData/Local/GitHubDesktop/bin:/mnt/d/Microsoft VS Code/bin:/mnt/c/Users/wblxr/AppData/Local/Microsoft/WindowsApps:/mnt/c/Users/wblxr/.dotnet/tools:/mnt/c/Users/wblxr/.jdks/temurin-17.0.18/bin:/mnt/c/tools/mysql/current/bin:/mnt/c/Program Files/Git/usr/bin:/mnt/c/Users/wblxr/bin:/mnt/c/Users/wblxr/AppData/Local/Microsoft/WinGet/Packages/astral-sh.uv_Microsoft.Winget.Source_8wekyb3d8bbwe:/mnt/c/Users/wblxr/.dotnet/tools:/mnt/c/Users/wblxr/AppData/Local/Programs/Prince/prince-16.2-win64/bin:/mnt/c/Users/wblxr/go/bin:/snap/bin'), ('XDG_RUNTIME_DIR', '/mnt/wslg/runtime-dir'), ('DISPLAY', ':0'), ('LANG', 'en_US.UTF-8'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('VSCODE_GIT_IPC_HANDLE', '/mnt/wslg/runtime-dir/vscode-git-f5756022de.sock'), ('TERM_PROGRAM', 'vscode'), ('AMENT_PREFIX_PATH', '/opt/ros/humble'), ('SHELL', '/bin/bash'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('VSCODE_GIT_ASKPASS_EXTRA_ARGS', ''), ('PWD', '/root/nexus_workspace/NEXUS/fcu_core_gcs/build/fcu_core'), ('COPILOT_DEBUG_NONCE', '3513023eecff45a360639dffdfdef9cf'), ('XDG_DATA_DIRS', '/usr/local/share:/usr/share:/var/lib/snapd/desktop'), ('PYTHONPATH', '/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('WSL2_GUI_APPS_ENABLED', '1'), ('HOSTTYPE', 'x86_64'), ('WSLENV', 'VSCODE_WSL_EXT_LOCATION/up'), ('CMAKE_PREFIX_PATH', '/opt/ros/humble')]), 'shell': False}
+[0.023651] (rviz2_custom_panel) JobProgress: {'identifier': 'rviz2_custom_panel', 'progress': 'cmake'}
+[0.027866] (rviz2_custom_panel) Command: {'cmd': ['/usr/bin/cmake', '/root/nexus_workspace/NEXUS/fcu_core_gcs/src/rviz2_custom_panel', '-DCMAKE_INSTALL_PREFIX=/root/nexus_workspace/NEXUS/fcu_core_gcs/install/rviz2_custom_panel'], 'cwd': '/root/nexus_workspace/NEXUS/fcu_core_gcs/build/rviz2_custom_panel', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'root'), ('GIT_ASKPASS', '/root/.vscode-server/bin/520fb30b2d3d324b4cb2342f6e88e2cd93751de1/extensions/git/dist/askpass.sh'), ('SHLVL', '2'), ('LD_LIBRARY_PATH', '/usr/lib/x86_64-linux-gnu/gazebo-11/plugins:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib'), ('HOME', '/root'), ('OLDPWD', '/root/nexus_workspace/NEXUS/fcu_core_gcs'), ('TERM_PROGRAM_VERSION', '1.136.0'), ('VSCODE_IPC_HOOK_CLI', '/mnt/wslg/runtime-dir/vscode-ipc-c1252c36-f78d-4bf2-96d3-02190cac82b5.sock'), ('ROS_PYTHON_VERSION', '3'), ('VSCODE_GIT_ASKPASS_MAIN', '/root/.vscode-server/bin/520fb30b2d3d324b4cb2342f6e88e2cd93751de1/extensions/git/dist/askpass-main.js'), ('VSCODE_GIT_ASKPASS_NODE', '/root/.vscode-server/bin/520fb30b2d3d324b4cb2342f6e88e2cd93751de1/node'), ('VSCODE_PYTHON_AUTOACTIVATE_GUARD', '1'), ('COLORTERM', 'truecolor'), ('WSL_DISTRO_NAME', 'Ubuntu-22.04'), ('WAYLAND_DISPLAY', 'wayland-0'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'root'), ('NAME', 'wblxr'), ('WSL_INTEROP', '/run/WSL/8708_interop'), ('PULSE_SERVER', 'unix:/mnt/wslg/PulseServer'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('CLAUDE_CODE_SSE_PORT', '18421'), ('TERM', 'xterm-256color'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/root/.vscode-server/data/User/globalStorage/github.copilot-chat/debugCommand:/root/.vscode-server/data/User/globalStorage/github.copilot-chat/copilotCli:/root/.vscode-server/bin/520fb30b2d3d324b4cb2342f6e88e2cd93751de1/bin/remote-cli:/root/.local/bin:/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/lib/wsl/lib:/mnt/c/Program Files (x86)/VMware/VMware Workstation/bin/:/mnt/c/Program Files/Python313/Scripts/:/mnt/c/Program Files/Python313/:/mnt/c/WINDOWS/system32:/mnt/c/WINDOWS:/mnt/c/WINDOWS/System32/Wbem:/mnt/c/WINDOWS/System32/WindowsPowerShell/v1.0/:/mnt/c/WINDOWS/System32/OpenSSH/:/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common:/mnt/c/Program Files/dotnet/:/mnt/c/altera/91sp2/quartus/bin:/mnt/d/lingo/:/mnt/c/Program Files/mingw64/bin:/mnt/d/New Folder/:/mnt/c/Program Files/Git/cmd:/mnt/c/Program Files/StarUML/StarUML.exe:/mnt/c/Program Files/NVIDIA Corporation/NVIDIA App/NvDLISR:/mnt/c/ProgramData/chocolatey/bin:/mnt/c/ProgramData/chocolatey/lib/maven/apache-maven-3.9.13/bin:/mnt/c/Program Files/Memurai/:/mnt/c/Program Files/k6/:/mnt/c/Program Files/Docker/Docker/resources/bin:/mnt/c/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/:/mnt/c/Program Files/Microsoft SQL Server/170/Tools/Binn/:/mnt/c/Program Files/Go/bin:/mnt/c/Users/wblxr/.local/bin:/mnt/c/Users/wblxr/.cargo/bin:/mnt/d/texlive/2025/bin/windows:/mnt/c/Users/wblxr/AppData/Local/Microsoft/WindowsApps:/mnt/c/Users/wblxr/.dotnet/tools:/mnt/c/msys64/clang64/bin:/mnt/d/MIKTeX/miktex/bin/x64/:/mnt/d/pycharm/PyCharm Community Edition 2024.1/bin:/mnt/c/Users/wblxr/AppData/Roaming/npm:/mnt/d/Kiro/bin:/mnt/d/IntelliJ IDEA 2025.1.3/bin:/mnt/c/Users/wblxr/AppData/Local/Pandoc/:/mnt/c/Users/wblxr/AppData/Local/Programs/MiKTeX/miktex/bin/x64/:/mnt/d/IntelliJ_IDEA/IntelliJ IDEA Community Edition 2025.2.1/bin:/mnt/c/Program Files/Graphviz/bin:/mnt/c/Users/wblxr/AppData/Local/GitHubDesktop/bin:/mnt/d/Microsoft VS Code/bin:/mnt/c/Users/wblxr/AppData/Local/Microsoft/WindowsApps:/mnt/c/Users/wblxr/.dotnet/tools:/mnt/c/Users/wblxr/.jdks/temurin-17.0.18/bin:/mnt/c/tools/mysql/current/bin:/mnt/c/Program Files/Git/usr/bin:/mnt/c/Users/wblxr/bin:/mnt/c/Users/wblxr/AppData/Local/Microsoft/WinGet/Packages/astral-sh.uv_Microsoft.Winget.Source_8wekyb3d8bbwe:/mnt/c/Users/wblxr/.dotnet/tools:/mnt/c/Users/wblxr/AppData/Local/Programs/Prince/prince-16.2-win64/bin:/mnt/c/Users/wblxr/go/bin:/snap/bin'), ('XDG_RUNTIME_DIR', '/mnt/wslg/runtime-dir'), ('DISPLAY', ':0'), ('LANG', 'en_US.UTF-8'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('VSCODE_GIT_IPC_HANDLE', '/mnt/wslg/runtime-dir/vscode-git-f5756022de.sock'), ('TERM_PROGRAM', 'vscode'), ('AMENT_PREFIX_PATH', '/opt/ros/humble'), ('SHELL', '/bin/bash'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('VSCODE_GIT_ASKPASS_EXTRA_ARGS', ''), ('PWD', '/root/nexus_workspace/NEXUS/fcu_core_gcs/build/rviz2_custom_panel'), ('COPILOT_DEBUG_NONCE', '3513023eecff45a360639dffdfdef9cf'), ('XDG_DATA_DIRS', '/usr/local/share:/usr/share:/var/lib/snapd/desktop'), ('PYTHONPATH', '/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('WSL2_GUI_APPS_ENABLED', '1'), ('HOSTTYPE', 'x86_64'), ('WSLENV', 'VSCODE_WSL_EXT_LOCATION/up'), ('CMAKE_PREFIX_PATH', '/opt/ros/humble')]), 'shell': False}
+[0.099726] (-) TimerEvent: {}
+[0.200107] (-) TimerEvent: {}
+[0.300471] (-) TimerEvent: {}
+[0.380392] (fcu_core) StdoutLine: {'line': b'-- The C compiler identification is GNU 11.4.0\n'}
+[0.380734] (rviz2_custom_panel) StdoutLine: {'line': b'-- The C compiler identification is GNU 11.4.0\n'}
+[0.400646] (-) TimerEvent: {}
+[0.501245] (-) TimerEvent: {}
+[0.601766] (-) TimerEvent: {}
+[0.702407] (-) TimerEvent: {}
+[0.803247] (-) TimerEvent: {}
+[0.903911] (-) TimerEvent: {}
+[1.004469] (-) TimerEvent: {}
+[1.104969] (-) TimerEvent: {}
+[1.205501] (-) TimerEvent: {}
+[1.208609] (rviz2_custom_panel) StdoutLine: {'line': b'-- The CXX compiler identification is GNU 11.4.0\n'}
+[1.209079] (fcu_core) StdoutLine: {'line': b'-- The CXX compiler identification is GNU 11.4.0\n'}
+[1.305758] (-) TimerEvent: {}
+[1.406278] (-) TimerEvent: {}
+[1.506679] (-) TimerEvent: {}
+[1.607127] (-) TimerEvent: {}
+[1.707545] (-) TimerEvent: {}
+[1.753018] (fcu_core) StdoutLine: {'line': b'-- Detecting C compiler ABI info\n'}
+[1.755694] (rviz2_custom_panel) StdoutLine: {'line': b'-- Detecting C compiler ABI info\n'}
+[1.807731] (-) TimerEvent: {}
+[1.908217] (-) TimerEvent: {}
+[1.970691] (fcu_core) StdoutLine: {'line': b'-- Detecting C compiler ABI info - done\n'}
+[1.971070] (rviz2_custom_panel) StdoutLine: {'line': b'-- Detecting C compiler ABI info - done\n'}
+[1.975707] (fcu_core) StdoutLine: {'line': b'-- Check for working C compiler: /usr/bin/cc - skipped\n'}
+[1.975966] (rviz2_custom_panel) StdoutLine: {'line': b'-- Check for working C compiler: /usr/bin/cc - skipped\n'}
+[1.976419] (fcu_core) StdoutLine: {'line': b'-- Detecting C compile features\n'}
+[1.976650] (rviz2_custom_panel) StdoutLine: {'line': b'-- Detecting C compile features\n'}
+[1.976913] (rviz2_custom_panel) StdoutLine: {'line': b'-- Detecting C compile features - done\n'}
+[1.976985] (fcu_core) StdoutLine: {'line': b'-- Detecting C compile features - done\n'}
+[1.979785] (fcu_core) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info\n'}
+[1.979944] (rviz2_custom_panel) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info\n'}
+[2.008331] (-) TimerEvent: {}
+[2.108679] (-) TimerEvent: {}
+[2.175828] (fcu_core) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info - done\n'}
+[2.176964] (rviz2_custom_panel) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info - done\n'}
+[2.180566] (fcu_core) StdoutLine: {'line': b'-- Check for working CXX compiler: /usr/bin/c++ - skipped\n'}
+[2.180945] (fcu_core) StdoutLine: {'line': b'-- Detecting CXX compile features\n'}
+[2.181110] (fcu_core) StdoutLine: {'line': b'-- Detecting CXX compile features - done\n'}
+[2.181483] (rviz2_custom_panel) StdoutLine: {'line': b'-- Check for working CXX compiler: /usr/bin/c++ - skipped\n'}
+[2.181728] (rviz2_custom_panel) StdoutLine: {'line': b'-- Detecting CXX compile features\n'}
+[2.182114] (rviz2_custom_panel) StdoutLine: {'line': b'-- Detecting CXX compile features - done\n'}
+[2.185530] (rviz2_custom_panel) StdoutLine: {'line': b'-- Found ament_cmake: 1.3.14 (/opt/ros/humble/share/ament_cmake/cmake)\n'}
+[2.185739] (fcu_core) StdoutLine: {'line': b'-- Found ament_cmake: 1.3.14 (/opt/ros/humble/share/ament_cmake/cmake)\n'}
+[2.208807] (-) TimerEvent: {}
+[2.307070] (rviz2_custom_panel) StdoutLine: {'line': b'-- Found Python3: /usr/bin/python3 (found version "3.10.12") found components: Interpreter \n'}
+[2.307445] (fcu_core) StdoutLine: {'line': b'-- Found Python3: /usr/bin/python3 (found version "3.10.12") found components: Interpreter \n'}
+[2.308913] (-) TimerEvent: {}
+[2.390085] (rviz2_custom_panel) StdoutLine: {'line': b'-- Found rviz_common: 11.2.28 (/opt/ros/humble/share/rviz_common/cmake)\n'}
+[2.390396] (fcu_core) StdoutLine: {'line': b'-- Found rclcpp: 16.0.19 (/opt/ros/humble/share/rclcpp/cmake)\n'}
+[2.409133] (-) TimerEvent: {}
+[2.509535] (-) TimerEvent: {}
+[2.573260] (fcu_core) StdoutLine: {'line': b'-- Found rosidl_generator_c: 3.1.9 (/opt/ros/humble/share/rosidl_generator_c/cmake)\n'}
+[2.577155] (fcu_core) StdoutLine: {'line': b'-- Found rosidl_adapter: 3.1.9 (/opt/ros/humble/share/rosidl_adapter/cmake)\n'}
+[2.584301] (fcu_core) StdoutLine: {'line': b'-- Found rosidl_generator_cpp: 3.1.9 (/opt/ros/humble/share/rosidl_generator_cpp/cmake)\n'}
+[2.595370] (fcu_core) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c\n'}
+[2.608425] (fcu_core) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp\n'}
+[2.609642] (-) TimerEvent: {}
+[2.636460] (rviz2_custom_panel) StdoutLine: {'line': b"-- Setting assimp_DIR to: '/opt/ros/humble/share/rviz_assimp_vendor/cmake/../../../opt/rviz_assimp_vendor/lib/cmake/assimp-4.1'\n"}
+[2.643650] (rviz2_custom_panel) StdoutLine: {'line': b"-- Setting OGRE_DIR to: '/opt/ros/humble/share/rviz_ogre_vendor/cmake/../../../opt/rviz_ogre_vendor/lib/OGRE/cmake'\n"}
+[2.645245] (rviz2_custom_panel) StdoutLine: {'line': b'-- Found OGRE\n'}
+[2.645400] (rviz2_custom_panel) StdoutLine: {'line': b'--   static     : OFF\n'}
+[2.645445] (rviz2_custom_panel) StdoutLine: {'line': b'--   components : HLMS;MeshLodGenerator;Overlay;Paging;Property;RTShaderSystem;Terrain;Volume\n'}
+[2.645485] (rviz2_custom_panel) StdoutLine: {'line': b'--   plugins    : Plugin_BSPSceneManager;Plugin_OctreeSceneManager;Plugin_PCZSceneManager;Plugin_ParticleFX;RenderSystem_GL;RenderSystem_GL3Plus;Codec_STBI\n'}
+[2.645520] (rviz2_custom_panel) StdoutLine: {'line': b'--   media      : /opt/ros/humble/opt/rviz_ogre_vendor/share/OGRE/Media\n'}
+[2.645639] (rviz2_custom_panel) StdoutLine: {'line': b'-- OGRE_LIBRARIES: OgreHLMS;OgreMeshLodGenerator;OgreOverlay;OgrePaging;OgreProperty;OgreRTShaderSystem;OgreTerrain;OgreVolume;OgreMain\n'}
+[2.645699] (rviz2_custom_panel) StdoutLine: {'line': b'-- OGRE_LIBRARY_DIRS: /opt/ros/humble/opt/rviz_ogre_vendor/lib\n'}
+[2.645956] (rviz2_custom_panel) StdoutLine: {'line': b'-- OGRE_PLUGINS: Plugin_BSPSceneManager;Plugin_OctreeSceneManager;Plugin_PCZSceneManager;Plugin_ParticleFX;RenderSystem_GL;RenderSystem_GL3Plus;Codec_STBI\n'}
+[2.646002] (rviz2_custom_panel) StdoutLine: {'line': b'-- OGRE_PLUGIN_DIR: /opt/ros/humble/opt/rviz_ogre_vendor/lib/OGRE\n'}
+[2.646077] (rviz2_custom_panel) StdoutLine: {'line': b'-- rviz_ogre_vendor::OgreOverlay for IMPORTED_LOCATION_RELEASE: /opt/ros/humble/opt/rviz_ogre_vendor/lib/libOgreOverlay.so\n'}
+[2.646122] (rviz2_custom_panel) StdoutLine: {'line': b'-- rviz_ogre_vendor::OgreOverlay for IMPORTED_LOCATION_DEBUG: /opt/ros/humble/opt/rviz_ogre_vendor/lib/libOgreOverlay.so\n'}
+[2.646158] (rviz2_custom_panel) StdoutLine: {'line': b'-- rviz_ogre_vendor::OgreMain for IMPORTED_LOCATION_RELEASE: /opt/ros/humble/opt/rviz_ogre_vendor/lib/libOgreMain.so\n'}
+[2.646194] (rviz2_custom_panel) StdoutLine: {'line': b'-- rviz_ogre_vendor::OgreMain for IMPORTED_LOCATION_DEBUG: /opt/ros/humble/opt/rviz_ogre_vendor/lib/libOgreMain.so\n'}
+[2.647867] (fcu_core) StdoutLine: {'line': b'-- Found rmw_implementation_cmake: 6.1.3 (/opt/ros/humble/share/rmw_implementation_cmake/cmake)\n'}
+[2.650274] (fcu_core) StdoutLine: {'line': b'-- Found rmw_fastrtps_cpp: 6.2.10 (/opt/ros/humble/share/rmw_fastrtps_cpp/cmake)\n'}
+[2.709795] (-) TimerEvent: {}
+[2.810333] (-) TimerEvent: {}
+[2.910720] (-) TimerEvent: {}
+[3.011107] (-) TimerEvent: {}
+[3.111474] (-) TimerEvent: {}
+[3.211861] (-) TimerEvent: {}
+[3.312449] (-) TimerEvent: {}
+[3.412992] (-) TimerEvent: {}
+[3.513392] (-) TimerEvent: {}
+[3.613767] (-) TimerEvent: {}
+[3.714147] (-) TimerEvent: {}
+[3.814548] (-) TimerEvent: {}
+[3.914948] (-) TimerEvent: {}
+[4.015324] (-) TimerEvent: {}
+[4.115701] (-) TimerEvent: {}
+[4.216077] (-) TimerEvent: {}
+[4.316467] (-) TimerEvent: {}
+[4.416843] (-) TimerEvent: {}
+[4.517221] (-) TimerEvent: {}
+[4.617597] (-) TimerEvent: {}
+[4.717959] (-) TimerEvent: {}
+[4.784004] (fcu_core) StdoutLine: {'line': b'-- Found OpenSSL: /usr/lib/x86_64-linux-gnu/libcrypto.so (found version "3.0.2")  \n'}
+[4.818082] (-) TimerEvent: {}
+[4.918439] (-) TimerEvent: {}
+[5.018805] (-) TimerEvent: {}
+[5.119183] (-) TimerEvent: {}
+[5.219555] (-) TimerEvent: {}
+[5.319912] (-) TimerEvent: {}
+[5.420319] (-) TimerEvent: {}
+[5.460259] (rviz2_custom_panel) StdoutLine: {'line': b'-- Found ZLIB: /usr/lib/x86_64-linux-gnu/libz.so (found version "1.2.11") \n'}
+[5.520469] (-) TimerEvent: {}
+[5.620874] (-) TimerEvent: {}
+[5.721305] (-) TimerEvent: {}
+[5.821848] (-) TimerEvent: {}
+[5.922302] (-) TimerEvent: {}
+[6.022720] (-) TimerEvent: {}
+[6.123169] (-) TimerEvent: {}
+[6.223593] (-) TimerEvent: {}
+[6.281176] (rviz2_custom_panel) StdoutLine: {'line': b'-- Found OpenGL: /usr/lib/x86_64-linux-gnu/libOpenGL.so   \n'}
+[6.323819] (-) TimerEvent: {}
+[6.424357] (-) TimerEvent: {}
+[6.524998] (-) TimerEvent: {}
+[6.625420] (-) TimerEvent: {}
+[6.725831] (-) TimerEvent: {}
+[6.826215] (-) TimerEvent: {}
+[6.926603] (-) TimerEvent: {}
+[7.026990] (-) TimerEvent: {}
+[7.127346] (-) TimerEvent: {}
+[7.145713] (fcu_core) StdoutLine: {'line': b'-- Found FastRTPS: /opt/ros/humble/include  \n'}
+[7.227487] (-) TimerEvent: {}
+[7.327865] (-) TimerEvent: {}
+[7.428248] (-) TimerEvent: {}
+[7.528726] (-) TimerEvent: {}
+[7.629285] (-) TimerEvent: {}
+[7.729685] (-) TimerEvent: {}
+[7.830069] (-) TimerEvent: {}
+[7.930477] (-) TimerEvent: {}
+[8.030964] (-) TimerEvent: {}
+[8.131358] (-) TimerEvent: {}
+[8.231770] (-) TimerEvent: {}
+[8.332160] (-) TimerEvent: {}
+[8.432525] (-) TimerEvent: {}
+[8.532929] (-) TimerEvent: {}
+[8.633327] (-) TimerEvent: {}
+[8.733691] (-) TimerEvent: {}
+[8.834066] (-) TimerEvent: {}
+[8.934449] (-) TimerEvent: {}
+[9.034847] (-) TimerEvent: {}
+[9.135199] (-) TimerEvent: {}
+[9.235596] (-) TimerEvent: {}
+[9.335993] (-) TimerEvent: {}
+[9.436390] (-) TimerEvent: {}
+[9.536863] (-) TimerEvent: {}
+[9.637409] (-) TimerEvent: {}
+[9.738049] (-) TimerEvent: {}
+[9.838647] (-) TimerEvent: {}
+[9.939564] (-) TimerEvent: {}
+[10.040040] (-) TimerEvent: {}
+[10.140564] (-) TimerEvent: {}
+[10.241327] (-) TimerEvent: {}
+[10.341890] (-) TimerEvent: {}
+[10.442657] (-) TimerEvent: {}
+[10.543323] (-) TimerEvent: {}
+[10.643990] (-) TimerEvent: {}
+[10.744488] (-) TimerEvent: {}
+[10.844996] (-) TimerEvent: {}
+[10.945707] (-) TimerEvent: {}
+[11.046259] (-) TimerEvent: {}
+[11.146697] (-) TimerEvent: {}
+[11.247188] (-) TimerEvent: {}
+[11.347759] (-) TimerEvent: {}
+[11.448198] (-) TimerEvent: {}
+[11.548726] (-) TimerEvent: {}
+[11.649203] (-) TimerEvent: {}
+[11.749654] (-) TimerEvent: {}
+[11.850145] (-) TimerEvent: {}
+[11.950574] (-) TimerEvent: {}
+[11.979976] (fcu_core) StdoutLine: {'line': b"-- Using RMW implementation 'rmw_fastrtps_cpp' as default\n"}
+[11.994347] (fcu_core) StdoutLine: {'line': b'-- Looking for pthread.h\n'}
+[12.050727] (-) TimerEvent: {}
+[12.151147] (-) TimerEvent: {}
+[12.251552] (-) TimerEvent: {}
+[12.279305] (fcu_core) StdoutLine: {'line': b'-- Looking for pthread.h - found\n'}
+[12.279981] (fcu_core) StdoutLine: {'line': b'-- Performing Test CMAKE_HAVE_LIBC_PTHREAD\n'}
+[12.310578] (rviz2_custom_panel) StdoutLine: {'line': b'-- Found X11: /usr/include   \n'}
+[12.310966] (rviz2_custom_panel) StdoutLine: {'line': b'-- Looking for XOpenDisplay in /usr/lib/x86_64-linux-gnu/libX11.so;/usr/lib/x86_64-linux-gnu/libXext.so\n'}
+[12.351707] (-) TimerEvent: {}
+[12.452131] (-) TimerEvent: {}
+[12.539471] (fcu_core) StdoutLine: {'line': b'-- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success\n'}
+[12.540370] (fcu_core) StdoutLine: {'line': b'-- Found Threads: TRUE  \n'}
+[12.552264] (-) TimerEvent: {}
+[12.566206] (rviz2_custom_panel) StdoutLine: {'line': b'-- Looking for XOpenDisplay in /usr/lib/x86_64-linux-gnu/libX11.so;/usr/lib/x86_64-linux-gnu/libXext.so - found\n'}
+[12.566601] (rviz2_custom_panel) StdoutLine: {'line': b'-- Looking for gethostbyname\n'}
+[12.617494] (fcu_core) StdoutLine: {'line': b'-- Found ament_lint_auto: 0.12.15 (/opt/ros/humble/share/ament_lint_auto/cmake)\n'}
+[12.652418] (-) TimerEvent: {}
+[12.701573] (fcu_core) StdoutLine: {'line': b"-- Added test 'cppcheck' to perform static code analysis on C / C++ code\n"}
+[12.701826] (fcu_core) StdoutLine: {'line': b'-- Configured cppcheck include dirs: \n'}
+[12.701920] (fcu_core) StdoutLine: {'line': b'-- Configured cppcheck exclude dirs and/or files: \n'}
+[12.702801] (fcu_core) StdoutLine: {'line': b"-- Added test 'flake8' to check Python code syntax and style conventions\n"}
+[12.703779] (fcu_core) StdoutLine: {'line': b"-- Added test 'lint_cmake' to check CMake code style\n"}
+[12.704636] (fcu_core) StdoutLine: {'line': b"-- Added test 'pep257' to check Python code against some of the docstring style conventions in PEP 257\n"}
+[12.706767] (fcu_core) StdoutLine: {'line': b"-- Added test 'uncrustify' to check C / C++ code style\n"}
+[12.706920] (fcu_core) StdoutLine: {'line': b'-- Configured uncrustify additional arguments: \n'}
+[12.707751] (fcu_core) StdoutLine: {'line': b"-- Added test 'xmllint' to check XML markup files\n"}
+[12.710344] (fcu_core) StdoutLine: {'line': b'-- Configuring done\n'}
+[12.731695] (fcu_core) StdoutLine: {'line': b'-- Generating done\n'}
+[12.740010] (fcu_core) StdoutLine: {'line': b'-- Build files have been written to: /root/nexus_workspace/NEXUS/fcu_core_gcs/build/fcu_core\n'}
+[12.752646] (-) TimerEvent: {}
+[12.753715] (fcu_core) CommandEnded: {'returncode': 0}
+[12.756246] (fcu_core) JobProgress: {'identifier': 'fcu_core', 'progress': 'build'}
+[12.756450] (fcu_core) Command: {'cmd': ['/usr/bin/cmake', '--build', '/root/nexus_workspace/NEXUS/fcu_core_gcs/build/fcu_core', '--', '-j8', '-l8'], 'cwd': '/root/nexus_workspace/NEXUS/fcu_core_gcs/build/fcu_core', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'root'), ('GIT_ASKPASS', '/root/.vscode-server/bin/520fb30b2d3d324b4cb2342f6e88e2cd93751de1/extensions/git/dist/askpass.sh'), ('SHLVL', '2'), ('LD_LIBRARY_PATH', '/usr/lib/x86_64-linux-gnu/gazebo-11/plugins:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib'), ('HOME', '/root'), ('OLDPWD', '/root/nexus_workspace/NEXUS/fcu_core_gcs'), ('TERM_PROGRAM_VERSION', '1.136.0'), ('VSCODE_IPC_HOOK_CLI', '/mnt/wslg/runtime-dir/vscode-ipc-c1252c36-f78d-4bf2-96d3-02190cac82b5.sock'), ('ROS_PYTHON_VERSION', '3'), ('VSCODE_GIT_ASKPASS_MAIN', '/root/.vscode-server/bin/520fb30b2d3d324b4cb2342f6e88e2cd93751de1/extensions/git/dist/askpass-main.js'), ('VSCODE_GIT_ASKPASS_NODE', '/root/.vscode-server/bin/520fb30b2d3d324b4cb2342f6e88e2cd93751de1/node'), ('VSCODE_PYTHON_AUTOACTIVATE_GUARD', '1'), ('COLORTERM', 'truecolor'), ('WSL_DISTRO_NAME', 'Ubuntu-22.04'), ('WAYLAND_DISPLAY', 'wayland-0'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'root'), ('NAME', 'wblxr'), ('WSL_INTEROP', '/run/WSL/8708_interop'), ('PULSE_SERVER', 'unix:/mnt/wslg/PulseServer'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('CLAUDE_CODE_SSE_PORT', '18421'), ('TERM', 'xterm-256color'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/root/.vscode-server/data/User/globalStorage/github.copilot-chat/debugCommand:/root/.vscode-server/data/User/globalStorage/github.copilot-chat/copilotCli:/root/.vscode-server/bin/520fb30b2d3d324b4cb2342f6e88e2cd93751de1/bin/remote-cli:/root/.local/bin:/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/lib/wsl/lib:/mnt/c/Program Files (x86)/VMware/VMware Workstation/bin/:/mnt/c/Program Files/Python313/Scripts/:/mnt/c/Program Files/Python313/:/mnt/c/WINDOWS/system32:/mnt/c/WINDOWS:/mnt/c/WINDOWS/System32/Wbem:/mnt/c/WINDOWS/System32/WindowsPowerShell/v1.0/:/mnt/c/WINDOWS/System32/OpenSSH/:/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common:/mnt/c/Program Files/dotnet/:/mnt/c/altera/91sp2/quartus/bin:/mnt/d/lingo/:/mnt/c/Program Files/mingw64/bin:/mnt/d/New Folder/:/mnt/c/Program Files/Git/cmd:/mnt/c/Program Files/StarUML/StarUML.exe:/mnt/c/Program Files/NVIDIA Corporation/NVIDIA App/NvDLISR:/mnt/c/ProgramData/chocolatey/bin:/mnt/c/ProgramData/chocolatey/lib/maven/apache-maven-3.9.13/bin:/mnt/c/Program Files/Memurai/:/mnt/c/Program Files/k6/:/mnt/c/Program Files/Docker/Docker/resources/bin:/mnt/c/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/:/mnt/c/Program Files/Microsoft SQL Server/170/Tools/Binn/:/mnt/c/Program Files/Go/bin:/mnt/c/Users/wblxr/.local/bin:/mnt/c/Users/wblxr/.cargo/bin:/mnt/d/texlive/2025/bin/windows:/mnt/c/Users/wblxr/AppData/Local/Microsoft/WindowsApps:/mnt/c/Users/wblxr/.dotnet/tools:/mnt/c/msys64/clang64/bin:/mnt/d/MIKTeX/miktex/bin/x64/:/mnt/d/pycharm/PyCharm Community Edition 2024.1/bin:/mnt/c/Users/wblxr/AppData/Roaming/npm:/mnt/d/Kiro/bin:/mnt/d/IntelliJ IDEA 2025.1.3/bin:/mnt/c/Users/wblxr/AppData/Local/Pandoc/:/mnt/c/Users/wblxr/AppData/Local/Programs/MiKTeX/miktex/bin/x64/:/mnt/d/IntelliJ_IDEA/IntelliJ IDEA Community Edition 2025.2.1/bin:/mnt/c/Program Files/Graphviz/bin:/mnt/c/Users/wblxr/AppData/Local/GitHubDesktop/bin:/mnt/d/Microsoft VS Code/bin:/mnt/c/Users/wblxr/AppData/Local/Microsoft/WindowsApps:/mnt/c/Users/wblxr/.dotnet/tools:/mnt/c/Users/wblxr/.jdks/temurin-17.0.18/bin:/mnt/c/tools/mysql/current/bin:/mnt/c/Program Files/Git/usr/bin:/mnt/c/Users/wblxr/bin:/mnt/c/Users/wblxr/AppData/Local/Microsoft/WinGet/Packages/astral-sh.uv_Microsoft.Winget.Source_8wekyb3d8bbwe:/mnt/c/Users/wblxr/.dotnet/tools:/mnt/c/Users/wblxr/AppData/Local/Programs/Prince/prince-16.2-win64/bin:/mnt/c/Users/wblxr/go/bin:/snap/bin'), ('XDG_RUNTIME_DIR', '/mnt/wslg/runtime-dir'), ('DISPLAY', ':0'), ('LANG', 'en_US.UTF-8'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('VSCODE_GIT_IPC_HANDLE', '/mnt/wslg/runtime-dir/vscode-git-f5756022de.sock'), ('TERM_PROGRAM', 'vscode'), ('AMENT_PREFIX_PATH', '/opt/ros/humble'), ('SHELL', '/bin/bash'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('VSCODE_GIT_ASKPASS_EXTRA_ARGS', ''), ('PWD', '/root/nexus_workspace/NEXUS/fcu_core_gcs/build/fcu_core'), ('COPILOT_DEBUG_NONCE', '3513023eecff45a360639dffdfdef9cf'), ('XDG_DATA_DIRS', '/usr/local/share:/usr/share:/var/lib/snapd/desktop'), ('PYTHONPATH', '/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('WSL2_GUI_APPS_ENABLED', '1'), ('HOSTTYPE', 'x86_64'), ('WSLENV', 'VSCODE_WSL_EXT_LOCATION/up'), ('CMAKE_PREFIX_PATH', '/opt/ros/humble')]), 'shell': False}
+[12.813094] (fcu_core) StdoutLine: {'line': b'[ 50%] \x1b[32mBuilding CXX object CMakeFiles/fcu_command.dir/src/fcu_command.cpp.o\x1b[0m\n'}
+[12.819263] (rviz2_custom_panel) StdoutLine: {'line': b'-- Looking for gethostbyname - found\n'}
+[12.819565] (rviz2_custom_panel) StdoutLine: {'line': b'-- Looking for connect\n'}
+[12.852862] (-) TimerEvent: {}
+[12.953472] (-) TimerEvent: {}
+[13.053892] (-) TimerEvent: {}
+[13.054431] (rviz2_custom_panel) StdoutLine: {'line': b'-- Looking for connect - found\n'}
+[13.054910] (rviz2_custom_panel) StdoutLine: {'line': b'-- Looking for remove\n'}
+[13.154082] (-) TimerEvent: {}
+[13.254659] (-) TimerEvent: {}
+[13.311111] (rviz2_custom_panel) StdoutLine: {'line': b'-- Looking for remove - found\n'}
+[13.311452] (rviz2_custom_panel) StdoutLine: {'line': b'-- Looking for shmat\n'}
+[13.354840] (-) TimerEvent: {}
+[13.455405] (-) TimerEvent: {}
+[13.539333] (rviz2_custom_panel) StdoutLine: {'line': b'-- Looking for shmat - found\n'}
+[13.539621] (rviz2_custom_panel) StdoutLine: {'line': b'-- Looking for IceConnectionNumber in ICE\n'}
+[13.555562] (-) TimerEvent: {}
+[13.656015] (-) TimerEvent: {}
+[13.756410] (-) TimerEvent: {}
+[13.765243] (rviz2_custom_panel) StdoutLine: {'line': b'-- Looking for IceConnectionNumber in ICE - found\n'}
+[13.856568] (-) TimerEvent: {}
+[13.957000] (-) TimerEvent: {}
+[14.057389] (-) TimerEvent: {}
+[14.157849] (-) TimerEvent: {}
+[14.258348] (-) TimerEvent: {}
+[14.358880] (-) TimerEvent: {}
+[14.459364] (-) TimerEvent: {}
+[14.559902] (-) TimerEvent: {}
+[14.660381] (-) TimerEvent: {}
+[14.761053] (-) TimerEvent: {}
+[14.861559] (-) TimerEvent: {}
+[14.962041] (-) TimerEvent: {}
+[15.062693] (-) TimerEvent: {}
+[15.163250] (-) TimerEvent: {}
+[15.263736] (-) TimerEvent: {}
+[15.364383] (-) TimerEvent: {}
+[15.465027] (-) TimerEvent: {}
+[15.565807] (-) TimerEvent: {}
+[15.666405] (-) TimerEvent: {}
+[15.766925] (-) TimerEvent: {}
+[15.867513] (-) TimerEvent: {}
+[15.873191] (fcu_core) StderrLine: {'line': b'In file included from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/logging.hpp:24\x1b[m\x1b[K,\n'}
+[15.873480] (fcu_core) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/client.hpp:40\x1b[m\x1b[K,\n'}
+[15.873581] (fcu_core) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/callback_group.hpp:24\x1b[m\x1b[K,\n'}
+[15.873632] (fcu_core) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/any_executable.hpp:20\x1b[m\x1b[K,\n'}
+[15.873680] (fcu_core) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategy.hpp:25\x1b[m\x1b[K,\n'}
+[15.873717] (fcu_core) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/memory_strategies.hpp:18\x1b[m\x1b[K,\n'}
+[15.873758] (fcu_core) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/executor_options.hpp:20\x1b[m\x1b[K,\n'}
+[15.873792] (fcu_core) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/executor.hpp:37\x1b[m\x1b[K,\n'}
+[15.873825] (fcu_core) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/executors/multi_threaded_executor.hpp:25\x1b[m\x1b[K,\n'}
+[15.873858] (fcu_core) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/executors.hpp:21\x1b[m\x1b[K,\n'}
+[15.873890] (fcu_core) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:155\x1b[m\x1b[K,\n'}
+[15.873921] (fcu_core) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/root/nexus_workspace/NEXUS/fcu_core_gcs/src/fcu_core_ros2/src/fcu_command.cpp:5\x1b[m\x1b[K:\n'}
+[15.873959] (fcu_core) StderrLine: {'line': b'\x1b[01m\x1b[K/root/nexus_workspace/NEXUS/fcu_core_gcs/src/fcu_core_ros2/src/fcu_command.cpp:\x1b[m\x1b[K In function \xe2\x80\x98\x1b[01m\x1b[Kvoid print_help()\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[15.873991] (fcu_core) StderrLine: {'line': b'\x1b[01m\x1b[K/root/nexus_workspace/NEXUS/fcu_core_gcs/src/fcu_core_ros2/src/fcu_command.cpp:13:50:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kzero-length gnu_printf format string [\x1b[01;35m\x1b[K\x1b]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wformat-zero-length\x07-Wformat-zero-length\x1b]8;;\x07\x1b[m\x1b[K]\n'}
+[15.874031] (fcu_core) StderrLine: {'line': b'   13 |   RCLCPP_INFO(rclcpp::get_logger("fcu_command"), \x1b[01;35m\x1b[K""\x1b[m\x1b[K);\n'}
+[15.874063] (fcu_core) StderrLine: {'line': b'      |                                                  \x1b[01;35m\x1b[K^~\x1b[m\x1b[K\n'}
+[15.875297] (fcu_core) StderrLine: {'line': b'\x1b[01m\x1b[K/root/nexus_workspace/NEXUS/fcu_core_gcs/src/fcu_core_ros2/src/fcu_command.cpp:20:50:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kzero-length gnu_printf format string [\x1b[01;35m\x1b[K\x1b]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wformat-zero-length\x07-Wformat-zero-length\x1b]8;;\x07\x1b[m\x1b[K]\n'}
+[15.875553] (fcu_core) StderrLine: {'line': b'   20 |   RCLCPP_INFO(rclcpp::get_logger("fcu_command"), \x1b[01;35m\x1b[K""\x1b[m\x1b[K);\n'}
+[15.875645] (fcu_core) StderrLine: {'line': b'      |                                                  \x1b[01;35m\x1b[K^~\x1b[m\x1b[K\n'}
+[15.876860] (fcu_core) StderrLine: {'line': b'\x1b[01m\x1b[K/root/nexus_workspace/NEXUS/fcu_core_gcs/src/fcu_core_ros2/src/fcu_command.cpp:26:50:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kzero-length gnu_printf format string [\x1b[01;35m\x1b[K\x1b]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wformat-zero-length\x07-Wformat-zero-length\x1b]8;;\x07\x1b[m\x1b[K]\n'}
+[15.877004] (fcu_core) StderrLine: {'line': b'   26 |   RCLCPP_INFO(rclcpp::get_logger("fcu_command"), \x1b[01;35m\x1b[K""\x1b[m\x1b[K);\n'}
+[15.877052] (fcu_core) StderrLine: {'line': b'      |                                                  \x1b[01;35m\x1b[K^~\x1b[m\x1b[K\n'}
+[15.878017] (fcu_core) StderrLine: {'line': b'\x1b[01m\x1b[K/root/nexus_workspace/NEXUS/fcu_core_gcs/src/fcu_core_ros2/src/fcu_command.cpp:32:50:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kzero-length gnu_printf format string [\x1b[01;35m\x1b[K\x1b]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wformat-zero-length\x07-Wformat-zero-length\x1b]8;;\x07\x1b[m\x1b[K]\n'}
+[15.878127] (fcu_core) StderrLine: {'line': b'   32 |   RCLCPP_INFO(rclcpp::get_logger("fcu_command"), \x1b[01;35m\x1b[K""\x1b[m\x1b[K);\n'}
+[15.878174] (fcu_core) StderrLine: {'line': b'      |                                                  \x1b[01;35m\x1b[K^~\x1b[m\x1b[K\n'}
+[15.878547] (fcu_core) StderrLine: {'line': b'\x1b[01m\x1b[K/root/nexus_workspace/NEXUS/fcu_core_gcs/src/fcu_core_ros2/src/fcu_command.cpp:35:50:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kzero-length gnu_printf format string [\x1b[01;35m\x1b[K\x1b]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wformat-zero-length\x07-Wformat-zero-length\x1b]8;;\x07\x1b[m\x1b[K]\n'}
+[15.878677] (fcu_core) StderrLine: {'line': b'   35 |   RCLCPP_INFO(rclcpp::get_logger("fcu_command"), \x1b[01;35m\x1b[K""\x1b[m\x1b[K);\n'}
+[15.878772] (fcu_core) StderrLine: {'line': b'      |                                                  \x1b[01;35m\x1b[K^~\x1b[m\x1b[K\n'}
+[15.879704] (fcu_core) StderrLine: {'line': b'\x1b[01m\x1b[K/root/nexus_workspace/NEXUS/fcu_core_gcs/src/fcu_core_ros2/src/fcu_command.cpp:40:50:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kzero-length gnu_printf format string [\x1b[01;35m\x1b[K\x1b]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wformat-zero-length\x07-Wformat-zero-length\x1b]8;;\x07\x1b[m\x1b[K]\n'}
+[15.879860] (fcu_core) StderrLine: {'line': b'   40 |   RCLCPP_INFO(rclcpp::get_logger("fcu_command"), \x1b[01;35m\x1b[K""\x1b[m\x1b[K);\n'}
+[15.879907] (fcu_core) StderrLine: {'line': b'      |                                                  \x1b[01;35m\x1b[K^~\x1b[m\x1b[K\n'}
+[15.880614] (fcu_core) StderrLine: {'line': b'\x1b[01m\x1b[K/root/nexus_workspace/NEXUS/fcu_core_gcs/src/fcu_core_ros2/src/fcu_command.cpp:45:50:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kzero-length gnu_printf format string [\x1b[01;35m\x1b[K\x1b]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wformat-zero-length\x07-Wformat-zero-length\x1b]8;;\x07\x1b[m\x1b[K]\n'}
+[15.880763] (fcu_core) StderrLine: {'line': b'   45 |   RCLCPP_INFO(rclcpp::get_logger("fcu_command"), \x1b[01;35m\x1b[K""\x1b[m\x1b[K);\n'}
+[15.880814] (fcu_core) StderrLine: {'line': b'      |                                                  \x1b[01;35m\x1b[K^~\x1b[m\x1b[K\n'}
+[15.967668] (-) TimerEvent: {}
+[16.068135] (-) TimerEvent: {}
+[16.168614] (-) TimerEvent: {}
+[16.269075] (-) TimerEvent: {}
+[16.369609] (-) TimerEvent: {}
+[16.470131] (-) TimerEvent: {}
+[16.570679] (-) TimerEvent: {}
+[16.670167] (rviz2_custom_panel) StdoutLine: {'line': b'-- library: /usr/lib/x86_64-linux-gnu/libcurl.so\n'}
+[16.670715] (-) TimerEvent: {}
+[16.769608] (rviz2_custom_panel) StdoutLine: {'line': b'-- Found rosidl_generator_c: 3.1.9 (/opt/ros/humble/share/rosidl_generator_c/cmake)\n'}
+[16.770805] (-) TimerEvent: {}
+[16.773546] (rviz2_custom_panel) StdoutLine: {'line': b'-- Found rosidl_adapter: 3.1.9 (/opt/ros/humble/share/rosidl_adapter/cmake)\n'}
+[16.780611] (rviz2_custom_panel) StdoutLine: {'line': b'-- Found rosidl_generator_cpp: 3.1.9 (/opt/ros/humble/share/rosidl_generator_cpp/cmake)\n'}
+[16.791468] (rviz2_custom_panel) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c\n'}
+[16.806326] (rviz2_custom_panel) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp\n'}
+[16.871008] (-) TimerEvent: {}
+[16.971495] (-) TimerEvent: {}
+[17.071988] (-) TimerEvent: {}
+[17.172557] (-) TimerEvent: {}
+[17.273041] (-) TimerEvent: {}
+[17.373689] (-) TimerEvent: {}
+[17.474108] (-) TimerEvent: {}
+[17.574519] (-) TimerEvent: {}
+[17.584749] (fcu_core) StdoutLine: {'line': b'[100%] \x1b[32m\x1b[1mLinking CXX executable fcu_command\x1b[0m\n'}
+[17.674654] (-) TimerEvent: {}
+[17.775029] (-) TimerEvent: {}
+[17.875440] (-) TimerEvent: {}
+[17.889951] (fcu_core) StdoutLine: {'line': b'[100%] Built target fcu_command\n'}
+[17.905628] (fcu_core) CommandEnded: {'returncode': 0}
+[17.907064] (fcu_core) JobProgress: {'identifier': 'fcu_core', 'progress': 'install'}
+[17.919466] (fcu_core) Command: {'cmd': ['/usr/bin/cmake', '--install', '/root/nexus_workspace/NEXUS/fcu_core_gcs/build/fcu_core'], 'cwd': '/root/nexus_workspace/NEXUS/fcu_core_gcs/build/fcu_core', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'root'), ('GIT_ASKPASS', '/root/.vscode-server/bin/520fb30b2d3d324b4cb2342f6e88e2cd93751de1/extensions/git/dist/askpass.sh'), ('SHLVL', '2'), ('LD_LIBRARY_PATH', '/usr/lib/x86_64-linux-gnu/gazebo-11/plugins:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib'), ('HOME', '/root'), ('OLDPWD', '/root/nexus_workspace/NEXUS/fcu_core_gcs'), ('TERM_PROGRAM_VERSION', '1.136.0'), ('VSCODE_IPC_HOOK_CLI', '/mnt/wslg/runtime-dir/vscode-ipc-c1252c36-f78d-4bf2-96d3-02190cac82b5.sock'), ('ROS_PYTHON_VERSION', '3'), ('VSCODE_GIT_ASKPASS_MAIN', '/root/.vscode-server/bin/520fb30b2d3d324b4cb2342f6e88e2cd93751de1/extensions/git/dist/askpass-main.js'), ('VSCODE_GIT_ASKPASS_NODE', '/root/.vscode-server/bin/520fb30b2d3d324b4cb2342f6e88e2cd93751de1/node'), ('VSCODE_PYTHON_AUTOACTIVATE_GUARD', '1'), ('COLORTERM', 'truecolor'), ('WSL_DISTRO_NAME', 'Ubuntu-22.04'), ('WAYLAND_DISPLAY', 'wayland-0'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'root'), ('NAME', 'wblxr'), ('WSL_INTEROP', '/run/WSL/8708_interop'), ('PULSE_SERVER', 'unix:/mnt/wslg/PulseServer'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('CLAUDE_CODE_SSE_PORT', '18421'), ('TERM', 'xterm-256color'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/root/.vscode-server/data/User/globalStorage/github.copilot-chat/debugCommand:/root/.vscode-server/data/User/globalStorage/github.copilot-chat/copilotCli:/root/.vscode-server/bin/520fb30b2d3d324b4cb2342f6e88e2cd93751de1/bin/remote-cli:/root/.local/bin:/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/lib/wsl/lib:/mnt/c/Program Files (x86)/VMware/VMware Workstation/bin/:/mnt/c/Program Files/Python313/Scripts/:/mnt/c/Program Files/Python313/:/mnt/c/WINDOWS/system32:/mnt/c/WINDOWS:/mnt/c/WINDOWS/System32/Wbem:/mnt/c/WINDOWS/System32/WindowsPowerShell/v1.0/:/mnt/c/WINDOWS/System32/OpenSSH/:/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common:/mnt/c/Program Files/dotnet/:/mnt/c/altera/91sp2/quartus/bin:/mnt/d/lingo/:/mnt/c/Program Files/mingw64/bin:/mnt/d/New Folder/:/mnt/c/Program Files/Git/cmd:/mnt/c/Program Files/StarUML/StarUML.exe:/mnt/c/Program Files/NVIDIA Corporation/NVIDIA App/NvDLISR:/mnt/c/ProgramData/chocolatey/bin:/mnt/c/ProgramData/chocolatey/lib/maven/apache-maven-3.9.13/bin:/mnt/c/Program Files/Memurai/:/mnt/c/Program Files/k6/:/mnt/c/Program Files/Docker/Docker/resources/bin:/mnt/c/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/:/mnt/c/Program Files/Microsoft SQL Server/170/Tools/Binn/:/mnt/c/Program Files/Go/bin:/mnt/c/Users/wblxr/.local/bin:/mnt/c/Users/wblxr/.cargo/bin:/mnt/d/texlive/2025/bin/windows:/mnt/c/Users/wblxr/AppData/Local/Microsoft/WindowsApps:/mnt/c/Users/wblxr/.dotnet/tools:/mnt/c/msys64/clang64/bin:/mnt/d/MIKTeX/miktex/bin/x64/:/mnt/d/pycharm/PyCharm Community Edition 2024.1/bin:/mnt/c/Users/wblxr/AppData/Roaming/npm:/mnt/d/Kiro/bin:/mnt/d/IntelliJ IDEA 2025.1.3/bin:/mnt/c/Users/wblxr/AppData/Local/Pandoc/:/mnt/c/Users/wblxr/AppData/Local/Programs/MiKTeX/miktex/bin/x64/:/mnt/d/IntelliJ_IDEA/IntelliJ IDEA Community Edition 2025.2.1/bin:/mnt/c/Program Files/Graphviz/bin:/mnt/c/Users/wblxr/AppData/Local/GitHubDesktop/bin:/mnt/d/Microsoft VS Code/bin:/mnt/c/Users/wblxr/AppData/Local/Microsoft/WindowsApps:/mnt/c/Users/wblxr/.dotnet/tools:/mnt/c/Users/wblxr/.jdks/temurin-17.0.18/bin:/mnt/c/tools/mysql/current/bin:/mnt/c/Program Files/Git/usr/bin:/mnt/c/Users/wblxr/bin:/mnt/c/Users/wblxr/AppData/Local/Microsoft/WinGet/Packages/astral-sh.uv_Microsoft.Winget.Source_8wekyb3d8bbwe:/mnt/c/Users/wblxr/.dotnet/tools:/mnt/c/Users/wblxr/AppData/Local/Programs/Prince/prince-16.2-win64/bin:/mnt/c/Users/wblxr/go/bin:/snap/bin'), ('XDG_RUNTIME_DIR', '/mnt/wslg/runtime-dir'), ('DISPLAY', ':0'), ('LANG', 'en_US.UTF-8'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('VSCODE_GIT_IPC_HANDLE', '/mnt/wslg/runtime-dir/vscode-git-f5756022de.sock'), ('TERM_PROGRAM', 'vscode'), ('AMENT_PREFIX_PATH', '/opt/ros/humble'), ('SHELL', '/bin/bash'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('VSCODE_GIT_ASKPASS_EXTRA_ARGS', ''), ('PWD', '/root/nexus_workspace/NEXUS/fcu_core_gcs/build/fcu_core'), ('COPILOT_DEBUG_NONCE', '3513023eecff45a360639dffdfdef9cf'), ('XDG_DATA_DIRS', '/usr/local/share:/usr/share:/var/lib/snapd/desktop'), ('PYTHONPATH', '/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('WSL2_GUI_APPS_ENABLED', '1'), ('HOSTTYPE', 'x86_64'), ('WSLENV', 'VSCODE_WSL_EXT_LOCATION/up'), ('CMAKE_PREFIX_PATH', '/opt/ros/humble')]), 'shell': False}
+[17.927818] (fcu_core) StdoutLine: {'line': b'-- Install configuration: ""\n'}
+[17.929679] (fcu_core) StdoutLine: {'line': b'-- Installing: /root/nexus_workspace/NEXUS/fcu_core_gcs/install/fcu_core/lib/fcu_core/fcu_command\n'}
+[17.931954] (fcu_core) StdoutLine: {'line': b'-- Set runtime path of "/root/nexus_workspace/NEXUS/fcu_core_gcs/install/fcu_core/lib/fcu_core/fcu_command" to ""\n'}
+[17.932170] (fcu_core) StdoutLine: {'line': b'-- Installing: /root/nexus_workspace/NEXUS/fcu_core_gcs/install/fcu_core/share/fcu_core/launch\n'}
+[17.933358] (fcu_core) StdoutLine: {'line': b'-- Installing: /root/nexus_workspace/NEXUS/fcu_core_gcs/install/fcu_core/share/fcu_core/launch/fcu_core_launch.py:Zone.Identifier\n'}
+[17.933748] (fcu_core) StdoutLine: {'line': b'-- Installing: /root/nexus_workspace/NEXUS/fcu_core_gcs/install/fcu_core/share/fcu_core/launch/fcu_core_launch.py\n'}
+[17.933941] (fcu_core) StdoutLine: {'line': b'-- Installing: /root/nexus_workspace/NEXUS/fcu_core_gcs/install/fcu_core/share/fcu_core/rviz\n'}
+[17.934358] (fcu_core) StdoutLine: {'line': b'-- Installing: /root/nexus_workspace/NEXUS/fcu_core_gcs/install/fcu_core/share/fcu_core/rviz/default.rviz:Zone.Identifier\n'}
+[17.934627] (fcu_core) StdoutLine: {'line': b'-- Installing: /root/nexus_workspace/NEXUS/fcu_core_gcs/install/fcu_core/share/fcu_core/rviz/default.rviz\n'}
+[17.936008] (fcu_core) StdoutLine: {'line': b'-- Installing: /root/nexus_workspace/NEXUS/fcu_core_gcs/install/fcu_core/share/ament_index/resource_index/package_run_dependencies/fcu_core\n'}
+[17.936602] (fcu_core) StdoutLine: {'line': b'-- Installing: /root/nexus_workspace/NEXUS/fcu_core_gcs/install/fcu_core/share/ament_index/resource_index/parent_prefix_path/fcu_core\n'}
+[17.937366] (fcu_core) StdoutLine: {'line': b'-- Installing: /root/nexus_workspace/NEXUS/fcu_core_gcs/install/fcu_core/share/fcu_core/environment/ament_prefix_path.sh\n'}
+[17.937626] (fcu_core) StdoutLine: {'line': b'-- Installing: /root/nexus_workspace/NEXUS/fcu_core_gcs/install/fcu_core/share/fcu_core/environment/ament_prefix_path.dsv\n'}
+[17.937885] (fcu_core) StdoutLine: {'line': b'-- Installing: /root/nexus_workspace/NEXUS/fcu_core_gcs/install/fcu_core/share/fcu_core/environment/path.sh\n'}
+[17.938138] (fcu_core) StdoutLine: {'line': b'-- Installing: /root/nexus_workspace/NEXUS/fcu_core_gcs/install/fcu_core/share/fcu_core/environment/path.dsv\n'}
+[17.938403] (fcu_core) StdoutLine: {'line': b'-- Installing: /root/nexus_workspace/NEXUS/fcu_core_gcs/install/fcu_core/share/fcu_core/local_setup.bash\n'}
+[17.938702] (fcu_core) StdoutLine: {'line': b'-- Installing: /root/nexus_workspace/NEXUS/fcu_core_gcs/install/fcu_core/share/fcu_core/local_setup.sh\n'}
+[17.938964] (fcu_core) StdoutLine: {'line': b'-- Installing: /root/nexus_workspace/NEXUS/fcu_core_gcs/install/fcu_core/share/fcu_core/local_setup.zsh\n'}
+[17.939327] (fcu_core) StdoutLine: {'line': b'-- Installing: /root/nexus_workspace/NEXUS/fcu_core_gcs/install/fcu_core/share/fcu_core/local_setup.dsv\n'}
+[17.939555] (fcu_core) StdoutLine: {'line': b'-- Installing: /root/nexus_workspace/NEXUS/fcu_core_gcs/install/fcu_core/share/fcu_core/package.dsv\n'}
+[17.940162] (fcu_core) StdoutLine: {'line': b'-- Installing: /root/nexus_workspace/NEXUS/fcu_core_gcs/install/fcu_core/share/ament_index/resource_index/packages/fcu_core\n'}
+[17.940772] (fcu_core) StdoutLine: {'line': b'-- Installing: /root/nexus_workspace/NEXUS/fcu_core_gcs/install/fcu_core/share/fcu_core/cmake/fcu_coreConfig.cmake\n'}
+[17.940995] (fcu_core) StdoutLine: {'line': b'-- Installing: /root/nexus_workspace/NEXUS/fcu_core_gcs/install/fcu_core/share/fcu_core/cmake/fcu_coreConfig-version.cmake\n'}
+[17.941213] (fcu_core) StdoutLine: {'line': b'-- Installing: /root/nexus_workspace/NEXUS/fcu_core_gcs/install/fcu_core/share/fcu_core/package.xml\n'}
+[17.944327] (fcu_core) CommandEnded: {'returncode': 0}
+[17.975800] (-) TimerEvent: {}
+[17.977558] (fcu_core) JobEnded: {'identifier': 'fcu_core', 'rc': 0}
+[18.075976] (-) TimerEvent: {}
+[18.176429] (-) TimerEvent: {}
+[18.276942] (-) TimerEvent: {}
+[18.377598] (-) TimerEvent: {}
+[18.478184] (-) TimerEvent: {}
+[18.578745] (-) TimerEvent: {}
+[18.679582] (-) TimerEvent: {}
+[18.780298] (-) TimerEvent: {}
+[18.880831] (-) TimerEvent: {}
+[18.981294] (-) TimerEvent: {}
+[19.081736] (-) TimerEvent: {}
+[19.182393] (-) TimerEvent: {}
+[19.282827] (-) TimerEvent: {}
+[19.383369] (-) TimerEvent: {}
+[19.483865] (-) TimerEvent: {}
+[19.498507] (rviz2_custom_panel) StdoutLine: {'line': b'-- Found rmw_implementation_cmake: 6.1.3 (/opt/ros/humble/share/rmw_implementation_cmake/cmake)\n'}
+[19.500483] (rviz2_custom_panel) StdoutLine: {'line': b'-- Found rmw_fastrtps_cpp: 6.2.10 (/opt/ros/humble/share/rmw_fastrtps_cpp/cmake)\n'}
+[19.520617] (rviz2_custom_panel) StdoutLine: {'line': b'-- Found TinyXML2 via Config file: TinyXML2_DIR-NOTFOUND\n'}
+[19.584182] (-) TimerEvent: {}
+[19.635881] (rviz2_custom_panel) StdoutLine: {'line': b'-- Found OpenSSL: /usr/lib/x86_64-linux-gnu/libcrypto.so (found version "3.0.2")  \n'}
+[19.639185] (rviz2_custom_panel) StdoutLine: {'line': b'-- Found TinyXML2 via Config file: TinyXML2_DIR-NOTFOUND\n'}
+[19.684458] (-) TimerEvent: {}
+[19.785050] (-) TimerEvent: {}
+[19.885951] (-) TimerEvent: {}
+[19.986630] (-) TimerEvent: {}
+[20.049096] (rviz2_custom_panel) StdoutLine: {'line': b'-- Found FastRTPS: /opt/ros/humble/include  \n'}
+[20.053317] (rviz2_custom_panel) StdoutLine: {'line': b'-- Found TinyXML2 via Config file: TinyXML2_DIR-NOTFOUND\n'}
+[20.063764] (rviz2_custom_panel) StdoutLine: {'line': b'-- Found TinyXML2 via Config file: TinyXML2_DIR-NOTFOUND\n'}
+[20.086838] (-) TimerEvent: {}
+[20.187368] (-) TimerEvent: {}
+[20.286651] (rviz2_custom_panel) StdoutLine: {'line': b"-- Using RMW implementation 'rmw_fastrtps_cpp' as default\n"}
+[20.287498] (-) TimerEvent: {}
+[20.298175] (rviz2_custom_panel) StdoutLine: {'line': b'-- Looking for pthread.h\n'}
+[20.387696] (-) TimerEvent: {}
+[20.488589] (-) TimerEvent: {}
+[20.572274] (rviz2_custom_panel) StdoutLine: {'line': b'-- Looking for pthread.h - found\n'}
+[20.572733] (rviz2_custom_panel) StdoutLine: {'line': b'-- Performing Test CMAKE_HAVE_LIBC_PTHREAD\n'}
+[20.588763] (-) TimerEvent: {}
+[20.689256] (-) TimerEvent: {}
+[20.789703] (-) TimerEvent: {}
+[20.801804] (rviz2_custom_panel) StdoutLine: {'line': b'-- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success\n'}
+[20.802838] (rviz2_custom_panel) StdoutLine: {'line': b'-- Found Threads: TRUE  \n'}
+[20.889847] (-) TimerEvent: {}
+[20.940339] (rviz2_custom_panel) StdoutLine: {'line': b'-- Found Eigen3: TRUE (found version "3.4.0") \n'}
+[20.940601] (rviz2_custom_panel) StdoutLine: {'line': b'-- Ensuring Eigen3 include directory is part of orocos-kdl CMake target\n'}
+[20.989990] (-) TimerEvent: {}
+[21.060296] (rviz2_custom_panel) StdoutLine: {'line': b'-- Found ament_lint_auto: 0.12.15 (/opt/ros/humble/share/ament_lint_auto/cmake)\n'}
+[21.090168] (-) TimerEvent: {}
+[21.126690] (rviz2_custom_panel) StdoutLine: {'line': b"-- Added test 'cppcheck' to perform static code analysis on C / C++ code\n"}
+[21.126919] (rviz2_custom_panel) StdoutLine: {'line': b'-- Configured cppcheck include dirs: \n'}
+[21.127002] (rviz2_custom_panel) StdoutLine: {'line': b'-- Configured cppcheck exclude dirs and/or files: \n'}
+[21.127664] (rviz2_custom_panel) StdoutLine: {'line': b"-- Added test 'lint_cmake' to check CMake code style\n"}
+[21.129059] (rviz2_custom_panel) StdoutLine: {'line': b"-- Added test 'uncrustify' to check C / C++ code style\n"}
+[21.129159] (rviz2_custom_panel) StdoutLine: {'line': b'-- Configured uncrustify additional arguments: \n'}
+[21.129815] (rviz2_custom_panel) StdoutLine: {'line': b"-- Added test 'xmllint' to check XML markup files\n"}
+[21.131803] (rviz2_custom_panel) StdoutLine: {'line': b'-- Configuring done\n'}
+[21.171510] (rviz2_custom_panel) StdoutLine: {'line': b'-- Generating done\n'}
+[21.177531] (rviz2_custom_panel) StdoutLine: {'line': b'-- Build files have been written to: /root/nexus_workspace/NEXUS/fcu_core_gcs/build/rviz2_custom_panel\n'}
+[21.190298] (-) TimerEvent: {}
+[21.191685] (rviz2_custom_panel) CommandEnded: {'returncode': 0}
+[21.192650] (rviz2_custom_panel) JobProgress: {'identifier': 'rviz2_custom_panel', 'progress': 'build'}
+[21.194669] (rviz2_custom_panel) Command: {'cmd': ['/usr/bin/cmake', '--build', '/root/nexus_workspace/NEXUS/fcu_core_gcs/build/rviz2_custom_panel', '--', '-j8', '-l8'], 'cwd': '/root/nexus_workspace/NEXUS/fcu_core_gcs/build/rviz2_custom_panel', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'root'), ('GIT_ASKPASS', '/root/.vscode-server/bin/520fb30b2d3d324b4cb2342f6e88e2cd93751de1/extensions/git/dist/askpass.sh'), ('SHLVL', '2'), ('LD_LIBRARY_PATH', '/usr/lib/x86_64-linux-gnu/gazebo-11/plugins:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib'), ('HOME', '/root'), ('OLDPWD', '/root/nexus_workspace/NEXUS/fcu_core_gcs'), ('TERM_PROGRAM_VERSION', '1.136.0'), ('VSCODE_IPC_HOOK_CLI', '/mnt/wslg/runtime-dir/vscode-ipc-c1252c36-f78d-4bf2-96d3-02190cac82b5.sock'), ('ROS_PYTHON_VERSION', '3'), ('VSCODE_GIT_ASKPASS_MAIN', '/root/.vscode-server/bin/520fb30b2d3d324b4cb2342f6e88e2cd93751de1/extensions/git/dist/askpass-main.js'), ('VSCODE_GIT_ASKPASS_NODE', '/root/.vscode-server/bin/520fb30b2d3d324b4cb2342f6e88e2cd93751de1/node'), ('VSCODE_PYTHON_AUTOACTIVATE_GUARD', '1'), ('COLORTERM', 'truecolor'), ('WSL_DISTRO_NAME', 'Ubuntu-22.04'), ('WAYLAND_DISPLAY', 'wayland-0'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'root'), ('NAME', 'wblxr'), ('WSL_INTEROP', '/run/WSL/8708_interop'), ('PULSE_SERVER', 'unix:/mnt/wslg/PulseServer'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('CLAUDE_CODE_SSE_PORT', '18421'), ('TERM', 'xterm-256color'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/root/.vscode-server/data/User/globalStorage/github.copilot-chat/debugCommand:/root/.vscode-server/data/User/globalStorage/github.copilot-chat/copilotCli:/root/.vscode-server/bin/520fb30b2d3d324b4cb2342f6e88e2cd93751de1/bin/remote-cli:/root/.local/bin:/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/lib/wsl/lib:/mnt/c/Program Files (x86)/VMware/VMware Workstation/bin/:/mnt/c/Program Files/Python313/Scripts/:/mnt/c/Program Files/Python313/:/mnt/c/WINDOWS/system32:/mnt/c/WINDOWS:/mnt/c/WINDOWS/System32/Wbem:/mnt/c/WINDOWS/System32/WindowsPowerShell/v1.0/:/mnt/c/WINDOWS/System32/OpenSSH/:/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common:/mnt/c/Program Files/dotnet/:/mnt/c/altera/91sp2/quartus/bin:/mnt/d/lingo/:/mnt/c/Program Files/mingw64/bin:/mnt/d/New Folder/:/mnt/c/Program Files/Git/cmd:/mnt/c/Program Files/StarUML/StarUML.exe:/mnt/c/Program Files/NVIDIA Corporation/NVIDIA App/NvDLISR:/mnt/c/ProgramData/chocolatey/bin:/mnt/c/ProgramData/chocolatey/lib/maven/apache-maven-3.9.13/bin:/mnt/c/Program Files/Memurai/:/mnt/c/Program Files/k6/:/mnt/c/Program Files/Docker/Docker/resources/bin:/mnt/c/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/:/mnt/c/Program Files/Microsoft SQL Server/170/Tools/Binn/:/mnt/c/Program Files/Go/bin:/mnt/c/Users/wblxr/.local/bin:/mnt/c/Users/wblxr/.cargo/bin:/mnt/d/texlive/2025/bin/windows:/mnt/c/Users/wblxr/AppData/Local/Microsoft/WindowsApps:/mnt/c/Users/wblxr/.dotnet/tools:/mnt/c/msys64/clang64/bin:/mnt/d/MIKTeX/miktex/bin/x64/:/mnt/d/pycharm/PyCharm Community Edition 2024.1/bin:/mnt/c/Users/wblxr/AppData/Roaming/npm:/mnt/d/Kiro/bin:/mnt/d/IntelliJ IDEA 2025.1.3/bin:/mnt/c/Users/wblxr/AppData/Local/Pandoc/:/mnt/c/Users/wblxr/AppData/Local/Programs/MiKTeX/miktex/bin/x64/:/mnt/d/IntelliJ_IDEA/IntelliJ IDEA Community Edition 2025.2.1/bin:/mnt/c/Program Files/Graphviz/bin:/mnt/c/Users/wblxr/AppData/Local/GitHubDesktop/bin:/mnt/d/Microsoft VS Code/bin:/mnt/c/Users/wblxr/AppData/Local/Microsoft/WindowsApps:/mnt/c/Users/wblxr/.dotnet/tools:/mnt/c/Users/wblxr/.jdks/temurin-17.0.18/bin:/mnt/c/tools/mysql/current/bin:/mnt/c/Program Files/Git/usr/bin:/mnt/c/Users/wblxr/bin:/mnt/c/Users/wblxr/AppData/Local/Microsoft/WinGet/Packages/astral-sh.uv_Microsoft.Winget.Source_8wekyb3d8bbwe:/mnt/c/Users/wblxr/.dotnet/tools:/mnt/c/Users/wblxr/AppData/Local/Programs/Prince/prince-16.2-win64/bin:/mnt/c/Users/wblxr/go/bin:/snap/bin'), ('XDG_RUNTIME_DIR', '/mnt/wslg/runtime-dir'), ('DISPLAY', ':0'), ('LANG', 'en_US.UTF-8'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('VSCODE_GIT_IPC_HANDLE', '/mnt/wslg/runtime-dir/vscode-git-f5756022de.sock'), ('TERM_PROGRAM', 'vscode'), ('AMENT_PREFIX_PATH', '/opt/ros/humble'), ('SHELL', '/bin/bash'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('VSCODE_GIT_ASKPASS_EXTRA_ARGS', ''), ('PWD', '/root/nexus_workspace/NEXUS/fcu_core_gcs/build/rviz2_custom_panel'), ('COPILOT_DEBUG_NONCE', '3513023eecff45a360639dffdfdef9cf'), ('XDG_DATA_DIRS', '/usr/local/share:/usr/share:/var/lib/snapd/desktop'), ('PYTHONPATH', '/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('WSL2_GUI_APPS_ENABLED', '1'), ('HOSTTYPE', 'x86_64'), ('WSLENV', 'VSCODE_WSL_EXT_LOCATION/up'), ('CMAKE_PREFIX_PATH', '/opt/ros/humble')]), 'shell': False}
+[21.236168] (rviz2_custom_panel) StdoutLine: {'line': b'[ 25%] \x1b[34m\x1b[1mGenerating src/moc_mypanel.cpp\x1b[0m\n'}
+[21.271574] (rviz2_custom_panel) StdoutLine: {'line': b'[ 75%] \x1b[32mBuilding CXX object CMakeFiles/mypanel.dir/src/mypanel.cpp.o\x1b[0m\n'}
+[21.271980] (rviz2_custom_panel) StdoutLine: {'line': b'[ 75%] \x1b[32mBuilding CXX object CMakeFiles/mypanel.dir/src/moc_mypanel.cpp.o\x1b[0m\n'}
+[21.290413] (-) TimerEvent: {}
+[21.390817] (-) TimerEvent: {}
+[21.491379] (-) TimerEvent: {}
+[21.591756] (-) TimerEvent: {}
+[21.692253] (-) TimerEvent: {}
+[21.792843] (-) TimerEvent: {}
+[21.893447] (-) TimerEvent: {}
+[21.994077] (-) TimerEvent: {}
+[22.094609] (-) TimerEvent: {}
+[22.195197] (-) TimerEvent: {}
+[22.295722] (-) TimerEvent: {}
+[22.396232] (-) TimerEvent: {}
+[22.496795] (-) TimerEvent: {}
+[22.597390] (-) TimerEvent: {}
+[22.698030] (-) TimerEvent: {}
+[22.798798] (-) TimerEvent: {}
+[22.899218] (-) TimerEvent: {}
+[22.999638] (-) TimerEvent: {}
+[23.100051] (-) TimerEvent: {}
+[23.200505] (-) TimerEvent: {}
+[23.300953] (-) TimerEvent: {}
+[23.401404] (-) TimerEvent: {}
+[23.502005] (-) TimerEvent: {}
+[23.602556] (-) TimerEvent: {}
+[23.703622] (-) TimerEvent: {}
+[23.804309] (-) TimerEvent: {}
+[23.904924] (-) TimerEvent: {}
+[24.005476] (-) TimerEvent: {}
+[24.105958] (-) TimerEvent: {}
+[24.206520] (-) TimerEvent: {}
+[24.307117] (-) TimerEvent: {}
+[24.407666] (-) TimerEvent: {}
+[24.508229] (-) TimerEvent: {}
+[24.538416] (rviz2_custom_panel) StderrLine: {'line': b'\x1b[01m\x1b[K/root/nexus_workspace/NEXUS/fcu_core_gcs/src/rviz2_custom_panel/src/mypanel.cpp:\x1b[m\x1b[K In constructor \xe2\x80\x98\x1b[01m\x1b[Krviz2_custom_panel::Rviz2Panel::Rviz2Panel(QWidget*)\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[24.539024] (rviz2_custom_panel) StderrLine: {'line': b'\x1b[01m\x1b[K/root/nexus_workspace/NEXUS/fcu_core_gcs/src/rviz2_custom_panel/src/mypanel.cpp:21:53:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kunused parameter \xe2\x80\x98\x1b[01m\x1b[Kparent\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K\x1b]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wunused-parameter\x07-Wunused-parameter\x1b]8;;\x07\x1b[m\x1b[K]\n'}
+[24.539256] (rviz2_custom_panel) StderrLine: {'line': b'   21 | rviz2_custom_panel::Rviz2Panel::Rviz2Panel(\x1b[01;35m\x1b[KQWidget *parent\x1b[m\x1b[K)\n'}
+[24.539342] (rviz2_custom_panel) StderrLine: {'line': b'      |                                            \x1b[01;35m\x1b[K~~~~~~~~~^~~~~~\x1b[m\x1b[K\n'}
+[24.608455] (-) TimerEvent: {}
+[24.709138] (-) TimerEvent: {}
+[24.809662] (-) TimerEvent: {}
+[24.910121] (-) TimerEvent: {}
+[25.010529] (-) TimerEvent: {}
+[25.110938] (-) TimerEvent: {}
+[25.211428] (-) TimerEvent: {}
+[25.311933] (-) TimerEvent: {}
+[25.412467] (-) TimerEvent: {}
+[25.513005] (-) TimerEvent: {}
+[25.613481] (-) TimerEvent: {}
+[25.713975] (-) TimerEvent: {}
+[25.814533] (-) TimerEvent: {}
+[25.914951] (-) TimerEvent: {}
+[26.015399] (-) TimerEvent: {}
+[26.115796] (-) TimerEvent: {}
+[26.216223] (-) TimerEvent: {}
+[26.316734] (-) TimerEvent: {}
+[26.417301] (-) TimerEvent: {}
+[26.517769] (-) TimerEvent: {}
+[26.618310] (-) TimerEvent: {}
+[26.718893] (-) TimerEvent: {}
+[26.819602] (-) TimerEvent: {}
+[26.920165] (-) TimerEvent: {}
+[27.020619] (-) TimerEvent: {}
+[27.121128] (-) TimerEvent: {}
+[27.221702] (-) TimerEvent: {}
+[27.322222] (-) TimerEvent: {}
+[27.422663] (-) TimerEvent: {}
+[27.523124] (-) TimerEvent: {}
+[27.623510] (-) TimerEvent: {}
+[27.723973] (-) TimerEvent: {}
+[27.824474] (-) TimerEvent: {}
+[27.924904] (-) TimerEvent: {}
+[28.025508] (-) TimerEvent: {}
+[28.126115] (-) TimerEvent: {}
+[28.226693] (-) TimerEvent: {}
+[28.327196] (-) TimerEvent: {}
+[28.427624] (-) TimerEvent: {}
+[28.528098] (-) TimerEvent: {}
+[28.628601] (-) TimerEvent: {}
+[28.729025] (-) TimerEvent: {}
+[28.829498] (-) TimerEvent: {}
+[28.929937] (-) TimerEvent: {}
+[29.030371] (-) TimerEvent: {}
+[29.130889] (-) TimerEvent: {}
+[29.231356] (-) TimerEvent: {}
+[29.331837] (-) TimerEvent: {}
+[29.432335] (-) TimerEvent: {}
+[29.532832] (-) TimerEvent: {}
+[29.633367] (-) TimerEvent: {}
+[29.733972] (-) TimerEvent: {}
+[29.834473] (-) TimerEvent: {}
+[29.935069] (-) TimerEvent: {}
+[30.035653] (-) TimerEvent: {}
+[30.091905] (rviz2_custom_panel) StdoutLine: {'line': b'[100%] \x1b[32m\x1b[1mLinking CXX shared library libmypanel.so\x1b[0m\n'}
+[30.135808] (-) TimerEvent: {}
+[30.236251] (-) TimerEvent: {}
+[30.336756] (-) TimerEvent: {}
+[30.437362] (-) TimerEvent: {}
+[30.537955] (-) TimerEvent: {}
+[30.638485] (-) TimerEvent: {}
+[30.738963] (-) TimerEvent: {}
+[30.839545] (-) TimerEvent: {}
+[30.940185] (-) TimerEvent: {}
+[31.040991] (-) TimerEvent: {}
+[31.141550] (-) TimerEvent: {}
+[31.242001] (-) TimerEvent: {}
+[31.342448] (-) TimerEvent: {}
+[31.442942] (-) TimerEvent: {}
+[31.507433] (rviz2_custom_panel) StdoutLine: {'line': b'[100%] Built target mypanel\n'}
+[31.519635] (rviz2_custom_panel) CommandEnded: {'returncode': 0}
+[31.521453] (rviz2_custom_panel) JobProgress: {'identifier': 'rviz2_custom_panel', 'progress': 'install'}
+[31.521514] (rviz2_custom_panel) Command: {'cmd': ['/usr/bin/cmake', '--install', '/root/nexus_workspace/NEXUS/fcu_core_gcs/build/rviz2_custom_panel'], 'cwd': '/root/nexus_workspace/NEXUS/fcu_core_gcs/build/rviz2_custom_panel', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'root'), ('GIT_ASKPASS', '/root/.vscode-server/bin/520fb30b2d3d324b4cb2342f6e88e2cd93751de1/extensions/git/dist/askpass.sh'), ('SHLVL', '2'), ('LD_LIBRARY_PATH', '/usr/lib/x86_64-linux-gnu/gazebo-11/plugins:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib'), ('HOME', '/root'), ('OLDPWD', '/root/nexus_workspace/NEXUS/fcu_core_gcs'), ('TERM_PROGRAM_VERSION', '1.136.0'), ('VSCODE_IPC_HOOK_CLI', '/mnt/wslg/runtime-dir/vscode-ipc-c1252c36-f78d-4bf2-96d3-02190cac82b5.sock'), ('ROS_PYTHON_VERSION', '3'), ('VSCODE_GIT_ASKPASS_MAIN', '/root/.vscode-server/bin/520fb30b2d3d324b4cb2342f6e88e2cd93751de1/extensions/git/dist/askpass-main.js'), ('VSCODE_GIT_ASKPASS_NODE', '/root/.vscode-server/bin/520fb30b2d3d324b4cb2342f6e88e2cd93751de1/node'), ('VSCODE_PYTHON_AUTOACTIVATE_GUARD', '1'), ('COLORTERM', 'truecolor'), ('WSL_DISTRO_NAME', 'Ubuntu-22.04'), ('WAYLAND_DISPLAY', 'wayland-0'), ('ROS_DISTRO', 'humble'), ('LOGNAME', 'root'), ('NAME', 'wblxr'), ('WSL_INTEROP', '/run/WSL/8708_interop'), ('PULSE_SERVER', 'unix:/mnt/wslg/PulseServer'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('CLAUDE_CODE_SSE_PORT', '18421'), ('TERM', 'xterm-256color'), ('ROS_LOCALHOST_ONLY', '0'), ('PATH', '/root/.vscode-server/data/User/globalStorage/github.copilot-chat/debugCommand:/root/.vscode-server/data/User/globalStorage/github.copilot-chat/copilotCli:/root/.vscode-server/bin/520fb30b2d3d324b4cb2342f6e88e2cd93751de1/bin/remote-cli:/root/.local/bin:/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/lib/wsl/lib:/mnt/c/Program Files (x86)/VMware/VMware Workstation/bin/:/mnt/c/Program Files/Python313/Scripts/:/mnt/c/Program Files/Python313/:/mnt/c/WINDOWS/system32:/mnt/c/WINDOWS:/mnt/c/WINDOWS/System32/Wbem:/mnt/c/WINDOWS/System32/WindowsPowerShell/v1.0/:/mnt/c/WINDOWS/System32/OpenSSH/:/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common:/mnt/c/Program Files/dotnet/:/mnt/c/altera/91sp2/quartus/bin:/mnt/d/lingo/:/mnt/c/Program Files/mingw64/bin:/mnt/d/New Folder/:/mnt/c/Program Files/Git/cmd:/mnt/c/Program Files/StarUML/StarUML.exe:/mnt/c/Program Files/NVIDIA Corporation/NVIDIA App/NvDLISR:/mnt/c/ProgramData/chocolatey/bin:/mnt/c/ProgramData/chocolatey/lib/maven/apache-maven-3.9.13/bin:/mnt/c/Program Files/Memurai/:/mnt/c/Program Files/k6/:/mnt/c/Program Files/Docker/Docker/resources/bin:/mnt/c/Program Files (x86)/Windows Kits/10/Windows Performance Toolkit/:/mnt/c/Program Files/Microsoft SQL Server/170/Tools/Binn/:/mnt/c/Program Files/Go/bin:/mnt/c/Users/wblxr/.local/bin:/mnt/c/Users/wblxr/.cargo/bin:/mnt/d/texlive/2025/bin/windows:/mnt/c/Users/wblxr/AppData/Local/Microsoft/WindowsApps:/mnt/c/Users/wblxr/.dotnet/tools:/mnt/c/msys64/clang64/bin:/mnt/d/MIKTeX/miktex/bin/x64/:/mnt/d/pycharm/PyCharm Community Edition 2024.1/bin:/mnt/c/Users/wblxr/AppData/Roaming/npm:/mnt/d/Kiro/bin:/mnt/d/IntelliJ IDEA 2025.1.3/bin:/mnt/c/Users/wblxr/AppData/Local/Pandoc/:/mnt/c/Users/wblxr/AppData/Local/Programs/MiKTeX/miktex/bin/x64/:/mnt/d/IntelliJ_IDEA/IntelliJ IDEA Community Edition 2025.2.1/bin:/mnt/c/Program Files/Graphviz/bin:/mnt/c/Users/wblxr/AppData/Local/GitHubDesktop/bin:/mnt/d/Microsoft VS Code/bin:/mnt/c/Users/wblxr/AppData/Local/Microsoft/WindowsApps:/mnt/c/Users/wblxr/.dotnet/tools:/mnt/c/Users/wblxr/.jdks/temurin-17.0.18/bin:/mnt/c/tools/mysql/current/bin:/mnt/c/Program Files/Git/usr/bin:/mnt/c/Users/wblxr/bin:/mnt/c/Users/wblxr/AppData/Local/Microsoft/WinGet/Packages/astral-sh.uv_Microsoft.Winget.Source_8wekyb3d8bbwe:/mnt/c/Users/wblxr/.dotnet/tools:/mnt/c/Users/wblxr/AppData/Local/Programs/Prince/prince-16.2-win64/bin:/mnt/c/Users/wblxr/go/bin:/snap/bin'), ('XDG_RUNTIME_DIR', '/mnt/wslg/runtime-dir'), ('DISPLAY', ':0'), ('LANG', 'en_US.UTF-8'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('VSCODE_GIT_IPC_HANDLE', '/mnt/wslg/runtime-dir/vscode-git-f5756022de.sock'), ('TERM_PROGRAM', 'vscode'), ('AMENT_PREFIX_PATH', '/opt/ros/humble'), ('SHELL', '/bin/bash'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('VSCODE_GIT_ASKPASS_EXTRA_ARGS', ''), ('PWD', '/root/nexus_workspace/NEXUS/fcu_core_gcs/build/rviz2_custom_panel'), ('COPILOT_DEBUG_NONCE', '3513023eecff45a360639dffdfdef9cf'), ('XDG_DATA_DIRS', '/usr/local/share:/usr/share:/var/lib/snapd/desktop'), ('PYTHONPATH', '/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('COLCON', '1'), ('WSL2_GUI_APPS_ENABLED', '1'), ('HOSTTYPE', 'x86_64'), ('WSLENV', 'VSCODE_WSL_EXT_LOCATION/up'), ('CMAKE_PREFIX_PATH', '/opt/ros/humble')]), 'shell': False}
+[31.528264] (rviz2_custom_panel) StdoutLine: {'line': b'-- Install configuration: ""\n'}
+[31.529527] (rviz2_custom_panel) StdoutLine: {'line': b'-- Installing: /root/nexus_workspace/NEXUS/fcu_core_gcs/install/rviz2_custom_panel/lib/rviz2_custom_panel/libmypanel.so\n'}
+[31.539649] (rviz2_custom_panel) StdoutLine: {'line': b'-- Set runtime path of "/root/nexus_workspace/NEXUS/fcu_core_gcs/install/rviz2_custom_panel/lib/rviz2_custom_panel/libmypanel.so" to ""\n'}
+[31.540520] (rviz2_custom_panel) StdoutLine: {'line': b'-- Installing: /root/nexus_workspace/NEXUS/fcu_core_gcs/install/rviz2_custom_panel/share/rviz2_custom_panel/plugin_description.xml\n'}
+[31.541933] (rviz2_custom_panel) StdoutLine: {'line': b'-- Installing: /root/nexus_workspace/NEXUS/fcu_core_gcs/install/rviz2_custom_panel/share/ament_index/resource_index/package_run_dependencies/rviz2_custom_panel\n'}
+[31.542531] (rviz2_custom_panel) StdoutLine: {'line': b'-- Installing: /root/nexus_workspace/NEXUS/fcu_core_gcs/install/rviz2_custom_panel/share/ament_index/resource_index/parent_prefix_path/rviz2_custom_panel\n'}
+[31.543017] (-) TimerEvent: {}
+[31.543150] (rviz2_custom_panel) StdoutLine: {'line': b'-- Installing: /root/nexus_workspace/NEXUS/fcu_core_gcs/install/rviz2_custom_panel/share/rviz2_custom_panel/environment/ament_prefix_path.sh\n'}
+[31.543465] (rviz2_custom_panel) StdoutLine: {'line': b'-- Installing: /root/nexus_workspace/NEXUS/fcu_core_gcs/install/rviz2_custom_panel/share/rviz2_custom_panel/environment/ament_prefix_path.dsv\n'}
+[31.543669] (rviz2_custom_panel) StdoutLine: {'line': b'-- Installing: /root/nexus_workspace/NEXUS/fcu_core_gcs/install/rviz2_custom_panel/share/rviz2_custom_panel/environment/path.sh\n'}
+[31.543860] (rviz2_custom_panel) StdoutLine: {'line': b'-- Installing: /root/nexus_workspace/NEXUS/fcu_core_gcs/install/rviz2_custom_panel/share/rviz2_custom_panel/environment/path.dsv\n'}
+[31.544091] (rviz2_custom_panel) StdoutLine: {'line': b'-- Installing: /root/nexus_workspace/NEXUS/fcu_core_gcs/install/rviz2_custom_panel/share/rviz2_custom_panel/local_setup.bash\n'}
+[31.544306] (rviz2_custom_panel) StdoutLine: {'line': b'-- Installing: /root/nexus_workspace/NEXUS/fcu_core_gcs/install/rviz2_custom_panel/share/rviz2_custom_panel/local_setup.sh\n'}
+[31.544530] (rviz2_custom_panel) StdoutLine: {'line': b'-- Installing: /root/nexus_workspace/NEXUS/fcu_core_gcs/install/rviz2_custom_panel/share/rviz2_custom_panel/local_setup.zsh\n'}
+[31.544928] (rviz2_custom_panel) StdoutLine: {'line': b'-- Installing: /root/nexus_workspace/NEXUS/fcu_core_gcs/install/rviz2_custom_panel/share/rviz2_custom_panel/local_setup.dsv\n'}
+[31.545330] (rviz2_custom_panel) StdoutLine: {'line': b'-- Installing: /root/nexus_workspace/NEXUS/fcu_core_gcs/install/rviz2_custom_panel/share/rviz2_custom_panel/package.dsv\n'}
+[31.545638] (rviz2_custom_panel) StdoutLine: {'line': b'-- Installing: /root/nexus_workspace/NEXUS/fcu_core_gcs/install/rviz2_custom_panel/share/ament_index/resource_index/packages/rviz2_custom_panel\n'}
+[31.546177] (rviz2_custom_panel) StdoutLine: {'line': b'-- Installing: /root/nexus_workspace/NEXUS/fcu_core_gcs/install/rviz2_custom_panel/share/ament_index/resource_index/rviz_common__pluginlib__plugin/rviz2_custom_panel\n'}
+[31.546791] (rviz2_custom_panel) StdoutLine: {'line': b'-- Installing: /root/nexus_workspace/NEXUS/fcu_core_gcs/install/rviz2_custom_panel/share/rviz2_custom_panel/cmake/rviz2_custom_panelConfig.cmake\n'}
+[31.547399] (rviz2_custom_panel) StdoutLine: {'line': b'-- Installing: /root/nexus_workspace/NEXUS/fcu_core_gcs/install/rviz2_custom_panel/share/rviz2_custom_panel/cmake/rviz2_custom_panelConfig-version.cmake\n'}
+[31.547790] (rviz2_custom_panel) StdoutLine: {'line': b'-- Installing: /root/nexus_workspace/NEXUS/fcu_core_gcs/install/rviz2_custom_panel/share/rviz2_custom_panel/package.xml\n'}
+[31.550179] (rviz2_custom_panel) CommandEnded: {'returncode': 0}
+[31.562091] (rviz2_custom_panel) JobEnded: {'identifier': 'rviz2_custom_panel', 'rc': 0}
+[31.563792] (-) EventReactorShutdown: {}

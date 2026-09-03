@@ -3,7 +3,15 @@ function carlaStatusUrl() {
   if (query.has("carla_ws")) return query.get("carla_ws");
   if (window.NEXUS_CARLA_STATUS_URL) return window.NEXUS_CARLA_STATUS_URL;
   const protocol = window.location.protocol === "https:" ? "wss" : "ws";
-  return protocol + "://" + window.location.hostname + ":8766/ws/carla_status";
+  return protocol + "://" + window.location.hostname + ":8765/ws/carla_status";
+}
+
+function carlaSceneUrl() {
+  const query = new URLSearchParams(window.location.search);
+  if (query.has("carla_scene_ws")) return query.get("carla_scene_ws");
+  if (window.NEXUS_CARLA_SCENE_URL) return window.NEXUS_CARLA_SCENE_URL;
+  const protocol = window.location.protocol === "https:" ? "wss" : "ws";
+  return protocol + "://" + window.location.hostname + ":8765/ws";
 }
 
 function normalizeLogEntry(entry) {
@@ -41,6 +49,32 @@ function applyPayload(store, payload) {
   if (payload.log) store.appendLog(normalizeLogEntry(payload.log));
 }
 
+function applyScene(store, scene) {
+  if (!scene || scene.type !== "scene") return;
+  const map = scene.map || {};
+  const simulation = scene.simulation || {};
+  const actors = Array.isArray(scene.actors) ? scene.actors : [];
+  const vehicles = actors.filter((actor) => actor.type === "vehicle").length;
+  const walkers = actors.filter((actor) => actor.type === "walker").length;
+  const hero = actors.find((actor) => actor.role === "hero");
+  store.updateCarlaStatus({
+    protocol: scene.protocol,
+    connected: true,
+    endpoint: "127.0.0.1:2000",
+    map: map.name,
+    actor_count: actors.length,
+    vehicle_count: vehicles,
+    walker_count: walkers,
+    frame: simulation.frame,
+    timestamp: scene.timestamp,
+    sync_mode: simulation.synchronous,
+    ego_pose: hero?.position,
+  });
+  if (hero?.position) store.updateEgoPose({ ...hero.position, ...hero.rotation, speed: hero.speed });
+  store.updateStatus({ mode: "SIMULATION", session: "CARLA_LIVE" });
+  store.appendLog({ level: "INFO", text: `CARLA scene received: ${map.name || "unknown"} (${(map.roads || []).length} roads)` });
+}
+
 export function installCarlaStatusGateway(store) {
   const url = carlaStatusUrl();
   let socket = null;
@@ -58,5 +92,17 @@ export function installCarlaStatusGateway(store) {
     socket.addEventListener("message", (event) => { let payload; try { payload = JSON.parse(event.data); } catch (_) { return; } applyPayload(store, payload); });
   };
   connect();
-  return Object.freeze({ close: () => { closed = true; if (retryTimer) window.clearTimeout(retryTimer); if (socket) socket.close(); }, url });
+  const sceneUrl = carlaSceneUrl();
+  let sceneSocket = null;
+  let sceneRetryTimer = null;
+  const connectScene = () => {
+    if (closed) return;
+    try { sceneSocket = new WebSocket(sceneUrl); } catch (_) { sceneRetryTimer = window.setTimeout(connectScene, 2000); return; }
+    sceneSocket.addEventListener("open", () => store.appendLog({ level: "INFO", text: "CARLA scene gateway connected: " + sceneUrl }));
+    sceneSocket.addEventListener("close", () => { if (!closed) sceneRetryTimer = window.setTimeout(connectScene, 2000); });
+    sceneSocket.addEventListener("error", () => {});
+    sceneSocket.addEventListener("message", (event) => { let payload; try { payload = JSON.parse(event.data); } catch (_) { return; } applyScene(store, payload); });
+  };
+  connectScene();
+  return Object.freeze({ close: () => { closed = true; if (retryTimer) window.clearTimeout(retryTimer); if (sceneRetryTimer) window.clearTimeout(sceneRetryTimer); if (socket) socket.close(); if (sceneSocket) sceneSocket.close(); }, url, sceneUrl });
 }

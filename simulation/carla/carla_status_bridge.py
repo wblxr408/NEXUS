@@ -112,11 +112,14 @@ class CarlaObserver:
         self.spawn_demo_ego = spawn_demo_ego
         self.stop_event = threading.Event()
         self.demo_actors: list[Any] = []
+        self._actor_lock = threading.Lock()
         self._last_thumbnail_wall = 0.0
 
     def close(self) -> None:
         self.stop_event.set()
-        for actor in reversed(self.demo_actors):
+        with self._actor_lock:
+            actors, self.demo_actors = self.demo_actors, []
+        for actor in reversed(actors):
             try:
                 actor.destroy()
             except Exception:
@@ -205,7 +208,9 @@ class CarlaObserver:
             self._last_thumbnail_wall = now
             thumbnail = _image_data_uri(image)
             if thumbnail:
-                self.state.merge({"thumbnail": thumbnail, "camera_frame": int(image.frame), "sensors": {"rgb_front": "ok"}})
+                previous = self.state.snapshot()
+                sensors = {**(previous.get("sensors") or {}), "rgb_front": "ok"}
+                self.state.merge({"thumbnail": thumbnail, "camera_frame": int(image.frame), "sensors": sensors})
         except Exception as exc:
             LOG.debug("camera encoding failed: %s", exc)
 
@@ -233,7 +238,15 @@ class CarlaObserver:
             camera_bp.set_attribute("fov", "90")
             camera = world.spawn_actor(camera_bp, carla.Transform(carla.Location(x=1.5, z=1.6)), attach_to=ego)
             camera.listen(self._on_camera)
-            self.demo_actors = [ego, camera]
+            with self._actor_lock:
+                if self.stop_event.is_set():
+                    for actor in (camera, ego):
+                        try:
+                            actor.destroy()
+                        except Exception:
+                            pass
+                    return
+                self.demo_actors = [ego, camera]
             LOG.info("spawned demo ego=%s and RGB camera", ego.id)
         except Exception as exc:
             LOG.warning("demo ego setup failed: %s", exc)
@@ -244,7 +257,7 @@ def mock_payload(frame: int) -> dict[str, Any]:
     return {
         "carla_connected": True,
         "endpoint": "127.0.0.1:2000",
-        "map": "sandbox-v29",
+        "map": "RRD",
         "sync_mode": True,
         "tick_hz": 20.0,
         "actor_count": 8,
@@ -299,8 +312,10 @@ def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--host", default=os.environ.get("CARLA_HOST", "127.0.0.1"))
     parser.add_argument("--port", type=int, default=2000)
-    parser.add_argument("--map", default="sandbox-v29")
-    parser.add_argument("--listen", default="0.0.0.0")
+    parser.add_argument("--map", default="RRD")
+    parser.add_argument("--listen", default="127.0.0.1")
+    parser.add_argument("--allow-remote", action="store_true",
+                        help="permit a non-loopback status listener for an explicitly isolated network")
     parser.add_argument("--web-port", type=int, default=8766)
     parser.add_argument("--mock", action="store_true", help="publish deterministic data without connecting to CARLA")
     parser.add_argument("--spawn-demo-ego", action="store_true", help="spawn a hero vehicle and RGB camera when none exists")
@@ -310,13 +325,17 @@ def parse_args() -> argparse.Namespace:
 def main() -> int:
     logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
     args = parse_args()
+    if args.listen not in {"127.0.0.1", "::1", "localhost"} and not args.allow_remote:
+        raise SystemExit("refusing non-loopback listener without --allow-remote")
     state = BridgeState({"carla_connected": False, "endpoint": f"{args.host}:{args.port}", "map": args.map})
     observer = None
+    observer_thread = None
     if args.mock:
         state.replace(mock_payload(0))
     else:
         observer = CarlaObserver(args.host, args.port, args.map, state, spawn_demo_ego=args.spawn_demo_ego)
-        threading.Thread(target=observer.run, name="carla-observer", daemon=True).start()
+        observer_thread = threading.Thread(target=observer.run, name="carla-observer", daemon=True)
+        observer_thread.start()
     try:
         asyncio.run(serve(state, args.listen, args.web_port, args.mock))
     except KeyboardInterrupt:
@@ -324,6 +343,8 @@ def main() -> int:
     finally:
         if observer:
             observer.close()
+        if observer_thread:
+            observer_thread.join(timeout=2.0)
     return 0
 
 
