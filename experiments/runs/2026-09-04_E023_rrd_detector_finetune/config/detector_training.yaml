@@ -1,0 +1,32 @@
+source_kind: CARLA_RRD_simulation
+episode_id: episode_20260831T132747Z_seed20260831
+task: detect
+initial_weights: yolo11n COCO 80-class generic pretrained checkpoint
+initial_weights_sha256: 0ebbc80d4a7680d14987a577cd21342b65ecfd94632bd9a8da63ae6417644ee1
+gdr_experiment_weights_used: false
+classes:
+  - vehicle.chevrolet.impala
+  - vehicle.citroen.c3
+  - vehicle.mercedes.coupe_2020
+split:
+  method: single_episode_contiguous_subclips_with_time_gaps
+  train_frames: 300
+  validation_frames: 80
+  test_frames: 80
+  omitted_gap_frames: 40
+  gap_seconds: 1.0
+  independent_episode_test: false
+training:
+  epochs: 30
+  image_size_px: 640
+  batch_size: 8
+  seed: 20260904
+  deterministic: true
+  amp: false
+  workers: 0
+environment:
+  python: 3.10.19
+  pytorch: 2.6.0+cu124
+  ultralytics: 8.4.47
+  gpu: NVIDIA GeForce RTX 4070 Laptop GPU
+  external_integrations: disabled

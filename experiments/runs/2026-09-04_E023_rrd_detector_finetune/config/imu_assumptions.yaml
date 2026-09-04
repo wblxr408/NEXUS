@@ -1,0 +1,24 @@
+source_kind: hardware_rate_with_assumed_noise
+# Rate and wire units are the only hardware constraints established here.
+hardware_note: docs/2026-09-02_design_online_target_localization_framework_v01.md section 4
+rate_hz: 188.9
+hardware_wire_units: {acceleration: mm/s^2, angular_velocity: mrad/s}
+wire_to_si_scale: 0.001
+gravity_mps2: 9.80665
+sensor_assumptions:
+  status: ASSUMED_NOT_HARDWARE_CALIBRATED
+  # The single static sample cannot determine real mounting or accelerometer bias.
+  rotation_body_imu: [[1, 0, 0], [0, 1, 0], [0, 0, 1]]
+  lever_arm_body_m: [0, 0, 0]
+  accel:
+    noise_density: [0.08, 0.08, 0.08]  # m/s^2 * sqrt(s); assumed stress setting
+    bias_random_walk_density: [0, 0, 0]
+    initial_bias: [0, 0, 0]
+    quantization_step: 0.001  # m/s^2, derived from integer wire unit
+  gyro:
+    noise_density: [0.004, 0.004, 0.004]  # rad/s * sqrt(s); assumed stress setting
+    bias_random_walk_density: [0, 0, 0]
+    # Rough static-sample value (-6, 3, 11 mrad/s), not a calibrated mean.
+    initial_bias: [-0.006, 0.003, 0.011]
+    initial_bias_status: SINGLE_STATIC_SAMPLE_NOT_CALIBRATED
+    quantization_step: 0.001  # rad/s, derived from integer wire unit

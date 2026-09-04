@@ -19,6 +19,8 @@
   <exec_depend>nexus_fusion_localization</exec_depend>
   <exec_depend>nexus_viz_dashboard</exec_depend>
   <exec_depend>rviz2</exec_depend>
+  <exec_depend>rosbridge_server</exec_depend>
+  <exec_depend>rosbag2_transport</exec_depend>
   <exec_depend>gazebo_ros</exec_depend>
   <exec_depend>gazebo_plugins</exec_depend>
   <test_depend>ament_cmake_pytest</test_depend>
@@ -28,5 +30,7 @@
   <test_depend>sensor_msgs</test_depend>
   <test_depend>apriltag_msgs</test_depend>
   <test_depend>ament_index_python</test_depend>
+  <test_depend>rosbag2_py</test_depend>
+  <test_depend>rosidl_runtime_py</test_depend>
   <export><build_type>ament_cmake</build_type></export>
 </package>

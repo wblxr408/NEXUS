@@ -1,0 +1,23 @@
+schema_version: 1
+configuration_id: raspberry_pi_tag2_user_v01
+verification_status: user_provided_not_surveyed
+uwb:
+  tag_id: 2
+  provided_coordinate_unit: cm
+  range_slot_anchor_ids: ["1", "2", "3", "4"]
+  anchors_map_m:
+    "1": [0.90, -0.90, 2.56]
+    "2": [0.00, 5.00, 2.71]
+    "3": [4.00, 5.00, 2.71]
+    "4": [4.00, 0.00, 2.71]
+  range_variance_m2: [0.0025, 0.0025, 0.0025, 0.0025]
+map:
+  yaw_offset_deg: 9.0
+camera:
+  model: IMX219
+  mounting: bottom_lens_down
+  rotation_deg: 180
+  width: 1640
+  height: 1232
+  fps: 30.0
+  calibration_status: deferred_by_user

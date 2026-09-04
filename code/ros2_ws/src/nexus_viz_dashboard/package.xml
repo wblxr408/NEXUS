@@ -11,6 +11,7 @@
   <exec_depend>nexus_msgs</exec_depend>
   <exec_depend>nexus_coord_transform</exec_depend>
   <exec_depend>nav_msgs</exec_depend>
+  <exec_depend>std_msgs</exec_depend>
   <exec_depend>visualization_msgs</exec_depend>
   <exec_depend>python3-numpy</exec_depend>
   <exec_depend>rviz2</exec_depend>

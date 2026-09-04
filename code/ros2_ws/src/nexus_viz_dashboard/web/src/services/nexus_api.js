@@ -1,6 +1,8 @@
 /** ROS2/rosbridge 适配层；页面不计算坐标、年龄或实验指标。 */
 export function installNexusAPI(store) {
   const api = {
+    updateLocalization: (data) => store.updateLocalization(data),
+    selectTarget: (id) => store.selectTarget(id),
     updatePose: (x, y, z, metadata) => store.updatePose(x, y, z, metadata),
     updateSolverProvenance: (data) => store.updateSolverProvenance(data),
     updateCamera: (data) => store.updateCamera(data),

@@ -23,7 +23,6 @@ target_geometry:
   maximum_reprojection_px: 3.0
   minimum_parallax_deg: 0.25
   maximum_condition_number: 10000000.0
-  maximum_speed_mps: 10.0
   minimum_depth_m: 0.05
   maximum_depth_m: 100.0
   ransac_iterations: 64

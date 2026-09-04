@@ -30,6 +30,9 @@ def generate_test_description():
             "marker_size_m": "0.2",
             "position_variance_m2": "0.01",
             "max_pair_delta_ms": "50.0",
+            # These assertions exercise the legacy information-pairing
+            # baseline. Robust filtering deliberately rejects the 1 m jump.
+            "fusion_mode": "information_baseline",
         }.items(),
     )
     return launch.LaunchDescription([

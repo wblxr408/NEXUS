@@ -1,3 +1,4 @@
+import { validLocalization, localizationProjection } from "./localization_state.js";
 import { EMPTY_METRICS, INPUT_MODES, SOURCE_MODES, finiteOrNull } from "../../types/dashboard_types.js";
 
 const EMPTY_ALGORITHM = Object.freeze({ status: "NO_INPUT", summary: null, latencyMs: null, dropRate: null, lastUpdate: null });
@@ -24,6 +25,7 @@ function normalizeLogEntry(entry) {
 }
 
 const initialState = () => ({
+  dual: null,
   mode: INPUT_MODES.NO_INPUT,
   session: "WAITING_FOR_INPUT",
   runId: "UNREGISTERED",
@@ -88,6 +90,7 @@ export function createDashboardStore() {
     getState: () => state,
     subscribe(listener) { listeners.add(listener); listener(state); return () => listeners.delete(listener); },
     updatePose(x, y, z, metadata = {}) {
+      if (state.dual) return;
       const pose = { x: finiteOrNull(x), y: finiteOrNull(y), z: finiteOrNull(z) };
       if (Object.values(pose).some((value) => value === null)) return;
       const sigma = metadata.sigma === undefined ? state.sigma : {
@@ -109,6 +112,7 @@ export function createDashboardStore() {
       });
     },
     updateSolverProvenance(data = {}) {
+      if (state.dual) return;
       // 求解侧落盘记录的接入点（4.5 节的 n_views / baseline_m / depth_source / chain）。
       patch({
         nViews: data.nViews === undefined ? state.nViews : finiteOrNull(data.nViews),
@@ -119,6 +123,7 @@ export function createDashboardStore() {
     },
     updateCamera(data = {}) { patch({ camera: { ...state.camera, ...data } }); },
     updateEgoPose(data = {}) {
+      if (state.dual) return;
       const ego = {
         x: data.x === undefined ? state.ego.x : finiteOrNull(data.x),
         y: data.y === undefined ? state.ego.y : finiteOrNull(data.y),
@@ -131,6 +136,7 @@ export function createDashboardStore() {
       patch({ ego });
     },
     updatePlatform(position = {}) {
+      if (state.dual) return;
       const platform = { x: finiteOrNull(position.x), y: finiteOrNull(position.y), z: finiteOrNull(position.z) };
       if (Object.values(platform).some((value) => value === null)) return;
       patch({ platform, ego: { ...state.ego, ...platform } });
@@ -139,10 +145,13 @@ export function createDashboardStore() {
     updateMetrics(data = {}) {
       // `cep` 是旧单文件稿的字段名，转换只做字段兼容，不改变指标口径。
       const normalized = data.p95 === undefined && data.cep !== undefined ? { ...data, p95: data.cep } : data;
-      patch({ metrics: { ...state.metrics, ...normalized }, runId: normalized.runId ?? state.runId });
+      patch({ metrics: { ...state.metrics, ...normalized }, runId: state.dual ? state.runId : normalized.runId ?? state.runId });
     },
-    updateStatus(data = {}) { patch(data); },
-    updateHealth(data = {}) { patch({ health: { ...state.health, ...data } }); },
+    updateStatus(data = {}) { if (!state.dual) patch(data); },
+    updateHealth(data = {}) {
+      const updates = state.dual ? (data.bridge ? { bridge: data.bridge } : {}) : data;
+      patch({ health: { ...state.health, ...updates } });
+    },
     updateCarlaStatus(data = {}) {
       const carla = {
         ...state.carla,
@@ -180,6 +189,21 @@ export function createDashboardStore() {
     addLatency(value) {
       const latency = finiteOrNull(value);
       if (latency !== null) patch({ latency: [...state.latency, latency].slice(-60) });
+    },
+    updateLocalization(data) {
+      if (!validLocalization(data)) return false;
+      if (state.dual?.snapshot.session_id === data.session_id
+          && BigInt(data.generated_timestamp_ns) <= BigInt(state.dual.snapshot.generated_timestamp_ns)) return false;
+      const dual = { snapshot: structuredClone(data), connection: "CONNECTED" };
+      patch(localizationProjection(dual, state.targetId, state.health));
+      return true;
+    },
+    selectTarget(identifier) {
+      if (state.dual?.snapshot.targets.some((target) => target.target_id === identifier))
+        patch(localizationProjection(state.dual, identifier, state.health));
+    },
+    localizationDisconnected(reason = "DISCONNECTED") {
+      if (state.dual) patch(localizationProjection({ ...state.dual, connection: reason }, state.targetId, state.health));
     },
     reset() { state = initialState(); notify(); },
   };

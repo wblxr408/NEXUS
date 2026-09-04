@@ -108,11 +108,17 @@ export function installRosbridgeGateway(store) {
   const socket = new WebSocket(websocketUrl());
   let sequence = 0;
   let lastCameraDecodeMs = 0;
+  let lastLocalizationMs = null;
+  const watchdog = window.setInterval(() => {
+    if (lastLocalizationMs !== null && performance.now() - lastLocalizationMs > 1000)
+      store.localizationDisconnected("STALE_CONNECTION");
+  }, 250);
   const subscribe = (topic, type, throttleRate = 0) => socket.send(JSON.stringify({
     op: "subscribe", topic, type, throttle_rate: throttleRate, queue_length: 1,
   }));
 
   socket.addEventListener("open", () => {
+    subscribe("/nexus/viz/localization_state", "std_msgs/msg/String", 100);
     subscribe("/nexus/target/pose", "nexus_msgs/msg/TargetObservation");
     subscribe("/nexus/vision/map_target_observation", "nexus_msgs/msg/TargetObservation");
     subscribe("/nexus/uwb/target_observation", "nexus_msgs/msg/TargetObservation");
@@ -122,8 +128,14 @@ export function installRosbridgeGateway(store) {
     store.updateHealth({ bridge: { status: "CONNECTED", sequence } });
     store.updateStatus({ mode: "SIMULATION", session: "GAZEBO_LIVE" });
   });
-  socket.addEventListener("close", () => store.updateHealth({ bridge: { status: "DISCONNECTED", sequence } }));
-  socket.addEventListener("error", () => store.updateHealth({ bridge: { status: "ERROR", sequence } }));
+  socket.addEventListener("close", () => {
+    store.updateHealth({ bridge: { status: "DISCONNECTED", sequence } });
+    store.localizationDisconnected();
+  });
+  socket.addEventListener("error", () => {
+    store.updateHealth({ bridge: { status: "ERROR", sequence } });
+    store.localizationDisconnected("ERROR");
+  });
   socket.addEventListener("message", (event) => {
     let envelope;
     try { envelope = JSON.parse(event.data); } catch (_) { return; }
@@ -131,6 +143,12 @@ export function installRosbridgeGateway(store) {
     sequence += 1;
     store.updateHealth({ bridge: { status: "CONNECTED", sequence } });
     const message = envelope.msg || {};
+    if (envelope.topic === "/nexus/viz/localization_state") {
+      try {
+        if (store.updateLocalization(JSON.parse(message.data))) lastLocalizationMs = performance.now();
+      } catch (_) { /* A malformed packet must not refresh transport freshness. */ }
+      return;
+    }
     if (envelope.topic === "/nexus/target/pose") observationToStore(store, message, "target");
     if (envelope.topic === "/nexus/vision/map_target_observation") observationToStore(store, message, "vision");
     if (envelope.topic === "/nexus/uwb/target_observation") observationToStore(store, message, "uwb");
@@ -142,10 +160,10 @@ export function installRosbridgeGateway(store) {
       const image = previewFromCompressedImage(message);
       store.updateCamera({
         image,
-        status: image ? "SIMULATED_COMPRESSED" : `UNSUPPORTED_${message.format || "IMAGE"}`,
-        imageAge: 0,
+        status: image ? "COMPRESSED" : `UNSUPPORTED_${message.format || "IMAGE"}`,
+        imageAge: null,
       });
     }
   });
-  return Object.freeze({ close: () => socket.close(), url: websocketUrl() });
+  return Object.freeze({ close: () => { window.clearInterval(watchdog); socket.close(); }, url: websocketUrl() });
 }

@@ -20,7 +20,7 @@ class TargetVisualFrontend:
         self.tracker = TargetIdentityTracker(config or IdentityConfig())
 
     def register(self, identifier, dense, image, bbox_xywh_px, feature_options, *, class_id=None, existing_track_id=None,
-                 motion_model="constant_velocity", anchor_reference_px=None):
+                 motion_model="static", anchor_reference_px=None):
         size = (image.shape[1], image.shape[0])
         selected = dense.features(roi_mask(size, bbox_xywh_px), **feature_options)
         if len(selected.points_px) < self.tracker.config.minimum_geometric_matches:

@@ -53,15 +53,17 @@ def platform_message(stamp, center):
     return message
 
 
-@pytest.mark.parametrize("motion_model", ["static", "constant_velocity"])
-def test_reference_image_to_metric_position_and_velocity_over_dds(tmp_path, monkeypatch, motion_model):
+@pytest.mark.parametrize("variable_motion", [False, True])
+def test_reference_image_to_static_target_with_variable_platform_motion_over_dds(tmp_path, monkeypatch, variable_motion):
     offsets = np.array([[x, y, 0.] for y in (-.1, .0, .1) for x in (-.15, -.05, .05, .15)])
     target = np.array([.1, -.1, 4.])
-    velocity = np.array([.15, -.1, .05]) if motion_model == "constant_velocity" else np.zeros(3)
+    velocity = np.zeros(3)
+    motion_model = "static"
     features, centers = [], []
     for index in range(8):
         t = index * .1
-        center = np.array([.6 * t, .6 * t ** 2, .1 * np.sin(5 * t)])
+        center = (np.array([.6 * t, .6 * t ** 2, .1 * np.sin(5 * t)]) if variable_motion
+                  else np.array([.4 * t, 0., 0.]))
         points = target + offsets + velocity * t
         pixels = cv2.projectPoints(points, np.zeros(3), -center, CAMERA, np.zeros(5))[0].reshape(-1, 2)
         features.append(FeatureSet(pixels, np.eye(256, dtype=np.float32)[:12], np.ones(12), (640, 480)))
@@ -78,7 +80,7 @@ def test_reference_image_to_metric_position_and_velocity_over_dds(tmp_path, monk
     path = calibration(tmp_path)
     rclpy.init(args=["--ros-args", "-p", f"calibration_file:={path}", "-p", "allow_test_calibration:=true",
                      "-p", "model_manifest:=synthetic_network_boundary", "-p", "enable_target_tracking:=true",
-                     "-p", "max_age_ms:=3000.0", "-p", "prediction_horizon_ms:=3000.0"])
+                     "-p", "max_age_ms:=3000.0", "-p", "reassociation_gap_ms:=3000.0"])
     frontend, metric, driver = superpoint_node.SuperPointMotionNode(), target_metric_node.TargetMetricNode(), Node("target_metric_test_driver")
     fusion = TargetKinematicFusionNode()
     executor = SingleThreadedExecutor()
@@ -120,7 +122,7 @@ def test_reference_image_to_metric_position_and_velocity_over_dds(tmp_path, monk
         lower, upper = features[0].points_px.min(axis=0) - 4, features[0].points_px.max(axis=0) + 4
         request = {"schema_version": 1, "request_id": "metric_reference_1", "target_id": "chosen",
                    "sample_timestamp_ns": 1_000_000_000, "frame_id": "camera_optical_frame",
-                   "bbox_xywh_px": np.r_[lower, upper - lower].tolist(), "motion_model": motion_model,
+                   "bbox_xywh_px": np.r_[lower, upper - lower].tolist(),
                    "anchor_reference_px": features[0].points_px[0].tolist()}
         publishers["request"].publish(String(data=json.dumps(request)))
         publishers["reference"].publish(frame(0, 1_000_000_000))
@@ -139,7 +141,7 @@ def test_reference_image_to_metric_position_and_velocity_over_dds(tmp_path, monk
         assert output.position_reference.endswith(":0") and output.source.endswith(motion_model)
         expected = target + offsets[0] + velocity * .7
         np.testing.assert_allclose([output.pose.position.x, output.pose.position.y, output.pose.position.z], expected, atol=2e-4)
-        assert output.velocity_observed == (motion_model == "constant_velocity")
+        assert not output.velocity_observed and not output.historical
         if output.velocity_observed:
             np.testing.assert_allclose([output.velocity.x, output.velocity.y, output.velocity.z], velocity, atol=2e-4)
         else:

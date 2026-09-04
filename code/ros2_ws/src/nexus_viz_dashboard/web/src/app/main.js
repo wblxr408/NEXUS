@@ -1,3 +1,4 @@
+import { renderDualLocalization } from "../components/dual_localization.js";
 import { dashboardLayout } from "../components/dashboard_layout.js";
 import { createDashboardStore } from "../features/telemetry/dashboard_store.js";
 import { installCarlaStatusGateway } from "../services/carla_status_client.js";
@@ -8,6 +9,7 @@ import { formatNumber } from "../types/dashboard_types.js";
 const root = document.querySelector("#nexus-app");
 const store = createDashboardStore();
 root.innerHTML = dashboardLayout();
+document.getElementById("dual-target-select").addEventListener("change", (event) => store.selectTarget(event.target.value));
 installNexusAPI(store);
 installRosbridgeGateway(store);
 installCarlaStatusGateway(store);
@@ -115,6 +117,7 @@ function renderLogs(logs) {
 }
 
 function render(state) {
+  renderDualLocalization(state);
   setText("ui-mode", state.mode.replace("_", " "));
   setText("ui-run-id", state.runId || "UNREGISTERED");
   setText("ui-target-id", state.targetId || "未检测到目标");

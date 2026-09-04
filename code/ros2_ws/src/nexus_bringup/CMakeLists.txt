@@ -17,4 +17,7 @@ install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/../../../../simulation/
 ament_add_pytest_test(test_launch_contract test/test_launch_contract.py)
 ament_add_pytest_test(test_gazebo_contract test/test_gazebo_contract.py)
 add_launch_test(test/test_realtime_pipeline_launch.py TIMEOUT 30)
+ament_add_pytest_test(test_dual_launch test/test_dual_launch.py)
+ament_add_pytest_test(test_dual_recording test/test_dual_recording.py TIMEOUT 60
+  ENV "ROS_LOCALHOST_ONLY=0" "ROS_DOMAIN_ID=230" "FASTDDS_BUILTIN_TRANSPORTS=LARGE_DATA" "OPENBLAS_NUM_THREADS=1")
 ament_package()

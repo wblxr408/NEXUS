@@ -74,3 +74,11 @@
 最新用户方案与历史优先级差异见[ADR-011](decisions/2026-09-03_ADR-011_robust_dual_localization.md)，当前完成与未完成状态以[逐项实现清单](2026-09-03_checklist_dual_localization_implementation.md)为准。平台IMU/UWB/固定参考、SuperPoint静态/目标前端、目标多帧几何与目标窗口边缘化的实现记录均由该清单路由；保留上文历史规划，不将历史目标值表述为实测结果。
 
 目标新消息的融合与预测接口见[ADR-012](decisions/2026-09-03_ADR-012_correlated_target_kinematic_fusion.md)及[接口说明](architecture/2026-09-03_design_target_kinematic_fusion_interfaces.md)。该节点已接入静态视觉启动链，但完整联合后端、RViz/Web、统一平台启动及真实数据验收仍须按清单继续完成。
+
+## 2026-09-03 静态目标六项修正入口
+
+用户随后明确：目标在 map 中固定、目标计算忽略平台/外参误差贡献、无人机速度高度由已有方式操控。最新口径见 [ADR-013](decisions/2026-09-03_ADR-013_static_targets_readonly_localization.md)，逐项代码、测试、启动命令和未通过项见[六项修正清单](2026-09-03_checklist_static_target_corrections.md)。新主入口为 `nexus_bringup dual_localization.launch.py`，不含飞行控制。上文目标运动预测与未接入展示的陈述保留为历史；当前整体仍为 PARTIALLY COMPLETE，录包回环与旧入口的一项回归尚未通过，不代表实机精度已验证。
+
+后续本机闭环补验已完成：录包、旧异步观测测试及真实 ROS2→Web/RViz 展示均通过，见 [ADR-014](decisions/2026-09-03_ADR-014_local_dds_transport_and_baseline_tests.md) 与[本机联调验证记录](2026-09-03_record_local_integration_validation.md)。当前 WSL 使用显式 `LARGE_DATA` 传输；六项修正的本机软件验收已闭环。原始总体方案未实现分支与实机精度仍按各自记录推进。
+
+2026-09-04 用户提供的 `uav_uwb_mono_rrd` 压缩包经包内 manifest 和逐文件校验确认为 CARLA RRD 仿真数据，不是实机采样。三目标检测微调与轨迹派生 IMU 的最新证据见 [`E023`](../experiments/runs/2026-09-04_E023_rrd_detector_finetune/run.md)；检测指标只对单 episode 时间块成立，IMU 只有速率/线单位来自硬件事实，噪声与安装参数仍为显式假设。

@@ -1,0 +1,27 @@
+Panels:
+  - Class: rviz_common/Displays
+    Name: Displays
+Visualization Manager:
+  Class: ""
+  Displays:
+    - Class: rviz_default_plugins/Grid
+      Name: Map grid (m)
+      Plane: XY
+      Reference Frame: map
+      Enabled: true
+    - Class: rviz_default_plugins/MarkerArray
+      Name: UAV and static targets (history labeled)
+      Enabled: true
+      Topic:
+        Value: /nexus/viz/localization_markers
+        Reliability Policy: Reliable
+        Durability Policy: Volatile
+  Global Options:
+    Fixed Frame: map
+  Tools:
+    - Class: rviz_default_plugins/Interact
+    - Class: rviz_default_plugins/Select
+  Views:
+    Current:
+      Class: rviz_default_plugins/Orbit
+      Distance: 10

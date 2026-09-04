@@ -272,7 +272,7 @@ class SuperPointMotionNode(Node):
                 pending.tracker.tracks = dict(self.targets.tracker.tracks)
                 pending.register(request["target_id"], dense, image, request["bbox_xywh_px"], self._feature_options,
                                  class_id=request.get("class_id"), existing_track_id=request.get("existing_track_id"),
-                                 motion_model=request.get("motion_model", "constant_velocity"), anchor_reference_px=request.get("anchor_reference_px"))
+                                 motion_model=request.get("motion_model", "static"), anchor_reference_px=request.get("anchor_reference_px"))
                 if perf_counter() - receipt > self._reference_timeout_s:
                     raise ValueError("reference_processing_timeout")
                 self.targets.tracker = pending.tracker

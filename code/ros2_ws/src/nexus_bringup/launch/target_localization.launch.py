@@ -16,6 +16,7 @@ def generate_launch_description():
     transform_file = LaunchConfiguration("transform_file")
     use_rviz = LaunchConfiguration("use_rviz")
     max_pair_delta_ms = LaunchConfiguration("max_pair_delta_ms")
+    fusion_mode = LaunchConfiguration("fusion_mode")
     telemetry_udp_port = LaunchConfiguration("telemetry_udp_port")
     default_transform_file = PathJoinSubstitution([
         FindPackageShare("nexus_bringup"), "config", "pre_hardware_transforms.yaml"])
@@ -30,6 +31,7 @@ def generate_launch_description():
         DeclareLaunchArgument("transform_file", default_value=default_transform_file),
         DeclareLaunchArgument("use_rviz", default_value="true"),
         DeclareLaunchArgument("max_pair_delta_ms", default_value="50.0"),
+        DeclareLaunchArgument("fusion_mode", default_value="robust", choices=["robust", "information_baseline"]),
         DeclareLaunchArgument("telemetry_udp_port", default_value="14551"),
         Node(
             package="nexus_bringup",
@@ -73,6 +75,7 @@ def generate_launch_description():
             parameters=[{
                 "vision_topic": "/nexus/vision/map_target_observation",
                 "max_pair_delta_ms": max_pair_delta_ms,
+                "fusion_mode": fusion_mode,
             }],
         ),
         Node(

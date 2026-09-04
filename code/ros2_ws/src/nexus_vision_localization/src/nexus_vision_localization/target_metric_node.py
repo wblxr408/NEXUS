@@ -200,8 +200,8 @@ class TargetMetricNode(Node):
         model = track.get("motion_model")
         if not isinstance(anchor, int) or isinstance(anchor, bool) or anchor < 0 or not isinstance(reference, str) or not reference:
             raise ValueError("target_reference_anchor_missing")
-        if model not in {"static", "constant_velocity"}:
-            raise ValueError("target_motion_model_missing")
+        if model != "static":
+            raise ValueError("target_motion_model_must_be_static")
         features = track["feature_observations"]
         ids = [feature["feature_id"] for feature in features]
         if len(ids) != len(set(ids)):

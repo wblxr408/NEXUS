@@ -19,7 +19,7 @@ from nexus_fusion_localization.reliability import ReliabilityMLP, covariance_sca
 from nexus_fusion_localization.target_kinematic_node import TargetKinematicFusionNode
 
 
-def message(stamp, x=1., *, velocity=True, orientation=False, target_id="metric_one"):
+def message(stamp, x=1., *, velocity=False, orientation=False, target_id="metric_one"):
     msg = TargetKinematicState()
     msg.header.stamp.sec, msg.header.stamp.nanosec = divmod(stamp, 1_000_000_000)
     msg.header.frame_id, msg.target_id, msg.unit = "map", target_id, "m"
@@ -27,7 +27,7 @@ def message(stamp, x=1., *, velocity=True, orientation=False, target_id="metric_
     msg.valid = msg.position_observed = True
     msg.velocity_observed = velocity
     msg.orientation_observed = orientation
-    msg.state, msg.source, msg.position_reference = "confirmed", "superpoint_multiview_constant_velocity", "reference_feature:sample:0"
+    msg.state, msg.source, msg.position_reference = "confirmed", "superpoint_multiview_static", "reference_feature:sample:0"
     msg.pose.position.x, msg.pose.position.y, msg.pose.position.z = float(x), 2., 3.
     msg.pose.orientation.x = msg.pose.orientation.y = msg.pose.orientation.z = msg.pose.orientation.w = float("nan")
     if orientation:
@@ -44,9 +44,9 @@ def message(stamp, x=1., *, velocity=True, orientation=False, target_id="metric_
     return msg
 
 
-@pytest.mark.parametrize("velocity,orientation", [(True, False), (False, True)])
-def test_metric_dds_preserves_partial_state_rejects_outlier_and_expires_prediction(velocity, orientation):
-    rclpy.init(args=["--ros-args", "-p", "max_age_ms:=150.0", "-p", "prediction_horizon_ms:=450.0"])
+@pytest.mark.parametrize("velocity,orientation", [(False, False), (False, True)])
+def test_static_dds_preserves_state_rejects_outlier_and_reports_history(velocity, orientation):
+    rclpy.init(args=["--ros-args", "-p", "max_age_ms:=150.0", "-p", "reassociation_gap_ms:=450.0"])
     estimator = TargetKinematicFusionNode()
     driver = Node("metric_fusion_driver")
     executor = SingleThreadedExecutor()
@@ -85,13 +85,15 @@ def test_metric_dds_preserves_partial_state_rejects_outlier_and_expires_predicti
         good = message(driver.get_clock().now().nanoseconds, x=1.01, velocity=velocity, orientation=orientation)
         publisher.publish(good)
         spin_until(lambda: any(item.valid and item.last_valid_sample_timestamp_ns == good.last_valid_sample_timestamp_ns for item in outputs))
-        spin_until(lambda: any(item.reason == "prediction_only" for item in outputs))
-        prediction = next(item for item in outputs if item.reason == "prediction_only")
-        assert not prediction.valid and not prediction.position_observed and not prediction.velocity_observed
-        assert prediction.last_valid_sample_timestamp_ns == good.last_valid_sample_timestamp_ns
-        assert np.isfinite(prediction.pose.position.x)
-        spin_until(lambda: outputs[-1].reason == "prediction_horizon_exceeded")
-        assert not outputs[-1].valid and np.isnan(outputs[-1].pose.position.x)
+        spin_until(lambda: any(item.historical and item.reason == "target_not_observed" for item in outputs))
+        history = next(item for item in outputs if item.historical and item.reason == "target_not_observed")
+        assert not history.valid and not history.position_observed and not history.velocity_observed
+        assert not history.orientation_observed
+        assert history.last_valid_sample_timestamp_ns == good.last_valid_sample_timestamp_ns
+        accepted = next(item for item in outputs if item.valid and item.last_valid_sample_timestamp_ns == good.last_valid_sample_timestamp_ns)
+        np.testing.assert_allclose([history.pose.position.x, history.pose.position.y, history.pose.position.z],
+                                   [accepted.pose.position.x, accepted.pose.position.y, accepted.pose.position.z])
+        assert not any(item.reason == "prediction_only" for item in outputs)
     finally:
         executor.shutdown()
         driver.destroy_node()
@@ -217,8 +219,17 @@ def test_deadline_rollback_old_invalid_future_and_identity_ambiguity(monkeypatch
         now[0] += 100_000_000
         node._watchdog()
         assert outputs[-1].reason == "target_identity_ambiguous"
-        assert np.isnan(outputs[-1].pose.position.x)
-        assert node.estimator.predict(fresh.target_id, now[0]) is None
+        assert outputs[-1].historical and not outputs[-1].valid
+        assert outputs[-1].pose.position.x == fresh.pose.position.x
+        assert node.estimator.history(fresh.target_id, now[0])["historical"]
+        # A long outage preserves the map point; nonzero target velocity is rejected.
+        now[0] += 60_000_000_000
+        node._watchdog()
+        assert fresh.target_id in node.estimator.tracks
+        moving = message(now[0], velocity=True)
+        node._callback(moving)
+        assert outputs[-1].reason == "static_target_velocity_must_be_unobserved"
+        assert outputs[-1].historical and outputs[-1].last_valid_sample_timestamp_ns == fresh.last_valid_sample_timestamp_ns
     finally:
         node.destroy_node()
         rclpy.shutdown()

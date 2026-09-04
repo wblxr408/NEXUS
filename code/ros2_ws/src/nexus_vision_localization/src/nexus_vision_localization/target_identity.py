@@ -106,7 +106,7 @@ class _Track:
     feature_inliers: int = 0
     was_confirmed: bool = False
     anchor_feature_id: int | None = None
-    motion_model: str = "constant_velocity"
+    motion_model: str = "static"
     reference_id: str = ""
 
 
@@ -188,13 +188,13 @@ class TargetIdentityTracker:
         return hashlib.sha256(candidate.features.points_px.tobytes() + candidate.features.descriptors.tobytes()).hexdigest()
 
     def register_reference(self, track_id, candidate, stamp_ns=None, existing_track_id=None,
-                           motion_model="constant_velocity", anchor_reference_px=None):
+                           motion_model="static", anchor_reference_px=None):
         if not isinstance(track_id, str) or not track_id.strip():
             raise ValueError("reference target ID must be a nonempty string")
         if stamp_ns is not None and (not isinstance(stamp_ns, int) or stamp_ns <= 0 or stamp_ns < self.last_stamp_ns):
             raise ValueError("live ROI reference timestamp must not precede the tracker")
-        if motion_model not in {"static", "constant_velocity"}:
-            raise ValueError("target motion_model must be static or constant_velocity")
+        if motion_model != "static":
+            raise ValueError("this project requires a static map target")
         anchor = (candidate.bbox_xywh_px[:2] + candidate.bbox_xywh_px[2:] / 2 if anchor_reference_px is None
                   else np.asarray(anchor_reference_px, dtype=float))
         if anchor.shape != (2,) or not np.all(np.isfinite(anchor)):

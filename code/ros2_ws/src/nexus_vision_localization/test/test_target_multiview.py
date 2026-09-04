@@ -58,15 +58,10 @@ def test_current_outlier_cannot_be_reported_as_fresh_target_position():
         solve_multiview(observations, np.eye(4), np.zeros((6, 6)))
 
 
-def test_constant_velocity_target_requires_non_affine_camera_motion():
-    observations, position, velocity = synthetic_views(moving=True, count=12, noise=.03)
-    result = solve_multiview(observations, np.eye(4), np.zeros((6, 6)), motion_model="constant_velocity")
-    np.testing.assert_allclose(result.position_m, position, atol=.008)
-    np.testing.assert_allclose(result.velocity_mps, velocity, atol=.01)
-    assert result.covariance.shape == (6, 6) and np.linalg.eigvalsh(result.covariance).min() > 0
-    ambiguous, _, _ = synthetic_views(moving=True, linear_camera=True)
-    with pytest.raises(ValueError, match="unobservable"):
-        solve_multiview(ambiguous, np.eye(4), np.zeros((6, 6)), motion_model="constant_velocity")
+def test_moving_target_model_is_rejected_in_static_project():
+    observations, _, _ = synthetic_views(moving=True)
+    with pytest.raises(ValueError, match="static map target"):
+        solve_multiview(observations, np.eye(4), np.zeros((6, 6)), motion_model="constant_velocity")
 
 
 def test_no_baseline_and_unordered_frames_cannot_supply_depth():
@@ -80,16 +75,38 @@ def test_no_baseline_and_unordered_frames_cannot_supply_depth():
         solve_multiview(observations[::-1], np.eye(4), np.zeros((6, 6)))
 
 
-def test_shared_extrinsic_and_platform_uncertainty_are_not_averaged_away():
-    observations, _, _ = synthetic_views()
+def test_conditional_target_covariance_ignores_pose_errors_but_retains_pixel_noise():
+    observations, _, _ = synthetic_views(noise=.1)
     baseline = solve_multiview(observations, np.eye(4), np.zeros((6, 6)))
-    extrinsic_covariance = np.zeros((6, 6))
-    extrinsic_covariance[:3, :3] = np.eye(3) * .02 ** 2
-    uncertain = solve_multiview(observations, np.eye(4), extrinsic_covariance)
-    np.testing.assert_allclose(uncertain.covariance - baseline.covariance, np.eye(3) * .02 ** 2, atol=1e-8)
-    noisy_platform, _, _ = synthetic_views(platform_sigma=.01)
-    result = solve_multiview(noisy_platform, np.eye(4), extrinsic_covariance)
-    assert np.trace(result.covariance) > np.trace(uncertain.covariance)
+    from dataclasses import replace
+    changed = [replace(v, platform=replace(v.platform, covariance=np.eye(6) * (i + 1.)))
+               for i, v in enumerate(observations)]
+    conditional = solve_multiview(changed, np.eye(4), np.eye(6) * 10.)
+    np.testing.assert_allclose(conditional.position_m, baseline.position_m, atol=1e-12)
+    np.testing.assert_allclose(conditional.covariance, baseline.covariance, atol=1e-12)
+    # Independent information calculation at a noise-free optimum verifies
+    # the remaining pixel-noise covariance, not merely a flag or config name.
+    exact, _, _ = synthetic_views()
+    result = solve_multiview(exact, np.eye(4), np.zeros((6, 6)))
+    jacobians = []
+    for view in exact:
+        def pixel(point):
+            return cv2.undistortPoints(cv2.projectPoints(
+                point.reshape(1, 3), np.zeros(3), -view.platform.transform[:3, 3],
+                CAMERA, DISTORTION)[0], CAMERA, DISTORTION, P=CAMERA).reshape(2)
+        eps = 1e-5
+        j = np.column_stack([(pixel(result.position_m + np.eye(3)[k] * eps)
+                              - pixel(result.position_m - np.eye(3)[k] * eps)) / (2 * eps) for k in range(3)])
+
+        def undistort(point):
+            return cv2.undistortPoints(point.reshape(1, 1, 2), CAMERA, DISTORTION, P=CAMERA).reshape(2)
+        u = np.column_stack([(undistort(view.pixel + np.eye(2)[k] * eps)
+                              - undistort(view.pixel - np.eye(2)[k] * eps)) / (2 * eps) for k in range(2)])
+        jacobians.append(j.T @ np.linalg.solve(u @ u.T * view.pixel_sigma_px ** 2, j))
+    np.testing.assert_allclose(result.covariance, np.linalg.inv(sum(jacobians)), rtol=1e-5)
+    noisier = [replace(view, pixel_sigma_px=view.pixel_sigma_px * 2) for view in exact]
+    np.testing.assert_allclose(solve_multiview(noisier, np.eye(4), np.zeros((6, 6))).covariance,
+                               result.covariance * 4, rtol=1e-8)
 
 
 def test_rotating_camera_and_nonzero_mount_extrinsic_recover_same_map_point():

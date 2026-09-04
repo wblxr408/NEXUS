@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Fuse metric target estimates without assuming independence or full pose."""
+"""Fuse static map targets; publish historical positions without extrapolation."""
 
 from copy import deepcopy
 import json
@@ -21,9 +21,8 @@ class TargetKinematicFusionNode(Node):
         defaults = {
             "input_topic": "/nexus/vision/target_kinematics", "output_topic": "/nexus/target/kinematics",
             "quality_topic": "/nexus/observations/quality", "status_topic": "/nexus/target/kinematic_fusion_status",
-            "target_frame": "map", "max_age_ms": 250., "prediction_horizon_ms": 500., "retention_ms": 5000.,
-            "acceleration_sigma_mps2": 2., "unknown_velocity_sigma_mps": 1., "angular_rate_sigma_rps": .5,
-            "maximum_speed_mps": 10., "confirmation_hits": 3, "maximum_tracks": 64,
+            "target_frame": "map", "max_age_ms": 250., "reassociation_gap_ms": 500., "retention_ms": 5000.,
+            "confirmation_hits": 3, "maximum_tracks": 64,
             "soft_probability": .95, "hard_probability": .999,
             "reliability_mode": "fixed", "reliability_model": "", "quality_wait_ms": 30., "queue_size": 128,
         }
@@ -32,9 +31,7 @@ class TargetKinematicFusionNode(Node):
         values = {name: self.get_parameter(name).value for name in defaults}
         self.config = KinematicFilterConfig(
             frame_id=values["target_frame"], max_age_ns=int(values["max_age_ms"] * 1e6),
-            prediction_horizon_ns=int(values["prediction_horizon_ms"] * 1e6), retention_ns=int(values["retention_ms"] * 1e6),
-            acceleration_sigma_mps2=values["acceleration_sigma_mps2"], unknown_velocity_sigma_mps=values["unknown_velocity_sigma_mps"],
-            angular_rate_sigma_rps=values["angular_rate_sigma_rps"], maximum_speed_mps=values["maximum_speed_mps"],
+            reassociation_gap_ns=int(values["reassociation_gap_ms"] * 1e6), retention_ns=int(values["retention_ms"] * 1e6),
             confirmation_hits=values["confirmation_hits"], maximum_tracks=values["maximum_tracks"],
             soft_probability=values["soft_probability"], hard_probability=values["hard_probability"],
         )
@@ -84,21 +81,18 @@ class TargetKinematicFusionNode(Node):
         output.covariance = [float("nan")] * 81
         return output
 
-    def _publish(self, estimate, *, predicted=False):
-        output = self._empty(estimate.target_id, estimate.stamp_ns, "prediction_only" if predicted else "")
-        output.valid = output.position_observed = not predicted
-        output.velocity_observed = estimate.velocity is not None and not predicted
-        output.orientation_observed = estimate.rotation is not None and not predicted
-        output.state = "degraded" if predicted else estimate.state
+    def _publish(self, estimate):
+        output = self._empty(estimate.target_id, estimate.stamp_ns, "")
+        output.valid = output.position_observed = True
+        output.orientation_observed = estimate.rotation is not None
+        output.state = estimate.state
         output.position_reference = estimate.position_reference
         output.pose.position.x, output.pose.position.y, output.pose.position.z = estimate.position.tolist()
-        if estimate.velocity is not None:
-            output.velocity.x, output.velocity.y, output.velocity.z = estimate.velocity.tolist()
         if estimate.rotation is not None:
             q = Rotation.from_matrix(estimate.rotation).as_quat()
             output.pose.orientation.x, output.pose.orientation.y, output.pose.orientation.z, output.pose.orientation.w = q.tolist()
         output.covariance = estimate.covariance.reshape(-1).tolist()
-        output.confidence = float(estimate.confidence if not predicted else 0.)
+        output.confidence = float(estimate.confidence)
         self._publisher.publish(output)
 
     def _invalid(self, identifier, stamp_ns, reason):
@@ -106,7 +100,16 @@ class TargetKinematicFusionNode(Node):
         if track is not None and stamp_ns < track.estimate.stamp_ns:
             return
         output = self._empty(identifier, stamp_ns, reason)
-        output.state = "lost" if reason in {"prediction_horizon_exceeded", "target_identity_ambiguous"} else "degraded"
+        output.state = "lost" if reason in {"target_not_observed", "target_identity_ambiguous", "reference_change_pending"} else "degraded"
+        if track is not None:
+            # This is explicitly the old reference point, including during
+            # identity ambiguity or a pending switch to another feature.
+            output.historical = True
+            output.pose.position.x, output.pose.position.y, output.pose.position.z = track.estimate.position.tolist()
+            output.covariance = track.estimate.covariance.reshape(-1).tolist()
+            if track.estimate.rotation is not None:
+                q = Rotation.from_matrix(track.estimate.rotation).as_quat()
+                output.pose.orientation.x, output.pose.orientation.y, output.pose.orientation.z, output.pose.orientation.w = q.tolist()
         self._publisher.publish(output)
 
     def _callback(self, message):
@@ -132,8 +135,10 @@ class TargetKinematicFusionNode(Node):
         try:
             if stamp <= self._invalid_stamps.get(identifier, 0):
                 raise ValueError("superseded_by_upstream_invalid")
-            if not message.position_observed or message.last_valid_sample_timestamp_ns != stamp:
+            if message.historical or not message.position_observed or message.last_valid_sample_timestamp_ns != stamp:
                 raise ValueError("input_must_be_a_fresh_observed_position")
+            if message.velocity_observed:
+                raise ValueError("static_target_velocity_must_be_unobserved")
             p, v, q = message.pose.position, message.velocity, message.pose.orientation
             quaternion = np.array([q.x, q.y, q.z, q.w])
             if message.orientation_observed:
@@ -198,8 +203,6 @@ class TargetKinematicFusionNode(Node):
         track = self.estimator.tracks.get(record.target_id)
         if track is not None:
             features["dt_s"] = (record.stamp_ns - track.estimate.stamp_ns) / 1e9
-        if record.velocity is not None:
-            features["speed_mps"] = float(np.linalg.norm(record.velocity))
         return float(covariance_scales(self._model.predict(features))[0])
 
     def _drain(self):
@@ -248,15 +251,11 @@ class TargetKinematicFusionNode(Node):
                 continue
             if now - track.estimate.stamp_ns <= self.config.max_age_ns and not track.invalid_reason:
                 continue
-            prediction = self.estimator.predict(identifier, now)
-            if prediction is not None:
-                self._publish(prediction["estimate"], predicted=True)
-            else:
-                reason = self.estimator.prediction_block_reason(identifier) or "prediction_horizon_exceeded"
-                if self._last_lost.get(identifier) != (track.estimate.stamp_ns, reason):
-                    self._invalid(identifier, now, reason)
-                    self._status(reason, now, identifier, decision="lost")
-                    self._last_lost[identifier] = track.estimate.stamp_ns, reason
+            reason = self.estimator.association_block_reason(identifier) or "target_not_observed"
+            if self._last_lost.get(identifier) != (track.estimate.stamp_ns, reason):
+                self._invalid(identifier, now, reason)
+                self._status(reason, now, identifier, decision="lost")
+                self._last_lost[identifier] = track.estimate.stamp_ns, reason
         self.estimator.expire(now)
         self._last_lost = {key: value for key, value in self._last_lost.items() if key in self.estimator.tracks}
 

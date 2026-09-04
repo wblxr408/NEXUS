@@ -1,3 +1,4 @@
+import { dualLocalizationMarkup } from "./dual_localization.js";
 export function dashboardLayout() {
   return `
     <div class="nexus-container">
@@ -16,6 +17,7 @@ export function dashboardLayout() {
         <section class="panel data-panel" aria-labelledby="data-title">
           <div class="panel-header"><span id="data-title">CARLA 实时数据流</span><span class="header-meta">WINDOWS GPU RENDER / WSL JSON BRIDGE</span></div>
           <div class="data-stream-panel">
+            ${dualLocalizationMarkup}
             <section class="stream-card stream-card-primary" aria-labelledby="carla-connection-title">
               <div class="stream-card-header">
                 <span id="carla-connection-title">连接状态</span>

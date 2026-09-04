@@ -1,4 +1,4 @@
-"""Correlation-aware target p/v/SO(3) estimates, independent of ROS.
+"""Correlation-aware static target estimates, independent of ROS.
 
 Neighboring multiview solutions share image, platform and calibration errors.
 Covariance intersection (CI) avoids treating those solutions as independent
@@ -80,12 +80,8 @@ class KinematicEstimate:
 class KinematicFilterConfig:
     frame_id: str = "map"
     max_age_ns: int = 250_000_000
-    prediction_horizon_ns: int = 500_000_000
-    retention_ns: int = 5_000_000_000
-    acceleration_sigma_mps2: float = 2.
-    unknown_velocity_sigma_mps: float = 1.
-    angular_rate_sigma_rps: float = .5
-    maximum_speed_mps: float = 10.
+    reassociation_gap_ns: int = 500_000_000
+    retention_ns: int = 5_000_000_000  # input bookkeeping only; static map points do not expire
     soft_probability: float = .95
     hard_probability: float = .999
     maximum_covariance_scale: float = 100.
@@ -94,9 +90,8 @@ class KinematicFilterConfig:
     maximum_sources: int = 8
 
     def __post_init__(self):
-        values = (self.acceleration_sigma_mps2, self.unknown_velocity_sigma_mps,
-                  self.angular_rate_sigma_rps, self.maximum_speed_mps, self.maximum_covariance_scale)
-        if (not self.frame_id or not 0 < self.max_age_ns <= self.prediction_horizon_ns <= self.retention_ns
+        values = (self.maximum_covariance_scale,)
+        if (not self.frame_id or not 0 < self.max_age_ns <= self.reassociation_gap_ns <= self.retention_ns
                 or not np.all(np.isfinite(values)) or min(values) <= 0 or self.maximum_covariance_scale < 1
                 or not 0 < self.soft_probability < self.hard_probability < 1
                 or self.confirmation_hits < 1 or self.maximum_tracks < 1 or self.maximum_sources < 1):
@@ -197,11 +192,10 @@ class KinematicTargetFilter:
         self.counts = {"accepted": 0, "suspect": 0, "rejected": 0}
 
     def expire(self, now_ns):
-        for identifier, track in list(self.tracks.items()):
-            if now_ns - track.estimate.stamp_ns > self.config.retention_ns:
-                del self.tracks[identifier]
-                self.recovery.pop(identifier, None)
-                self.source_stamps.pop(identifier, None)
+        # Established static coordinates remain historical until an explicit
+        # reset/restart. maximum_tracks bounds memory without inventing motion.
+        self.recovery = {key: value for key, value in self.recovery.items()
+                         if 0 <= now_ns - value[0].stamp_ns <= self.config.reassociation_gap_ns}
 
     def _reject(self, observation, reason, d2=None):
         self.counts["rejected"] += 1
@@ -209,40 +203,21 @@ class KinematicTargetFilter:
                                 "decision": "rejected", "reason": str(reason), "d2": d2}
         return None
 
-    def _predict(self, estimate, stamp_ns):
-        dt = (stamp_ns - estimate.stamp_ns) / 1e9
-        known = estimate.indices
-        transition = np.eye(9)
-        noise = np.zeros((9, 9))
-        position = estimate.position.copy()
-        if estimate.velocity is not None:
-            position += dt * estimate.velocity
-            transition[:3, 3:6] = np.eye(3) * dt
-            mapping = np.zeros((9, 3))
-            mapping[:3], mapping[3:6] = np.eye(3) * dt ** 2 / 2, np.eye(3) * dt
-            noise += mapping @ mapping.T * self.config.acceleration_sigma_mps2 ** 2
-        else:
-            variance = (self.config.unknown_velocity_sigma_mps * dt) ** 2 + (self.config.acceleration_sigma_mps2 * dt ** 2 / 2) ** 2
-            noise[:3, :3] = np.eye(3) * variance
-        if estimate.rotation is not None:
-            noise[6:, 6:] = np.eye(3) * (self.config.angular_rate_sigma_rps * dt) ** 2
-        jacobian = transition[np.ix_(known, known)]
-        covariance = np.full((9, 9), np.nan)
-        covariance[np.ix_(known, known)] = (
-            jacobian @ estimate.covariance[np.ix_(known, known)] @ jacobian.T + noise[np.ix_(known, known)])
-        return replace(estimate, position=position, covariance=covariance, stamp_ns=stamp_ns,
-                       receive_ns=max(estimate.receive_ns, stamp_ns))
+    @staticmethod
+    def _at_time(estimate, stamp_ns):
+        # A change of observation time does not move a static map point or add
+        # velocity/acceleration process noise to its conditional covariance.
+        return replace(estimate, stamp_ns=stamp_ns, receive_ns=max(estimate.receive_ns, stamp_ns))
 
     def _available(self, track, stamp_ns):
         estimate = track.estimate
-        velocity = estimate.velocity if stamp_ns - track.component_stamps.get("velocity", 0) <= self.config.prediction_horizon_ns else None
-        rotation = estimate.rotation if stamp_ns - track.component_stamps.get("rotation", 0) <= self.config.prediction_horizon_ns else None
-        current = replace(estimate, velocity=velocity, rotation=rotation)
+        rotation = estimate.rotation if stamp_ns - track.component_stamps.get("rotation", 0) <= self.config.reassociation_gap_ns else None
+        current = replace(estimate, rotation=rotation)
         covariance = np.full((9, 9), np.nan)
         covariance[np.ix_(current.indices, current.indices)] = estimate.covariance[np.ix_(current.indices, current.indices)]
         return replace(current, covariance=covariance)
 
-    def prediction_block_reason(self, identifier):
+    def association_block_reason(self, identifier):
         track = self.tracks.get(identifier)
         if track is not None and track.identity_uncertain:
             return "target_identity_ambiguous"
@@ -251,14 +226,12 @@ class KinematicTargetFilter:
             return "reference_change_pending"
         return ""
 
-    def predict(self, identifier, now_ns):
+    def history(self, identifier, now_ns):
         track = self.tracks.get(identifier)
-        if (track is None or self.prediction_block_reason(identifier)
-                or not 0 <= now_ns - track.estimate.stamp_ns <= self.config.prediction_horizon_ns):
+        if track is None or now_ns < track.estimate.stamp_ns:
             return None
-        estimate = self._predict(self._available(track, now_ns), now_ns)
-        return {"estimate": estimate, "valid": False, "predicted": True,
-                "last_observed_stamp_ns": track.estimate.stamp_ns, "reason": "prediction_only"}
+        return {"estimate": track.estimate, "valid": False, "historical": True,
+                "last_observed_stamp_ns": track.estimate.stamp_ns, "reason": "target_not_observed"}
 
     def invalidate(self, identifier, stamp_ns, reason, now_ns):
         track = self.tracks.get(identifier)
@@ -291,8 +264,8 @@ class KinematicTargetFilter:
                 raise ValueError("stale_or_future_kinematic_observation")
             if not np.isfinite(covariance_scale) or not 1 <= covariance_scale <= cfg.maximum_covariance_scale:
                 raise ValueError("invalid_covariance_scale")
-            if observation.velocity is not None and np.linalg.norm(observation.velocity) > cfg.maximum_speed_mps:
-                raise ValueError("target_speed_limit")
+            if observation.velocity is not None:
+                raise ValueError("static_target_velocity_must_be_unobserved")
         except (TypeError, ValueError, np.linalg.LinAlgError) as error:
             return self._reject(observation, error)
         self.expire(now_ns)
@@ -307,15 +280,19 @@ class KinematicTargetFilter:
             return self._reject(observation, "target_or_source_capacity")
         self.source_stamps.setdefault(observation.target_id, {})[observation.source] = observation.stamp_ns
         recovering = track is not None and (
-            observation.stamp_ns - track.estimate.stamp_ns > cfg.prediction_horizon_ns
+            observation.stamp_ns - track.estimate.stamp_ns > cfg.reassociation_gap_ns
             or track.identity_uncertain or observation.position_reference != track.estimate.position_reference)
         if recovering:
+            if observation.position_reference == track.estimate.position_reference:
+                decision, d2, _ = self._gate(self._available(track, observation.stamp_ns), observation)
+                if decision == "rejected":
+                    return self._reject(observation, "static_reference_position_outlier", d2)
             previous, hits = self.recovery.get(observation.target_id, (None, 0))
             same = previous is not None and previous.position_reference == observation.position_reference and previous.source == observation.source
             dt = observation.stamp_ns - previous.stamp_ns if same else 0
-            if same and 0 < dt <= cfg.prediction_horizon_ns:
+            if same and 0 < dt <= cfg.reassociation_gap_ns:
                 try:
-                    decision, _, _ = self._gate(self._predict(previous, observation.stamp_ns), observation)
+                    decision, _, _ = self._gate(self._at_time(previous, observation.stamp_ns), observation)
                 except (ValueError, np.linalg.LinAlgError) as error:
                     return self._reject(observation, error)
                 hits = hits + 1 if decision == "accepted" else 1
@@ -333,7 +310,7 @@ class KinematicTargetFilter:
             hits = cfg.confirmation_hits if recovering else 1
             components = {}
         else:
-            predicted = self._predict(self._available(track, observation.stamp_ns), observation.stamp_ns)
+            predicted = self._at_time(self._available(track, observation.stamp_ns), observation.stamp_ns)
             try:
                 # Hard gate uses the uninflated current measurement. Learning
                 # cannot rescue an observation already rejected by geometry.
@@ -343,8 +320,6 @@ class KinematicTargetFilter:
                 effective = min(cfg.maximum_covariance_scale, covariance_scale * inflation)
                 estimate, weight = intersect_estimates(predicted, observation, effective)
                 estimate.validate(cfg.frame_id)
-                if estimate.velocity is not None and np.linalg.norm(estimate.velocity) > cfg.maximum_speed_mps:
-                    raise ValueError("target_speed_limit")
             except (ValueError, np.linalg.LinAlgError) as error:
                 return self._reject(observation, error, d2)
             hits = track.hits + int(observation.stamp_ns > track.estimate.stamp_ns)
