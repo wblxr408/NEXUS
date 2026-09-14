@@ -13,6 +13,13 @@ user-provided anchor coordinates, 9 degree map yaw, and a bottom-facing IMX219.
 The coordinates are marked user-provided/not-surveyed and are not precision
 evidence.
 
+`config/hardware_user_v02.yaml` adds the complete 2026-09-04 vendor UI
+transcription. The user-confirmed tag ID is 2 and tag total is 1. The anchor
+coordinates are user-confirmed field measurements; no separate uncertainty was
+provided. Flight-control values are retained only as provenance and are never written to the controller.
+Use `record_readonly_params_v02.sh` to copy this configuration into a new run;
+the original v01 entry points remain available unchanged.
+
 ```bash
 # camera only (works without the flight controller)
 ./run_camera_only_v2.sh --frames 30
@@ -25,6 +32,9 @@ evidence.
 
 # bounded camera + telemetry capture
 ./record_readonly_v2.sh 30
+
+# transport test only: simulated tag-2 telemetry, never connected to the FCU
+./synthetic_telemetry_test_server.py --duration 20
 ```
 
 `capture_live_camera_v2.py` retains the sensor monotonic timestamp and adds an

@@ -1,0 +1,6 @@
+Starting >>> nexus_vision_localization
+Finished <<< nexus_vision_localization [1.60s]
+
+Summary: 1 package finished [2.11s]
+.........................                                                [100%]
+25 passed in 3.37s

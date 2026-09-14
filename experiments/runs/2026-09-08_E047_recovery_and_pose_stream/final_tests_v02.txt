@@ -1,0 +1,1010 @@
+Starting >>> nexus_fusion_localization
+Starting >>> nexus_pi_readonly_ingress
+UpdateCTestConfiguration  from :/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_pi_readonly_ingress/CTestConfiguration.ini
+Parse Config file:/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_pi_readonly_ingress/CTestConfiguration.ini
+   Site: wblxr
+   Build name: (empty)
+ Add coverage exclude regular expressions.
+Create new tag: 20260908-1213 - Experimental
+UpdateCTestConfiguration  from :/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_pi_readonly_ingress/CTestConfiguration.ini
+Parse Config file:/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_pi_readonly_ingress/CTestConfiguration.ini
+Test project /root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_pi_readonly_ingress
+Constructing a list of tests
+Done constructing a list of tests
+Updating test list for fixtures
+Added 0 tests to meet fixture requirements
+Checking test dependency graph...
+Checking test dependency graph end
+test 1
+    Start 1: test_ingress
+
+1: Test command: /usr/bin/python3 "-u" "/opt/ros/humble/share/ament_cmake_test/cmake/run_test.py" "/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_pi_readonly_ingress/test_results/nexus_pi_readonly_ingress/test_ingress.xunit.xml" "--package-name" "nexus_pi_readonly_ingress" "--output-file" "/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_pi_readonly_ingress/ament_cmake_pytest/test_ingress.txt" "--command" "/usr/bin/python3" "-u" "-m" "pytest" "/root/nexus_workspace/NEXUS/code/ros2_ws/src/nexus_pi_readonly_ingress/test/test_ingress.py" "-o" "cache_dir=/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_pi_readonly_ingress/ament_cmake_pytest/test_ingress/.cache" "--junit-xml=/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_pi_readonly_ingress/test_results/nexus_pi_readonly_ingress/test_ingress.xunit.xml" "--junit-prefix=nexus_pi_readonly_ingress"
+1: Test timeout computed to be: 60
+1: -- run_test.py: invoking following command in '/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_pi_readonly_ingress':
+1:  - /usr/bin/python3 -u -m pytest /root/nexus_workspace/NEXUS/code/ros2_ws/src/nexus_pi_readonly_ingress/test/test_ingress.py -o cache_dir=/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_pi_readonly_ingress/ament_cmake_pytest/test_ingress/.cache --junit-xml=/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_pi_readonly_ingress/test_results/nexus_pi_readonly_ingress/test_ingress.xunit.xml --junit-prefix=nexus_pi_readonly_ingress
+UpdateCTestConfiguration  from :/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_fusion_localization/CTestConfiguration.ini
+Parse Config file:/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_fusion_localization/CTestConfiguration.ini
+   Site: wblxr
+   Build name: (empty)
+ Add coverage exclude regular expressions.
+Create new tag: 20260908-1213 - Experimental
+UpdateCTestConfiguration  from :/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_fusion_localization/CTestConfiguration.ini
+Parse Config file:/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_fusion_localization/CTestConfiguration.ini
+Test project /root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_fusion_localization
+Constructing a list of tests
+Done constructing a list of tests
+Updating test list for fixtures
+Added 0 tests to meet fixture requirements
+Checking test dependency graph...
+Checking test dependency graph end
+test 1
+    Start 1: test_fusion
+
+1: Test command: /usr/bin/python3 "-u" "/opt/ros/humble/share/ament_cmake_test/cmake/run_test.py" "/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_fusion_localization/test_results/nexus_fusion_localization/test_fusion.xunit.xml" "--package-name" "nexus_fusion_localization" "--output-file" "/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_fusion_localization/ament_cmake_pytest/test_fusion.txt" "--command" "/usr/bin/python3" "-u" "-m" "pytest" "/root/nexus_workspace/NEXUS/code/ros2_ws/src/nexus_fusion_localization/test/test_fusion.py" "-o" "cache_dir=/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_fusion_localization/ament_cmake_pytest/test_fusion/.cache" "--junit-xml=/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_fusion_localization/test_results/nexus_fusion_localization/test_fusion.xunit.xml" "--junit-prefix=nexus_fusion_localization"
+1: Test timeout computed to be: 60
+1: -- run_test.py: invoking following command in '/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_fusion_localization':
+1:  - /usr/bin/python3 -u -m pytest /root/nexus_workspace/NEXUS/code/ros2_ws/src/nexus_fusion_localization/test/test_fusion.py -o cache_dir=/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_fusion_localization/ament_cmake_pytest/test_fusion/.cache --junit-xml=/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_fusion_localization/test_results/nexus_fusion_localization/test_fusion.xunit.xml --junit-prefix=nexus_fusion_localization
+1: ============================= test session starts ==============================
+1: platform linux -- Python 3.10.12, pytest-6.2.5, py-1.10.0, pluggy-0.13.0
+1: cachedir: build/nexus_pi_readonly_ingress/ament_cmake_pytest/test_ingress/.cache
+1: rootdir: /root/nexus_workspace/NEXUS/code/ros2_ws
+1: plugins: ament-mypy-0.12.15, ament-lint-0.12.15, launch-testing-ros-0.19.14, ament-flake8-0.12.15, ament-copyright-0.12.15, ament-xmllint-0.12.15, ament-pep257-0.12.15, launch-testing-1.0.14, colcon-core-0.21.0, cov-3.0.0
+1: collected 6 items
+1: 
+1: ../../src/nexus_pi_readonly_ingress/test/test_ingress.py ......          [100%]
+1: 
+1: - generated xml file: /root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_pi_readonly_ingress/test_results/nexus_pi_readonly_ingress/test_ingress.xunit.xml -
+1: ============================== 6 passed in 0.03s ===============================
+1: -- run_test.py: return code 0
+1: -- run_test.py: verify result file '/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_pi_readonly_ingress/test_results/nexus_pi_readonly_ingress/test_ingress.xunit.xml'
+1/6 Test #1: test_ingress .....................   Passed    0.63 sec
+test 2
+    Start 2: test_range_smoothing
+
+2: Test command: /usr/bin/python3 "-u" "/opt/ros/humble/share/ament_cmake_test/cmake/run_test.py" "/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_pi_readonly_ingress/test_results/nexus_pi_readonly_ingress/test_range_smoothing.xunit.xml" "--package-name" "nexus_pi_readonly_ingress" "--output-file" "/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_pi_readonly_ingress/ament_cmake_pytest/test_range_smoothing.txt" "--command" "/usr/bin/python3" "-u" "-m" "pytest" "/root/nexus_workspace/NEXUS/code/ros2_ws/src/nexus_pi_readonly_ingress/test/test_range_smoothing.py" "-o" "cache_dir=/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_pi_readonly_ingress/ament_cmake_pytest/test_range_smoothing/.cache" "--junit-xml=/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_pi_readonly_ingress/test_results/nexus_pi_readonly_ingress/test_range_smoothing.xunit.xml" "--junit-prefix=nexus_pi_readonly_ingress"
+2: Test timeout computed to be: 60
+2: -- run_test.py: invoking following command in '/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_pi_readonly_ingress':
+2:  - /usr/bin/python3 -u -m pytest /root/nexus_workspace/NEXUS/code/ros2_ws/src/nexus_pi_readonly_ingress/test/test_range_smoothing.py -o cache_dir=/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_pi_readonly_ingress/ament_cmake_pytest/test_range_smoothing/.cache --junit-xml=/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_pi_readonly_ingress/test_results/nexus_pi_readonly_ingress/test_range_smoothing.xunit.xml --junit-prefix=nexus_pi_readonly_ingress
+1: ============================= test session starts ==============================
+1: platform linux -- Python 3.10.12, pytest-6.2.5, py-1.10.0, pluggy-0.13.0
+1: cachedir: /root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_fusion_localization/ament_cmake_pytest/test_fusion/.cache
+1: rootdir: /root/nexus_workspace/NEXUS/code/ros2_ws/src/nexus_fusion_localization
+1: plugins: ament-mypy-0.12.15, ament-lint-0.12.15, launch-testing-ros-0.19.14, ament-flake8-0.12.15, ament-copyright-0.12.15, ament-xmllint-0.12.15, ament-pep257-0.12.15, launch-testing-1.0.14, colcon-core-0.21.0, cov-3.0.0
+1: collected 6 items
+1: 
+1: ../../src/nexus_fusion_localization/test/test_fusion.py ......           [100%]
+1: 
+1: - generated xml file: /root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_fusion_localization/test_results/nexus_fusion_localization/test_fusion.xunit.xml -
+1: ============================== 6 passed in 0.12s ===============================
+2: ============================= test session starts ==============================
+2: platform linux -- Python 3.10.12, pytest-6.2.5, py-1.10.0, pluggy-0.13.0
+2: cachedir: build/nexus_pi_readonly_ingress/ament_cmake_pytest/test_range_smoothing/.cache
+2: rootdir: /root/nexus_workspace/NEXUS/code/ros2_ws
+2: plugins: ament-mypy-0.12.15, ament-lint-0.12.15, launch-testing-ros-0.19.14, ament-flake8-0.12.15, ament-copyright-0.12.15, ament-xmllint-0.12.15, ament-pep257-0.12.15, launch-testing-1.0.14, colcon-core-0.21.0, cov-3.0.0
+1: -- run_test.py: return code 0
+1: -- run_test.py: verify result file '/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_fusion_localization/test_results/nexus_fusion_localization/test_fusion.xunit.xml'
+2: collected 5 items
+2: 
+1/9 Test #1: test_fusion ......................   Passed    0.53 sec
+test 2
+    Start 2: test_robust_filter
+
+2: Test command: /usr/bin/python3 "-u" "/opt/ros/humble/share/ament_cmake_test/cmake/run_test.py" "/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_fusion_localization/test_results/nexus_fusion_localization/test_robust_filter.xunit.xml" "--package-name" "nexus_fusion_localization" "--output-file" "/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_fusion_localization/ament_cmake_pytest/test_robust_filter.txt" "--command" "/usr/bin/python3" "-u" "-m" "pytest" "/root/nexus_workspace/NEXUS/code/ros2_ws/src/nexus_fusion_localization/test/test_robust_filter.py" "-o" "cache_dir=/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_fusion_localization/ament_cmake_pytest/test_robust_filter/.cache" "--junit-xml=/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_fusion_localization/test_results/nexus_fusion_localization/test_robust_filter.xunit.xml" "--junit-prefix=nexus_fusion_localization"
+2: Test timeout computed to be: 60
+2: -- run_test.py: invoking following command in '/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_fusion_localization':
+2:  - /usr/bin/python3 -u -m pytest /root/nexus_workspace/NEXUS/code/ros2_ws/src/nexus_fusion_localization/test/test_robust_filter.py -o cache_dir=/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_fusion_localization/ament_cmake_pytest/test_robust_filter/.cache --junit-xml=/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_fusion_localization/test_results/nexus_fusion_localization/test_robust_filter.xunit.xml --junit-prefix=nexus_fusion_localization
+2: ============================= test session starts ==============================
+2: platform linux -- Python 3.10.12, pytest-6.2.5, py-1.10.0, pluggy-0.13.0
+2: cachedir: /root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_fusion_localization/ament_cmake_pytest/test_robust_filter/.cache
+2: rootdir: /root/nexus_workspace/NEXUS/code/ros2_ws/src/nexus_fusion_localization
+2: plugins: ament-mypy-0.12.15, ament-lint-0.12.15, launch-testing-ros-0.19.14, ament-flake8-0.12.15, ament-copyright-0.12.15, ament-xmllint-0.12.15, ament-pep257-0.12.15, launch-testing-1.0.14, colcon-core-0.21.0, cov-3.0.0
+2: collected 13 items
+2: 
+2: ../../src/nexus_fusion_localization/test/test_robust_filter.py ......... [ 69%]
+2: ....                                                                     [100%]
+2: 
+2: - generated xml file: /root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_fusion_localization/test_results/nexus_fusion_localization/test_robust_filter.xunit.xml -
+2: ============================== 13 passed in 0.14s ==============================
+2: ../../src/nexus_pi_readonly_ingress/test/test_range_smoothing.py .....   [100%]
+2: 
+2: - generated xml file: /root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_pi_readonly_ingress/test_results/nexus_pi_readonly_ingress/test_range_smoothing.xunit.xml -
+2: ============================== 5 passed in 0.58s ===============================
+2: -- run_test.py: return code 0
+2: -- run_test.py: verify result file '/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_fusion_localization/test_results/nexus_fusion_localization/test_robust_filter.xunit.xml'
+2/9 Test #2: test_robust_filter ...............   Passed    0.65 sec
+test 3
+    Start 3: test_reliability
+
+3: Test command: /usr/bin/python3 "-u" "/opt/ros/humble/share/ament_cmake_test/cmake/run_test.py" "/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_fusion_localization/test_results/nexus_fusion_localization/test_reliability.xunit.xml" "--package-name" "nexus_fusion_localization" "--output-file" "/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_fusion_localization/ament_cmake_pytest/test_reliability.txt" "--command" "/usr/bin/python3" "-u" "-m" "pytest" "/root/nexus_workspace/NEXUS/code/ros2_ws/src/nexus_fusion_localization/test/test_reliability.py" "-o" "cache_dir=/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_fusion_localization/ament_cmake_pytest/test_reliability/.cache" "--junit-xml=/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_fusion_localization/test_results/nexus_fusion_localization/test_reliability.xunit.xml" "--junit-prefix=nexus_fusion_localization"
+3: Test timeout computed to be: 60
+3: -- run_test.py: invoking following command in '/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_fusion_localization':
+3:  - /usr/bin/python3 -u -m pytest /root/nexus_workspace/NEXUS/code/ros2_ws/src/nexus_fusion_localization/test/test_reliability.py -o cache_dir=/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_fusion_localization/ament_cmake_pytest/test_reliability/.cache --junit-xml=/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_fusion_localization/test_results/nexus_fusion_localization/test_reliability.xunit.xml --junit-prefix=nexus_fusion_localization
+2: -- run_test.py: return code 0
+2: -- run_test.py: verify result file '/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_pi_readonly_ingress/test_results/nexus_pi_readonly_ingress/test_range_smoothing.xunit.xml'
+2/6 Test #2: test_range_smoothing .............   Passed    1.17 sec
+test 3
+    Start 3: test_fcu_clock_ingress
+
+3: Test command: /usr/bin/python3 "-u" "/opt/ros/humble/share/ament_cmake_test/cmake/run_test.py" "/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_pi_readonly_ingress/test_results/nexus_pi_readonly_ingress/test_fcu_clock_ingress.xunit.xml" "--package-name" "nexus_pi_readonly_ingress" "--output-file" "/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_pi_readonly_ingress/ament_cmake_pytest/test_fcu_clock_ingress.txt" "--command" "/usr/bin/python3" "-u" "-m" "pytest" "/root/nexus_workspace/NEXUS/code/ros2_ws/src/nexus_pi_readonly_ingress/test/test_fcu_clock_ingress.py" "-o" "cache_dir=/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_pi_readonly_ingress/ament_cmake_pytest/test_fcu_clock_ingress/.cache" "--junit-xml=/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_pi_readonly_ingress/test_results/nexus_pi_readonly_ingress/test_fcu_clock_ingress.xunit.xml" "--junit-prefix=nexus_pi_readonly_ingress"
+3: Test timeout computed to be: 60
+3: -- run_test.py: invoking following command in '/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_pi_readonly_ingress':
+3:  - /usr/bin/python3 -u -m pytest /root/nexus_workspace/NEXUS/code/ros2_ws/src/nexus_pi_readonly_ingress/test/test_fcu_clock_ingress.py -o cache_dir=/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_pi_readonly_ingress/ament_cmake_pytest/test_fcu_clock_ingress/.cache --junit-xml=/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_pi_readonly_ingress/test_results/nexus_pi_readonly_ingress/test_fcu_clock_ingress.xunit.xml --junit-prefix=nexus_pi_readonly_ingress
+3: ============================= test session starts ==============================
+3: platform linux -- Python 3.10.12, pytest-6.2.5, py-1.10.0, pluggy-0.13.0
+3: cachedir: /root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_fusion_localization/ament_cmake_pytest/test_reliability/.cache
+3: rootdir: /root/nexus_workspace/NEXUS/code/ros2_ws/src/nexus_fusion_localization
+3: plugins: ament-mypy-0.12.15, ament-lint-0.12.15, launch-testing-ros-0.19.14, ament-flake8-0.12.15, ament-copyright-0.12.15, ament-xmllint-0.12.15, ament-pep257-0.12.15, launch-testing-1.0.14, colcon-core-0.21.0, cov-3.0.0
+3: collected 6 items
+3: 
+3: ../../src/nexus_fusion_localization/test/test_reliability.py ......      [100%]
+3: ============================= test session starts ==============================
+3: platform linux -- Python 3.10.12, pytest-6.2.5, py-1.10.0, pluggy-0.13.0
+3: 
+3: - generated xml file: /root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_fusion_localization/test_results/nexus_fusion_localization/test_reliability.xunit.xml -
+3: ============================== 6 passed in 0.20s ===============================
+3: cachedir: build/nexus_pi_readonly_ingress/ament_cmake_pytest/test_fcu_clock_ingress/.cache
+3: rootdir: /root/nexus_workspace/NEXUS/code/ros2_ws
+3: plugins: ament-mypy-0.12.15, ament-lint-0.12.15, launch-testing-ros-0.19.14, ament-flake8-0.12.15, ament-copyright-0.12.15, ament-xmllint-0.12.15, ament-pep257-0.12.15, launch-testing-1.0.14, colcon-core-0.21.0, cov-3.0.0
+3: -- run_test.py: return code 0
+3: -- run_test.py: verify result file '/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_fusion_localization/test_results/nexus_fusion_localization/test_reliability.xunit.xml'
+3: collected 2 items
+3: 
+3/9 Test #3: test_reliability .................   Passed    0.66 sec
+test 4
+    Start 4: test_fusion_node
+
+4: Test command: /usr/bin/python3 "-u" "/opt/ros/humble/share/ament_cmake_test/cmake/run_test.py" "/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_fusion_localization/test_results/nexus_fusion_localization/test_fusion_node.xunit.xml" "--package-name" "nexus_fusion_localization" "--output-file" "/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_fusion_localization/ament_cmake_pytest/test_fusion_node.txt" "--env" "ROS_LOCALHOST_ONLY=1" "ROS_DOMAIN_ID=213" "--command" "/usr/bin/python3" "-u" "-m" "pytest" "/root/nexus_workspace/NEXUS/code/ros2_ws/src/nexus_fusion_localization/test/test_fusion_node.py" "-o" "cache_dir=/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_fusion_localization/ament_cmake_pytest/test_fusion_node/.cache" "--junit-xml=/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_fusion_localization/test_results/nexus_fusion_localization/test_fusion_node.xunit.xml" "--junit-prefix=nexus_fusion_localization"
+4: Test timeout computed to be: 60
+4: -- run_test.py: extra environment variables:
+4:  - ROS_DOMAIN_ID=213
+4:  - ROS_LOCALHOST_ONLY=1
+4: -- run_test.py: invoking following command in '/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_fusion_localization':
+4:  - /usr/bin/python3 -u -m pytest /root/nexus_workspace/NEXUS/code/ros2_ws/src/nexus_fusion_localization/test/test_fusion_node.py -o cache_dir=/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_fusion_localization/ament_cmake_pytest/test_fusion_node/.cache --junit-xml=/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_fusion_localization/test_results/nexus_fusion_localization/test_fusion_node.xunit.xml --junit-prefix=nexus_fusion_localization
+3: ../../src/nexus_pi_readonly_ingress/test/test_fcu_clock_ingress.py ..    [100%]
+3: 
+3: - generated xml file: /root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_pi_readonly_ingress/test_results/nexus_pi_readonly_ingress/test_fcu_clock_ingress.xunit.xml -
+3: ============================== 2 passed in 0.47s ===============================
+4: ============================= test session starts ==============================
+4: platform linux -- Python 3.10.12, pytest-6.2.5, py-1.10.0, pluggy-0.13.0
+4: cachedir: /root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_fusion_localization/ament_cmake_pytest/test_fusion_node/.cache
+4: rootdir: /root/nexus_workspace/NEXUS/code/ros2_ws/src/nexus_fusion_localization
+4: plugins: ament-mypy-0.12.15, ament-lint-0.12.15, launch-testing-ros-0.19.14, ament-flake8-0.12.15, ament-copyright-0.12.15, ament-xmllint-0.12.15, ament-pep257-0.12.15, launch-testing-1.0.14, colcon-core-0.21.0, cov-3.0.0
+4: collected 2 items
+4: 
+3: -- run_test.py: return code 0
+3: -- run_test.py: verify result file '/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_pi_readonly_ingress/test_results/nexus_pi_readonly_ingress/test_fcu_clock_ingress.xunit.xml'
+3/6 Test #3: test_fcu_clock_ingress ...........   Passed    0.97 sec
+test 4
+    Start 4: test_camera_clock
+
+4: Test command: /usr/bin/python3 "-u" "/opt/ros/humble/share/ament_cmake_test/cmake/run_test.py" "/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_pi_readonly_ingress/test_results/nexus_pi_readonly_ingress/test_camera_clock.xunit.xml" "--package-name" "nexus_pi_readonly_ingress" "--output-file" "/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_pi_readonly_ingress/ament_cmake_pytest/test_camera_clock.txt" "--command" "/usr/bin/python3" "-u" "-m" "pytest" "/root/nexus_workspace/NEXUS/code/ros2_ws/src/nexus_pi_readonly_ingress/test/test_camera_clock.py" "-o" "cache_dir=/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_pi_readonly_ingress/ament_cmake_pytest/test_camera_clock/.cache" "--junit-xml=/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_pi_readonly_ingress/test_results/nexus_pi_readonly_ingress/test_camera_clock.xunit.xml" "--junit-prefix=nexus_pi_readonly_ingress"
+4: Test timeout computed to be: 60
+4: -- run_test.py: invoking following command in '/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_pi_readonly_ingress':
+4:  - /usr/bin/python3 -u -m pytest /root/nexus_workspace/NEXUS/code/ros2_ws/src/nexus_pi_readonly_ingress/test/test_camera_clock.py -o cache_dir=/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_pi_readonly_ingress/ament_cmake_pytest/test_camera_clock/.cache --junit-xml=/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_pi_readonly_ingress/test_results/nexus_pi_readonly_ingress/test_camera_clock.xunit.xml --junit-prefix=nexus_pi_readonly_ingress
+4: ============================= test session starts ==============================
+4: platform linux -- Python 3.10.12, pytest-6.2.5, py-1.10.0, pluggy-0.13.0
+4: cachedir: build/nexus_pi_readonly_ingress/ament_cmake_pytest/test_camera_clock/.cache
+4: rootdir: /root/nexus_workspace/NEXUS/code/ros2_ws
+4: plugins: ament-mypy-0.12.15, ament-lint-0.12.15, launch-testing-ros-0.19.14, ament-flake8-0.12.15, ament-copyright-0.12.15, ament-xmllint-0.12.15, ament-pep257-0.12.15, launch-testing-1.0.14, colcon-core-0.21.0, cov-3.0.0
+4: collected 3 items
+4: 
+4: ../../src/nexus_pi_readonly_ingress/test/test_camera_clock.py ...        [100%]
+4: 
+4: - generated xml file: /root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_pi_readonly_ingress/test_results/nexus_pi_readonly_ingress/test_camera_clock.xunit.xml -
+4: ============================== 3 passed in 0.02s ===============================
+4: -- run_test.py: return code 0
+4: -- run_test.py: verify result file '/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_pi_readonly_ingress/test_results/nexus_pi_readonly_ingress/test_camera_clock.xunit.xml'
+4/6 Test #4: test_camera_clock ................   Passed    0.33 sec
+test 5
+    Start 5: test_camera_intrinsics
+
+5: Test command: /usr/bin/python3 "-u" "/opt/ros/humble/share/ament_cmake_test/cmake/run_test.py" "/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_pi_readonly_ingress/test_results/nexus_pi_readonly_ingress/test_camera_intrinsics.xunit.xml" "--package-name" "nexus_pi_readonly_ingress" "--output-file" "/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_pi_readonly_ingress/ament_cmake_pytest/test_camera_intrinsics.txt" "--command" "/usr/bin/python3" "-u" "-m" "pytest" "/root/nexus_workspace/NEXUS/code/ros2_ws/src/nexus_pi_readonly_ingress/test/test_camera_intrinsics.py" "-o" "cache_dir=/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_pi_readonly_ingress/ament_cmake_pytest/test_camera_intrinsics/.cache" "--junit-xml=/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_pi_readonly_ingress/test_results/nexus_pi_readonly_ingress/test_camera_intrinsics.xunit.xml" "--junit-prefix=nexus_pi_readonly_ingress"
+5: Test timeout computed to be: 60
+5: -- run_test.py: invoking following command in '/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_pi_readonly_ingress':
+5:  - /usr/bin/python3 -u -m pytest /root/nexus_workspace/NEXUS/code/ros2_ws/src/nexus_pi_readonly_ingress/test/test_camera_intrinsics.py -o cache_dir=/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_pi_readonly_ingress/ament_cmake_pytest/test_camera_intrinsics/.cache --junit-xml=/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_pi_readonly_ingress/test_results/nexus_pi_readonly_ingress/test_camera_intrinsics.xunit.xml --junit-prefix=nexus_pi_readonly_ingress
+4: ../../src/nexus_fusion_localization/test/test_fusion_node.py ..          [100%]
+4: 
+4: - generated xml file: /root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_fusion_localization/test_results/nexus_fusion_localization/test_fusion_node.xunit.xml -
+4: ============================== 2 passed in 0.65s ===============================
+5: ============================= test session starts ==============================
+5: platform linux -- Python 3.10.12, pytest-6.2.5, py-1.10.0, pluggy-0.13.0
+5: cachedir: build/nexus_pi_readonly_ingress/ament_cmake_pytest/test_camera_intrinsics/.cache
+5: rootdir: /root/nexus_workspace/NEXUS/code/ros2_ws
+5: plugins: ament-mypy-0.12.15, ament-lint-0.12.15, launch-testing-ros-0.19.14, ament-flake8-0.12.15, ament-copyright-0.12.15, ament-xmllint-0.12.15, ament-pep257-0.12.15, launch-testing-1.0.14, colcon-core-0.21.0, cov-3.0.0
+4: -- run_test.py: return code 0
+4: -- run_test.py: verify result file '/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_fusion_localization/test_results/nexus_fusion_localization/test_fusion_node.xunit.xml'
+4/9 Test #4: test_fusion_node .................   Passed    1.16 sec
+test 5
+    Start 5: test_platform_window
+
+5: Test command: /usr/bin/python3 "-u" "/opt/ros/humble/share/ament_cmake_test/cmake/run_test.py" "/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_fusion_localization/test_results/nexus_fusion_localization/test_platform_window.xunit.xml" "--package-name" "nexus_fusion_localization" "--output-file" "/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_fusion_localization/ament_cmake_pytest/test_platform_window.txt" "--env" "OPENBLAS_NUM_THREADS=1" "--command" "/usr/bin/python3" "-u" "-m" "pytest" "/root/nexus_workspace/NEXUS/code/ros2_ws/src/nexus_fusion_localization/test/test_platform_window.py" "-o" "cache_dir=/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_fusion_localization/ament_cmake_pytest/test_platform_window/.cache" "--junit-xml=/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_fusion_localization/test_results/nexus_fusion_localization/test_platform_window.xunit.xml" "--junit-prefix=nexus_fusion_localization"
+5: Test timeout computed to be: 120
+5: -- run_test.py: extra environment variables:
+5:  - OPENBLAS_NUM_THREADS=1
+5: -- run_test.py: invoking following command in '/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_fusion_localization':
+5:  - /usr/bin/python3 -u -m pytest /root/nexus_workspace/NEXUS/code/ros2_ws/src/nexus_fusion_localization/test/test_platform_window.py -o cache_dir=/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_fusion_localization/ament_cmake_pytest/test_platform_window/.cache --junit-xml=/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_fusion_localization/test_results/nexus_fusion_localization/test_platform_window.xunit.xml --junit-prefix=nexus_fusion_localization
+5: ============================= test session starts ==============================
+5: platform linux -- Python 3.10.12, pytest-6.2.5, py-1.10.0, pluggy-0.13.0
+5: cachedir: /root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_fusion_localization/ament_cmake_pytest/test_platform_window/.cache
+5: rootdir: /root/nexus_workspace/NEXUS/code/ros2_ws/src/nexus_fusion_localization
+5: plugins: ament-mypy-0.12.15, ament-lint-0.12.15, launch-testing-ros-0.19.14, ament-flake8-0.12.15, ament-copyright-0.12.15, ament-xmllint-0.12.15, ament-pep257-0.12.15, launch-testing-1.0.14, colcon-core-0.21.0, cov-3.0.0
+5: collected 23 items
+5: 
+5: ../../src/nexus_fusion_localization/test/test_platform_window.py ....... [ 30%]
+5: ................                                                         [100%]
+5: 
+5: - generated xml file: /root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_fusion_localization/test_results/nexus_fusion_localization/test_platform_window.xunit.xml -
+5: ============================== 23 passed in 1.62s ==============================
+5: -- run_test.py: return code 0
+5: -- run_test.py: verify result file '/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_fusion_localization/test_results/nexus_fusion_localization/test_platform_window.xunit.xml'
+5: collected 2 items
+5: 
+5/9 Test #5: test_platform_window .............   Passed    2.10 sec
+test 6
+    Start 6: test_platform_jacobians
+
+6: Test command: /usr/bin/python3 "-u" "/opt/ros/humble/share/ament_cmake_test/cmake/run_test.py" "/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_fusion_localization/test_results/nexus_fusion_localization/test_platform_jacobians.xunit.xml" "--package-name" "nexus_fusion_localization" "--output-file" "/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_fusion_localization/ament_cmake_pytest/test_platform_jacobians.txt" "--env" "OPENBLAS_NUM_THREADS=1" "--command" "/usr/bin/python3" "-u" "-m" "pytest" "/root/nexus_workspace/NEXUS/code/ros2_ws/src/nexus_fusion_localization/test/test_platform_jacobians.py" "-o" "cache_dir=/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_fusion_localization/ament_cmake_pytest/test_platform_jacobians/.cache" "--junit-xml=/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_fusion_localization/test_results/nexus_fusion_localization/test_platform_jacobians.xunit.xml" "--junit-prefix=nexus_fusion_localization"
+6: Test timeout computed to be: 60
+5: ../../src/nexus_pi_readonly_ingress/test/test_camera_intrinsics.py ..    [100%]
+5: 
+5: - generated xml file: /root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_pi_readonly_ingress/test_results/nexus_pi_readonly_ingress/test_camera_intrinsics.xunit.xml -
+5: ============================== 2 passed in 2.17s ===============================
+6: -- run_test.py: extra environment variables:
+6:  - OPENBLAS_NUM_THREADS=1
+6: -- run_test.py: invoking following command in '/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_fusion_localization':
+6:  - /usr/bin/python3 -u -m pytest /root/nexus_workspace/NEXUS/code/ros2_ws/src/nexus_fusion_localization/test/test_platform_jacobians.py -o cache_dir=/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_fusion_localization/ament_cmake_pytest/test_platform_jacobians/.cache --junit-xml=/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_fusion_localization/test_results/nexus_fusion_localization/test_platform_jacobians.xunit.xml --junit-prefix=nexus_fusion_localization
+5: -- run_test.py: return code 0
+5: -- run_test.py: verify result file '/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_pi_readonly_ingress/test_results/nexus_pi_readonly_ingress/test_camera_intrinsics.xunit.xml'
+5/6 Test #5: test_camera_intrinsics ...........   Passed    2.60 sec
+test 6
+    Start 6: test_camera_latest_frame
+
+6: Test command: /usr/bin/python3 "-u" "/opt/ros/humble/share/ament_cmake_test/cmake/run_test.py" "/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_pi_readonly_ingress/test_results/nexus_pi_readonly_ingress/test_camera_latest_frame.xunit.xml" "--package-name" "nexus_pi_readonly_ingress" "--output-file" "/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_pi_readonly_ingress/ament_cmake_pytest/test_camera_latest_frame.txt" "--command" "/usr/bin/python3" "-u" "-m" "pytest" "/root/nexus_workspace/NEXUS/code/ros2_ws/src/nexus_pi_readonly_ingress/test/test_camera_latest_frame.py" "-o" "cache_dir=/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_pi_readonly_ingress/ament_cmake_pytest/test_camera_latest_frame/.cache" "--junit-xml=/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_pi_readonly_ingress/test_results/nexus_pi_readonly_ingress/test_camera_latest_frame.xunit.xml" "--junit-prefix=nexus_pi_readonly_ingress"
+6: Test timeout computed to be: 60
+6: -- run_test.py: invoking following command in '/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_pi_readonly_ingress':
+6:  - /usr/bin/python3 -u -m pytest /root/nexus_workspace/NEXUS/code/ros2_ws/src/nexus_pi_readonly_ingress/test/test_camera_latest_frame.py -o cache_dir=/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_pi_readonly_ingress/ament_cmake_pytest/test_camera_latest_frame/.cache --junit-xml=/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_pi_readonly_ingress/test_results/nexus_pi_readonly_ingress/test_camera_latest_frame.xunit.xml --junit-prefix=nexus_pi_readonly_ingress
+6: ============================= test session starts ==============================
+6: platform linux -- Python 3.10.12, pytest-6.2.5, py-1.10.0, pluggy-0.13.0
+6: cachedir: /root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_fusion_localization/ament_cmake_pytest/test_platform_jacobians/.cache
+6: rootdir: /root/nexus_workspace/NEXUS/code/ros2_ws/src/nexus_fusion_localization
+6: plugins: ament-mypy-0.12.15, ament-lint-0.12.15, launch-testing-ros-0.19.14, ament-flake8-0.12.15, ament-copyright-0.12.15, ament-xmllint-0.12.15, ament-pep257-0.12.15, launch-testing-1.0.14, colcon-core-0.21.0, cov-3.0.0
+6: ============================= test session starts ==============================
+6: platform linux -- Python 3.10.12, pytest-6.2.5, py-1.10.0, pluggy-0.13.0
+6: cachedir: build/nexus_pi_readonly_ingress/ament_cmake_pytest/test_camera_latest_frame/.cache
+6: rootdir: /root/nexus_workspace/NEXUS/code/ros2_ws
+6: plugins: ament-mypy-0.12.15, ament-lint-0.12.15, launch-testing-ros-0.19.14, ament-flake8-0.12.15, ament-copyright-0.12.15, ament-xmllint-0.12.15, ament-pep257-0.12.15, launch-testing-1.0.14, colcon-core-0.21.0, cov-3.0.0
+6: collected 5 items
+6: 
+6: ../../src/nexus_fusion_localization/test/test_platform_jacobians.py .... [ 80%]
+6: .                                                                        [100%]
+6: 
+6: - generated xml file: /root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_fusion_localization/test_results/nexus_fusion_localization/test_platform_jacobians.xunit.xml -
+6: ============================== 5 passed in 0.49s ===============================
+6: collected 1 item
+6: 
+6: ../../src/nexus_pi_readonly_ingress/test/test_camera_latest_frame.py .   [100%]
+6: 
+6: - generated xml file: /root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_pi_readonly_ingress/test_results/nexus_pi_readonly_ingress/test_camera_latest_frame.xunit.xml -
+6: ============================== 1 passed in 0.37s ===============================
+6: -- run_test.py: return code 0
+6: -- run_test.py: verify result file '/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_fusion_localization/test_results/nexus_fusion_localization/test_platform_jacobians.xunit.xml'
+6/9 Test #6: test_platform_jacobians ..........   Passed    1.02 sec
+test 7
+    Start 7: test_platform_node
+
+7: Test command: /usr/bin/python3 "-u" "/opt/ros/humble/share/ament_cmake_test/cmake/run_test.py" "/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_fusion_localization/test_results/nexus_fusion_localization/test_platform_node.xunit.xml" "--package-name" "nexus_fusion_localization" "--output-file" "/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_fusion_localization/ament_cmake_pytest/test_platform_node.txt" "--env" "ROS_LOCALHOST_ONLY=1" "ROS_DOMAIN_ID=214" "OPENBLAS_NUM_THREADS=1" "--command" "/usr/bin/python3" "-u" "-m" "pytest" "/root/nexus_workspace/NEXUS/code/ros2_ws/src/nexus_fusion_localization/test/test_platform_node.py" "-o" "cache_dir=/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_fusion_localization/ament_cmake_pytest/test_platform_node/.cache" "--junit-xml=/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_fusion_localization/test_results/nexus_fusion_localization/test_platform_node.xunit.xml" "--junit-prefix=nexus_fusion_localization"
+7: Test timeout computed to be: 60
+7: -- run_test.py: extra environment variables:
+7:  - OPENBLAS_NUM_THREADS=1
+7:  - ROS_DOMAIN_ID=214
+7:  - ROS_LOCALHOST_ONLY=1
+7: -- run_test.py: invoking following command in '/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_fusion_localization':
+7:  - /usr/bin/python3 -u -m pytest /root/nexus_workspace/NEXUS/code/ros2_ws/src/nexus_fusion_localization/test/test_platform_node.py -o cache_dir=/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_fusion_localization/ament_cmake_pytest/test_platform_node/.cache --junit-xml=/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_fusion_localization/test_results/nexus_fusion_localization/test_platform_node.xunit.xml --junit-prefix=nexus_fusion_localization
+6: -- run_test.py: return code 0
+6: -- run_test.py: verify result file '/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_pi_readonly_ingress/test_results/nexus_pi_readonly_ingress/test_camera_latest_frame.xunit.xml'
+6/6 Test #6: test_camera_latest_frame .........   Passed    0.93 sec
+
+100% tests passed, 0 tests failed out of 6
+
+Label Time Summary:
+pytest    =   6.64 sec*proc (6 tests)
+
+Total Test time (real) =   6.65 sec
+Finished <<< nexus_pi_readonly_ingress [7.03s]
+7: ============================= test session starts ==============================
+7: platform linux -- Python 3.10.12, pytest-6.2.5, py-1.10.0, pluggy-0.13.0
+7: cachedir: /root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_fusion_localization/ament_cmake_pytest/test_platform_node/.cache
+7: rootdir: /root/nexus_workspace/NEXUS/code/ros2_ws/src/nexus_fusion_localization
+7: plugins: ament-mypy-0.12.15, ament-lint-0.12.15, launch-testing-ros-0.19.14, ament-flake8-0.12.15, ament-copyright-0.12.15, ament-xmllint-0.12.15, ament-pep257-0.12.15, launch-testing-1.0.14, colcon-core-0.21.0, cov-3.0.0
+7: collected 5 items
+7: 
+7: ../../src/nexus_fusion_localization/test/test_platform_node.py .....     [100%]
+7: 
+7: - generated xml file: /root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_fusion_localization/test_results/nexus_fusion_localization/test_platform_node.xunit.xml -
+7: ============================== 5 passed in 2.08s ===============================
+7: -- run_test.py: return code 0
+7: -- run_test.py: verify result file '/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_fusion_localization/test_results/nexus_fusion_localization/test_platform_node.xunit.xml'
+7/9 Test #7: test_platform_node ...............   Passed    2.71 sec
+test 8
+    Start 8: test_kinematic_filter
+
+8: Test command: /usr/bin/python3 "-u" "/opt/ros/humble/share/ament_cmake_test/cmake/run_test.py" "/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_fusion_localization/test_results/nexus_fusion_localization/test_kinematic_filter.xunit.xml" "--package-name" "nexus_fusion_localization" "--output-file" "/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_fusion_localization/ament_cmake_pytest/test_kinematic_filter.txt" "--env" "OPENBLAS_NUM_THREADS=1" "--command" "/usr/bin/python3" "-u" "-m" "pytest" "/root/nexus_workspace/NEXUS/code/ros2_ws/src/nexus_fusion_localization/test/test_kinematic_filter.py" "-o" "cache_dir=/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_fusion_localization/ament_cmake_pytest/test_kinematic_filter/.cache" "--junit-xml=/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_fusion_localization/test_results/nexus_fusion_localization/test_kinematic_filter.xunit.xml" "--junit-prefix=nexus_fusion_localization"
+8: Test timeout computed to be: 60
+8: -- run_test.py: extra environment variables:
+8:  - OPENBLAS_NUM_THREADS=1
+8: -- run_test.py: invoking following command in '/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_fusion_localization':
+8:  - /usr/bin/python3 -u -m pytest /root/nexus_workspace/NEXUS/code/ros2_ws/src/nexus_fusion_localization/test/test_kinematic_filter.py -o cache_dir=/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_fusion_localization/ament_cmake_pytest/test_kinematic_filter/.cache --junit-xml=/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_fusion_localization/test_results/nexus_fusion_localization/test_kinematic_filter.xunit.xml --junit-prefix=nexus_fusion_localization
+8: ============================= test session starts ==============================
+8: platform linux -- Python 3.10.12, pytest-6.2.5, py-1.10.0, pluggy-0.13.0
+8: cachedir: /root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_fusion_localization/ament_cmake_pytest/test_kinematic_filter/.cache
+8: rootdir: /root/nexus_workspace/NEXUS/code/ros2_ws/src/nexus_fusion_localization
+8: plugins: ament-mypy-0.12.15, ament-lint-0.12.15, launch-testing-ros-0.19.14, ament-flake8-0.12.15, ament-copyright-0.12.15, ament-xmllint-0.12.15, ament-pep257-0.12.15, launch-testing-1.0.14, colcon-core-0.21.0, cov-3.0.0
+8: collected 18 items
+8: 
+8: ../../src/nexus_fusion_localization/test/test_kinematic_filter.py ...... [ 33%]
+8: ............                                                             [100%]
+8: 
+8: - generated xml file: /root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_fusion_localization/test_results/nexus_fusion_localization/test_kinematic_filter.xunit.xml -
+8: ============================== 18 passed in 0.48s ==============================
+8: -- run_test.py: return code 0
+8: -- run_test.py: verify result file '/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_fusion_localization/test_results/nexus_fusion_localization/test_kinematic_filter.xunit.xml'
+8/9 Test #8: test_kinematic_filter ............   Passed    1.11 sec
+test 9
+    Start 9: test_target_kinematic_node
+
+9: Test command: /usr/bin/python3 "-u" "/opt/ros/humble/share/ament_cmake_test/cmake/run_test.py" "/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_fusion_localization/test_results/nexus_fusion_localization/test_target_kinematic_node.xunit.xml" "--package-name" "nexus_fusion_localization" "--output-file" "/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_fusion_localization/ament_cmake_pytest/test_target_kinematic_node.txt" "--env" "ROS_LOCALHOST_ONLY=1" "ROS_DOMAIN_ID=228" "OPENBLAS_NUM_THREADS=1" "--command" "/usr/bin/python3" "-u" "-m" "pytest" "/root/nexus_workspace/NEXUS/code/ros2_ws/src/nexus_fusion_localization/test/test_target_kinematic_node.py" "-o" "cache_dir=/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_fusion_localization/ament_cmake_pytest/test_target_kinematic_node/.cache" "--junit-xml=/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_fusion_localization/test_results/nexus_fusion_localization/test_target_kinematic_node.xunit.xml" "--junit-prefix=nexus_fusion_localization"
+9: Test timeout computed to be: 60
+9: -- run_test.py: extra environment variables:
+9:  - OPENBLAS_NUM_THREADS=1
+9:  - ROS_DOMAIN_ID=228
+9:  - ROS_LOCALHOST_ONLY=1
+9: -- run_test.py: invoking following command in '/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_fusion_localization':
+9:  - /usr/bin/python3 -u -m pytest /root/nexus_workspace/NEXUS/code/ros2_ws/src/nexus_fusion_localization/test/test_target_kinematic_node.py -o cache_dir=/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_fusion_localization/ament_cmake_pytest/test_target_kinematic_node/.cache --junit-xml=/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_fusion_localization/test_results/nexus_fusion_localization/test_target_kinematic_node.xunit.xml --junit-prefix=nexus_fusion_localization
+9: ============================= test session starts ==============================
+9: platform linux -- Python 3.10.12, pytest-6.2.5, py-1.10.0, pluggy-0.13.0
+9: cachedir: /root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_fusion_localization/ament_cmake_pytest/test_target_kinematic_node/.cache
+9: rootdir: /root/nexus_workspace/NEXUS/code/ros2_ws/src/nexus_fusion_localization
+9: plugins: ament-mypy-0.12.15, ament-lint-0.12.15, launch-testing-ros-0.19.14, ament-flake8-0.12.15, ament-copyright-0.12.15, ament-xmllint-0.12.15, ament-pep257-0.12.15, launch-testing-1.0.14, colcon-core-0.21.0, cov-3.0.0
+9: collected 4 items
+9: 
+9: ../../src/nexus_fusion_localization/test/test_target_kinematic_node.py . [ 25%]
+9: ...                                                                      [100%]
+9: 
+9: - generated xml file: /root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_fusion_localization/test_results/nexus_fusion_localization/test_target_kinematic_node.xunit.xml -
+9: ============================== 4 passed in 1.29s ===============================
+9: -- run_test.py: return code 0
+9: -- run_test.py: verify result file '/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_fusion_localization/test_results/nexus_fusion_localization/test_target_kinematic_node.xunit.xml'
+9/9 Test #9: test_target_kinematic_node .......   Passed    2.32 sec
+
+100% tests passed, 0 tests failed out of 9
+
+Label Time Summary:
+pytest    =  12.25 sec*proc (9 tests)
+
+Total Test time (real) =  12.26 sec
+Finished <<< nexus_fusion_localization [13.1s]
+Starting >>> nexus_vision_localization
+UpdateCTestConfiguration  from :/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_vision_localization/CTestConfiguration.ini
+Parse Config file:/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_vision_localization/CTestConfiguration.ini
+   Site: wblxr
+   Build name: (empty)
+ Add coverage exclude regular expressions.
+Create new tag: 20260908-1214 - Experimental
+UpdateCTestConfiguration  from :/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_vision_localization/CTestConfiguration.ini
+Parse Config file:/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_vision_localization/CTestConfiguration.ini
+Test project /root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_vision_localization
+Constructing a list of tests
+Done constructing a list of tests
+Updating test list for fixtures
+Added 0 tests to meet fixture requirements
+Checking test dependency graph...
+Checking test dependency graph end
+test 1
+      Start  1: test_detector
+
+1: Test command: /usr/bin/python3 "-u" "/opt/ros/humble/share/ament_cmake_test/cmake/run_test.py" "/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_vision_localization/test_results/nexus_vision_localization/test_detector.xunit.xml" "--package-name" "nexus_vision_localization" "--output-file" "/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_vision_localization/ament_cmake_pytest/test_detector.txt" "--command" "/usr/bin/python3" "-u" "-m" "pytest" "/root/nexus_workspace/NEXUS/code/ros2_ws/src/nexus_vision_localization/test/test_detector.py" "-o" "cache_dir=/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_vision_localization/ament_cmake_pytest/test_detector/.cache" "--junit-xml=/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_vision_localization/test_results/nexus_vision_localization/test_detector.xunit.xml" "--junit-prefix=nexus_vision_localization"
+1: Test timeout computed to be: 60
+1: -- run_test.py: invoking following command in '/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_vision_localization':
+1:  - /usr/bin/python3 -u -m pytest /root/nexus_workspace/NEXUS/code/ros2_ws/src/nexus_vision_localization/test/test_detector.py -o cache_dir=/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_vision_localization/ament_cmake_pytest/test_detector/.cache --junit-xml=/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_vision_localization/test_results/nexus_vision_localization/test_detector.xunit.xml --junit-prefix=nexus_vision_localization
+1: ============================= test session starts ==============================
+1: platform linux -- Python 3.10.12, pytest-6.2.5, py-1.10.0, pluggy-0.13.0
+1: cachedir: /root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_vision_localization/ament_cmake_pytest/test_detector/.cache
+1: rootdir: /root/nexus_workspace/NEXUS/code/ros2_ws/src/nexus_vision_localization
+1: plugins: ament-mypy-0.12.15, ament-lint-0.12.15, launch-testing-ros-0.19.14, ament-flake8-0.12.15, ament-copyright-0.12.15, ament-xmllint-0.12.15, ament-pep257-0.12.15, launch-testing-1.0.14, colcon-core-0.21.0, cov-3.0.0
+1: collected 4 items
+1: 
+1: ../../src/nexus_vision_localization/test/test_detector.py ....           [100%]
+1: 
+1: - generated xml file: /root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_vision_localization/test_results/nexus_vision_localization/test_detector.xunit.xml -
+1: ============================== 4 passed in 0.92s ===============================
+1: -- run_test.py: return code 0
+1: -- run_test.py: verify result file '/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_vision_localization/test_results/nexus_vision_localization/test_detector.xunit.xml'
+ 1/17 Test  #1: test_detector ....................   Passed    1.58 sec
+test 2
+      Start  2: test_reference_geometry
+
+2: Test command: /usr/bin/python3 "-u" "/opt/ros/humble/share/ament_cmake_test/cmake/run_test.py" "/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_vision_localization/test_results/nexus_vision_localization/test_reference_geometry.xunit.xml" "--package-name" "nexus_vision_localization" "--output-file" "/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_vision_localization/ament_cmake_pytest/test_reference_geometry.txt" "--command" "/usr/bin/python3" "-u" "-m" "pytest" "/root/nexus_workspace/NEXUS/code/ros2_ws/src/nexus_vision_localization/test/test_reference_geometry.py" "-o" "cache_dir=/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_vision_localization/ament_cmake_pytest/test_reference_geometry/.cache" "--junit-xml=/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_vision_localization/test_results/nexus_vision_localization/test_reference_geometry.xunit.xml" "--junit-prefix=nexus_vision_localization"
+2: Test timeout computed to be: 60
+2: -- run_test.py: invoking following command in '/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_vision_localization':
+2:  - /usr/bin/python3 -u -m pytest /root/nexus_workspace/NEXUS/code/ros2_ws/src/nexus_vision_localization/test/test_reference_geometry.py -o cache_dir=/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_vision_localization/ament_cmake_pytest/test_reference_geometry/.cache --junit-xml=/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_vision_localization/test_results/nexus_vision_localization/test_reference_geometry.xunit.xml --junit-prefix=nexus_vision_localization
+2: ============================= test session starts ==============================
+2: platform linux -- Python 3.10.12, pytest-6.2.5, py-1.10.0, pluggy-0.13.0
+2: cachedir: /root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_vision_localization/ament_cmake_pytest/test_reference_geometry/.cache
+2: rootdir: /root/nexus_workspace/NEXUS/code/ros2_ws/src/nexus_vision_localization
+2: plugins: ament-mypy-0.12.15, ament-lint-0.12.15, launch-testing-ros-0.19.14, ament-flake8-0.12.15, ament-copyright-0.12.15, ament-xmllint-0.12.15, ament-pep257-0.12.15, launch-testing-1.0.14, colcon-core-0.21.0, cov-3.0.0
+2: collected 6 items
+2: 
+2: ../../src/nexus_vision_localization/test/test_reference_geometry.py .... [ 66%]
+2: ..                                                                       [100%]
+2: 
+2: - generated xml file: /root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_vision_localization/test_results/nexus_vision_localization/test_reference_geometry.xunit.xml -
+2: ============================== 6 passed in 0.38s ===============================
+2: -- run_test.py: return code 0
+2: -- run_test.py: verify result file '/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_vision_localization/test_results/nexus_vision_localization/test_reference_geometry.xunit.xml'
+ 2/17 Test  #2: test_reference_geometry ..........   Passed    0.82 sec
+test 3
+      Start  3: test_superpoint_frontend
+
+3: Test command: /usr/bin/python3 "-u" "/opt/ros/humble/share/ament_cmake_test/cmake/run_test.py" "/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_vision_localization/test_results/nexus_vision_localization/test_superpoint_frontend.xunit.xml" "--package-name" "nexus_vision_localization" "--output-file" "/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_vision_localization/ament_cmake_pytest/test_superpoint_frontend.txt" "--command" "/usr/bin/python3" "-u" "-m" "pytest" "/root/nexus_workspace/NEXUS/code/ros2_ws/src/nexus_vision_localization/test/test_superpoint_frontend.py" "-o" "cache_dir=/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_vision_localization/ament_cmake_pytest/test_superpoint_frontend/.cache" "--junit-xml=/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_vision_localization/test_results/nexus_vision_localization/test_superpoint_frontend.xunit.xml" "--junit-prefix=nexus_vision_localization"
+3: Test timeout computed to be: 60
+3: -- run_test.py: invoking following command in '/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_vision_localization':
+3:  - /usr/bin/python3 -u -m pytest /root/nexus_workspace/NEXUS/code/ros2_ws/src/nexus_vision_localization/test/test_superpoint_frontend.py -o cache_dir=/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_vision_localization/ament_cmake_pytest/test_superpoint_frontend/.cache --junit-xml=/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_vision_localization/test_results/nexus_vision_localization/test_superpoint_frontend.xunit.xml --junit-prefix=nexus_vision_localization
+3: ============================= test session starts ==============================
+3: platform linux -- Python 3.10.12, pytest-6.2.5, py-1.10.0, pluggy-0.13.0
+3: cachedir: /root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_vision_localization/ament_cmake_pytest/test_superpoint_frontend/.cache
+3: rootdir: /root/nexus_workspace/NEXUS/code/ros2_ws/src/nexus_vision_localization
+3: plugins: ament-mypy-0.12.15, ament-lint-0.12.15, launch-testing-ros-0.19.14, ament-flake8-0.12.15, ament-copyright-0.12.15, ament-xmllint-0.12.15, ament-pep257-0.12.15, launch-testing-1.0.14, colcon-core-0.21.0, cov-3.0.0
+3: collected 12 items
+3: 
+3: ../../src/nexus_vision_localization/test/test_superpoint_frontend.py ... [ 25%]
+3: .........                                                                [100%]
+3: 
+3: - generated xml file: /root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_vision_localization/test_results/nexus_vision_localization/test_superpoint_frontend.xunit.xml -
+3: ============================== 12 passed in 0.41s ==============================
+3: -- run_test.py: return code 0
+3: -- run_test.py: verify result file '/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_vision_localization/test_results/nexus_vision_localization/test_superpoint_frontend.xunit.xml'
+ 3/17 Test  #3: test_superpoint_frontend .........   Passed    1.00 sec
+test 4
+      Start  4: test_visual_motion
+
+4: Test command: /usr/bin/python3 "-u" "/opt/ros/humble/share/ament_cmake_test/cmake/run_test.py" "/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_vision_localization/test_results/nexus_vision_localization/test_visual_motion.xunit.xml" "--package-name" "nexus_vision_localization" "--output-file" "/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_vision_localization/ament_cmake_pytest/test_visual_motion.txt" "--command" "/usr/bin/python3" "-u" "-m" "pytest" "/root/nexus_workspace/NEXUS/code/ros2_ws/src/nexus_vision_localization/test/test_visual_motion.py" "-o" "cache_dir=/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_vision_localization/ament_cmake_pytest/test_visual_motion/.cache" "--junit-xml=/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_vision_localization/test_results/nexus_vision_localization/test_visual_motion.xunit.xml" "--junit-prefix=nexus_vision_localization"
+4: Test timeout computed to be: 60
+4: -- run_test.py: invoking following command in '/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_vision_localization':
+4:  - /usr/bin/python3 -u -m pytest /root/nexus_workspace/NEXUS/code/ros2_ws/src/nexus_vision_localization/test/test_visual_motion.py -o cache_dir=/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_vision_localization/ament_cmake_pytest/test_visual_motion/.cache --junit-xml=/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_vision_localization/test_results/nexus_vision_localization/test_visual_motion.xunit.xml --junit-prefix=nexus_vision_localization
+4: ============================= test session starts ==============================
+4: platform linux -- Python 3.10.12, pytest-6.2.5, py-1.10.0, pluggy-0.13.0
+4: cachedir: /root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_vision_localization/ament_cmake_pytest/test_visual_motion/.cache
+4: rootdir: /root/nexus_workspace/NEXUS/code/ros2_ws/src/nexus_vision_localization
+4: plugins: ament-mypy-0.12.15, ament-lint-0.12.15, launch-testing-ros-0.19.14, ament-flake8-0.12.15, ament-copyright-0.12.15, ament-xmllint-0.12.15, ament-pep257-0.12.15, launch-testing-1.0.14, colcon-core-0.21.0, cov-3.0.0
+4: collected 5 items
+4: 
+4: ../../src/nexus_vision_localization/test/test_visual_motion.py .....     [100%]
+4: 
+4: - generated xml file: /root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_vision_localization/test_results/nexus_vision_localization/test_visual_motion.xunit.xml -
+4: ============================== 5 passed in 0.42s ===============================
+4: -- run_test.py: return code 0
+4: -- run_test.py: verify result file '/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_vision_localization/test_results/nexus_vision_localization/test_visual_motion.xunit.xml'
+ 4/17 Test  #4: test_visual_motion ...............   Passed    0.88 sec
+test 5
+      Start  5: test_object_detector
+
+5: Test command: /usr/bin/python3 "-u" "/opt/ros/humble/share/ament_cmake_test/cmake/run_test.py" "/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_vision_localization/test_results/nexus_vision_localization/test_object_detector.xunit.xml" "--package-name" "nexus_vision_localization" "--output-file" "/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_vision_localization/ament_cmake_pytest/test_object_detector.txt" "--command" "/usr/bin/python3" "-u" "-m" "pytest" "/root/nexus_workspace/NEXUS/code/ros2_ws/src/nexus_vision_localization/test/test_object_detector.py" "-o" "cache_dir=/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_vision_localization/ament_cmake_pytest/test_object_detector/.cache" "--junit-xml=/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_vision_localization/test_results/nexus_vision_localization/test_object_detector.xunit.xml" "--junit-prefix=nexus_vision_localization"
+5: Test timeout computed to be: 60
+5: -- run_test.py: invoking following command in '/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_vision_localization':
+5:  - /usr/bin/python3 -u -m pytest /root/nexus_workspace/NEXUS/code/ros2_ws/src/nexus_vision_localization/test/test_object_detector.py -o cache_dir=/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_vision_localization/ament_cmake_pytest/test_object_detector/.cache --junit-xml=/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_vision_localization/test_results/nexus_vision_localization/test_object_detector.xunit.xml --junit-prefix=nexus_vision_localization
+5: ============================= test session starts ==============================
+5: platform linux -- Python 3.10.12, pytest-6.2.5, py-1.10.0, pluggy-0.13.0
+5: cachedir: /root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_vision_localization/ament_cmake_pytest/test_object_detector/.cache
+5: rootdir: /root/nexus_workspace/NEXUS/code/ros2_ws/src/nexus_vision_localization
+5: plugins: ament-mypy-0.12.15, ament-lint-0.12.15, launch-testing-ros-0.19.14, ament-flake8-0.12.15, ament-copyright-0.12.15, ament-xmllint-0.12.15, ament-pep257-0.12.15, launch-testing-1.0.14, colcon-core-0.21.0, cov-3.0.0
+5: collected 8 items
+5: 
+5: ../../src/nexus_vision_localization/test/test_object_detector.py ....... [ 87%]
+5: .                                                                        [100%]
+5: 
+5: - generated xml file: /root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_vision_localization/test_results/nexus_vision_localization/test_object_detector.xunit.xml -
+5: ============================== 8 passed in 0.35s ===============================
+5: -- run_test.py: return code 0
+5: -- run_test.py: verify result file '/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_vision_localization/test_results/nexus_vision_localization/test_object_detector.xunit.xml'
+ 5/17 Test  #5: test_object_detector .............   Passed    0.84 sec
+test 6
+      Start  6: test_cuda_model
+
+6: Test command: /usr/bin/python3 "-u" "/opt/ros/humble/share/ament_cmake_test/cmake/run_test.py" "/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_vision_localization/test_results/nexus_vision_localization/test_cuda_model.xunit.xml" "--package-name" "nexus_vision_localization" "--output-file" "/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_vision_localization/ament_cmake_pytest/test_cuda_model.txt" "--command" "/usr/bin/python3" "-u" "-m" "pytest" "/root/nexus_workspace/NEXUS/code/ros2_ws/src/nexus_vision_localization/test/test_cuda_model.py" "-o" "cache_dir=/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_vision_localization/ament_cmake_pytest/test_cuda_model/.cache" "--junit-xml=/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_vision_localization/test_results/nexus_vision_localization/test_cuda_model.xunit.xml" "--junit-prefix=nexus_vision_localization"
+6: Test timeout computed to be: 60
+6: -- run_test.py: invoking following command in '/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_vision_localization':
+6:  - /usr/bin/python3 -u -m pytest /root/nexus_workspace/NEXUS/code/ros2_ws/src/nexus_vision_localization/test/test_cuda_model.py -o cache_dir=/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_vision_localization/ament_cmake_pytest/test_cuda_model/.cache --junit-xml=/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_vision_localization/test_results/nexus_vision_localization/test_cuda_model.xunit.xml --junit-prefix=nexus_vision_localization
+6: ============================= test session starts ==============================
+6: platform linux -- Python 3.10.12, pytest-6.2.5, py-1.10.0, pluggy-0.13.0
+6: cachedir: /root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_vision_localization/ament_cmake_pytest/test_cuda_model/.cache
+6: rootdir: /root/nexus_workspace/NEXUS/code/ros2_ws/src/nexus_vision_localization
+6: plugins: ament-mypy-0.12.15, ament-lint-0.12.15, launch-testing-ros-0.19.14, ament-flake8-0.12.15, ament-copyright-0.12.15, ament-xmllint-0.12.15, ament-pep257-0.12.15, launch-testing-1.0.14, colcon-core-0.21.0, cov-3.0.0
+6: collected 3 items
+6: 
+6: ../../src/nexus_vision_localization/test/test_cuda_model.py ...          [100%]
+6: 
+6: - generated xml file: /root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_vision_localization/test_results/nexus_vision_localization/test_cuda_model.xunit.xml -
+6: ============================== 3 passed in 0.09s ===============================
+6: -- run_test.py: return code 0
+6: -- run_test.py: verify result file '/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_vision_localization/test_results/nexus_vision_localization/test_cuda_model.xunit.xml'
+ 6/17 Test  #6: test_cuda_model ..................   Passed    0.46 sec
+test 7
+      Start  7: test_edge_model
+
+7: Test command: /usr/bin/python3 "-u" "/opt/ros/humble/share/ament_cmake_test/cmake/run_test.py" "/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_vision_localization/test_results/nexus_vision_localization/test_edge_model.xunit.xml" "--package-name" "nexus_vision_localization" "--output-file" "/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_vision_localization/ament_cmake_pytest/test_edge_model.txt" "--command" "/usr/bin/python3" "-u" "-m" "pytest" "/root/nexus_workspace/NEXUS/code/ros2_ws/src/nexus_vision_localization/test/test_edge_model.py" "-o" "cache_dir=/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_vision_localization/ament_cmake_pytest/test_edge_model/.cache" "--junit-xml=/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_vision_localization/test_results/nexus_vision_localization/test_edge_model.xunit.xml" "--junit-prefix=nexus_vision_localization"
+7: Test timeout computed to be: 60
+7: -- run_test.py: invoking following command in '/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_vision_localization':
+7:  - /usr/bin/python3 -u -m pytest /root/nexus_workspace/NEXUS/code/ros2_ws/src/nexus_vision_localization/test/test_edge_model.py -o cache_dir=/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_vision_localization/ament_cmake_pytest/test_edge_model/.cache --junit-xml=/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_vision_localization/test_results/nexus_vision_localization/test_edge_model.xunit.xml --junit-prefix=nexus_vision_localization
+7: ============================= test session starts ==============================
+7: platform linux -- Python 3.10.12, pytest-6.2.5, py-1.10.0, pluggy-0.13.0
+7: cachedir: /root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_vision_localization/ament_cmake_pytest/test_edge_model/.cache
+7: rootdir: /root/nexus_workspace/NEXUS/code/ros2_ws/src/nexus_vision_localization
+7: plugins: ament-mypy-0.12.15, ament-lint-0.12.15, launch-testing-ros-0.19.14, ament-flake8-0.12.15, ament-copyright-0.12.15, ament-xmllint-0.12.15, ament-pep257-0.12.15, launch-testing-1.0.14, colcon-core-0.21.0, cov-3.0.0
+7: collected 2 items
+7: 
+7: ../../src/nexus_vision_localization/test/test_edge_model.py ..           [100%]
+7: 
+7: - generated xml file: /root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_vision_localization/test_results/nexus_vision_localization/test_edge_model.xunit.xml -
+7: ============================== 2 passed in 0.10s ===============================
+7: -- run_test.py: return code 0
+7: -- run_test.py: verify result file '/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_vision_localization/test_results/nexus_vision_localization/test_edge_model.xunit.xml'
+ 7/17 Test  #7: test_edge_model ..................   Passed    0.52 sec
+test 8
+      Start  8: test_adaptive_policy
+
+8: Test command: /usr/bin/python3 "-u" "/opt/ros/humble/share/ament_cmake_test/cmake/run_test.py" "/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_vision_localization/test_results/nexus_vision_localization/test_adaptive_policy.xunit.xml" "--package-name" "nexus_vision_localization" "--output-file" "/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_vision_localization/ament_cmake_pytest/test_adaptive_policy.txt" "--command" "/usr/bin/python3" "-u" "-m" "pytest" "/root/nexus_workspace/NEXUS/code/ros2_ws/src/nexus_vision_localization/test/test_adaptive_policy.py" "-o" "cache_dir=/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_vision_localization/ament_cmake_pytest/test_adaptive_policy/.cache" "--junit-xml=/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_vision_localization/test_results/nexus_vision_localization/test_adaptive_policy.xunit.xml" "--junit-prefix=nexus_vision_localization"
+8: Test timeout computed to be: 60
+8: -- run_test.py: invoking following command in '/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_vision_localization':
+8:  - /usr/bin/python3 -u -m pytest /root/nexus_workspace/NEXUS/code/ros2_ws/src/nexus_vision_localization/test/test_adaptive_policy.py -o cache_dir=/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_vision_localization/ament_cmake_pytest/test_adaptive_policy/.cache --junit-xml=/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_vision_localization/test_results/nexus_vision_localization/test_adaptive_policy.xunit.xml --junit-prefix=nexus_vision_localization
+8: ============================= test session starts ==============================
+8: platform linux -- Python 3.10.12, pytest-6.2.5, py-1.10.0, pluggy-0.13.0
+8: cachedir: /root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_vision_localization/ament_cmake_pytest/test_adaptive_policy/.cache
+8: rootdir: /root/nexus_workspace/NEXUS/code/ros2_ws/src/nexus_vision_localization
+8: plugins: ament-mypy-0.12.15, ament-lint-0.12.15, launch-testing-ros-0.19.14, ament-flake8-0.12.15, ament-copyright-0.12.15, ament-xmllint-0.12.15, ament-pep257-0.12.15, launch-testing-1.0.14, colcon-core-0.21.0, cov-3.0.0
+8: collected 8 items
+8: 
+8: ../../src/nexus_vision_localization/test/test_adaptive_policy.py ....... [ 87%]
+8: .                                                                        [100%]
+8: 
+8: - generated xml file: /root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_vision_localization/test_results/nexus_vision_localization/test_adaptive_policy.xunit.xml -
+8: ============================== 8 passed in 0.11s ===============================
+8: -- run_test.py: return code 0
+8: -- run_test.py: verify result file '/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_vision_localization/test_results/nexus_vision_localization/test_adaptive_policy.xunit.xml'
+ 8/17 Test  #8: test_adaptive_policy .............   Passed    0.52 sec
+test 9
+      Start  9: test_static_tracker
+
+9: Test command: /usr/bin/python3 "-u" "/opt/ros/humble/share/ament_cmake_test/cmake/run_test.py" "/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_vision_localization/test_results/nexus_vision_localization/test_static_tracker.xunit.xml" "--package-name" "nexus_vision_localization" "--output-file" "/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_vision_localization/ament_cmake_pytest/test_static_tracker.txt" "--command" "/usr/bin/python3" "-u" "-m" "pytest" "/root/nexus_workspace/NEXUS/code/ros2_ws/src/nexus_vision_localization/test/test_static_tracker.py" "-o" "cache_dir=/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_vision_localization/ament_cmake_pytest/test_static_tracker/.cache" "--junit-xml=/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_vision_localization/test_results/nexus_vision_localization/test_static_tracker.xunit.xml" "--junit-prefix=nexus_vision_localization"
+9: Test timeout computed to be: 60
+9: -- run_test.py: invoking following command in '/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_vision_localization':
+9:  - /usr/bin/python3 -u -m pytest /root/nexus_workspace/NEXUS/code/ros2_ws/src/nexus_vision_localization/test/test_static_tracker.py -o cache_dir=/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_vision_localization/ament_cmake_pytest/test_static_tracker/.cache --junit-xml=/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_vision_localization/test_results/nexus_vision_localization/test_static_tracker.xunit.xml --junit-prefix=nexus_vision_localization
+9: ============================= test session starts ==============================
+9: platform linux -- Python 3.10.12, pytest-6.2.5, py-1.10.0, pluggy-0.13.0
+9: cachedir: /root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_vision_localization/ament_cmake_pytest/test_static_tracker/.cache
+9: rootdir: /root/nexus_workspace/NEXUS/code/ros2_ws/src/nexus_vision_localization
+9: plugins: ament-mypy-0.12.15, ament-lint-0.12.15, launch-testing-ros-0.19.14, ament-flake8-0.12.15, ament-copyright-0.12.15, ament-xmllint-0.12.15, ament-pep257-0.12.15, launch-testing-1.0.14, colcon-core-0.21.0, cov-3.0.0
+9: collected 3 items
+9: 
+9: ../../src/nexus_vision_localization/test/test_static_tracker.py ...      [100%]
+9: 
+9: - generated xml file: /root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_vision_localization/test_results/nexus_vision_localization/test_static_tracker.xunit.xml -
+9: ============================== 3 passed in 0.41s ===============================
+9: -- run_test.py: return code 0
+9: -- run_test.py: verify result file '/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_vision_localization/test_results/nexus_vision_localization/test_static_tracker.xunit.xml'
+ 9/17 Test  #9: test_static_tracker ..............   Passed    0.87 sec
+test 10
+      Start 10: test_target_identity
+
+10: Test command: /usr/bin/python3 "-u" "/opt/ros/humble/share/ament_cmake_test/cmake/run_test.py" "/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_vision_localization/test_results/nexus_vision_localization/test_target_identity.xunit.xml" "--package-name" "nexus_vision_localization" "--output-file" "/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_vision_localization/ament_cmake_pytest/test_target_identity.txt" "--command" "/usr/bin/python3" "-u" "-m" "pytest" "/root/nexus_workspace/NEXUS/code/ros2_ws/src/nexus_vision_localization/test/test_target_identity.py" "-o" "cache_dir=/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_vision_localization/ament_cmake_pytest/test_target_identity/.cache" "--junit-xml=/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_vision_localization/test_results/nexus_vision_localization/test_target_identity.xunit.xml" "--junit-prefix=nexus_vision_localization"
+10: Test timeout computed to be: 60
+10: -- run_test.py: invoking following command in '/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_vision_localization':
+10:  - /usr/bin/python3 -u -m pytest /root/nexus_workspace/NEXUS/code/ros2_ws/src/nexus_vision_localization/test/test_target_identity.py -o cache_dir=/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_vision_localization/ament_cmake_pytest/test_target_identity/.cache --junit-xml=/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_vision_localization/test_results/nexus_vision_localization/test_target_identity.xunit.xml --junit-prefix=nexus_vision_localization
+10: ============================= test session starts ==============================
+10: platform linux -- Python 3.10.12, pytest-6.2.5, py-1.10.0, pluggy-0.13.0
+10: cachedir: /root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_vision_localization/ament_cmake_pytest/test_target_identity/.cache
+10: rootdir: /root/nexus_workspace/NEXUS/code/ros2_ws/src/nexus_vision_localization
+10: plugins: ament-mypy-0.12.15, ament-lint-0.12.15, launch-testing-ros-0.19.14, ament-flake8-0.12.15, ament-copyright-0.12.15, ament-xmllint-0.12.15, ament-pep257-0.12.15, launch-testing-1.0.14, colcon-core-0.21.0, cov-3.0.0
+10: collected 9 items
+10: 
+10: ../../src/nexus_vision_localization/test/test_target_identity.py ....... [ 77%]
+10: ..                                                                       [100%]
+10: 
+10: - generated xml file: /root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_vision_localization/test_results/nexus_vision_localization/test_target_identity.xunit.xml -
+10: ============================== 9 passed in 0.67s ===============================
+10: -- run_test.py: return code 0
+10: -- run_test.py: verify result file '/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_vision_localization/test_results/nexus_vision_localization/test_target_identity.xunit.xml'
+10/17 Test #10: test_target_identity .............   Passed    1.17 sec
+test 11
+      Start 11: test_target_frontend
+
+11: Test command: /usr/bin/python3 "-u" "/opt/ros/humble/share/ament_cmake_test/cmake/run_test.py" "/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_vision_localization/test_results/nexus_vision_localization/test_target_frontend.xunit.xml" "--package-name" "nexus_vision_localization" "--output-file" "/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_vision_localization/ament_cmake_pytest/test_target_frontend.txt" "--command" "/usr/bin/python3" "-u" "-m" "pytest" "/root/nexus_workspace/NEXUS/code/ros2_ws/src/nexus_vision_localization/test/test_target_frontend.py" "-o" "cache_dir=/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_vision_localization/ament_cmake_pytest/test_target_frontend/.cache" "--junit-xml=/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_vision_localization/test_results/nexus_vision_localization/test_target_frontend.xunit.xml" "--junit-prefix=nexus_vision_localization"
+11: Test timeout computed to be: 60
+11: -- run_test.py: invoking following command in '/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_vision_localization':
+11:  - /usr/bin/python3 -u -m pytest /root/nexus_workspace/NEXUS/code/ros2_ws/src/nexus_vision_localization/test/test_target_frontend.py -o cache_dir=/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_vision_localization/ament_cmake_pytest/test_target_frontend/.cache --junit-xml=/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_vision_localization/test_results/nexus_vision_localization/test_target_frontend.xunit.xml --junit-prefix=nexus_vision_localization
+11: ============================= test session starts ==============================
+11: platform linux -- Python 3.10.12, pytest-6.2.5, py-1.10.0, pluggy-0.13.0
+11: cachedir: /root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_vision_localization/ament_cmake_pytest/test_target_frontend/.cache
+11: rootdir: /root/nexus_workspace/NEXUS/code/ros2_ws/src/nexus_vision_localization
+11: plugins: ament-mypy-0.12.15, ament-lint-0.12.15, launch-testing-ros-0.19.14, ament-flake8-0.12.15, ament-copyright-0.12.15, ament-xmllint-0.12.15, ament-pep257-0.12.15, launch-testing-1.0.14, colcon-core-0.21.0, cov-3.0.0
+11: collected 3 items
+11: 
+11: ../../src/nexus_vision_localization/test/test_target_frontend.py ...     [100%]
+11: 
+11: - generated xml file: /root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_vision_localization/test_results/nexus_vision_localization/test_target_frontend.xunit.xml -
+11: ============================== 3 passed in 0.33s ===============================
+11: -- run_test.py: return code 0
+11: -- run_test.py: verify result file '/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_vision_localization/test_results/nexus_vision_localization/test_target_frontend.xunit.xml'
+11/17 Test #11: test_target_frontend .............   Passed    0.71 sec
+test 12
+      Start 12: test_target_geometry
+
+12: Test command: /usr/bin/python3 "-u" "/opt/ros/humble/share/ament_cmake_test/cmake/run_test.py" "/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_vision_localization/test_results/nexus_vision_localization/test_target_geometry.xunit.xml" "--package-name" "nexus_vision_localization" "--output-file" "/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_vision_localization/ament_cmake_pytest/test_target_geometry.txt" "--command" "/usr/bin/python3" "-u" "-m" "pytest" "/root/nexus_workspace/NEXUS/code/ros2_ws/src/nexus_vision_localization/test/test_target_geometry.py" "-o" "cache_dir=/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_vision_localization/ament_cmake_pytest/test_target_geometry/.cache" "--junit-xml=/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_vision_localization/test_results/nexus_vision_localization/test_target_geometry.xunit.xml" "--junit-prefix=nexus_vision_localization"
+12: Test timeout computed to be: 60
+12: -- run_test.py: invoking following command in '/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_vision_localization':
+12:  - /usr/bin/python3 -u -m pytest /root/nexus_workspace/NEXUS/code/ros2_ws/src/nexus_vision_localization/test/test_target_geometry.py -o cache_dir=/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_vision_localization/ament_cmake_pytest/test_target_geometry/.cache --junit-xml=/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_vision_localization/test_results/nexus_vision_localization/test_target_geometry.xunit.xml --junit-prefix=nexus_vision_localization
+12: ============================= test session starts ==============================
+12: platform linux -- Python 3.10.12, pytest-6.2.5, py-1.10.0, pluggy-0.13.0
+12: cachedir: /root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_vision_localization/ament_cmake_pytest/test_target_geometry/.cache
+12: rootdir: /root/nexus_workspace/NEXUS/code/ros2_ws/src/nexus_vision_localization
+12: plugins: ament-mypy-0.12.15, ament-lint-0.12.15, launch-testing-ros-0.19.14, ament-flake8-0.12.15, ament-copyright-0.12.15, ament-xmllint-0.12.15, ament-pep257-0.12.15, launch-testing-1.0.14, colcon-core-0.21.0, cov-3.0.0
+12: collected 5 items
+12: 
+12: ../../src/nexus_vision_localization/test/test_target_geometry.py .....   [100%]
+12: 
+12: - generated xml file: /root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_vision_localization/test_results/nexus_vision_localization/test_target_geometry.xunit.xml -
+12: ============================== 5 passed in 0.25s ===============================
+12: -- run_test.py: return code 0
+12: -- run_test.py: verify result file '/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_vision_localization/test_results/nexus_vision_localization/test_target_geometry.xunit.xml'
+12/17 Test #12: test_target_geometry .............   Passed    0.64 sec
+test 13
+      Start 13: test_target_multiview
+
+13: Test command: /usr/bin/python3 "-u" "/opt/ros/humble/share/ament_cmake_test/cmake/run_test.py" "/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_vision_localization/test_results/nexus_vision_localization/test_target_multiview.xunit.xml" "--package-name" "nexus_vision_localization" "--output-file" "/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_vision_localization/ament_cmake_pytest/test_target_multiview.txt" "--command" "/usr/bin/python3" "-u" "-m" "pytest" "/root/nexus_workspace/NEXUS/code/ros2_ws/src/nexus_vision_localization/test/test_target_multiview.py" "-o" "cache_dir=/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_vision_localization/ament_cmake_pytest/test_target_multiview/.cache" "--junit-xml=/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_vision_localization/test_results/nexus_vision_localization/test_target_multiview.xunit.xml" "--junit-prefix=nexus_vision_localization"
+13: Test timeout computed to be: 60
+13: -- run_test.py: invoking following command in '/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_vision_localization':
+13:  - /usr/bin/python3 -u -m pytest /root/nexus_workspace/NEXUS/code/ros2_ws/src/nexus_vision_localization/test/test_target_multiview.py -o cache_dir=/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_vision_localization/ament_cmake_pytest/test_target_multiview/.cache --junit-xml=/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_vision_localization/test_results/nexus_vision_localization/test_target_multiview.xunit.xml --junit-prefix=nexus_vision_localization
+13: ============================= test session starts ==============================
+13: platform linux -- Python 3.10.12, pytest-6.2.5, py-1.10.0, pluggy-0.13.0
+13: cachedir: /root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_vision_localization/ament_cmake_pytest/test_target_multiview/.cache
+13: rootdir: /root/nexus_workspace/NEXUS/code/ros2_ws/src/nexus_vision_localization
+13: plugins: ament-mypy-0.12.15, ament-lint-0.12.15, launch-testing-ros-0.19.14, ament-flake8-0.12.15, ament-copyright-0.12.15, ament-xmllint-0.12.15, ament-pep257-0.12.15, launch-testing-1.0.14, colcon-core-0.21.0, cov-3.0.0
+13: collected 7 items
+13: 
+13: ../../src/nexus_vision_localization/test/test_target_multiview.py ...... [ 85%]
+13: .                                                                        [100%]
+13: 
+13: - generated xml file: /root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_vision_localization/test_results/nexus_vision_localization/test_target_multiview.xunit.xml -
+13: ============================== 7 passed in 0.38s ===============================
+13: -- run_test.py: return code 0
+13: -- run_test.py: verify result file '/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_vision_localization/test_results/nexus_vision_localization/test_target_multiview.xunit.xml'
+13/17 Test #13: test_target_multiview ............   Passed    0.78 sec
+test 14
+      Start 14: test_target_metric_node
+
+14: Test command: /usr/bin/python3 "-u" "/opt/ros/humble/share/ament_cmake_test/cmake/run_test.py" "/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_vision_localization/test_results/nexus_vision_localization/test_target_metric_node.xunit.xml" "--package-name" "nexus_vision_localization" "--output-file" "/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_vision_localization/ament_cmake_pytest/test_target_metric_node.txt" "--env" "ROS_LOCALHOST_ONLY=1" "ROS_DOMAIN_ID=218" "OPENBLAS_NUM_THREADS=1" "--command" "/usr/bin/python3" "-u" "-m" "pytest" "/root/nexus_workspace/NEXUS/code/ros2_ws/src/nexus_vision_localization/test/test_target_metric_node.py" "-o" "cache_dir=/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_vision_localization/ament_cmake_pytest/test_target_metric_node/.cache" "--junit-xml=/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_vision_localization/test_results/nexus_vision_localization/test_target_metric_node.xunit.xml" "--junit-prefix=nexus_vision_localization"
+14: Test timeout computed to be: 90
+14: -- run_test.py: extra environment variables:
+14:  - OPENBLAS_NUM_THREADS=1
+14:  - ROS_DOMAIN_ID=218
+14:  - ROS_LOCALHOST_ONLY=1
+14: -- run_test.py: invoking following command in '/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_vision_localization':
+14:  - /usr/bin/python3 -u -m pytest /root/nexus_workspace/NEXUS/code/ros2_ws/src/nexus_vision_localization/test/test_target_metric_node.py -o cache_dir=/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_vision_localization/ament_cmake_pytest/test_target_metric_node/.cache --junit-xml=/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_vision_localization/test_results/nexus_vision_localization/test_target_metric_node.xunit.xml --junit-prefix=nexus_vision_localization
+14: ============================= test session starts ==============================
+14: platform linux -- Python 3.10.12, pytest-6.2.5, py-1.10.0, pluggy-0.13.0
+14: cachedir: /root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_vision_localization/ament_cmake_pytest/test_target_metric_node/.cache
+14: rootdir: /root/nexus_workspace/NEXUS/code/ros2_ws/src/nexus_vision_localization
+14: plugins: ament-mypy-0.12.15, ament-lint-0.12.15, launch-testing-ros-0.19.14, ament-flake8-0.12.15, ament-copyright-0.12.15, ament-xmllint-0.12.15, ament-pep257-0.12.15, launch-testing-1.0.14, colcon-core-0.21.0, cov-3.0.0
+14: collected 3 items
+14: 
+14: ../../src/nexus_vision_localization/test/test_target_metric_node.py ...  [100%]
+14: 
+14: - generated xml file: /root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_vision_localization/test_results/nexus_vision_localization/test_target_metric_node.xunit.xml -
+14: ============================== 3 passed in 1.91s ===============================
+14: -- run_test.py: return code 0
+14: -- run_test.py: verify result file '/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_vision_localization/test_results/nexus_vision_localization/test_target_metric_node.xunit.xml'
+14/17 Test #14: test_target_metric_node ..........   Passed    2.51 sec
+test 15
+      Start 15: test_target_pipeline_nodes
+
+15: Test command: /usr/bin/python3 "-u" "/opt/ros/humble/share/ament_cmake_test/cmake/run_test.py" "/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_vision_localization/test_results/nexus_vision_localization/test_target_pipeline_nodes.xunit.xml" "--package-name" "nexus_vision_localization" "--output-file" "/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_vision_localization/ament_cmake_pytest/test_target_pipeline_nodes.txt" "--env" "ROS_LOCALHOST_ONLY=1" "ROS_DOMAIN_ID=217" "OPENBLAS_NUM_THREADS=1" "--command" "/usr/bin/python3" "-u" "-m" "pytest" "/root/nexus_workspace/NEXUS/code/ros2_ws/src/nexus_vision_localization/test/test_target_pipeline_nodes.py" "-o" "cache_dir=/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_vision_localization/ament_cmake_pytest/test_target_pipeline_nodes/.cache" "--junit-xml=/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_vision_localization/test_results/nexus_vision_localization/test_target_pipeline_nodes.xunit.xml" "--junit-prefix=nexus_vision_localization"
+15: Test timeout computed to be: 90
+15: -- run_test.py: extra environment variables:
+15:  - OPENBLAS_NUM_THREADS=1
+15:  - ROS_DOMAIN_ID=217
+15:  - ROS_LOCALHOST_ONLY=1
+15: -- run_test.py: invoking following command in '/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_vision_localization':
+15:  - /usr/bin/python3 -u -m pytest /root/nexus_workspace/NEXUS/code/ros2_ws/src/nexus_vision_localization/test/test_target_pipeline_nodes.py -o cache_dir=/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_vision_localization/ament_cmake_pytest/test_target_pipeline_nodes/.cache --junit-xml=/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_vision_localization/test_results/nexus_vision_localization/test_target_pipeline_nodes.xunit.xml --junit-prefix=nexus_vision_localization
+15: ============================= test session starts ==============================
+15: platform linux -- Python 3.10.12, pytest-6.2.5, py-1.10.0, pluggy-0.13.0
+15: cachedir: /root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_vision_localization/ament_cmake_pytest/test_target_pipeline_nodes/.cache
+15: rootdir: /root/nexus_workspace/NEXUS/code/ros2_ws/src/nexus_vision_localization
+15: plugins: ament-mypy-0.12.15, ament-lint-0.12.15, launch-testing-ros-0.19.14, ament-flake8-0.12.15, ament-copyright-0.12.15, ament-xmllint-0.12.15, ament-pep257-0.12.15, launch-testing-1.0.14, colcon-core-0.21.0, cov-3.0.0
+15: collected 4 items
+15: 
+15: ../../src/nexus_vision_localization/test/test_target_pipeline_nodes.py . [ 25%]
+15: ...                                                                      [100%]
+15: 
+15: - generated xml file: /root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_vision_localization/test_results/nexus_vision_localization/test_target_pipeline_nodes.xunit.xml -
+15: ============================== 4 passed in 1.17s ===============================
+15: -- run_test.py: return code 0
+15: -- run_test.py: verify result file '/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_vision_localization/test_results/nexus_vision_localization/test_target_pipeline_nodes.xunit.xml'
+15/17 Test #15: test_target_pipeline_nodes .......   Passed    1.83 sec
+test 16
+      Start 16: test_visual_pipeline_nodes
+
+16: Test command: /usr/bin/python3 "-u" "/opt/ros/humble/share/ament_cmake_test/cmake/run_test.py" "/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_vision_localization/test_results/nexus_vision_localization/test_visual_pipeline_nodes.xunit.xml" "--package-name" "nexus_vision_localization" "--output-file" "/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_vision_localization/ament_cmake_pytest/test_visual_pipeline_nodes.txt" "--env" "ROS_LOCALHOST_ONLY=1" "ROS_DOMAIN_ID=216" "OPENBLAS_NUM_THREADS=1" "--command" "/usr/bin/python3" "-u" "-m" "pytest" "/root/nexus_workspace/NEXUS/code/ros2_ws/src/nexus_vision_localization/test/test_visual_pipeline_nodes.py" "-o" "cache_dir=/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_vision_localization/ament_cmake_pytest/test_visual_pipeline_nodes/.cache" "--junit-xml=/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_vision_localization/test_results/nexus_vision_localization/test_visual_pipeline_nodes.xunit.xml" "--junit-prefix=nexus_vision_localization"
+16: Test timeout computed to be: 90
+16: -- run_test.py: extra environment variables:
+16:  - OPENBLAS_NUM_THREADS=1
+16:  - ROS_DOMAIN_ID=216
+16:  - ROS_LOCALHOST_ONLY=1
+16: -- run_test.py: invoking following command in '/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_vision_localization':
+16:  - /usr/bin/python3 -u -m pytest /root/nexus_workspace/NEXUS/code/ros2_ws/src/nexus_vision_localization/test/test_visual_pipeline_nodes.py -o cache_dir=/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_vision_localization/ament_cmake_pytest/test_visual_pipeline_nodes/.cache --junit-xml=/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_vision_localization/test_results/nexus_vision_localization/test_visual_pipeline_nodes.xunit.xml --junit-prefix=nexus_vision_localization
+16: ============================= test session starts ==============================
+16: platform linux -- Python 3.10.12, pytest-6.2.5, py-1.10.0, pluggy-0.13.0
+16: cachedir: /root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_vision_localization/ament_cmake_pytest/test_visual_pipeline_nodes/.cache
+16: rootdir: /root/nexus_workspace/NEXUS/code/ros2_ws/src/nexus_vision_localization
+16: plugins: ament-mypy-0.12.15, ament-lint-0.12.15, launch-testing-ros-0.19.14, ament-flake8-0.12.15, ament-copyright-0.12.15, ament-xmllint-0.12.15, ament-pep257-0.12.15, launch-testing-1.0.14, colcon-core-0.21.0, cov-3.0.0
+16: collected 2 items
+16: 
+16: ../../src/nexus_vision_localization/test/test_visual_pipeline_nodes.py . [ 50%]
+16: .                                                                        [100%]
+16: 
+16: - generated xml file: /root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_vision_localization/test_results/nexus_vision_localization/test_visual_pipeline_nodes.xunit.xml -
+16: ============================== 2 passed in 0.97s ===============================
+16: -- run_test.py: return code 0
+16: -- run_test.py: verify result file '/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_vision_localization/test_results/nexus_vision_localization/test_visual_pipeline_nodes.xunit.xml'
+16/17 Test #16: test_visual_pipeline_nodes .......   Passed    1.63 sec
+test 17
+      Start 17: test_fixed_reference_node
+
+17: Test command: /usr/bin/python3 "-u" "/opt/ros/humble/share/ament_cmake_test/cmake/run_test.py" "/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_vision_localization/test_results/nexus_vision_localization/test_fixed_reference_node.xunit.xml" "--package-name" "nexus_vision_localization" "--output-file" "/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_vision_localization/ament_cmake_pytest/test_fixed_reference_node.txt" "--env" "ROS_LOCALHOST_ONLY=1" "ROS_DOMAIN_ID=215" "OPENBLAS_NUM_THREADS=1" "--command" "/usr/bin/python3" "-u" "-m" "pytest" "/root/nexus_workspace/NEXUS/code/ros2_ws/src/nexus_vision_localization/test/test_fixed_reference_node.py" "-o" "cache_dir=/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_vision_localization/ament_cmake_pytest/test_fixed_reference_node/.cache" "--junit-xml=/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_vision_localization/test_results/nexus_vision_localization/test_fixed_reference_node.xunit.xml" "--junit-prefix=nexus_vision_localization"
+17: Test timeout computed to be: 60
+17: -- run_test.py: extra environment variables:
+17:  - OPENBLAS_NUM_THREADS=1
+17:  - ROS_DOMAIN_ID=215
+17:  - ROS_LOCALHOST_ONLY=1
+17: -- run_test.py: invoking following command in '/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_vision_localization':
+17:  - /usr/bin/python3 -u -m pytest /root/nexus_workspace/NEXUS/code/ros2_ws/src/nexus_vision_localization/test/test_fixed_reference_node.py -o cache_dir=/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_vision_localization/ament_cmake_pytest/test_fixed_reference_node/.cache --junit-xml=/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_vision_localization/test_results/nexus_vision_localization/test_fixed_reference_node.xunit.xml --junit-prefix=nexus_vision_localization
+17: ============================= test session starts ==============================
+17: platform linux -- Python 3.10.12, pytest-6.2.5, py-1.10.0, pluggy-0.13.0
+17: cachedir: /root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_vision_localization/ament_cmake_pytest/test_fixed_reference_node/.cache
+17: rootdir: /root/nexus_workspace/NEXUS/code/ros2_ws/src/nexus_vision_localization
+17: plugins: ament-mypy-0.12.15, ament-lint-0.12.15, launch-testing-ros-0.19.14, ament-flake8-0.12.15, ament-copyright-0.12.15, ament-xmllint-0.12.15, ament-pep257-0.12.15, launch-testing-1.0.14, colcon-core-0.21.0, cov-3.0.0
+17: collected 2 items
+17: 
+17: ../../src/nexus_vision_localization/test/test_fixed_reference_node.py .. [100%]
+17: 
+17: - generated xml file: /root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_vision_localization/test_results/nexus_vision_localization/test_fixed_reference_node.xunit.xml -
+17: ============================== 2 passed in 0.71s ===============================
+17: -- run_test.py: return code 0
+17: -- run_test.py: verify result file '/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_vision_localization/test_results/nexus_vision_localization/test_fixed_reference_node.xunit.xml'
+17/17 Test #17: test_fixed_reference_node ........   Passed    1.50 sec
+
+100% tests passed, 0 tests failed out of 17
+
+Label Time Summary:
+pytest    =  18.27 sec*proc (17 tests)
+
+Total Test time (real) =  18.29 sec
+Finished <<< nexus_vision_localization [19.7s]
+Starting >>> nexus_bringup
+UpdateCTestConfiguration  from :/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_bringup/CTestConfiguration.ini
+Parse Config file:/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_bringup/CTestConfiguration.ini
+   Site: wblxr
+   Build name: (empty)
+ Add coverage exclude regular expressions.
+Create new tag: 20260908-1214 - Experimental
+UpdateCTestConfiguration  from :/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_bringup/CTestConfiguration.ini
+Parse Config file:/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_bringup/CTestConfiguration.ini
+Test project /root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_bringup
+Constructing a list of tests
+Done constructing a list of tests
+Updating test list for fixtures
+Added 0 tests to meet fixture requirements
+Checking test dependency graph...
+Checking test dependency graph end
+test 1
+    Start 1: test_launch_contract
+
+1: Test command: /usr/bin/python3 "-u" "/opt/ros/humble/share/ament_cmake_test/cmake/run_test.py" "/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_bringup/test_results/nexus_bringup/test_launch_contract.xunit.xml" "--package-name" "nexus_bringup" "--output-file" "/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_bringup/ament_cmake_pytest/test_launch_contract.txt" "--command" "/usr/bin/python3" "-u" "-m" "pytest" "/root/nexus_workspace/NEXUS/code/ros2_ws/src/nexus_bringup/test/test_launch_contract.py" "-o" "cache_dir=/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_bringup/ament_cmake_pytest/test_launch_contract/.cache" "--junit-xml=/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_bringup/test_results/nexus_bringup/test_launch_contract.xunit.xml" "--junit-prefix=nexus_bringup"
+1: Test timeout computed to be: 60
+1: -- run_test.py: invoking following command in '/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_bringup':
+1:  - /usr/bin/python3 -u -m pytest /root/nexus_workspace/NEXUS/code/ros2_ws/src/nexus_bringup/test/test_launch_contract.py -o cache_dir=/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_bringup/ament_cmake_pytest/test_launch_contract/.cache --junit-xml=/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_bringup/test_results/nexus_bringup/test_launch_contract.xunit.xml --junit-prefix=nexus_bringup
+1: ============================= test session starts ==============================
+1: platform linux -- Python 3.10.12, pytest-6.2.5, py-1.10.0, pluggy-0.13.0
+1: cachedir: /root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_bringup/ament_cmake_pytest/test_launch_contract/.cache
+1: rootdir: /root/nexus_workspace/NEXUS/code/ros2_ws/src/nexus_bringup
+1: plugins: ament-mypy-0.12.15, ament-lint-0.12.15, launch-testing-ros-0.19.14, ament-flake8-0.12.15, ament-copyright-0.12.15, ament-xmllint-0.12.15, ament-pep257-0.12.15, launch-testing-1.0.14, colcon-core-0.21.0, cov-3.0.0
+1: collected 3 items
+1: 
+1: ../../src/nexus_bringup/test/test_launch_contract.py ...                 [100%]
+1: 
+1: - generated xml file: /root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_bringup/test_results/nexus_bringup/test_launch_contract.xunit.xml -
+1: ============================== 3 passed in 0.23s ===============================
+1: -- run_test.py: return code 0
+1: -- run_test.py: verify result file '/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_bringup/test_results/nexus_bringup/test_launch_contract.xunit.xml'
+1/6 Test #1: test_launch_contract ....................   Passed    0.72 sec
+test 2
+    Start 2: test_gazebo_contract
+
+2: Test command: /usr/bin/python3 "-u" "/opt/ros/humble/share/ament_cmake_test/cmake/run_test.py" "/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_bringup/test_results/nexus_bringup/test_gazebo_contract.xunit.xml" "--package-name" "nexus_bringup" "--output-file" "/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_bringup/ament_cmake_pytest/test_gazebo_contract.txt" "--command" "/usr/bin/python3" "-u" "-m" "pytest" "/root/nexus_workspace/NEXUS/code/ros2_ws/src/nexus_bringup/test/test_gazebo_contract.py" "-o" "cache_dir=/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_bringup/ament_cmake_pytest/test_gazebo_contract/.cache" "--junit-xml=/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_bringup/test_results/nexus_bringup/test_gazebo_contract.xunit.xml" "--junit-prefix=nexus_bringup"
+2: Test timeout computed to be: 60
+2: -- run_test.py: invoking following command in '/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_bringup':
+2:  - /usr/bin/python3 -u -m pytest /root/nexus_workspace/NEXUS/code/ros2_ws/src/nexus_bringup/test/test_gazebo_contract.py -o cache_dir=/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_bringup/ament_cmake_pytest/test_gazebo_contract/.cache --junit-xml=/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_bringup/test_results/nexus_bringup/test_gazebo_contract.xunit.xml --junit-prefix=nexus_bringup
+2: ============================= test session starts ==============================
+2: platform linux -- Python 3.10.12, pytest-6.2.5, py-1.10.0, pluggy-0.13.0
+2: cachedir: /root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_bringup/ament_cmake_pytest/test_gazebo_contract/.cache
+2: rootdir: /root/nexus_workspace/NEXUS/code/ros2_ws/src/nexus_bringup
+2: plugins: ament-mypy-0.12.15, ament-lint-0.12.15, launch-testing-ros-0.19.14, ament-flake8-0.12.15, ament-copyright-0.12.15, ament-xmllint-0.12.15, ament-pep257-0.12.15, launch-testing-1.0.14, colcon-core-0.21.0, cov-3.0.0
+2: collected 3 items
+2: 
+2: ../../src/nexus_bringup/test/test_gazebo_contract.py ...                 [100%]
+2: 
+2: - generated xml file: /root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_bringup/test_results/nexus_bringup/test_gazebo_contract.xunit.xml -
+2: ============================== 3 passed in 0.05s ===============================
+2: -- run_test.py: return code 0
+2: -- run_test.py: verify result file '/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_bringup/test_results/nexus_bringup/test_gazebo_contract.xunit.xml'
+2/6 Test #2: test_gazebo_contract ....................   Passed    0.39 sec
+test 3
+    Start 3: test_test_realtime_pipeline_launch.py
+
+3: Test command: /usr/bin/python3 "-u" "/opt/ros/humble/share/ament_cmake_test/cmake/run_test.py" "/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_bringup/test_results/nexus_bringup/test_test_realtime_pipeline_launch.py.xunit.xml" "--package-name" "nexus_bringup" "--output-file" "/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_bringup/launch_test/test_test_realtime_pipeline_launch.py.txt" "--command" "/usr/bin/python3" "-m" "launch_testing.launch_test" "/root/nexus_workspace/NEXUS/code/ros2_ws/src/nexus_bringup/test/test_realtime_pipeline_launch.py" "--junit-xml=/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_bringup/test_results/nexus_bringup/test_test_realtime_pipeline_launch.py.xunit.xml" "--package-name=nexus_bringup"
+3: Test timeout computed to be: 30
+3: -- run_test.py: invoking following command in '/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_bringup':
+3:  - /usr/bin/python3 -m launch_testing.launch_test /root/nexus_workspace/NEXUS/code/ros2_ws/src/nexus_bringup/test/test_realtime_pipeline_launch.py --junit-xml=/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_bringup/test_results/nexus_bringup/test_test_realtime_pipeline_launch.py.xunit.xml --package-name=nexus_bringup
+3: [INFO] [launch]: All log files can be found below /root/.ros/log/2026-09-08-20-14-35-311993-wblxr-2368
+3: [INFO] [launch]: Default logging verbosity is set to INFO
+3: test_camera_observation_reaches_map_fusion_output (nexus_bringup.TestRealtimePipeline) ... [INFO] [preflight_node-1]: process started with pid [2643]
+3: [INFO] [apriltag_node-2]: process started with pid [2648]
+3: [INFO] [vision_localization_node-3]: process started with pid [2651]
+3: [INFO] [coord_transform_node-4]: process started with pid [2662]
+3: [INFO] [telemetry_udp_node-5]: process started with pid [2667]
+3: [INFO] [fusion_localization_node-6]: process started with pid [2670]
+3: [INFO] [dashboard_node-7]: process started with pid [2674]
+3: [preflight_node-1] [INFO] [1788869678.490314343] [nexus_bringup_preflight]: software-only preflight; no sensor source is started
+3: [vision_localization_node-3] [WARN] [1788869679.570482812] [nexus_vision_localization]: waiting for camera_info and AprilTag detections; no sensor source is synthesized
+3: ok
+3: test_fusion_watchdog_reports_stale_after_input_stops (nexus_bringup.TestRealtimePipeline) ... ok
+3: test_missing_transform_produces_explicit_invalid_state (nexus_bringup.TestRealtimePipeline) ... [coord_transform_node-4] [WARN] [1788869680.214280896] [nexus_coord_transform]: cannot transform target=missing_tf_target from unknown_camera to map: "unknown_camera" passed to lookupTransform argument source_frame does not exist. 
+3: ok
+3: test_unsynchronized_sources_degrade_to_newest_source (nexus_bringup.TestRealtimePipeline) ... [fusion_localization_node-6] [WARN] [1788869680.232572641] [nexus_fusion_localization]: no valid target observation available for fusion
+3: ok
+3: test_vision_pnp_node_reaches_map_output (nexus_bringup.TestRealtimePipeline) ... [fusion_localization_node-6] [WARN] [1788869680.235793997] [nexus_fusion_localization]: unsynchronized_sources
+3: [fusion_localization_node-6] [WARN] [1788869680.237031847] [nexus_fusion_localization]: unsynchronized_sources
+3: [fusion_localization_node-6] [WARN] [1788869680.237932106] [nexus_fusion_localization]: unsynchronized_sources
+3: [fusion_localization_node-6] [WARN] [1788869680.238841553] [nexus_fusion_localization]: unsynchronized_sources
+3: [fusion_localization_node-6] [WARN] [1788869680.239426603] [nexus_fusion_localization]: unsynchronized_sources
+3: [fusion_localization_node-6] [WARN] [1788869680.240073321] [nexus_fusion_localization]: unsynchronized_sources
+3: [fusion_localization_node-6] [WARN] [1788869680.240586946] [nexus_fusion_localization]: unsynchronized_sources
+3: [fusion_localization_node-6] [WARN] [1788869680.241431629] [nexus_fusion_localization]: unsynchronized_sources
+3: [fusion_localization_node-6] [WARN] [1788869680.242033803] [nexus_fusion_localization]: unsynchronized_sources
+3: [fusion_localization_node-6] [WARN] [1788869680.242688075] [nexus_fusion_localization]: unsynchronized_sources
+3: [fusion_localization_node-6] [WARN] [1788869680.243250502] [nexus_fusion_localization]: unsynchronized_sources
+3: [fusion_localization_node-6] [WARN] [1788869680.244059979] [nexus_fusion_localization]: unsynchronized_sources
+3: [fusion_localization_node-6] [WARN] [1788869680.244875567] [nexus_fusion_localization]: unsynchronized_sources
+3: [fusion_localization_node-6] [WARN] [1788869680.245697889] [nexus_fusion_localization]: unsynchronized_sources
+3: [fusion_localization_node-6] [WARN] [1788869680.247026130] [nexus_fusion_localization]: unsynchronized_sources
+3: [fusion_localization_node-6] [WARN] [1788869680.247930337] [nexus_fusion_localization]: unsynchronized_sources
+3: [fusion_localization_node-6] [WARN] [1788869680.248496101] [nexus_fusion_localization]: unsynchronized_sources
+3: [fusion_localization_node-6] [WARN] [1788869680.249114134] [nexus_fusion_localization]: unsynchronized_sources
+3: [fusion_localization_node-6] [WARN] [1788869680.249791259] [nexus_fusion_localization]: unsynchronized_sources
+3: [fusion_localization_node-6] [WARN] [1788869680.250561060] [nexus_fusion_localization]: unsynchronized_sources
+3: [fusion_localization_node-6] [WARN] [1788869680.251233587] [nexus_fusion_localization]: unsynchronized_sources
+3: [fusion_localization_node-6] [WARN] [1788869680.251968302] [nexus_fusion_localization]: unsynchronized_sources
+3: [fusion_localization_node-6] [WARN] [1788869680.252633825] [nexus_fusion_localization]: unsynchronized_sources
+3: [fusion_localization_node-6] [WARN] [1788869680.253455576] [nexus_fusion_localization]: unsynchronized_sources
+3: [fusion_localization_node-6] [WARN] [1788869680.254140546] [nexus_fusion_localization]: unsynchronized_sources
+3: ok
+3: 
+3: ----------------------------------------------------------------------
+3: Ran 5 tests in 4.953s
+3: 
+3: OK
+3: [INFO] [dashboard_node-7]: sending signal 'SIGINT' to process[dashboard_node-7]
+3: [INFO] [fusion_localization_node-6]: sending signal 'SIGINT' to process[fusion_localization_node-6]
+3: [INFO] [telemetry_udp_node-5]: sending signal 'SIGINT' to process[telemetry_udp_node-5]
+3: [INFO] [coord_transform_node-4]: sending signal 'SIGINT' to process[coord_transform_node-4]
+3: [INFO] [vision_localization_node-3]: sending signal 'SIGINT' to process[vision_localization_node-3]
+3: [INFO] [apriltag_node-2]: sending signal 'SIGINT' to process[apriltag_node-2]
+3: [INFO] [preflight_node-1]: sending signal 'SIGINT' to process[preflight_node-1]
+3: [apriltag_node-2] [INFO] [1788869680.389053774] [rclcpp]: signal_handler(SIGINT/SIGTERM)
+3: [INFO] [apriltag_node-2]: process has finished cleanly [pid 2648]
+3: [INFO] [telemetry_udp_node-5]: process has finished cleanly [pid 2667]
+3: [INFO] [fusion_localization_node-6]: process has finished cleanly [pid 2670]
+3: [INFO] [preflight_node-1]: process has finished cleanly [pid 2643]
+3: [INFO] [dashboard_node-7]: process has finished cleanly [pid 2674]
+3: [INFO] [coord_transform_node-4]: process has finished cleanly [pid 2662]
+3: [INFO] [vision_localization_node-3]: process has finished cleanly [pid 2651]
+3: test_processes_exit_cleanly (nexus_bringup.TestProcessesExit) ... ok
+3: 
+3: ----------------------------------------------------------------------
+3: Ran 1 test in 0.001s
+3: 
+3: OK
+3: -- run_test.py: return code 0
+3: -- run_test.py: verify result file '/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_bringup/test_results/nexus_bringup/test_test_realtime_pipeline_launch.py.xunit.xml'
+3/6 Test #3: test_test_realtime_pipeline_launch.py ...   Passed    6.88 sec
+test 4
+    Start 4: test_dual_launch
+
+4: Test command: /usr/bin/python3 "-u" "/opt/ros/humble/share/ament_cmake_test/cmake/run_test.py" "/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_bringup/test_results/nexus_bringup/test_dual_launch.xunit.xml" "--package-name" "nexus_bringup" "--output-file" "/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_bringup/ament_cmake_pytest/test_dual_launch.txt" "--command" "/usr/bin/python3" "-u" "-m" "pytest" "/root/nexus_workspace/NEXUS/code/ros2_ws/src/nexus_bringup/test/test_dual_launch.py" "-o" "cache_dir=/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_bringup/ament_cmake_pytest/test_dual_launch/.cache" "--junit-xml=/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_bringup/test_results/nexus_bringup/test_dual_launch.xunit.xml" "--junit-prefix=nexus_bringup"
+4: Test timeout computed to be: 60
+4: -- run_test.py: invoking following command in '/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_bringup':
+4:  - /usr/bin/python3 -u -m pytest /root/nexus_workspace/NEXUS/code/ros2_ws/src/nexus_bringup/test/test_dual_launch.py -o cache_dir=/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_bringup/ament_cmake_pytest/test_dual_launch/.cache --junit-xml=/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_bringup/test_results/nexus_bringup/test_dual_launch.xunit.xml --junit-prefix=nexus_bringup
+4: ============================= test session starts ==============================
+4: platform linux -- Python 3.10.12, pytest-6.2.5, py-1.10.0, pluggy-0.13.0
+4: cachedir: /root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_bringup/ament_cmake_pytest/test_dual_launch/.cache
+4: rootdir: /root/nexus_workspace/NEXUS/code/ros2_ws/src/nexus_bringup
+4: plugins: ament-mypy-0.12.15, ament-lint-0.12.15, launch-testing-ros-0.19.14, ament-flake8-0.12.15, ament-copyright-0.12.15, ament-xmllint-0.12.15, ament-pep257-0.12.15, launch-testing-1.0.14, colcon-core-0.21.0, cov-3.0.0
+4: collected 4 items
+4: 
+4: ../../src/nexus_bringup/test/test_dual_launch.py ....                    [100%]
+4: 
+4: - generated xml file: /root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_bringup/test_results/nexus_bringup/test_dual_launch.xunit.xml -
+4: ============================== 4 passed in 2.16s ===============================
+4: -- run_test.py: return code 0
+4: -- run_test.py: verify result file '/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_bringup/test_results/nexus_bringup/test_dual_launch.xunit.xml'
+4/6 Test #4: test_dual_launch ........................   Passed    2.98 sec
+test 5
+    Start 5: test_approximate_initial_pose
+
+5: Test command: /usr/bin/python3 "-u" "/opt/ros/humble/share/ament_cmake_test/cmake/run_test.py" "/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_bringup/test_results/nexus_bringup/test_approximate_initial_pose.xunit.xml" "--package-name" "nexus_bringup" "--output-file" "/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_bringup/ament_cmake_pytest/test_approximate_initial_pose.txt" "--env" "ROS_DOMAIN_ID=231" "OPENBLAS_NUM_THREADS=1" "FASTDDS_BUILTIN_TRANSPORTS=LARGE_DATA" "--command" "/usr/bin/python3" "-u" "-m" "pytest" "/root/nexus_workspace/NEXUS/code/ros2_ws/src/nexus_bringup/test/test_approximate_initial_pose.py" "-o" "cache_dir=/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_bringup/ament_cmake_pytest/test_approximate_initial_pose/.cache" "--junit-xml=/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_bringup/test_results/nexus_bringup/test_approximate_initial_pose.xunit.xml" "--junit-prefix=nexus_bringup"
+5: Test timeout computed to be: 40
+5: -- run_test.py: extra environment variables:
+5:  - FASTDDS_BUILTIN_TRANSPORTS=LARGE_DATA
+5:  - OPENBLAS_NUM_THREADS=1
+5:  - ROS_DOMAIN_ID=231
+5: -- run_test.py: invoking following command in '/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_bringup':
+5:  - /usr/bin/python3 -u -m pytest /root/nexus_workspace/NEXUS/code/ros2_ws/src/nexus_bringup/test/test_approximate_initial_pose.py -o cache_dir=/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_bringup/ament_cmake_pytest/test_approximate_initial_pose/.cache --junit-xml=/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_bringup/test_results/nexus_bringup/test_approximate_initial_pose.xunit.xml --junit-prefix=nexus_bringup
+5: ============================= test session starts ==============================
+5: platform linux -- Python 3.10.12, pytest-6.2.5, py-1.10.0, pluggy-0.13.0
+5: cachedir: /root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_bringup/ament_cmake_pytest/test_approximate_initial_pose/.cache
+5: rootdir: /root/nexus_workspace/NEXUS/code/ros2_ws/src/nexus_bringup
+5: plugins: ament-mypy-0.12.15, ament-lint-0.12.15, launch-testing-ros-0.19.14, ament-flake8-0.12.15, ament-copyright-0.12.15, ament-xmllint-0.12.15, ament-pep257-0.12.15, launch-testing-1.0.14, colcon-core-0.21.0, cov-3.0.0
+5: collected 5 items
+5: 
+5: ../../src/nexus_bringup/test/test_approximate_initial_pose.py .....      [100%]
+5: 
+5: - generated xml file: /root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_bringup/test_results/nexus_bringup/test_approximate_initial_pose.xunit.xml -
+5: ============================== 5 passed in 6.34s ===============================
+5: -- run_test.py: return code 0
+5: -- run_test.py: verify result file '/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_bringup/test_results/nexus_bringup/test_approximate_initial_pose.xunit.xml'
+5/6 Test #5: test_approximate_initial_pose ...........   Passed    6.89 sec
+test 6
+    Start 6: test_dual_recording
+
+6: Test command: /usr/bin/python3 "-u" "/opt/ros/humble/share/ament_cmake_test/cmake/run_test.py" "/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_bringup/test_results/nexus_bringup/test_dual_recording.xunit.xml" "--package-name" "nexus_bringup" "--output-file" "/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_bringup/ament_cmake_pytest/test_dual_recording.txt" "--env" "ROS_LOCALHOST_ONLY=0" "ROS_DOMAIN_ID=230" "FASTDDS_BUILTIN_TRANSPORTS=LARGE_DATA" "OPENBLAS_NUM_THREADS=1" "--command" "/usr/bin/python3" "-u" "-m" "pytest" "/root/nexus_workspace/NEXUS/code/ros2_ws/src/nexus_bringup/test/test_dual_recording.py" "-o" "cache_dir=/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_bringup/ament_cmake_pytest/test_dual_recording/.cache" "--junit-xml=/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_bringup/test_results/nexus_bringup/test_dual_recording.xunit.xml" "--junit-prefix=nexus_bringup"
+6: Test timeout computed to be: 60
+6: -- run_test.py: extra environment variables:
+6:  - FASTDDS_BUILTIN_TRANSPORTS=LARGE_DATA
+6:  - OPENBLAS_NUM_THREADS=1
+6:  - ROS_DOMAIN_ID=230
+6:  - ROS_LOCALHOST_ONLY=0
+6: -- run_test.py: invoking following command in '/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_bringup':
+6:  - /usr/bin/python3 -u -m pytest /root/nexus_workspace/NEXUS/code/ros2_ws/src/nexus_bringup/test/test_dual_recording.py -o cache_dir=/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_bringup/ament_cmake_pytest/test_dual_recording/.cache --junit-xml=/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_bringup/test_results/nexus_bringup/test_dual_recording.xunit.xml --junit-prefix=nexus_bringup
+6: ============================= test session starts ==============================
+6: platform linux -- Python 3.10.12, pytest-6.2.5, py-1.10.0, pluggy-0.13.0
+6: cachedir: /root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_bringup/ament_cmake_pytest/test_dual_recording/.cache
+6: rootdir: /root/nexus_workspace/NEXUS/code/ros2_ws/src/nexus_bringup
+6: plugins: ament-mypy-0.12.15, ament-lint-0.12.15, launch-testing-ros-0.19.14, ament-flake8-0.12.15, ament-copyright-0.12.15, ament-xmllint-0.12.15, ament-pep257-0.12.15, launch-testing-1.0.14, colcon-core-0.21.0, cov-3.0.0
+6: collected 2 items
+6: 
+6: ../../src/nexus_bringup/test/test_dual_recording.py ..                   [100%]
+6: 
+6: - generated xml file: /root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_bringup/test_results/nexus_bringup/test_dual_recording.xunit.xml -
+6: ============================== 2 passed in 2.71s ===============================
+6: -- run_test.py: return code 0
+6: -- run_test.py: verify result file '/root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_bringup/test_results/nexus_bringup/test_dual_recording.xunit.xml'
+6/6 Test #6: test_dual_recording .....................   Passed    3.37 sec
+
+100% tests passed, 0 tests failed out of 6
+
+Label Time Summary:
+launch_test    =   6.88 sec*proc (1 test)
+pytest         =  14.35 sec*proc (5 tests)
+
+Total Test time (real) =  21.25 sec
+Finished <<< nexus_bringup [24.0s]
+
+Summary: 4 packages finished [57.3s]

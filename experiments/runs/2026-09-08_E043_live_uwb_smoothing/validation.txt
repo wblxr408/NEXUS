@@ -1,0 +1,9 @@
+Starting >>> nexus_pi_readonly_ingress
+Finished <<< nexus_pi_readonly_ingress [0.40s]
+
+Summary: 1 package finished [0.80s]
+Starting >>> nexus_pi_readonly_ingress
+Finished <<< nexus_pi_readonly_ingress [3.07s]
+
+Summary: 1 package finished [3.26s]
+Summary: 22 tests, 0 errors, 0 failures, 0 skipped

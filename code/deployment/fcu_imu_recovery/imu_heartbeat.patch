@@ -1,0 +1,91 @@
+--- a/src/fcu_bridge.h
++++ b/src/fcu_bridge.h
+@@ -211,7 +211,8 @@
+ void fcu_bridge::mav_send_heartbeat(void){
+     mavlink_message_t msg_heartbeat;
+     mavlink_heartbeat_t heartbeat{};
+-        if(offboard_){//串口
++        // Serial telemetry requires an onboard identity, independently of control mode.
++        if(offboard_ || mav_chan_ == MAVLINK_COMM_0){//串口
+             heartbeat.type=MAV_TYPE_ONBOARD_CONTROLLER;
+         }else{
+             heartbeat.type=MAV_TYPE_GCS;
+--- a/test/test_control_packets.cpp
++++ b/test/test_control_packets.cpp
+@@ -45,7 +45,32 @@
+     inject(bridge, message);
+ }
+ 
+-static void test_target(uint8_t system, uint8_t component) {
++static void test_heartbeat_roles() {
++    for (int channel : {0, 1}) {
++        for (bool offboard : {false, true}) {
++            fcu_bridge_001 bridge(1);
++            bridge.node = rclcpp::Node::make_shared("test_heartbeat_role");
++            bridge.channel_ = channel;
++            bridge.offboard_ = offboard;
++            bridge.init();
++            bridge.mav_send_heartbeat();
++            auto packets = drain(bridge);
++            check(packets.size() == 1 && packets[0].msgid == MAVLINK_MSG_ID_HEARTBEAT,
++                  "heartbeat must not queue control commands");
++            mavlink_heartbeat_t hb{};
++            mavlink_msg_heartbeat_decode(&packets[0], &hb);
++            check(hb.type == ((channel == 0 || offboard) ? MAV_TYPE_ONBOARD_CONTROLLER : MAV_TYPE_GCS),
++                  "serial IMU needs onboard heartbeat even with offboard false");
++            check(hb.autopilot == MAV_AUTOPILOT_INVALID &&
++                  hb.base_mode == MAV_MODE_FLAG_MANUAL_INPUT_ENABLED &&
++                  hb.custom_mode == 0 && hb.system_status == 0,
++                  "heartbeat flags/defaults changed");
++            check(bridge.offboard_ == offboard, "heartbeat must not enable offboard control");
++        }
++    }
++}
++
++static void test_target(uint8_t system, uint8_t component, bool first_request) {
+     fcu_bridge_001 bridge(1);
+     bridge.node = rclcpp::Node::make_shared("test_control_packets");
+     bridge.channel_ = 0;
+@@ -64,8 +89,28 @@
+     check(bridge.target_system_ == system && bridge.target_component_ == component,
+           "target must be learned from heartbeat");
+     auto replies = drain(bridge);
+-    check(replies.size() == 1 && replies[0].msgid == MAVLINK_MSG_ID_HEARTBEAT,
+-          "FC heartbeat must produce one heartbeat reply");
++    check(replies.size() == (first_request ? 4u : 1u) &&
++          replies[0].msgid == MAVLINK_MSG_ID_HEARTBEAT,
++          "heartbeat reply and one-shot telemetry request count");
++    if (first_request) {
++        for (size_t i = 1; i <= 2; ++i) {
++            check(replies[i].msgid == MAVLINK_MSG_ID_COMMAND_LONG, "interval packet type");
++            mavlink_command_long_t request{};
++            mavlink_msg_command_long_decode(&replies[i], &request);
++            check(request.command == MAV_CMD_SET_MESSAGE_INTERVAL &&
++                  request.target_system == system && request.target_component == component &&
++                  request.param1 == (i == 1 ? MAVLINK_MSG_ID_SCALED_IMU : MAVLINK_MSG_ID_HIGHRES_IMU) &&
++                  request.param2 == 20000 && request.confirmation == 0 &&
++                  request.param3 == 0 && request.param4 == 0 && request.param5 == 0 &&
++                  request.param6 == 0 && request.param7 == 0, "telemetry request fields");
++        }
++        check(replies[3].msgid == MAVLINK_MSG_ID_REQUEST_DATA_STREAM, "fallback packet type");
++        mavlink_request_data_stream_t request{};
++        mavlink_msg_request_data_stream_decode(&replies[3], &request);
++        check(request.target_system == system && request.target_component == component &&
++              request.req_stream_id == MAV_DATA_STREAM_RAW_SENSORS &&
++              request.req_message_rate == 50 && request.start_stop == 1, "fallback fields");
++    }
+     mavlink_heartbeat_t reply{};
+     mavlink_msg_heartbeat_decode(&replies[0], &reply);
+     check(reply.custom_mode == 0 && reply.system_status == 0, "uninitialized heartbeat fields");
+@@ -127,8 +172,9 @@
+ int main(int argc, char **argv) {
+     rclcpp::init(argc, argv);
+     try {
+-        test_target(7, 42);
+-        test_target(91, 13);
++        test_heartbeat_roles();
++        test_target(7, 42, true);
++        test_target(91, 13, false);
+         std::cout << "PASS: packet defaults, addressing, heartbeat gate, armed feedback, ACK, STATUSTEXT\n";
+     } catch (const std::exception &error) {
+         std::cerr << "FAIL: " << error.what() << std::endl;

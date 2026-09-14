@@ -1,0 +1,66 @@
+schema_version: 1
+calibration_id: camera_downward_approximate_user_accepted_20260908
+calibration_status: experimental_approximation
+camera_frame: camera_optical_frame
+image_rectified: true
+transform_body_camera:
+- - 0.0
+  - -1.0
+  - 0.0
+  - 0.0
+- - -1.0
+  - 0.0
+  - 0.0
+  - 0.0
+- - 0.0
+  - 0.0
+  - -1.0
+  - 0.0
+- - 0.0
+  - 0.0
+  - 0.0
+  - 1.0
+extrinsic_covariance:
+- - 0.0025000000000000005
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+- - 0.0
+  - 0.0025000000000000005
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+- - 0.0
+  - 0.0
+  - 0.0025000000000000005
+  - 0.0
+  - 0.0
+  - 0.0
+- - 0.0
+  - 0.0
+  - 0.0
+  - 0.030461741978670857
+  - 0.0
+  - 0.0
+- - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.030461741978670857
+  - 0.0
+- - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.0
+  - 0.030461741978670857
+pixel_sigma_px: 1.0
+approximations:
+- Downward optical orientation assumes image right=-body y, image down=-body x; mounting
+  rotation is not surveyed.
+- Camera origin is approximated at body origin; extrinsic covariance is an assumed
+  model, not measured.
+- Pixel sigma is an algorithm assumption; camera intrinsics come from E028.

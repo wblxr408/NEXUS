@@ -1,0 +1,14 @@
+[Unit]
+Description=NEXUS read-only IMX219 image and camera clock stream
+After=network.target
+
+[Service]
+Type=simple
+User=pi
+WorkingDirectory=/home/pi/nexus_readonly_stack
+ExecStart=/usr/bin/python3 /home/pi/nexus_readonly_stack/camera_stream_server.py --width 1640 --height 1232 --fps 10 --rotation 180
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

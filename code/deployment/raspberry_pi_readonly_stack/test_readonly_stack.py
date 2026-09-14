@@ -50,6 +50,28 @@ class ReadOnlyV2Tests(unittest.TestCase):
         self.assertEqual(config["camera"]["mounting"], "bottom_lens_down")
         self.assertEqual(config["verification_status"], "user_provided_not_surveyed")
 
+    def test_v02_records_measured_ui_values_without_changing_tag2(self):
+        config = yaml.safe_load((HERE / "config/hardware_user_v02.yaml").read_text())
+        self.assertEqual(config["uwb"]["tag_id"], 2)
+        self.assertEqual(config["uwb"]["tag_total"], 1)
+        self.assertEqual(config["verification_status"], "user_confirmed_field_measured")
+        self.assertEqual(config["uwb"]["calibration_status"], "measured")
+        self.assertEqual(config["uwb"]["anchors_map_cm"]["1"], [90.0, -90.0, 256.0])
+        self.assertEqual(config["uwb"]["anchors_map_m"]["4"], [4.0, 0.0, 2.71])
+        self.assertEqual(config["map"]["yaw_offset_deg"], 9.0)
+        reference = config["flight_controller_ui_reference"]
+        self.assertEqual(reference["attitude"]["roll_p"], 4.5)
+        self.assertEqual(reference["rate"]["vertical_acceleration"]["imax"], 500.0)
+        self.assertEqual(reference["serial_baud_rate"]["port_1"], 460800.0)
+        self.assertEqual(config["application_policy"], "record_only_never_write_to_flight_controller")
+
+    def test_synthetic_transport_server_is_explicit_and_has_no_control_api(self):
+        source = (HERE / "synthetic_telemetry_test_server.py").read_text()
+        self.assertIn('"simulated": True', source)
+        self.assertIn('"tag_id": 2', source)
+        self.assertNotIn("mavlink", source.lower())
+        self.assertNotIn("command_long_send", source)
+
     def test_new_stack_has_no_mavlink_control_send_calls(self):
         source = (HERE / "uav_readonly_adapter.py").read_text()
         source += (HERE / "uav_readonly_adapter_v2.py").read_text()
@@ -76,9 +98,10 @@ class ReadOnlyV2Tests(unittest.TestCase):
     def test_camera_metadata_and_health(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
-            write_frame(root, Frame(), 180, captured_unix_ns=1_000_000_000)
+            write_frame(root, Frame(), 180, captured_unix_ns=1_000_000_000, frame_sequence=7)
             metadata = json.loads((root / "latest.json").read_text())
             self.assertEqual(metadata["sample_timestamp_domain"], "ros_unix_ns_receive")
+            self.assertEqual(metadata["frame_sequence"], 7)
             report = evaluate(None, root / "latest.json", now_ns=1_100_000_000)
             self.assertTrue(report["ok"])
 

@@ -46,6 +46,86 @@ def test_live_node_refuses_unverified_calibration_and_missing_noise(tmp_path):
         load_platform_calibration(path, allow_test=True)
 
 
+def test_bounded_prediction_supplies_image_time_poses_and_expires(tmp_path):
+    path, document = calibration_file(tmp_path)
+    document['imu']['rotation_body_imu'] = np.eye(3).tolist()
+    document['window']['prediction_horizon_s'] = .7
+    path.write_text(yaml.safe_dump(document))
+    rclpy.init(args=['--ros-args', '-p', f'calibration_file:={path}',
+                    '-p', 'allow_test_calibration:=true', '-p', 'prediction_output_hz:=50.0'])
+    platform, driver = PlatformLocalizationNode(), Node('bounded_prediction_driver')
+    executor = SingleThreadedExecutor()
+    executor.add_node(platform)
+    executor.add_node(driver)
+    imu_pub = driver.create_publisher(Imu, '/nexus/fcu/imu', 100)
+    pose_pub = driver.create_publisher(PoseWithCovarianceStamped, '/nexus/platform/initial_pose', 10)
+    received = []
+    driver.create_subscription(Odometry, '/nexus/platform/odom', received.append, 100)
+
+    def spin_until(predicate, timeout=5.):
+        deadline = time.monotonic() + timeout
+        while not predicate() and time.monotonic() < deadline:
+            executor.spin_once(timeout_sec=.001)
+        assert predicate()
+
+    try:
+        spin_until(lambda: imu_pub.get_subscription_count() > 0 and pose_pub.get_subscription_count() > 0
+                   and platform._odom_publisher.get_subscription_count() > 0)
+        start = driver.get_clock().now().nanoseconds
+        pose = PoseWithCovarianceStamped()
+        pose.header.stamp.sec, pose.header.stamp.nanosec = divmod(start, 10**9)
+        pose.header.frame_id = 'map'
+        pose.pose.pose.position.z = 1.
+        pose.pose.pose.orientation.w = 1.
+        pose.pose.covariance = (np.eye(6) * .01).ravel().tolist()
+        imu = Imu()
+        imu.header.stamp = pose.header.stamp
+        imu.header.frame_id = 'imu_link'
+        imu.linear_acceleration.z = 9.80665
+        imu_pub.publish(imu)
+        spin_until(lambda: platform._last_imu_ns == start)
+        pose_pub.publish(pose)
+        spin_until(lambda: bool(platform.estimator.states))
+        deadline = time.monotonic() + 1.
+        while time.monotonic() < deadline:
+            stamp = driver.get_clock().now().nanoseconds
+            imu.header.stamp.sec, imu.header.stamp.nanosec = divmod(stamp, 10**9)
+            imu_pub.publish(imu)
+            spin_until(lambda: platform._last_imu_ns == stamp)
+            end = time.monotonic() + .003
+            while time.monotonic() < end:
+                executor.spin_once(timeout_sec=.001)
+        stamps = [platform._stamp(m.header) for m in received]
+        assert len(stamps) >= 10
+        assert np.all(np.diff(stamps) > 0)
+        assert max(stamps) <= start + 700_000_000
+        assert np.max(np.diff(stamps)) < 250_000_000
+        for message in received:
+            point = message.pose.pose.position
+            np.testing.assert_allclose([point.x, point.y, point.z], [0., 0., 1.], atol=1e-6)
+            assert np.isfinite(message.pose.covariance).all()
+    finally:
+        executor.shutdown()
+        platform.destroy_node()
+        driver.destroy_node()
+        rclpy.shutdown()
+
+
+def test_experimental_approximations_require_explicit_opt_in_and_valid_bias(tmp_path):
+    path, document = calibration_file(tmp_path)
+    document["calibration_status"] = "experimental_approximation"
+    document["approximations"] = ["user-authorized zero UWB lever arm approximation"]
+    document["imu"]["initial_gyro_bias_rps"] = [.01, -.02, .03]
+    path.write_text(yaml.safe_dump(document))
+    with pytest.raises(ValueError, match="measured"):
+        load_platform_calibration(path)
+    assert load_platform_calibration(path, allow_approximate=True)["imu"]["initial_gyro_bias_rps"] == [.01, -.02, .03]
+    document["imu"]["initial_gyro_bias_rps"] = [float("nan"), 0, 0]
+    path.write_text(yaml.safe_dump(document))
+    with pytest.raises(ValueError):
+        load_platform_calibration(path, allow_approximate=True)
+
+
 def test_platform_ros_imu_axes_position_update_outlier_and_loss(tmp_path):
     path, _ = calibration_file(tmp_path)
     rclpy.init(args=["--ros-args", "-p", f"calibration_file:={path}", "-p", "allow_test_calibration:=true",
@@ -128,5 +208,25 @@ def test_platform_ros_imu_axes_position_update_outlier_and_loss(tmp_path):
     finally:
         executor.shutdown()
         driver.destroy_node()
+        node.destroy_node()
+        rclpy.shutdown()
+
+
+def test_initial_pose_uses_calibrated_body_frame_biases(tmp_path):
+    from nexus_fusion_localization.platform_measurements import PoseMeasurement
+
+    path, document = calibration_file(tmp_path)
+    document["imu"]["initial_accel_bias_mps2"] = [.01, -.02, .03]
+    document["imu"]["initial_gyro_bias_rps"] = [-.006, -.001, -.019]
+    path.write_text(yaml.safe_dump(document))
+    rclpy.init(args=["--ros-args", "-p", f"calibration_file:={path}", "-p", "allow_test_calibration:=true"])
+    node = PlatformLocalizationNode()
+    try:
+        measurement = PoseMeasurement(1_000_000_000, [0, 0, 1], np.eye(3), np.eye(6) * .01)
+        node._initialize(measurement, "initial_pose")
+        state = node.estimator.states[measurement.stamp_ns]
+        np.testing.assert_allclose(state.accel_bias_mps2, [.01, -.02, .03])
+        np.testing.assert_allclose(state.gyro_bias_rps, [-.006, -.001, -.019])
+    finally:
         node.destroy_node()
         rclpy.shutdown()

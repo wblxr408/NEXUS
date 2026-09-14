@@ -1,0 +1,23 @@
+Starting >>> nexus_fusion_localization
+Starting >>> nexus_pi_readonly_ingress
+Starting >>> nexus_viz_dashboard
+Finished <<< nexus_pi_readonly_ingress [0.46s]
+Finished <<< nexus_fusion_localization [0.56s]
+Starting >>> nexus_vision_localization
+Finished <<< nexus_viz_dashboard [0.67s]
+Finished <<< nexus_vision_localization [0.66s]
+Starting >>> nexus_bringup
+Finished <<< nexus_bringup [3.07s]
+
+Summary: 5 packages finished [4.71s]
+Starting >>> nexus_fusion_localization
+Starting >>> nexus_viz_dashboard
+Finished <<< nexus_viz_dashboard [2.49s]
+Finished <<< nexus_fusion_localization [7.50s]
+Starting >>> nexus_vision_localization
+Finished <<< nexus_vision_localization [11.2s]
+Starting >>> nexus_bringup
+Finished <<< nexus_bringup [10.8s]
+
+Summary: 4 packages finished [29.6s]
+Summary: 269 tests, 0 errors, 0 failures, 6 skipped

@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <fcntl.h>
+#include <thread>
 #include <unistd.h>
 #include <rclcpp/rclcpp.hpp>
 #include <std_msgs/msg/string.hpp>
@@ -9,7 +10,8 @@
 static char buf[16] = {0};
 static std_msgs::msg::Int16 cmd;
 
-void print_help() {
+void print_help()
+{
   RCLCPP_INFO(rclcpp::get_logger("fcu_command"), "");
   RCLCPP_INFO(rclcpp::get_logger("fcu_command"), "========== FCU Command Help ========");
   RCLCPP_INFO(rclcpp::get_logger("fcu_command"), "基本控制指令：");
@@ -23,6 +25,8 @@ void print_help() {
   RCLCPP_INFO(rclcpp::get_logger("fcu_command"), "  r - 绕圆");
   RCLCPP_INFO(rclcpp::get_logger("fcu_command"), "  c - 原地转圈");
   RCLCPP_INFO(rclcpp::get_logger("fcu_command"), "  s - 停止（悬停当前位置）");
+  RCLCPP_INFO(rclcpp::get_logger("fcu_command"), "  i - 沿沙盘 X 轴往复横移");
+  RCLCPP_INFO(rclcpp::get_logger("fcu_command"), "  o - 沿沙盘 Y 轴往复横移");
   RCLCPP_INFO(rclcpp::get_logger("fcu_command"), "");
   RCLCPP_INFO(rclcpp::get_logger("fcu_command"), "路口点指令：");
   RCLCPP_INFO(rclcpp::get_logger("fcu_command"), "  1 - 路口1");
@@ -45,14 +49,24 @@ void print_help() {
   RCLCPP_INFO(rclcpp::get_logger("fcu_command"), "");
 }
 
-int main(int argc, char **argv) {
+int main(int argc, char ** argv)
+{
 
-  rclcpp::init(argc,argv);
+  rclcpp::init(argc, argv);
   auto node = rclcpp::Node::make_shared("fcu_command");
 
-  // Keep the ROS2 command topic identical to the ROS1 fcu_bridge interface.
-  // The hardware bridge subscribes to /fcu_bridge/command.
-  auto command = node->create_publisher<std_msgs::msg::Int16>("/fcu_bridge/command", 100);
+  auto command = node->create_publisher<std_msgs::msg::Int16>("/command", 100);
+  auto axis_sweep_status = node->create_subscription<std_msgs::msg::String>(
+    "/axis_sweep_status", 20,
+    [node](const std_msgs::msg::String::SharedPtr status) {
+      RCLCPP_INFO(node->get_logger(), "[横移反馈] %s", status->data.c_str());
+    });
+  (void)axis_sweep_status;
+
+  // 键盘读取会阻塞；独立处理ROS回调，确保横移反馈能够实时显示。
+  std::thread ros_spin_thread([node]() {
+      rclcpp::spin(node);
+    });
 
   print_help();
 
@@ -61,116 +75,133 @@ int main(int argc, char **argv) {
   if (tty_fd < 0) {
     RCLCPP_ERROR(node->get_logger(), "无法打开 /dev/tty，请使用 ros2 run 启动");
     rclcpp::shutdown();
+    ros_spin_thread.join();
     return 1;
   }
 
   while (rclcpp::ok()) {
-    RCLCPP_INFO(node->get_logger(),"请输入指令（h查看帮助）：");
+    RCLCPP_INFO(node->get_logger(), "请输入指令（h查看帮助）：");
     ssize_t size = read(tty_fd, buf, sizeof(buf));
-    if(size>0){
-      if(size!=2){
-        RCLCPP_INFO(node->get_logger(),"指令错误！请输入单个字符");
+    if (size > 0) {
+      if (size != 2) {
+        RCLCPP_INFO(node->get_logger(), "指令错误！请输入单个字符");
         continue;
       }
-    }else{
-      RCLCPP_INFO(node->get_logger(),"退出程序");
+    } else {
+      RCLCPP_INFO(node->get_logger(), "退出程序");
       close(tty_fd);
       rclcpp::shutdown();
+      ros_spin_thread.join();
       return 0;
     }
-    switch(buf[0]){
+    switch (buf[0]) {
       case 'a':
-        RCLCPP_INFO(node->get_logger(),"[执行] 解锁");
-        cmd.data=1;
+        RCLCPP_INFO(node->get_logger(), "[已发送] 解锁");
+        cmd.data = 1;
         command->publish(cmd);
         break;
       case 'd':
-        RCLCPP_INFO(node->get_logger(),"[执行] 锁定");
-        cmd.data=2;
+        RCLCPP_INFO(node->get_logger(), "[已发送] 锁定");
+        cmd.data = 2;
         command->publish(cmd);
         break;
       case 't':
-        RCLCPP_INFO(node->get_logger(),"[执行] 起飞");
-        cmd.data=3;
+        RCLCPP_INFO(node->get_logger(), "[已发送] 起飞");
+        cmd.data = 3;
         command->publish(cmd);
         break;
       case 'l':
-        RCLCPP_INFO(node->get_logger(),"[执行] 降落");
-        cmd.data=4;
+        RCLCPP_INFO(node->get_logger(), "[已发送] 降落");
+        cmd.data = 4;
         command->publish(cmd);
         break;
       case 'p':
-        RCLCPP_INFO(node->get_logger(),"[执行] 巡航模式");
-        cmd.data=0;
+        RCLCPP_INFO(node->get_logger(), "[已发送] 巡航模式");
+        cmd.data = 0;
         command->publish(cmd);
         break;
       case 'r':
-        RCLCPP_INFO(node->get_logger(),"[执行] 绕圆模式");
-        cmd.data=5;
+        RCLCPP_INFO(node->get_logger(), "[已发送] 绕圆模式");
+        cmd.data = 5;
         command->publish(cmd);
         break;
       case 'c':
-        RCLCPP_INFO(node->get_logger(),"[执行] 原地转圈");
-        cmd.data=12;
+        RCLCPP_INFO(node->get_logger(), "[已发送] 原地转圈");
+        cmd.data = 12;
         command->publish(cmd);
         break;
       case 's':
-        RCLCPP_INFO(node->get_logger(),"[执行] 停止（悬停当前位置）");
-        cmd.data=6;
+        RCLCPP_INFO(node->get_logger(), "[已发送] 停止（悬停当前位置）");
+        cmd.data = 6;
+        command->publish(cmd);
+        break;
+      case 'i':
+        RCLCPP_INFO(node->get_logger(), "[已发送] 沙盘 X 轴往复横移");
+        cmd.data = 13;
+        command->publish(cmd);
+        break;
+      case 'o':
+        RCLCPP_INFO(node->get_logger(), "[已发送] 沙盘 Y 轴往复横移");
+        cmd.data = 14;
         command->publish(cmd);
         break;
       case '1':
-        RCLCPP_INFO(node->get_logger(),"[执行] 路口1");
-        cmd.data=8;
+        RCLCPP_INFO(node->get_logger(), "[已发送] 路口1");
+        cmd.data = 8;
         command->publish(cmd);
         break;
       case '2':
-        RCLCPP_INFO(node->get_logger(),"[执行] 路口2");
-        cmd.data=9;
+        RCLCPP_INFO(node->get_logger(), "[已发送] 路口2");
+        cmd.data = 9;
         command->publish(cmd);
         break;
       case '3':
-        RCLCPP_INFO(node->get_logger(),"[执行] 路口3");
-        cmd.data=10;
+        RCLCPP_INFO(node->get_logger(), "[已发送] 路口3");
+        cmd.data = 10;
         command->publish(cmd);
         break;
       case '4':
-        RCLCPP_INFO(node->get_logger(),"[执行] 路口4");
-        cmd.data=11;
+        RCLCPP_INFO(node->get_logger(), "[已发送] 路口4");
+        cmd.data = 11;
         command->publish(cmd);
         break;
       case '5':
-        RCLCPP_INFO(node->get_logger(),"[执行] 原点");
-        cmd.data=7;
+        RCLCPP_INFO(node->get_logger(), "[已发送] 原点");
+        cmd.data = 7;
         command->publish(cmd);
         break;
       case 'q':
-        RCLCPP_INFO(node->get_logger(),"[执行] 前向追踪");
-        cmd.data=1011;
+        RCLCPP_INFO(node->get_logger(), "[已发送] 前向追踪");
+        cmd.data = 1011;
         command->publish(cmd);
         break;
       case 'w':
-        RCLCPP_INFO(node->get_logger(),"[执行] 下视追踪");
-        cmd.data=1012;
+        RCLCPP_INFO(node->get_logger(), "[已发送] 下视追踪");
+        cmd.data = 1012;
         command->publish(cmd);
         break;
       case 'e':
-        RCLCPP_INFO(node->get_logger(),"[执行] 停止追踪");
-        cmd.data=1013;
+        RCLCPP_INFO(node->get_logger(), "[已发送] 停止追踪");
+        cmd.data = 1013;
         command->publish(cmd);
         break;
       case 'h':
         print_help();
         break;
       case 'x':
-        RCLCPP_INFO(node->get_logger(),"退出程序");
+        RCLCPP_INFO(node->get_logger(), "退出程序");
         rclcpp::shutdown();
+        close(tty_fd);
+        ros_spin_thread.join();
         return 0;
       default:
-        RCLCPP_INFO(node->get_logger(),"非法指令！请输入h查看帮助");
+        RCLCPP_INFO(node->get_logger(), "非法指令！请输入h查看帮助");
         break;
     }
   }
 
+  close(tty_fd);
+  rclcpp::shutdown();
+  ros_spin_thread.join();
   return 0;
 }

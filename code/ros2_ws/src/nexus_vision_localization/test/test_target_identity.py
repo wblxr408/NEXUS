@@ -7,6 +7,7 @@ from nexus_vision_localization.superpoint_frontend import FeatureSet
 from nexus_vision_localization.target_identity import (
     IdentityConfig, TargetCandidate, TargetIdentityTracker, appearance_descriptor,
 )
+from nexus_vision_localization.lightweight_identity import LightweightIdentityTransformer
 
 
 def candidate(x, y=100., *, code=0, color=0, class_id=0, histogram=None):
@@ -136,3 +137,16 @@ def test_track_capacity_is_reported_and_color_histogram_uses_selected_region():
     red = appearance_descriptor(image, [0., 0., 20., 10.])
     blue = appearance_descriptor(image, [0., 10., 20., 10.])
     assert red.sum() == blue.sum() == 1. and np.dot(red, blue) == 0.
+
+
+def test_temporal_identity_cache_is_bounded_and_participates_in_attention():
+    attention = LightweightIdentityTransformer(maximum_tokens=8, maximum_history=2)
+    reference, current = candidate(100), candidate(104)
+    cache = attention.kv_cache(reference.features)
+    result = attention.compare(reference.features, current.features, temporal_cache=[cache])
+    assert result.token_count == 8 and 0. <= result.temporal_score <= 1.
+    tracker = TargetIdentityTracker(attention=attention)
+    tracker.update(1_000_000_000, [reference])
+    tracker.update(1_100_000_000, [current])
+    track = next(iter(tracker.tracks.values()))
+    assert len(track.temporal_kv_cache) == 1

@@ -130,3 +130,46 @@ def test_manifest_rejects_missing_model_hash_mismatch_and_unsupported_layout(tmp
     path.write_text(json.dumps(manifest))
     with pytest.raises(ValueError, match="unsupported"):
         SuperPointOnnx(path)
+
+
+def test_mit_descriptor_sampling_uses_half_pixel_align_corners_false():
+    logits = np.zeros((1, 65, 2, 2), np.float32)
+    descriptors = np.zeros((1, 256, 2, 2), np.float32)
+    descriptors[0, 0] = [[1, 0], [1, 0]]
+    descriptors[0, 1] = [[0, 1], [0, 1]]
+    model = DenseSuperPoint(logits, descriptors, (16, 16), "superpoint_mit_v1")
+    sampled, valid = model._sample_descriptors(np.array([[3.5, 3.5], [7.5, 3.5], [11.5, 3.5]]))
+    assert valid.all()
+    np.testing.assert_allclose(sampled[:, :2], [[1, 0], [2 ** -.5, 2 ** -.5], [0, 1]], atol=1e-6)
+
+
+def test_superpoint_scale_preserves_camera_coordinate_contract_after_downsampling():
+    class Network:
+        def run(self, blob):
+            assert blob.shape == (1, 1, 32, 32)
+            logits = np.zeros((1, 65, 4, 4), np.float32)
+            descriptors = np.zeros((1, 256, 4, 4), np.float32)
+            descriptors[:, 0] = 1.
+            return [logits, descriptors]
+
+    model = SuperPointOnnx.__new__(SuperPointOnnx)
+    model.manifest = {"input_size_wh": [32, 32], "descriptor_sampling": "superpoint_mit_v1"}
+    model.network = Network()
+    dense = model.infer(np.zeros((64, 64), np.uint8), image_scale=.5)
+    assert dense.image_size_wh == (64, 64)
+    with pytest.raises(ValueError, match="scale"):
+        model.infer(np.zeros((64, 64), np.uint8), image_scale=.2)
+
+
+def test_dynamic_superpoint_scale_changes_network_tensor_shape_without_changing_camera_coordinates():
+    class Network:
+        def run(self, blob):
+            assert blob.shape == (1, 1, 24, 32)
+            return [np.zeros((1, 65, 3, 4), np.float32), np.ones((1, 256, 3, 4), np.float32)]
+
+    model = SuperPointOnnx.__new__(SuperPointOnnx)
+    model.manifest = {"input_size_wh": [64, 48], "descriptor_sampling": "superpoint_mit_v1", "dynamic_input": True}
+    model.network = Network()
+    dense = model.infer(np.zeros((96, 128), np.uint8), image_scale=.25)
+    assert dense.image_size_wh == (128, 96)
+    assert dense.logits.shape == (1, 65, 3, 4)

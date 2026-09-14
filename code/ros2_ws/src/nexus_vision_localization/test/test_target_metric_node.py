@@ -73,7 +73,8 @@ def test_reference_image_to_static_target_with_variable_platform_motion_over_dds
         def __init__(self, _):
             pass
 
-        def infer(self, pixels):
+        def infer(self, pixels, *, image_scale=1.):
+            assert .25 <= image_scale <= 1.
             return SyntheticDense(features[int(pixels[0, 0, 0])])
 
     monkeypatch.setattr(superpoint_node, "SuperPointOnnx", SyntheticEncoder)

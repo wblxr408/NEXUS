@@ -1,0 +1,87 @@
+"""Audit probe: expected functional restart recovery, using synthetic DDS inputs."""
+import json
+import time
+import numpy as np
+import yaml
+from test_approximate_initial_pose import config, measurement
+
+def test_platform_restart_recovers_without_restarting_sensor_pipeline(tmp_path):
+    import rclpy
+    from nav_msgs.msg import Odometry
+    from rclpy.executors import SingleThreadedExecutor
+    from rclpy.node import Node
+    from sensor_msgs.msg import Imu
+    from std_msgs.msg import String
+    from nexus_bringup.approximate_initial_pose_node import ApproximateInitialPoseNode
+    from nexus_fusion_localization.platform_node import PlatformLocalizationNode
+    from nexus_pi_readonly_ingress.range_smoothing_node import RangeSmoothingNode
+
+    c = config()
+    path = tmp_path / 'approximate.yaml'
+    path.write_text(yaml.safe_dump(c))
+    rclpy.init(args=['--ros-args', '-p', f'calibration_file:={path}', '-p',
+                    'allow_approximate_calibration:=true', '-p',
+                    'output_topic:=/nexus/uwb/startup_statistics'])
+    nodes = [ApproximateInitialPoseNode(), PlatformLocalizationNode(), RangeSmoothingNode(), Node('initialization_test_driver')]
+    initializer, platform, smoother, driver = nodes
+    executor = SingleThreadedExecutor()
+    for node in nodes:
+        executor.add_node(node)
+    raw_imu = driver.create_publisher(Imu, '/imu_global_001', 100)
+    raw_range = driver.create_publisher(String, '/nexus/uwb/ranges', 20)
+    outputs = []
+    driver.create_subscription(Odometry, '/nexus/platform/odom', outputs.append, 20)
+
+    def wait(predicate):
+        deadline = time.monotonic() + 5
+        while not predicate() and time.monotonic() < deadline:
+            executor.spin_once(timeout_sec=.001)
+        assert predicate(), 'DDS initialization condition timed out'
+
+    try:
+        wait(lambda: raw_imu.get_subscription_count() > 0 and raw_range.get_subscription_count() >= 2
+             and initializer.pose_publisher.get_subscription_count() > 0
+             and smoother.publisher.get_subscription_count() > 0)
+        for i in range(205):
+            stamp = driver.get_clock().now().nanoseconds
+            imu = Imu()
+            imu.header.stamp.sec, imu.header.stamp.nanosec = divmod(stamp, 10**9)
+            imu.header.frame_id = c['imu']['frame_id']
+            imu.linear_acceleration.z = 9.80665
+            raw_imu.publish(imu)
+            wait(lambda: initializer.samples and initializer.samples[-1][0] == stamp)
+            packet = dict(measurement(c), unit='m', frame_id='map', schema_version=1, tag_id=2,
+                          sample_timestamp_ns=stamp, variances_m2=[.01] * 4)
+            raw_range.publish(String(data=json.dumps(packet)))
+            wait(lambda: smoother.window.rows and smoother.window.rows[-1][0] == stamp)
+        wait(lambda: initializer.initialized and len(outputs) > 0)
+        assert smoother.last_result['window_samples'] == 200
+        position = outputs[0].pose.pose.position
+        np.testing.assert_allclose([position.x, position.y, position.z], [1.97, 1.98, .03], atol=1e-4)
+        assert outputs[0].header.frame_id == 'map'
+        assert platform._last_imu_ns > 0
+        executor.remove_node(platform)
+        platform.destroy_node()
+        nodes.remove(platform)
+        platform = PlatformLocalizationNode()
+        nodes.append(platform)
+        executor.add_node(platform)
+        wait(lambda: initializer.pose_publisher.get_subscription_count() > 0)
+        for i in range(205):
+            stamp = driver.get_clock().now().nanoseconds
+            imu = Imu()
+            imu.header.stamp.sec, imu.header.stamp.nanosec = divmod(stamp, 10**9)
+            imu.header.frame_id = c['imu']['frame_id']
+            imu.linear_acceleration.z = 9.80665
+            raw_imu.publish(imu)
+            wait(lambda: initializer.samples and initializer.samples[-1][0] == stamp)
+            packet = dict(measurement(c), unit='m', frame_id='map', schema_version=1, tag_id=2,
+                          sample_timestamp_ns=stamp, variances_m2=[.01] * 4)
+            raw_range.publish(String(data=json.dumps(packet)))
+            wait(lambda: smoother.window.rows and smoother.window.rows[-1][0] == stamp)
+        wait(lambda: bool(platform.estimator.states))
+    finally:
+        executor.shutdown()
+        for node in nodes:
+            node.destroy_node()
+        rclpy.shutdown()

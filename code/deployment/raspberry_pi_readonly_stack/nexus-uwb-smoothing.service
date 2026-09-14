@@ -1,0 +1,14 @@
+[Unit]
+Description=NEXUS rolling UWB robust range statistics
+After=docker.service
+Requires=docker.service
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/docker exec -e ROS_DOMAIN_ID=20 -e PYTHONPATH=/root/fcu_core_onboard/nexus_range_smoothing fcu_ros2 bash -c "source /opt/ros/humble/setup.bash && exec python3 -m nexus_pi_readonly_ingress.range_smoothing_node"
+ExecStop=-/usr/bin/docker exec fcu_ros2 pkill -TERM -f nexus_pi_readonly_ingress.range_smoothing_node
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,96 @@
+schema_version: 2
+configuration_id: raspberry_pi_tag2_user_v02
+source: user_photos_2026-09-04_with_tag_id_override
+verification_status: user_confirmed_field_measured
+application_policy: record_only_never_write_to_flight_controller
+
+uwb:
+  calibration_status: measured
+  calibration_source: user_confirmed_field_measurement
+  coordinate_uncertainty: not_separately_provided
+  tag_id: 2
+  tag_total: 1
+  provided_coordinate_unit: cm
+  range_slot_anchor_ids: ["1", "2", "3", "4"]
+  anchors_map_cm:
+    "1": [90.0, -90.0, 256.0]
+    "2": [0.0, 500.0, 271.0]
+    "3": [400.0, 500.0, 271.0]
+    "4": [400.0, 0.0, 271.0]
+  anchors_map_m:
+    "1": [0.90, -0.90, 2.56]
+    "2": [0.00, 5.00, 2.71]
+    "3": [4.00, 5.00, 2.71]
+    "4": [4.00, 0.00, 2.71]
+  range_variance_m2: [0.0025, 0.0025, 0.0025, 0.0025]
+
+map:
+  yaw_offset_deg: 9.0
+
+camera:
+  model: IMX219
+  mounting: bottom_lens_down
+  rotation_deg: 180
+  width: 1640
+  height: 1232
+  fps: 30.0
+  calibration_status: measured_valid_roi_only
+  intrinsics_file: imx219_intrinsics_measured_v01.json
+  intrinsics_sha256: 097ced445fcf4a3a0234d64545551f1ab5156f81a124ddb5e3169b57957230af
+  valid_roi_full_image_px: [205, 0, 1394, 1171]
+
+# These are transcribed vendor UI values. Their engineering units and firmware
+# parameter keys are not yet verified. The NEXUS read-only stack never applies
+# them and never publishes velocity, height, arming, mode, or mission commands.
+flight_controller_ui_reference:
+  attitude:
+    roll_p: 4.5
+    pitch_p: 4.5
+    yaw_p: 4.5
+    altitude_p: 1.0
+    vertical_speed_p: 5.0
+  rate:
+    roll: {p: 0.07, i: 0.15, d: 0.0025, imax: 0.3, filter: 20.0}
+    pitch: {p: 0.07, i: 0.15, d: 0.0025, imax: 0.3, filter: 20.0}
+    yaw: {p: 0.18, i: 0.018, d: 0.0, imax: 0.3, filter: 2.5}
+    vertical_acceleration: {p: 0.5, i: 0.3, d: 0.0, imax: 500.0, filter: 20.0}
+  horizontal:
+    position_p: 1.0
+    velocity: {p: 2.0, i: 0.4, d: 1.2, imax: 100.0, filter: 5.0, d_filter: 5.0}
+    maximum_tilt: 30.0
+    maximum_speed: 100.0
+    maximum_acceleration: 100.0
+  takeoff_and_landing:
+    propeller_startup_time: 0.5
+    takeoff_height: 60.0
+    automatic_takeoff_speed: 50.0
+    landing_lock_height: 4.0
+    landing_vibration_threshold: 3.0
+    automatic_descent_speed: 30.0
+  vertical_and_throttle:
+    maximum_z_acceleration: 100.0
+    maximum_climb_speed: 50.0
+    maximum_descent_speed: 30.0
+    throttle_mid_deadzone: 0.1
+    minimum_hover_throttle: 0.1
+    maximum_hover_throttle: 0.7
+    throttle_filter_frequency: 0.5
+  navigation:
+    terrain_follow_gain: 0.5
+    yaw_sensitivity: 0.0
+    yaw_rate_gain: 1.5
+    cruise_maximum_speed: 100.0
+    cruise_maximum_acceleration: 100.0
+    maximum_height: 100.0
+  power:
+    return_alarm_voltage: 0.0
+    landing_alarm_voltage: 6.6
+    voltage_coefficient: 1.0
+    current_coefficient: 1.0
+  optical_flow_gain: {x: 1.0, y: 1.0, z: 1.0}
+  gnss_compensation: {x: 3.0, y: 3.0, z: 0.0}
+  serial_baud_rate:
+    port_1: 460800.0
+    port_2: 19200.0
+    port_3: 115200.0
+    port_4: 115200.0

@@ -26,6 +26,7 @@ function normalizeLogEntry(entry) {
 
 const initialState = () => ({
   dual: null,
+  inputs: {},
   mode: INPUT_MODES.NO_INPUT,
   session: "WAITING_FOR_INPUT",
   runId: "UNREGISTERED",
@@ -83,6 +84,7 @@ const initialState = () => ({
 export function createDashboardStore() {
   let state = initialState();
   const listeners = new Set();
+  let preferredTarget = null;
   const notify = () => listeners.forEach((listener) => listener(state));
   const patch = (updates) => { state = { ...state, ...updates }; notify(); };
 
@@ -121,6 +123,15 @@ export function createDashboardStore() {
         chain: data.chain ?? state.chain,
       });
     },
+    updateInput(key, data, arrivalMs) {
+      patch({ inputs: { ...state.inputs, [key]: { ...data, arrivalMs, arrivalAgeS: 0, stale: false, disconnected: false } } });
+    },
+    ageInputs(now, connected) {
+      if (!Object.keys(state.inputs).length) return;
+      patch({ inputs: Object.fromEntries(Object.entries(state.inputs).map(([key, value]) => [key,
+        { ...value, arrivalAgeS: Math.max(0, (now - value.arrivalMs) / 1000), stale: now - value.arrivalMs > 2000, disconnected: !connected }])) });
+    },
+    preferTarget(identifier) { preferredTarget = identifier; },
     updateCamera(data = {}) { patch({ camera: { ...state.camera, ...data } }); },
     updateEgoPose(data = {}) {
       if (state.dual) return;
@@ -195,16 +206,21 @@ export function createDashboardStore() {
       if (state.dual?.snapshot.session_id === data.session_id
           && BigInt(data.generated_timestamp_ns) <= BigInt(state.dual.snapshot.generated_timestamp_ns)) return false;
       const dual = { snapshot: structuredClone(data), connection: "CONNECTED" };
-      patch(localizationProjection(dual, state.targetId, state.health));
+      const chosen = preferredTarget && data.targets.some(target => target.target_id === preferredTarget) ? preferredTarget : state.targetId;
+      if (chosen === preferredTarget) preferredTarget = null;
+      const projection = localizationProjection(dual, chosen, state.health);
+      if (projection.poseAge !== null) projection.latency = [...state.latency, projection.poseAge].slice(-60);
+      patch(projection);
       return true;
     },
     selectTarget(identifier) {
+      preferredTarget = null;
       if (state.dual?.snapshot.targets.some((target) => target.target_id === identifier))
         patch(localizationProjection(state.dual, identifier, state.health));
     },
     localizationDisconnected(reason = "DISCONNECTED") {
       if (state.dual) patch(localizationProjection({ ...state.dual, connection: reason }, state.targetId, state.health));
     },
-    reset() { state = initialState(); notify(); },
+    reset() { preferredTarget = null; state = initialState(); notify(); },
   };
 }

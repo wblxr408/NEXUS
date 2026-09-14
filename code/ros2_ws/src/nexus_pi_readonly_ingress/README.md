@@ -21,3 +21,8 @@ synchronization is added.
 This package does not open a serial device and contains no control publisher.
 The default transport is a TCP client to `192.168.1.143:14551`, so the local
 computer initiates the connection and Windows/WSL needs no inbound UDP rule.
+
+`readonly_ingress_v02.launch.py` selects `hardware_user_v02.yaml`, which records
+the 2026-09-04 vendor UI values with the user-confirmed UWB tag ID 2 and
+field-measured anchor coordinates. The flight controller values in that file
+are provenance only and are not sent to the aircraft.

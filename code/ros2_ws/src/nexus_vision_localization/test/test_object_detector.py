@@ -18,7 +18,7 @@ def test_letterbox_preserves_aspect_ratio_rgb_and_padding():
     np.testing.assert_allclose(blob[0, :, 200, 100], [0., 0., 1.])
 
 
-@pytest.mark.parametrize("architecture,layout", [("yolo_v8_detection", "channels_first"), ("yolo_v5_detection", "anchors_first")])
+@pytest.mark.parametrize("architecture,layout", [("yolo_v11_detection", "channels_first"), ("yolo_v8_detection", "channels_first"), ("yolo_v5_detection", "anchors_first")])
 def test_yolo_boxes_recover_original_pixels_and_nms_is_per_class(architecture, layout):
     rows = np.array([[160., 320., 160., 80., .9, .1],
                      [161., 320., 160., 80., .8, .1],
@@ -64,3 +64,18 @@ def test_model_manifest_does_not_allow_missing_or_mismatched_assets(tmp_path):
     (tmp_path / "detector.onnx").write_bytes(b"synthetic hash-validation fixture, not an ONNX graph")
     with pytest.raises(ValueError, match="SHA256"):
         ObjectDetectorOnnx(path)
+
+
+def test_detector_scale_reduces_source_image_and_maps_box_back_to_camera_pixels():
+    class Network:
+        def run(self, blob):
+            assert blob.shape == (1, 3, 32, 32)
+            return [np.array([[[16.], [16.], [8.], [8.], [.9]]], dtype=np.float32)]
+
+    model = ObjectDetectorOnnx.__new__(ObjectDetectorOnnx)
+    model.manifest = {"input_size_wh": [32, 32], "padding_value": 114, "class_names": ["target"],
+                      "architecture": "yolo_v11_detection", "layout": "channels_first"}
+    model.network = Network()
+    output = model.infer(np.zeros((64, 64, 3), np.uint8), image_scale=.5)
+    assert len(output) == 1
+    np.testing.assert_allclose(output[0].bbox_xywh_px, [24., 24., 16., 16.])

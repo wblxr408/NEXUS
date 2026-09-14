@@ -73,6 +73,10 @@ def test_covariance_mapping_is_bounded_monotonic_and_source_specific():
 def test_missing_features_are_explicit_and_unknown_features_rejected():
     row = feature_row({"blur_metric": 50})
     assert np.isnan(row).sum() == 19
+    row = feature_row({"blur_metric": 50, "identity_confidence": .8, "outlier_probability": .1,
+                       "vibration_quality": .9, "exposure_rotation_sigma_rad": .01})
+    assert row[FEATURE_NAMES.index("blur_metric")] == 50
+    assert np.isnan(row).sum() == 19
     with pytest.raises(ValueError):
         feature_row({"absolute_target_x": 3})
     with pytest.raises(ValueError):

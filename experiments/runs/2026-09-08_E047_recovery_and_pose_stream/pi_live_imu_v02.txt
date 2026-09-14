@@ -1,0 +1,16 @@
+{
+  "counts": {
+    "imu": 3782,
+    "uwb": 20,
+    "odom": 200
+  },
+  "elapsed_s": 20.044625384000028,
+  "hz": 189.0184213444595,
+  "non_increasing_stamps": 0,
+  "max_stamp_gap_s": 0.01502635,
+  "frames": {
+    "scaled_imu": 3782
+  },
+  "acc_norm_mean": 9.785410767684581,
+  "finite": true
+}

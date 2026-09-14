@@ -13,12 +13,16 @@ def recording_topics(image_topic="/camera/image_rect", camera_info_topic="/camer
     return list(dict.fromkeys([
         image_topic, camera_info_topic, preview_topic, "/clock", "/tf", "/tf_static",
         "/nexus/fcu/imu", "/nexus/fcu/odom", "/nexus/uwb/ranges",
+        "/nexus/uwb/startup_statistics", "/nexus/platform/initialization_status",
+        "/nexus/platform/initialization_request", "/nexus/pi/fcu_clock_status",
+        "/nexus/pi/odom_raw", "/nexus/pi/odom_aligned", "/nexus/pi/imu_raw", "/nexus/pi/ranges_raw", "/nexus/pi/imu_aligned", "/nexus/pi/ranges_aligned",
         "/nexus/platform/initial_pose", "/nexus/platform/odom", "/nexus/platform/status",
         "/apriltag/detections", "/nexus/vision/platform_pose", "/nexus/vision/reference_status",
         "/nexus/vision/body_motion", "/nexus/vision/motion_status", "/nexus/vision/detections", "/nexus/vision/target_tracks",
         "/nexus/vision/target_requests", "/nexus/vision/target_reference_image", "/nexus/vision/target_request_status",
         "/nexus/vision/target_kinematics", "/nexus/vision/target_geometry_status", "/nexus/observations/quality",
         "/nexus/target/kinematics", "/nexus/target/kinematic_fusion_status",
+        "/nexus/optimization/compute_plan", "/nexus/optimization/observation_plan", "/nexus/optimization/vibration_quality",
         "/nexus/viz/localization_state", "/nexus/viz/localization_markers",
     ]))
 

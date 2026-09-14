@@ -1,0 +1,4 @@
+# Isolated target install; preserve the Ubuntu ROS system OpenCV.
+opencv-python-headless==4.10.0.84
+# CUDA model execution reuses existing WSL torch 2.5.1+cu121 / cuDNN 9.1.
+# Restore those local references with prepare_gpu_runtime.py; no CPU fallback.

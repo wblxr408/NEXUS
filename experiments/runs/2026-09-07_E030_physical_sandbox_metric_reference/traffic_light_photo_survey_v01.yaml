@@ -1,0 +1,29 @@
+schema_version: 1
+artifact: traffic_light_photo_survey
+status: operational_ground_truth_photo_classified
+
+# The overview and six close-up photos are labelled J01 ... J06 by the user.
+# Each close-up shows two distinct physical lamp heights at all four corners:
+# a tall vehicle signal and a low signal.  Heights come from the user's manual
+# measurement; the photo supplies the per-corner high/low classification.
+height_classes_m:
+  high: 0.22
+  low: 0.12
+
+# These correspondence centres provide the reproducible operational-map anchor.
+# Their image/layout provenance remains part of the truth record.
+junctions:
+  - {id: J01, photo: 404f25208ab171733aa840cde55776e8.jpg, legacy_center_mm: [500, 500]}
+  - {id: J02, photo: 1f9820c2413c7600430c2fe001d3e772.jpg, legacy_center_mm: [500, 2350]}
+  - {id: J03, photo: a3f0ed86439d9b603ad0f3820226cc1c.jpg, legacy_center_mm: [3500, 500]}
+  - {id: J04, photo: 5918a7a672406858713dac3199f3d100.jpg, legacy_center_mm: [3500, 4200]}
+  - {id: J05, photo: f8e017d728915dda8ca557031c6c3fd2.jpg, legacy_center_mm: [3500, 2350]}
+  - {id: J06, photo: 27e77f8a23c626f2016a27d5545aa3d0.jpg, legacy_center_mm: [500, 4200]}
+
+# Both lamps at a corner are deliberately associated with one corner anchor.
+# Their several-centimetre separation is not claimed from an oblique photo.
+corner_offsets_mm:
+  nw: [-420, 420]
+  ne: [420, 420]
+  se: [420, -420]
+  sw: [-420, -420]

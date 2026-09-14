@@ -1,0 +1,2 @@
+reference 37 full 734 matches 37 geometry (array([157.86795, 775.412  , 191.78827, 111.75012], dtype=float32), 0.013513513513513487, 36)
+candidates 1

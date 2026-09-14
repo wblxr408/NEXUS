@@ -53,7 +53,7 @@ def test_unified_launch_resolves_estimation_display_and_no_control_nodes(tmp_pat
     executables = {node.node_executable for node in nodes}
     assert executables == {"platform_localization_node", "apriltag_node", "fixed_reference_node", "object_detection_node",
                            "superpoint_motion_node", "target_metric_node", "target_kinematic_fusion_node",
-                           "localization_dashboard_node", "rviz2", "rosbridge_websocket"}
+                           "adaptive_observation_node", "localization_dashboard_node", "rviz2", "rosbridge_websocket"}
     assert not any("uav_route" in str(node.cmd) or "cmd_vel" in str(node.cmd) for node in nodes)
     assert len([action for action in actions if isinstance(action, ExecuteProcess) and not isinstance(action, Node)]) == 1
     assert not (tmp_path / "run.json").exists()
@@ -85,4 +85,42 @@ def test_unified_launch_rejects_conflicting_mounts_and_mislabeled_test_data(tmp_
     data["transform_body_camera"][0][3] = .2
     path.write_text(yaml.safe_dump(data))
     with pytest.raises(ValueError, match="camera calibration disagree"):
+        module.build_actions(context)
+
+
+def test_web_publication_is_limited_to_target_registration(tmp_path):
+    from launch_ros.utilities import evaluate_parameters
+    module, context = configured_context(tmp_path)
+    bridge = next(action for action in module.build_actions(context)
+                  if isinstance(action, Node) and action.node_executable == "rosbridge_websocket")
+    values = evaluate_parameters(context, bridge._Node__parameters)[0]
+    import runpy
+    from ament_index_python.packages import get_package_prefix
+    installed_bridge = Path(get_package_prefix("rosbridge_server")) / "lib/rosbridge_server/rosbridge_websocket"
+    parse_glob = runpy.run_path(str(installed_bridge))["parse_glob_string"]
+    assert parse_glob(values["topics_pub_glob"]) == [
+        "/nexus/vision/target_reference_image", "/nexus/vision/target_requests"]
+    assert json.loads(values["services_glob"]) == []
+    assert json.loads(values["actions_glob"]) == []
+    assert values["address"] == "127.0.0.1"
+
+
+def test_live_approximation_does_not_require_fixed_tags(tmp_path):
+    import yaml
+    module, context = configured_context(tmp_path)
+    for key in ("platform_calibration", "vision_calibration"):
+        path = Path(context.launch_configurations[key])
+        data = yaml.safe_load(path.read_text())
+        data.update(calibration_status="experimental_approximation", approximations=["user accepted test approximation"])
+        path.write_text(yaml.safe_dump(data))
+    context.launch_configurations.update({"allow_test_calibration": "false", "allow_approximate_calibration": "true",
+        "input_mode": "LIVE", "fixed_reference": "false", "reference_calibration": ""})
+    actions = module.build_actions(context)
+    names = {node.node_executable for node in actions if isinstance(node, Node)}
+    assert "platform_localization_node" in names
+    assert "target_metric_node" in names
+    assert "apriltag_node" not in names
+    assert "fixed_reference_node" not in names
+    context.launch_configurations["allow_approximate_calibration"] = "false"
+    with pytest.raises(ValueError, match="platform requires measured"):
         module.build_actions(context)

@@ -1,0 +1,18 @@
+Verified disarmed heartbeat
+Original bridge restarted
+Traceback (most recent call last):
+  File "/home/pi/nexus_readonly_runs/2026-09-08_platform_acceptance/capture_stationary.py", line 37, in <module>
+    f.write(json.dumps(dict(role=role,elapsed_s=elapsed,receive_unix_ns=time.time_ns(),message=msg.to_dict()))+'\n')
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/json/__init__.py", line 231, in dumps
+    return _default_encoder.encode(obj)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/json/encoder.py", line 200, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/json/encoder.py", line 258, in iterencode
+    return _iterencode(o, 0)
+           ^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/json/encoder.py", line 180, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+TypeError: Object of type bytearray is not JSON serializable

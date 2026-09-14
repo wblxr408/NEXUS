@@ -1,0 +1,76 @@
+TAP version 13
+# Subtest: dual ownership separates platform, selected target, and historical positions
+ok 1 - dual ownership separates platform, selected target, and historical positions
+  ---
+  duration_ms: 3.368745
+  type: 'test'
+  ...
+# Subtest: nanosecond order, invalid snapshots and explicit session reset
+ok 2 - nanosecond order, invalid snapshots and explicit session reset
+  ---
+  duration_ms: 0.423953
+  type: 'test'
+  ...
+# Subtest: ROS snapshot gateway subscribes read-only and times out on transport silence
+ok 3 - ROS snapshot gateway subscribes read-only and times out on transport silence
+  ---
+  duration_ms: 1.31317
+  type: 'test'
+  ...
+# Subtest: CSS scaling, reverse drag and bounds stay in original image coordinates
+ok 4 - CSS scaling, reverse drag and bounds stay in original image coordinates
+  ---
+  duration_ms: 1.535982
+  type: 'test'
+  ...
+# Subtest: exact nanosecond integer and explicit static reference, no assumed class
+ok 5 - exact nanosecond integer and explicit static reference, no assumed class
+  ---
+  duration_ms: 1.487279
+  type: 'test'
+  ...
+# Subtest: raw images reject corrupt payloads and support padded rows
+ok 6 - raw images reject corrupt payloads and support padded rows
+  ---
+  duration_ms: 0.715436
+  type: 'test'
+  ...
+# Subtest: freeze unsubscribes and publishes unchanged original image only on explicit confirmation
+ok 7 - freeze unsubscribes and publishes unchanged original image only on explicit confirmation
+  ---
+  duration_ms: 6.344225
+  type: 'test'
+  ...
+# Subtest: backend rejection and disconnect are never successful registrations
+ok 8 - backend rejection and disconnect are never successful registrations
+  ---
+  duration_ms: 0.550404
+  type: 'test'
+  ...
+# Subtest: camera cancellation and rosbridge permissions errors release pending operations
+ok 9 - camera cancellation and rosbridge permissions errors release pending operations
+  ---
+  duration_ms: 0.328884
+  type: 'test'
+  ...
+# Subtest: sensor receipt is separate from localization validity and browser arrival age
+ok 10 - sensor receipt is separate from localization validity and browser arrival age
+  ---
+  duration_ms: 0.410027
+  type: 'test'
+  ...
+# Subtest: rosbridge full-image fragments reassemble out of order without losing nanoseconds
+ok 11 - rosbridge full-image fragments reassemble out of order without losing nanoseconds
+  ---
+  duration_ms: 1.225844
+  type: 'test'
+  ...
+1..11
+# tests 11
+# suites 0
+# pass 11
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 89.440664

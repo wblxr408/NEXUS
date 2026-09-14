@@ -1,0 +1,69 @@
+Starting >>> nexus_fusion_localization
+-- Found ament_cmake: 1.3.14 (/opt/ros/humble/share/ament_cmake/cmake)
+-- Override CMake install command with custom implementation using symlinks instead of copying resources
+-- Found ament_cmake_pytest: 1.3.14 (/opt/ros/humble/share/ament_cmake_pytest/cmake)
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /root/nexus_workspace/NEXUS/code/ros2_ws/build/nexus_fusion_localization
+Built target ament_cmake_python_symlink_nexus_fusion_localization
+Built target ament_cmake_python_symlink_nexus_fusion_localization_setup
+running egg_info
+writing nexus_fusion_localization.egg-info/PKG-INFO
+writing dependency_links to nexus_fusion_localization.egg-info/dependency_links.txt
+writing top-level names to nexus_fusion_localization.egg-info/top_level.txt
+reading manifest file 'nexus_fusion_localization.egg-info/SOURCES.txt'
+writing manifest file 'nexus_fusion_localization.egg-info/SOURCES.txt'
+Built target ament_cmake_python_build_nexus_fusion_localization_egg
+-- Install configuration: ""
+-- Execute custom install script
+-- Up-to-date symlink: /root/nexus_workspace/NEXUS/code/ros2_ws/install/nexus_fusion_localization/share/nexus_fusion_localization/environment/pythonpath.sh
+-- Up-to-date symlink: /root/nexus_workspace/NEXUS/code/ros2_ws/install/nexus_fusion_localization/share/nexus_fusion_localization/environment/pythonpath.dsv
+-- Up-to-date symlink: /root/nexus_workspace/NEXUS/code/ros2_ws/install/nexus_fusion_localization/local/lib/python3.10/dist-packages/nexus_fusion_localization-0.1.0-py3.10.egg-info/PKG-INFO
+-- Up-to-date symlink: /root/nexus_workspace/NEXUS/code/ros2_ws/install/nexus_fusion_localization/local/lib/python3.10/dist-packages/nexus_fusion_localization-0.1.0-py3.10.egg-info/SOURCES.txt
+-- Up-to-date symlink: /root/nexus_workspace/NEXUS/code/ros2_ws/install/nexus_fusion_localization/local/lib/python3.10/dist-packages/nexus_fusion_localization-0.1.0-py3.10.egg-info/dependency_links.txt
+-- Up-to-date symlink: /root/nexus_workspace/NEXUS/code/ros2_ws/install/nexus_fusion_localization/local/lib/python3.10/dist-packages/nexus_fusion_localization-0.1.0-py3.10.egg-info/top_level.txt
+-- Up-to-date symlink: /root/nexus_workspace/NEXUS/code/ros2_ws/install/nexus_fusion_localization/local/lib/python3.10/dist-packages/nexus_fusion_localization/__init__.py
+-- Up-to-date symlink: /root/nexus_workspace/NEXUS/code/ros2_ws/install/nexus_fusion_localization/local/lib/python3.10/dist-packages/nexus_fusion_localization/fusion.py
+-- Up-to-date symlink: /root/nexus_workspace/NEXUS/code/ros2_ws/install/nexus_fusion_localization/local/lib/python3.10/dist-packages/nexus_fusion_localization/fusion_node.py
+-- Up-to-date symlink: /root/nexus_workspace/NEXUS/code/ros2_ws/install/nexus_fusion_localization/local/lib/python3.10/dist-packages/nexus_fusion_localization/imu_preintegration.py
+-- Up-to-date symlink: /root/nexus_workspace/NEXUS/code/ros2_ws/install/nexus_fusion_localization/local/lib/python3.10/dist-packages/nexus_fusion_localization/kinematic_filter.py
+-- Up-to-date symlink: /root/nexus_workspace/NEXUS/code/ros2_ws/install/nexus_fusion_localization/local/lib/python3.10/dist-packages/nexus_fusion_localization/marginalization.py
+-- Up-to-date symlink: /root/nexus_workspace/NEXUS/code/ros2_ws/install/nexus_fusion_localization/local/lib/python3.10/dist-packages/nexus_fusion_localization/platform_measurements.py
+-- Up-to-date symlink: /root/nexus_workspace/NEXUS/code/ros2_ws/install/nexus_fusion_localization/local/lib/python3.10/dist-packages/nexus_fusion_localization/platform_node.py
+-- Up-to-date symlink: /root/nexus_workspace/NEXUS/code/ros2_ws/install/nexus_fusion_localization/local/lib/python3.10/dist-packages/nexus_fusion_localization/platform_state.py
+-- Up-to-date symlink: /root/nexus_workspace/NEXUS/code/ros2_ws/install/nexus_fusion_localization/local/lib/python3.10/dist-packages/nexus_fusion_localization/platform_window.py
+-- Up-to-date symlink: /root/nexus_workspace/NEXUS/code/ros2_ws/install/nexus_fusion_localization/local/lib/python3.10/dist-packages/nexus_fusion_localization/reliability.py
+-- Up-to-date symlink: /root/nexus_workspace/NEXUS/code/ros2_ws/install/nexus_fusion_localization/local/lib/python3.10/dist-packages/nexus_fusion_localization/robust_filter.py
+-- Up-to-date symlink: /root/nexus_workspace/NEXUS/code/ros2_ws/install/nexus_fusion_localization/local/lib/python3.10/dist-packages/nexus_fusion_localization/target_kinematic_node.py
+-- Up-to-date symlink: /root/nexus_workspace/NEXUS/code/ros2_ws/install/nexus_fusion_localization/local/lib/python3.10/dist-packages/nexus_fusion_localization/train_reliability.py
+-- Up-to-date symlink: /root/nexus_workspace/NEXUS/code/ros2_ws/install/nexus_fusion_localization/share/nexus_fusion_localization/config/.gitkeep
+-- Up-to-date symlink: /root/nexus_workspace/NEXUS/code/ros2_ws/install/nexus_fusion_localization/share/nexus_fusion_localization/config/default.yaml
+-- Up-to-date symlink: /root/nexus_workspace/NEXUS/code/ros2_ws/install/nexus_fusion_localization/share/nexus_fusion_localization/launch/.gitkeep
+-- Up-to-date symlink: /root/nexus_workspace/NEXUS/code/ros2_ws/install/nexus_fusion_localization/share/nexus_fusion_localization/launch/__pycache__/fusion_localization.launch.cpython-310.pyc
+-- Up-to-date symlink: /root/nexus_workspace/NEXUS/code/ros2_ws/install/nexus_fusion_localization/share/nexus_fusion_localization/launch/fusion_localization.launch.py
+-- Up-to-date symlink: /root/nexus_workspace/NEXUS/code/ros2_ws/install/nexus_fusion_localization/share/nexus_fusion_localization/launch/platform_localization.launch.py
+-- Up-to-date symlink: /root/nexus_workspace/NEXUS/code/ros2_ws/install/nexus_fusion_localization/share/nexus_fusion_localization/launch/target_kinematic_fusion.launch.py
+-- Up-to-date symlink: /root/nexus_workspace/NEXUS/code/ros2_ws/install/nexus_fusion_localization/share/ament_index/resource_index/package_run_dependencies/nexus_fusion_localization
+-- Up-to-date symlink: /root/nexus_workspace/NEXUS/code/ros2_ws/install/nexus_fusion_localization/share/ament_index/resource_index/parent_prefix_path/nexus_fusion_localization
+-- Up-to-date symlink: /root/nexus_workspace/NEXUS/code/ros2_ws/install/nexus_fusion_localization/share/nexus_fusion_localization/environment/ament_prefix_path.sh
+-- Up-to-date symlink: /root/nexus_workspace/NEXUS/code/ros2_ws/install/nexus_fusion_localization/share/nexus_fusion_localization/environment/ament_prefix_path.dsv
+-- Up-to-date symlink: /root/nexus_workspace/NEXUS/code/ros2_ws/install/nexus_fusion_localization/share/nexus_fusion_localization/environment/path.sh
+-- Up-to-date symlink: /root/nexus_workspace/NEXUS/code/ros2_ws/install/nexus_fusion_localization/share/nexus_fusion_localization/environment/path.dsv
+-- Up-to-date symlink: /root/nexus_workspace/NEXUS/code/ros2_ws/install/nexus_fusion_localization/share/nexus_fusion_localization/local_setup.bash
+-- Up-to-date symlink: /root/nexus_workspace/NEXUS/code/ros2_ws/install/nexus_fusion_localization/share/nexus_fusion_localization/local_setup.sh
+-- Up-to-date symlink: /root/nexus_workspace/NEXUS/code/ros2_ws/install/nexus_fusion_localization/share/nexus_fusion_localization/local_setup.zsh
+-- Up-to-date symlink: /root/nexus_workspace/NEXUS/code/ros2_ws/install/nexus_fusion_localization/share/nexus_fusion_localization/local_setup.dsv
+-- Symlinking: /root/nexus_workspace/NEXUS/code/ros2_ws/install/nexus_fusion_localization/share/nexus_fusion_localization/package.dsv
+-- Up-to-date symlink: /root/nexus_workspace/NEXUS/code/ros2_ws/install/nexus_fusion_localization/share/ament_index/resource_index/packages/nexus_fusion_localization
+-- Up-to-date symlink: /root/nexus_workspace/NEXUS/code/ros2_ws/install/nexus_fusion_localization/share/nexus_fusion_localization/cmake/nexus_fusion_localizationConfig.cmake
+-- Up-to-date symlink: /root/nexus_workspace/NEXUS/code/ros2_ws/install/nexus_fusion_localization/share/nexus_fusion_localization/cmake/nexus_fusion_localizationConfig-version.cmake
+-- Up-to-date symlink: /root/nexus_workspace/NEXUS/code/ros2_ws/install/nexus_fusion_localization/share/nexus_fusion_localization/package.xml
+Listing '/root/nexus_workspace/NEXUS/code/ros2_ws/install/nexus_fusion_localization/local/lib/python3.10/dist-packages/nexus_fusion_localization'...
+Compiling '/root/nexus_workspace/NEXUS/code/ros2_ws/install/nexus_fusion_localization/local/lib/python3.10/dist-packages/nexus_fusion_localization/platform_node.py'...
+-- Up-to-date: /root/nexus_workspace/NEXUS/code/ros2_ws/install/nexus_fusion_localization/lib/nexus_fusion_localization/fusion_localization_node
+-- Up-to-date: /root/nexus_workspace/NEXUS/code/ros2_ws/install/nexus_fusion_localization/lib/nexus_fusion_localization/train_reliability
+-- Installing: /root/nexus_workspace/NEXUS/code/ros2_ws/install/nexus_fusion_localization/lib/nexus_fusion_localization/platform_localization_node
+-- Up-to-date: /root/nexus_workspace/NEXUS/code/ros2_ws/install/nexus_fusion_localization/lib/nexus_fusion_localization/target_kinematic_fusion_node
+Finished <<< nexus_fusion_localization [3.30s]
+
+Summary: 1 package finished [3.85s]

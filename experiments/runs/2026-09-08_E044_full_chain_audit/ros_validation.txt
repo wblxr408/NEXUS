@@ -1,0 +1,21 @@
+Starting >>> nexus_fusion_localization
+Starting >>> nexus_viz_dashboard
+Finished <<< nexus_fusion_localization [0.65s]
+Starting >>> nexus_vision_localization
+Finished <<< nexus_viz_dashboard [1.59s]
+Finished <<< nexus_vision_localization [4.27s]
+Starting >>> nexus_bringup
+Finished <<< nexus_bringup [3.39s]
+
+Summary: 4 packages finished [8.77s]
+Starting >>> nexus_fusion_localization
+Starting >>> nexus_viz_dashboard
+Finished <<< nexus_viz_dashboard [2.67s]
+Finished <<< nexus_fusion_localization [7.89s]
+Starting >>> nexus_vision_localization
+Finished <<< nexus_vision_localization [12.1s]
+Starting >>> nexus_bringup
+Finished <<< nexus_bringup [8.27s]
+
+Summary: 4 packages finished [28.4s]
+Summary: 268 tests, 0 errors, 0 failures, 6 skipped

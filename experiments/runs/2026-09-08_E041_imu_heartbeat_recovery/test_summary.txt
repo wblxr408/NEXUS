@@ -1,0 +1,10 @@
+1/7 Test #1: control_packets ..................   Passed    0.17 sec
+2/7 Test #2: cppcheck .........................   Passed    0.30 sec
+3/7 Test #3: flake8 ...........................   Passed    0.35 sec
+4/7 Test #4: lint_cmake .......................   Passed    0.19 sec
+5/7 Test #5: pep257 ...........................   Passed    0.30 sec
+6/7 Test #6: uncrustify .......................***Failed   14.80 sec
+7/7 Test #7: xmllint ..........................***Failed    0.33 sec
+71% tests passed, 2 tests failed out of 7
+Summary: 1 package finished [22.7s]
+Summary: 321 tests, 0 errors, 157 failures, 155 skipped

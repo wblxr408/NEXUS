@@ -23,12 +23,15 @@ from nexus_vision_localization.reference_geometry import pose_covariance, rigid_
 from nexus_vision_localization.target_multiview import BearingObservation, MultiviewConfig, solve_multiview
 
 
-def load_target_calibration(path, allow_test=False):
+def load_target_calibration(path, allow_test=False, allow_approximate=False):
     with Path(path).open(encoding="utf-8") as stream:
         data = yaml.safe_load(stream)
     if not isinstance(data, dict) or data.get("schema_version") != 1 or not data.get("calibration_id"):
         raise ValueError("target calibration requires schema_version=1 and calibration_id")
-    if data.get("calibration_status") != "measured" and not (allow_test and data.get("calibration_status") == "synthetic_test"):
+    approximate = allow_approximate and data.get("calibration_status") == "experimental_approximation"
+    if approximate and not data.get("approximations"):
+        raise ValueError("approximate calibration must document approximations")
+    if data.get("calibration_status") != "measured" and not (allow_test and data.get("calibration_status") == "synthetic_test") and not approximate:
         raise ValueError("target geometry requires measured calibration or explicit synthetic-test opt-in")
     if not data.get("camera_frame") or not isinstance(data.get("image_rectified"), bool):
         raise ValueError("target calibration requires optical frame and image_rectified")
@@ -43,14 +46,15 @@ def load_target_calibration(path, allow_test=False):
 class TargetMetricNode(Node):
     def __init__(self):
         super().__init__("nexus_target_metric")
-        for name, default in {"calibration_file": "", "allow_test_calibration": False,
+        for name, default in {"calibration_file": "", "allow_test_calibration": False, "allow_approximate_calibration": False,
                               "camera_info_topic": "/camera/camera_info", "platform_topic": "/nexus/platform/odom",
                               "tracks_topic": "/nexus/vision/target_tracks", "max_age_ms": 300.,
                               "window_size": 12, "window_duration_s": 3., "queue_size": 8,
-                              "maximum_tracks": 64}.items():
+                              "maximum_tracks": 64, "vibration_topic": "/nexus/optimization/vibration_quality"}.items():
             self.declare_parameter(name, default)
         self.calibration = load_target_calibration(self.get_parameter("calibration_file").value,
-                                                   self.get_parameter("allow_test_calibration").value)
+                                                   self.get_parameter("allow_test_calibration").value,
+                                                   self.get_parameter("allow_approximate_calibration").value)
         self.geometry = MultiviewConfig(**self.calibration.get("target_geometry", {}))
         self.timeline = PoseTimeline(**self.calibration.get("target_pose_timeline", {}))
         self._max_age_ns = int(self.get_parameter("max_age_ms").value * 1e6)
@@ -61,6 +65,7 @@ class TargetMetricNode(Node):
         if min(self._max_age_ns, self._duration_ns, self._queue_size, self._maximum_tracks) <= 0 or self._window_size < 4:
             raise ValueError("invalid metric target window/queue/timing configuration")
         self._camera = None
+        self._vibration = None
         self._pending, self._windows, self._latest = {}, {}, {}
         self._last_input_ns, self._last_processed_ns = 0, 0
         self._publisher = self.create_publisher(TargetKinematicState, "/nexus/vision/target_kinematics", 20)
@@ -69,6 +74,7 @@ class TargetMetricNode(Node):
         self.create_subscription(CameraInfo, self.get_parameter("camera_info_topic").value, self._camera_callback, qos_profile_sensor_data)
         self.create_subscription(Odometry, self.get_parameter("platform_topic").value, self._platform_callback, 100)
         self.create_subscription(String, self.get_parameter("tracks_topic").value, self._tracks_callback, 20)
+        self.create_subscription(String, self.get_parameter("vibration_topic").value, self._vibration_callback, 20)
         self.create_timer(.01, self._drain)
 
     @staticmethod
@@ -150,6 +156,17 @@ class TargetMetricNode(Node):
             size = packet["image_size_wh"]
             if len(size) != 2 or any(not isinstance(v, int) or v < 8 for v in size):
                 raise ValueError("target feature image dimensions invalid")
+            image_quality = float(packet.get("image_quality", 1.))
+            if not np.isfinite(image_quality) or not 0. <= image_quality <= 1.:
+                raise ValueError("target feature image quality invalid")
+            exposure_sigma = float(packet.get("exposure_rotation_sigma_rad", 0.))
+            if not np.isfinite(exposure_sigma) or exposure_sigma < 0.:
+                raise ValueError("target exposure rotation sigma invalid")
+            # Keep quality bound to the exact image packet, not to the latest
+            # wall-clock quality topic, so queued observations cannot inherit a
+            # later frame's sharpness estimate.
+            packet = {**packet, "tracks": [{**track, "image_quality": image_quality,
+                                              "exposure_rotation_sigma_rad": exposure_sigma} for track in packet["tracks"]]}
             self._last_input_ns = stamp
             self._pending[stamp] = packet
             while len(self._pending) > self._queue_size:
@@ -159,6 +176,17 @@ class TargetMetricNode(Node):
                     self._invalid(track["track_id"], old, "target_geometry_queue_full")
         except (TypeError, ValueError, KeyError) as error:
             self._status(str(error), stamp)
+
+    def _vibration_callback(self, message):
+        try:
+            packet = json.loads(message.data)
+            quality, stamp = float(packet["vibration_quality"]), packet["sample_timestamp_ns"]
+            if (packet.get("schema_version") != 1 or packet.get("source") != "imu_window" or not isinstance(stamp, int)
+                    or not 0. <= quality <= 1. or stamp <= 0):
+                raise ValueError("invalid vibration quality packet")
+            self._vibration = stamp, quality
+        except (TypeError, ValueError, KeyError, json.JSONDecodeError):
+            return
 
     def _empty_message(self, identifier, stamp, reason):
         output = TargetKinematicState()
@@ -203,6 +231,13 @@ class TargetMetricNode(Node):
         if model != "static":
             raise ValueError("target_motion_model_must_be_static")
         features = track["feature_observations"]
+        # Older recorded pixel-track packets did not carry a reference count.
+        # They remain geometrically usable; only their occlusion estimate is
+        # conservatively unavailable (represented here as zero evidence).
+        reference_feature_count = track.get("reference_feature_count", max(len(features), self.geometry.minimum_views))
+        if (not isinstance(reference_feature_count, int) or isinstance(reference_feature_count, bool)
+                or reference_feature_count < len(features) or reference_feature_count < self.geometry.minimum_views):
+            raise ValueError("target_reference_feature_count_invalid")
         ids = [feature["feature_id"] for feature in features]
         if len(ids) != len(set(ids)):
             raise ValueError("target_feature_ids_duplicated")
@@ -219,7 +254,21 @@ class TargetMetricNode(Node):
         key = (reference, anchor, model)
         previous_key, history = self._windows.get(identifier, (None, []))
         history = [item for item in history if stamp - item.platform.stamp_ns <= self._duration_ns] if previous_key == key else []
-        observation = BearingObservation(platform, point, self._camera[1], self._camera[2], self.calibration["pixel_sigma_px"])
+        vibration_quality = 1.
+        if self._vibration is not None and 0 <= stamp - self._vibration[0] <= self._max_age_ns:
+            vibration_quality = self._vibration[1]
+        # A vibration estimate never claims a sharper image; it can only
+        # inflate the observation uncertainty supplied to robust geometry.
+        blur_metric = float(track.get("image_quality", 1.))
+        exposure_rotation_sigma_rad = float(track.get("exposure_rotation_sigma_rad", 0.))
+        if not np.isfinite(blur_metric) or not 0 <= blur_metric <= 1 or not np.isfinite(exposure_rotation_sigma_rad) or exposure_rotation_sigma_rad < 0:
+            raise ValueError("target_image_quality_invalid")
+        # Blur and vibration only reduce visual influence.  No quality path can
+        # make an observation more certain than calibrated pixel_sigma_px.
+        focal_px = float(np.sqrt(self._camera[1][0, 0] * self._camera[1][1, 1]))
+        pixel_sigma = self.calibration["pixel_sigma_px"] * (1. + 4. * (1. - vibration_quality) + 2. * (1. - blur_metric))
+        pixel_sigma = float(np.hypot(pixel_sigma, focal_px * exposure_rotation_sigma_rad))
+        observation = BearingObservation(platform, point, self._camera[1], self._camera[2], pixel_sigma)
         pending = (history + [observation])[-self._window_size:]
         started = perf_counter()
         try:
@@ -252,7 +301,19 @@ class TargetMetricNode(Node):
         output.confidence = float(confidence * len(result.inlier_stamps) / len(pending))
         quality = {"reprojection_error_px": result.reprojection_rmse_px,
                    "inlier_ratio": len(result.inlier_stamps) / len(pending),
+                   "identity_confidence": confidence,
+                   "visible_points": len(features),
+                   "occlusion_ratio": 1. - min(1., len(features) / reference_feature_count),
+                   "vibration_quality": vibration_quality,
+                   "blur_metric": blur_metric,
+                   "exposure_rotation_sigma_rad": exposure_rotation_sigma_rad,
                    "network_latency_s": (self.get_clock().now().nanoseconds - stamp) / 1e9}
+        # Online, bounded quality estimate for scheduling and operator
+        # diagnostics. It is not a replacement for the learned fusion model.
+        quality["outlier_probability"] = float(np.clip(
+            .45 * (1. - quality["inlier_ratio"])
+            + .35 * min(1., quality["reprojection_error_px"] / 4.)
+            + .20 * quality["occlusion_ratio"], 0., 1.))
         if result.velocity_mps is not None:
             quality["speed_mps"] = float(np.linalg.norm(result.velocity_mps))
         self._quality_publisher.publish(String(data=json.dumps({

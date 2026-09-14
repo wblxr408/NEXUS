@@ -1,0 +1,13 @@
+Starting >>> nexus_fusion_localization
+Finished <<< nexus_fusion_localization [0.70s]
+Starting >>> nexus_bringup
+Finished <<< nexus_bringup [1.99s]
+
+Summary: 2 packages finished [3.13s]
+Starting >>> nexus_fusion_localization
+Finished <<< nexus_fusion_localization [7.90s]
+Starting >>> nexus_bringup
+Finished <<< nexus_bringup [11.0s]
+
+Summary: 2 packages finished [19.1s]
+Summary: 273 tests, 0 errors, 0 failures, 6 skipped

@@ -1,3 +1,5 @@
+import { installTargetSelection } from "../components/target_selection.js";
+import { renderInputStatus } from "../components/input_status.js";
 import { renderDualLocalization } from "../components/dual_localization.js";
 import { dashboardLayout } from "../components/dashboard_layout.js";
 import { createDashboardStore } from "../features/telemetry/dashboard_store.js";
@@ -11,8 +13,9 @@ const store = createDashboardStore();
 root.innerHTML = dashboardLayout();
 document.getElementById("dual-target-select").addEventListener("change", (event) => store.selectTarget(event.target.value));
 installNexusAPI(store);
-installRosbridgeGateway(store);
-installCarlaStatusGateway(store);
+const gateway = installRosbridgeGateway(store);
+installTargetSelection(gateway.registration, store);
+if (new URLSearchParams(window.location.search).get("legacy") === "carla") installCarlaStatusGateway(store);
 
 const byId = (id) => document.getElementById(id);
 const setText = (id, value) => { const element = byId(id); if (element) element.textContent = value; };
@@ -20,17 +23,23 @@ const ageText = (value) => value === null || value === undefined ? "unknown" : `
 const metricText = (value, suffix = " m") => value === null || value === undefined ? "—" : `${formatNumber(value)}${suffix}`;
 let renderedCameraImage = null;
 let renderedCarlaThumbnail = null;
+let cameraGeneration = 0;
 
 function renderCamera(imageData) {
   const canvas = byId("cam-canvas");
   const empty = byId("camera-empty");
-  if (!imageData || imageData === renderedCameraImage) {
-    empty.hidden = Boolean(renderedCameraImage);
-    return;
+  if (!imageData) {
+    cameraGeneration += 1; renderedCameraImage = null;
+    canvas.getContext("2d").clearRect(0, 0, canvas.width, canvas.height); empty.hidden = false; return;
   }
+  if (imageData === renderedCameraImage) return;
+  const generation = ++cameraGeneration;
   if (typeof imageData !== "string") return;
   const image = new Image();
   image.onload = () => {
+    if (generation !== cameraGeneration) return;
+    canvas.width = image.naturalWidth; canvas.height = image.naturalHeight;
+    canvas.parentElement.style.aspectRatio = image.naturalWidth + " / " + image.naturalHeight;
     const context = canvas.getContext("2d");
     context.drawImage(image, 0, 0, canvas.width, canvas.height);
     renderedCameraImage = imageData;
@@ -118,6 +127,7 @@ function renderLogs(logs) {
 
 function render(state) {
   renderDualLocalization(state);
+  renderInputStatus(state.inputs);
   setText("ui-mode", state.mode.replace("_", " "));
   setText("ui-run-id", state.runId || "UNREGISTERED");
   setText("ui-target-id", state.targetId || "未检测到目标");
@@ -152,7 +162,8 @@ function render(state) {
   renderAlgorithms(state.algorithms); renderLogs(state.logs);
   const health = [["uwb", "UWB"], ["vision", "vis"], ["fusion", "fus"]];
   health.forEach(([key, suffix]) => {
-    setText(`ui-h-${suffix}`, state.health[key]?.status || "UNKNOWN");
+    const input = state.inputs[key === "vision" ? "features" : key];
+    setText("ui-h-" + suffix, input ? (input.disconnected ? "DISCONNECTED" : input.stale ? "STALE" : input.accepted ? "RECEIVING" : "INVALID") : state.health[key]?.status || "UNKNOWN");
     setText(`ui-h-${suffix}-age`, key === "fusion" ? `Δt ${ageText(state.health[key]?.pairingDelta).replace(" s", "")}` : ageText(state.health[key]?.age));
   });
   setText("ui-h-bridge", state.health.bridge?.status || "UNKNOWN");

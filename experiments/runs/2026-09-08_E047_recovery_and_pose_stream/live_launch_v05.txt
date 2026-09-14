@@ -1,0 +1,143 @@
+[INFO] [launch]: All log files can be found below /root/.ros/log/2026-09-08-19-00-45-086809-wblxr-25961
+[INFO] [launch]: Default logging verbosity is set to INFO
+[INFO] [camera_file_node.py-1]: process started with pid [25981]
+[INFO] [fcu_clock_ingress_node.py-2]: process started with pid [25983]
+[INFO] [range_smoothing_node.py-3]: process started with pid [25985]
+[INFO] [approximate_initial_pose_node-4]: process started with pid [25987]
+[INFO] [platform_localization_node-5]: process started with pid [25989]
+[INFO] [object_detection_node-6]: process started with pid [25991]
+[INFO] [superpoint_motion_node-7]: process started with pid [25993]
+[INFO] [target_metric_node-8]: process started with pid [25995]
+[INFO] [target_kinematic_fusion_node-9]: process started with pid [25997]
+[INFO] [adaptive_observation_node-10]: process started with pid [25999]
+[INFO] [localization_dashboard_node-11]: process started with pid [26001]
+[INFO] [rosbridge_websocket-12]: process started with pid [26003]
+[INFO] [python3-13]: process started with pid [26005]
+[rosbridge_websocket-12] [WARN] [1788865249.620052436] [rosbridge_websocket]: The 'default_call_service_timeout' parameter is currently set to 0.0, which means service calls will block indefinitely if no response is received. Please note that in the Jazzy and later releases, the default value for this parameter will be updated to 5.0 seconds.
+[rosbridge_websocket-12] [WARN] [1788865249.620702290] [rosbridge_websocket]: The 'call_services_in_new_thread' parameter is currently set to False, which means service calls will block the main thread. Please note that in the Jazzy and later releases, the default value for this parameter will be updated to True.
+[rosbridge_websocket-12] [WARN] [1788865249.621064227] [rosbridge_websocket]: The 'send_action_goals_in_new_thread' parameter is currently set to False, which means sending action goals will block the main thread. Please note that in the Jazzy and later releases, the default value for this parameter will be updated to True.
+[rosbridge_websocket-12] [INFO] [1788865249.628625992] [rosbridge_websocket]: Rosbridge WebSocket server started on port 9091
+[WARNING] [launch]: user interrupted with ctrl-c (SIGINT)
+[INFO] [python3-13]: sending signal 'SIGINT' to process[python3-13]
+[INFO] [rosbridge_websocket-12]: sending signal 'SIGINT' to process[rosbridge_websocket-12]
+[INFO] [localization_dashboard_node-11]: sending signal 'SIGINT' to process[localization_dashboard_node-11]
+[INFO] [adaptive_observation_node-10]: sending signal 'SIGINT' to process[adaptive_observation_node-10]
+[INFO] [target_kinematic_fusion_node-9]: sending signal 'SIGINT' to process[target_kinematic_fusion_node-9]
+[INFO] [target_metric_node-8]: sending signal 'SIGINT' to process[target_metric_node-8]
+[INFO] [superpoint_motion_node-7]: sending signal 'SIGINT' to process[superpoint_motion_node-7]
+[INFO] [object_detection_node-6]: sending signal 'SIGINT' to process[object_detection_node-6]
+[INFO] [platform_localization_node-5]: sending signal 'SIGINT' to process[platform_localization_node-5]
+[INFO] [approximate_initial_pose_node-4]: sending signal 'SIGINT' to process[approximate_initial_pose_node-4]
+[INFO] [range_smoothing_node.py-3]: sending signal 'SIGINT' to process[range_smoothing_node.py-3]
+[INFO] [fcu_clock_ingress_node.py-2]: sending signal 'SIGINT' to process[fcu_clock_ingress_node.py-2]
+[INFO] [camera_file_node.py-1]: sending signal 'SIGINT' to process[camera_file_node.py-1]
+[python3-13] Serving HTTP on 127.0.0.1 port 8766 (http://127.0.0.1:8766/) ...
+[python3-13] 
+[python3-13] Keyboard interrupt received, exiting.
+[fcu_clock_ingress_node.py-2] Traceback (most recent call last):
+[fcu_clock_ingress_node.py-2]   File "/root/nexus_workspace/NEXUS/code/ros2_ws/install/nexus_pi_readonly_ingress/lib/nexus_pi_readonly_ingress/fcu_clock_ingress_node.py", line 72, in <module>
+[fcu_clock_ingress_node.py-2]     main()
+[fcu_clock_ingress_node.py-2]   File "/root/nexus_workspace/NEXUS/code/ros2_ws/install/nexus_pi_readonly_ingress/lib/nexus_pi_readonly_ingress/fcu_clock_ingress_node.py", line 64, in main
+[fcu_clock_ingress_node.py-2]     rclpy.spin(node)
+[fcu_clock_ingress_node.py-2]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/__init__.py", line 229, in spin
+[fcu_clock_ingress_node.py-2]     executor.spin_once()
+[fcu_clock_ingress_node.py-2]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 808, in spin_once
+[fcu_clock_ingress_node.py-2]     self._spin_once_impl(timeout_sec)
+[fcu_clock_ingress_node.py-2]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 797, in _spin_once_impl
+[fcu_clock_ingress_node.py-2]     handler, entity, node = self.wait_for_ready_callbacks(timeout_sec=timeout_sec)
+[fcu_clock_ingress_node.py-2]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 780, in wait_for_ready_callbacks
+[fcu_clock_ingress_node.py-2]     return next(self._cb_iter)
+[fcu_clock_ingress_node.py-2]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 677, in _wait_for_ready_callbacks
+[fcu_clock_ingress_node.py-2]     wait_set.wait(timeout_nsec)
+[fcu_clock_ingress_node.py-2] KeyboardInterrupt
+[INFO] [python3-13]: process has finished cleanly [pid 26005]
+[rosbridge_websocket-12] registered capabilities (classes):
+[rosbridge_websocket-12]  - <class 'rosbridge_library.capabilities.advertise.Advertise'>
+[rosbridge_websocket-12]  - <class 'rosbridge_library.capabilities.publish.Publish'>
+[rosbridge_websocket-12]  - <class 'rosbridge_library.capabilities.subscribe.Subscribe'>
+[rosbridge_websocket-12]  - <class 'rosbridge_library.capabilities.defragmentation.Defragment'>
+[rosbridge_websocket-12]  - <class 'rosbridge_library.capabilities.advertise_service.AdvertiseService'>
+[rosbridge_websocket-12]  - <class 'rosbridge_library.capabilities.call_service.CallService'>
+[rosbridge_websocket-12]  - <class 'rosbridge_library.capabilities.service_response.ServiceResponse'>
+[rosbridge_websocket-12]  - <class 'rosbridge_library.capabilities.unadvertise_service.UnadvertiseService'>
+[rosbridge_websocket-12]  - <class 'rosbridge_library.capabilities.advertise_action.AdvertiseAction'>
+[rosbridge_websocket-12]  - <class 'rosbridge_library.capabilities.action_feedback.ActionFeedback'>
+[rosbridge_websocket-12]  - <class 'rosbridge_library.capabilities.action_result.ActionResult'>
+[rosbridge_websocket-12]  - <class 'rosbridge_library.capabilities.send_action_goal.SendActionGoal'>
+[rosbridge_websocket-12]  - <class 'rosbridge_library.capabilities.unadvertise_action.UnadvertiseAction'>
+[rosbridge_websocket-12] Exiting due to SIGINT
+[localization_dashboard_node-11] Traceback (most recent call last):
+[localization_dashboard_node-11]   File "/root/nexus_workspace/NEXUS/code/ros2_ws/install/nexus_viz_dashboard/lib/nexus_viz_dashboard/localization_dashboard_node", line 201, in <module>
+[localization_dashboard_node-11]     main()
+[localization_dashboard_node-11]   File "/root/nexus_workspace/NEXUS/code/ros2_ws/install/nexus_viz_dashboard/lib/nexus_viz_dashboard/localization_dashboard_node", line 197, in main
+[localization_dashboard_node-11]     rclpy.shutdown()
+[localization_dashboard_node-11]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/__init__.py", line 130, in shutdown
+[localization_dashboard_node-11]     _shutdown(context=context)
+[localization_dashboard_node-11]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/utilities.py", line 58, in shutdown
+[range_smoothing_node.py-3] Traceback (most recent call last):
+[range_smoothing_node.py-3]   File "/root/nexus_workspace/NEXUS/code/ros2_ws/install/nexus_pi_readonly_ingress/lib/nexus_pi_readonly_ingress/range_smoothing_node.py", line 57, in main
+[range_smoothing_node.py-3]     rclpy.spin(node)
+[range_smoothing_node.py-3]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/__init__.py", line 229, in spin
+[range_smoothing_node.py-3]     executor.spin_once()
+[range_smoothing_node.py-3]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 808, in spin_once
+[range_smoothing_node.py-3]     self._spin_once_impl(timeout_sec)
+[range_smoothing_node.py-3]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 797, in _spin_once_impl
+[range_smoothing_node.py-3]     handler, entity, node = self.wait_for_ready_callbacks(timeout_sec=timeout_sec)
+[range_smoothing_node.py-3]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 780, in wait_for_ready_callbacks
+[range_smoothing_node.py-3]     return next(self._cb_iter)
+[range_smoothing_node.py-3]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 677, in _wait_for_ready_callbacks
+[range_smoothing_node.py-3]     wait_set.wait(timeout_nsec)
+[range_smoothing_node.py-3] KeyboardInterrupt
+[range_smoothing_node.py-3] 
+[range_smoothing_node.py-3] During handling of the above exception, another exception occurred:
+[range_smoothing_node.py-3] 
+[range_smoothing_node.py-3] Traceback (most recent call last):
+[range_smoothing_node.py-3]   File "/root/nexus_workspace/NEXUS/code/ros2_ws/install/nexus_pi_readonly_ingress/lib/nexus_pi_readonly_ingress/range_smoothing_node.py", line 64, in <module>
+[range_smoothing_node.py-3]     main()
+[range_smoothing_node.py-3]   File "/root/nexus_workspace/NEXUS/code/ros2_ws/install/nexus_pi_readonly_ingress/lib/nexus_pi_readonly_ingress/range_smoothing_node.py", line 60, in main
+[localization_dashboard_node-11]     return context.shutdown()
+[localization_dashboard_node-11]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/context.py", line 102, in shutdown
+[localization_dashboard_node-11]     self.__context.shutdown()
+[localization_dashboard_node-11] rclpy._rclpy_pybind11.RCLError: failed to shutdown: rcl_shutdown already called on the given context, at ./src/rcl/init.c:241
+[range_smoothing_node.py-3]     rclpy.shutdown()
+[range_smoothing_node.py-3]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/__init__.py", line 130, in shutdown
+[range_smoothing_node.py-3]     _shutdown(context=context)
+[range_smoothing_node.py-3]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/utilities.py", line 58, in shutdown
+[range_smoothing_node.py-3]     return context.shutdown()
+[range_smoothing_node.py-3]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/context.py", line 102, in shutdown
+[range_smoothing_node.py-3]     self.__context.shutdown()
+[range_smoothing_node.py-3] rclpy._rclpy_pybind11.RCLError: failed to shutdown: rcl_shutdown already called on the given context, at ./src/rcl/init.c:241
+[approximate_initial_pose_node-4] Traceback (most recent call last):
+[approximate_initial_pose_node-4]   File "/root/nexus_workspace/NEXUS/code/ros2_ws/install/nexus_bringup/lib/nexus_bringup/approximate_initial_pose_node", line 162, in <module>
+[approximate_initial_pose_node-4]     main()
+[approximate_initial_pose_node-4]   File "/root/nexus_workspace/NEXUS/code/ros2_ws/install/nexus_bringup/lib/nexus_bringup/approximate_initial_pose_node", line 154, in main
+[approximate_initial_pose_node-4]     rclpy.spin(node)
+[approximate_initial_pose_node-4]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/__init__.py", line 229, in spin
+[approximate_initial_pose_node-4]     executor.spin_once()
+[approximate_initial_pose_node-4]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 808, in spin_once
+[approximate_initial_pose_node-4]     self._spin_once_impl(timeout_sec)
+[approximate_initial_pose_node-4]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 805, in _spin_once_impl
+[approximate_initial_pose_node-4]     raise handler.exception()
+[approximate_initial_pose_node-4]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/task.py", line 272, in _execute_coroutine_step
+[approximate_initial_pose_node-4]     result = coro.send(None)
+[approximate_initial_pose_node-4]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 478, in handler
+[approximate_initial_pose_node-4]     arg = take_from_wait_list(entity)
+[approximate_initial_pose_node-4]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 400, in _take_subscription
+[approximate_initial_pose_node-4]     msg_info = sub.handle.take_message(sub.msg_type, sub.raw)
+[approximate_initial_pose_node-4] RuntimeError: Unable to convert call argument to Python object (compile in debug mode for details)
+[ERROR] [fcu_clock_ingress_node.py-2]: process has died [pid 25983, exit code -2, cmd '/root/nexus_workspace/NEXUS/code/ros2_ws/install/nexus_pi_readonly_ingress/lib/nexus_pi_readonly_ingress/fcu_clock_ingress_node.py --ros-args --params-file /tmp/launch_params_8sd7obx6'].
+[INFO] [adaptive_observation_node-10]: process has finished cleanly [pid 25999]
+[INFO] [camera_file_node.py-1]: process has finished cleanly [pid 25981]
+[ERROR] [localization_dashboard_node-11]: process has died [pid 26001, exit code 1, cmd '/root/nexus_workspace/NEXUS/code/ros2_ws/install/nexus_viz_dashboard/lib/nexus_viz_dashboard/localization_dashboard_node --ros-args --params-file /tmp/launch_params_odi9zqal'].
+[ERROR] [range_smoothing_node.py-3]: process has died [pid 25985, exit code 1, cmd '/root/nexus_workspace/NEXUS/code/ros2_ws/install/nexus_pi_readonly_ingress/lib/nexus_pi_readonly_ingress/range_smoothing_node.py --ros-args -r __node:=nexus_uwb_startup_statistics --params-file /tmp/launch_params_p_1no6z3 -r /nexus/uwb/ranges:=/nexus/pi/ranges_aligned'].
+[INFO] [rosbridge_websocket-12]: process has finished cleanly [pid 26003]
+[INFO] [target_metric_node-8]: process has finished cleanly [pid 25995]
+[INFO] [platform_localization_node-5]: process has finished cleanly [pid 25989]
+[INFO] [target_kinematic_fusion_node-9]: process has finished cleanly [pid 25997]
+[ERROR] [approximate_initial_pose_node-4]: process has died [pid 25987, exit code 1, cmd '/root/nexus_workspace/NEXUS/code/ros2_ws/install/nexus_bringup/lib/nexus_bringup/approximate_initial_pose_node --ros-args --params-file /tmp/launch_params_yff62syw'].
+[ERROR] [superpoint_motion_node-7]: process[superpoint_motion_node-7] failed to terminate '5' seconds after receiving 'SIGINT', escalating to 'SIGTERM'
+[ERROR] [object_detection_node-6]: process[object_detection_node-6] failed to terminate '5' seconds after receiving 'SIGINT', escalating to 'SIGTERM'
+[INFO] [superpoint_motion_node-7]: sending signal 'SIGTERM' to process[superpoint_motion_node-7]
+[INFO] [object_detection_node-6]: sending signal 'SIGTERM' to process[object_detection_node-6]
+[INFO] [superpoint_motion_node-7]: process has finished cleanly [pid 25993]
+[INFO] [object_detection_node-6]: process has finished cleanly [pid 25991]

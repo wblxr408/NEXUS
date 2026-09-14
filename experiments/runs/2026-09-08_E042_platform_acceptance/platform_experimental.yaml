@@ -1,0 +1,83 @@
+schema_version: 1
+calibration_id: e042_stationary_axes_user_approximation
+calibration_status: experimental_approximation
+map_frame: map
+body_frame: base_link
+approximations:
+- 'User authorized approximate lever arm: tag_body_m=[0,0,0], not surveyed.'
+- Short-run gyro offset is measured; accelerometer correction covers only gravity-axis
+  magnitude.
+- Bias random-walk values retain existing model defaults; long-run random walk is
+  not measured.
+- Initial map yaw uses vendor sign convention plus existing 9-degree map offset; absolute
+  heading accuracy unverified.
+- Tag height 0.12-0.14 m was an initial operator estimate, later explicitly uncertain;
+  replay seed z=0.13 m is not ground truth.
+imu:
+  frame_id: scaled_imu
+  rotation_body_imu:
+  - - 1.0
+    - 0.0
+    - 0.0
+  - - 0.0
+    - 1.0
+    - 0.0
+  - - 0.0
+    - 0.0
+    - 1.0
+  at_body_origin_or_compensated: true
+  initial_gyro_bias_rps:
+  - -0.00657826048617206
+  - -0.00099803062814162
+  - -0.018857323417888226
+  initial_accel_bias_mps2:
+  - -0.0007412951759168074
+  - -0.0003270151572756674
+  - 0.02253474059028482
+  noise:
+    accel_density: 0.0008882464218352233
+    gyro_density: 5.10054737605673e-05
+    accel_bias_walk: 0.001
+    gyro_bias_walk: 0.0001
+    maximum_gap_s: 0.05
+uwb:
+  tag_body_m:
+  - 0.0
+  - 0.0
+  - 0.0
+  anchors_map_m:
+    '1':
+    - 0.9
+    - -0.9
+    - 2.56
+    '2':
+    - 0.0
+    - 5.0
+    - 2.71
+    '3':
+    - 4.0
+    - 5.0
+    - 2.71
+    '4':
+    - 4.0
+    - 0.0
+    - 2.71
+  range_variance_m2:
+  - 0.0025
+  - 0.0025
+  - 0.0025
+  - 0.0025
+initial_velocity_sigma_mps: 0.1
+initial_accel_bias_sigma_mps2: 0.05
+initial_gyro_bias_sigma_rps: 0.002
+window:
+  window_size: 4
+  prediction_horizon_s: 1.5
+  kernel: huber
+  kernel_scale: 3.0
+  irls_iterations: 2
+map_yaw_offset_deg: 9.0
+operator_tag_height_interval_m:
+- 0.12
+- 0.14
+operator_tag_height_status: uncertain_operator_estimate

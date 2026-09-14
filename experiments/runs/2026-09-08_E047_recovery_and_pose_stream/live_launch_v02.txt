@@ -1,0 +1,123 @@
+[INFO] [launch]: All log files can be found below /root/.ros/log/2026-09-08-18-42-08-121003-wblxr-72906
+[INFO] [launch]: Default logging verbosity is set to INFO
+[INFO] [camera_file_node.py-1]: process started with pid [72926]
+[INFO] [range_smoothing_node.py-2]: process started with pid [72928]
+[INFO] [approximate_initial_pose_node-3]: process started with pid [72930]
+[INFO] [platform_localization_node-4]: process started with pid [72932]
+[INFO] [object_detection_node-5]: process started with pid [72934]
+[INFO] [superpoint_motion_node-6]: process started with pid [72936]
+[INFO] [target_metric_node-7]: process started with pid [72938]
+[INFO] [target_kinematic_fusion_node-8]: process started with pid [72940]
+[INFO] [adaptive_observation_node-9]: process started with pid [72942]
+[INFO] [localization_dashboard_node-10]: process started with pid [72944]
+[INFO] [rosbridge_websocket-11]: process started with pid [72946]
+[INFO] [python3-12]: process started with pid [72948]
+[rosbridge_websocket-11] [WARN] [1788864130.322723450] [rosbridge_websocket]: The 'default_call_service_timeout' parameter is currently set to 0.0, which means service calls will block indefinitely if no response is received. Please note that in the Jazzy and later releases, the default value for this parameter will be updated to 5.0 seconds.
+[rosbridge_websocket-11] [WARN] [1788864130.323352695] [rosbridge_websocket]: The 'call_services_in_new_thread' parameter is currently set to False, which means service calls will block the main thread. Please note that in the Jazzy and later releases, the default value for this parameter will be updated to True.
+[rosbridge_websocket-11] [WARN] [1788864130.323801021] [rosbridge_websocket]: The 'send_action_goals_in_new_thread' parameter is currently set to False, which means sending action goals will block the main thread. Please note that in the Jazzy and later releases, the default value for this parameter will be updated to True.
+[rosbridge_websocket-11] [INFO] [1788864130.363027506] [rosbridge_websocket]: Rosbridge WebSocket server started on port 9091
+[WARNING] [launch]: user interrupted with ctrl-c (SIGINT)
+[INFO] [python3-12]: sending signal 'SIGINT' to process[python3-12]
+[INFO] [rosbridge_websocket-11]: sending signal 'SIGINT' to process[rosbridge_websocket-11]
+[INFO] [localization_dashboard_node-10]: sending signal 'SIGINT' to process[localization_dashboard_node-10]
+[INFO] [adaptive_observation_node-9]: sending signal 'SIGINT' to process[adaptive_observation_node-9]
+[INFO] [target_kinematic_fusion_node-8]: sending signal 'SIGINT' to process[target_kinematic_fusion_node-8]
+[INFO] [target_metric_node-7]: sending signal 'SIGINT' to process[target_metric_node-7]
+[INFO] [superpoint_motion_node-6]: sending signal 'SIGINT' to process[superpoint_motion_node-6]
+[INFO] [object_detection_node-5]: sending signal 'SIGINT' to process[object_detection_node-5]
+[INFO] [platform_localization_node-4]: sending signal 'SIGINT' to process[platform_localization_node-4]
+[INFO] [approximate_initial_pose_node-3]: sending signal 'SIGINT' to process[approximate_initial_pose_node-3]
+[INFO] [range_smoothing_node.py-2]: sending signal 'SIGINT' to process[range_smoothing_node.py-2]
+[INFO] [camera_file_node.py-1]: sending signal 'SIGINT' to process[camera_file_node.py-1]
+[python3-12] Serving HTTP on 127.0.0.1 port 8766 (http://127.0.0.1:8766/) ...
+[python3-12] 
+[python3-12] Keyboard interrupt received, exiting.
+[target_kinematic_fusion_node-8] Exception ignored in: <function Future.__del__ at 0x70132426c430>
+[target_kinematic_fusion_node-8] Traceback (most recent call last):
+[target_kinematic_fusion_node-8]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/task.py", line 56, in __del__
+[target_kinematic_fusion_node-8]     if self._exception is not None and not self._exception_fetched:
+[target_kinematic_fusion_node-8] AttributeError: 'Task' object has no attribute '_exception'
+[INFO] [python3-12]: process has finished cleanly [pid 72948]
+[rosbridge_websocket-11] registered capabilities (classes):
+[rosbridge_websocket-11]  - <class 'rosbridge_library.capabilities.advertise.Advertise'>
+[rosbridge_websocket-11]  - <class 'rosbridge_library.capabilities.publish.Publish'>
+[rosbridge_websocket-11]  - <class 'rosbridge_library.capabilities.subscribe.Subscribe'>
+[rosbridge_websocket-11]  - <class 'rosbridge_library.capabilities.defragmentation.Defragment'>
+[rosbridge_websocket-11]  - <class 'rosbridge_library.capabilities.advertise_service.AdvertiseService'>
+[rosbridge_websocket-11]  - <class 'rosbridge_library.capabilities.call_service.CallService'>
+[rosbridge_websocket-11]  - <class 'rosbridge_library.capabilities.service_response.ServiceResponse'>
+[rosbridge_websocket-11]  - <class 'rosbridge_library.capabilities.unadvertise_service.UnadvertiseService'>
+[rosbridge_websocket-11]  - <class 'rosbridge_library.capabilities.advertise_action.AdvertiseAction'>
+[rosbridge_websocket-11]  - <class 'rosbridge_library.capabilities.action_feedback.ActionFeedback'>
+[rosbridge_websocket-11]  - <class 'rosbridge_library.capabilities.action_result.ActionResult'>
+[rosbridge_websocket-11]  - <class 'rosbridge_library.capabilities.send_action_goal.SendActionGoal'>
+[rosbridge_websocket-11]  - <class 'rosbridge_library.capabilities.unadvertise_action.UnadvertiseAction'>
+[rosbridge_websocket-11] Exiting due to SIGINT
+[approximate_initial_pose_node-3] Traceback (most recent call last):
+[approximate_initial_pose_node-3]   File "/root/nexus_workspace/NEXUS/code/ros2_ws/install/nexus_bringup/lib/nexus_bringup/approximate_initial_pose_node", line 158, in <module>
+[approximate_initial_pose_node-3]     main()
+[approximate_initial_pose_node-3]   File "/root/nexus_workspace/NEXUS/code/ros2_ws/install/nexus_bringup/lib/nexus_bringup/approximate_initial_pose_node", line 150, in main
+[approximate_initial_pose_node-3]     rclpy.spin(node)
+[approximate_initial_pose_node-3]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/__init__.py", line 229, in spin
+[approximate_initial_pose_node-3]     executor.spin_once()
+[approximate_initial_pose_node-3]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 808, in spin_once
+[approximate_initial_pose_node-3]     self._spin_once_impl(timeout_sec)
+[approximate_initial_pose_node-3]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 797, in _spin_once_impl
+[approximate_initial_pose_node-3]     handler, entity, node = self.wait_for_ready_callbacks(timeout_sec=timeout_sec)
+[approximate_initial_pose_node-3]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 780, in wait_for_ready_callbacks
+[approximate_initial_pose_node-3]     return next(self._cb_iter)
+[approximate_initial_pose_node-3]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 677, in _wait_for_ready_callbacks
+[approximate_initial_pose_node-3]     wait_set.wait(timeout_nsec)
+[approximate_initial_pose_node-3] KeyboardInterrupt
+[range_smoothing_node.py-2] Traceback (most recent call last):
+[range_smoothing_node.py-2]   File "/root/nexus_workspace/NEXUS/code/ros2_ws/install/nexus_pi_readonly_ingress/lib/nexus_pi_readonly_ingress/range_smoothing_node.py", line 57, in main
+[range_smoothing_node.py-2]     rclpy.spin(node)
+[range_smoothing_node.py-2]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/__init__.py", line 229, in spin
+[range_smoothing_node.py-2]     executor.spin_once()
+[range_smoothing_node.py-2]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 808, in spin_once
+[range_smoothing_node.py-2]     self._spin_once_impl(timeout_sec)
+[range_smoothing_node.py-2]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 797, in _spin_once_impl
+[range_smoothing_node.py-2]     handler, entity, node = self.wait_for_ready_callbacks(timeout_sec=timeout_sec)
+[range_smoothing_node.py-2]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 780, in wait_for_ready_callbacks
+[range_smoothing_node.py-2]     return next(self._cb_iter)
+[range_smoothing_node.py-2]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 677, in _wait_for_ready_callbacks
+[range_smoothing_node.py-2]     wait_set.wait(timeout_nsec)
+[range_smoothing_node.py-2] KeyboardInterrupt
+[range_smoothing_node.py-2] 
+[range_smoothing_node.py-2] During handling of the above exception, another exception occurred:
+[range_smoothing_node.py-2] 
+[range_smoothing_node.py-2] Traceback (most recent call last):
+[range_smoothing_node.py-2]   File "/root/nexus_workspace/NEXUS/code/ros2_ws/install/nexus_pi_readonly_ingress/lib/nexus_pi_readonly_ingress/range_smoothing_node.py", line 64, in <module>
+[range_smoothing_node.py-2]     main()
+[range_smoothing_node.py-2]   File "/root/nexus_workspace/NEXUS/code/ros2_ws/install/nexus_pi_readonly_ingress/lib/nexus_pi_readonly_ingress/range_smoothing_node.py", line 60, in main
+[range_smoothing_node.py-2]     rclpy.shutdown()
+[range_smoothing_node.py-2]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/__init__.py", line 130, in shutdown
+[range_smoothing_node.py-2]     _shutdown(context=context)
+[range_smoothing_node.py-2]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/utilities.py", line 58, in shutdown
+[range_smoothing_node.py-2]     return context.shutdown()
+[range_smoothing_node.py-2]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/context.py", line 102, in shutdown
+[range_smoothing_node.py-2]     self.__context.shutdown()
+[range_smoothing_node.py-2] rclpy._rclpy_pybind11.RCLError: failed to shutdown: rcl_shutdown already called on the given context, at ./src/rcl/init.c:241
+[localization_dashboard_node-10] Traceback (most recent call last):
+[localization_dashboard_node-10]   File "/root/nexus_workspace/NEXUS/code/ros2_ws/install/nexus_viz_dashboard/lib/nexus_viz_dashboard/localization_dashboard_node", line 201, in <module>
+[localization_dashboard_node-10]     main()
+[localization_dashboard_node-10]   File "/root/nexus_workspace/NEXUS/code/ros2_ws/install/nexus_viz_dashboard/lib/nexus_viz_dashboard/localization_dashboard_node", line 197, in main
+[localization_dashboard_node-10]     rclpy.shutdown()
+[localization_dashboard_node-10]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/__init__.py", line 130, in shutdown
+[localization_dashboard_node-10]     _shutdown(context=context)
+[localization_dashboard_node-10]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/utilities.py", line 58, in shutdown
+[localization_dashboard_node-10]     return context.shutdown()
+[localization_dashboard_node-10]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/context.py", line 102, in shutdown
+[localization_dashboard_node-10]     self.__context.shutdown()
+[localization_dashboard_node-10] rclpy._rclpy_pybind11.RCLError: failed to shutdown: rcl_shutdown already called on the given context, at ./src/rcl/init.c:241
+[ERROR] [range_smoothing_node.py-2]: process has died [pid 72928, exit code 1, cmd '/root/nexus_workspace/NEXUS/code/ros2_ws/install/nexus_pi_readonly_ingress/lib/nexus_pi_readonly_ingress/range_smoothing_node.py --ros-args --params-file /tmp/launch_params_dpjfa0m8'].
+[INFO] [adaptive_observation_node-9]: process has finished cleanly [pid 72942]
+[INFO] [rosbridge_websocket-11]: process has finished cleanly [pid 72946]
+[INFO] [camera_file_node.py-1]: process has finished cleanly [pid 72926]
+[INFO] [target_metric_node-7]: process has finished cleanly [pid 72938]
+[INFO] [platform_localization_node-4]: process has finished cleanly [pid 72932]
+[ERROR] [approximate_initial_pose_node-3]: process has died [pid 72930, exit code -2, cmd '/root/nexus_workspace/NEXUS/code/ros2_ws/install/nexus_bringup/lib/nexus_bringup/approximate_initial_pose_node --ros-args --params-file /tmp/launch_params_6rkurrfr'].
+[ERROR] [localization_dashboard_node-10]: process has died [pid 72944, exit code 1, cmd '/root/nexus_workspace/NEXUS/code/ros2_ws/install/nexus_viz_dashboard/lib/nexus_viz_dashboard/localization_dashboard_node --ros-args --params-file /tmp/launch_params_7f41e1od'].
+[INFO] [target_kinematic_fusion_node-8]: process has finished cleanly [pid 72940]
+[INFO] [superpoint_motion_node-6]: process has finished cleanly [pid 72936]
+[INFO] [object_detection_node-5]: process has finished cleanly [pid 72934]

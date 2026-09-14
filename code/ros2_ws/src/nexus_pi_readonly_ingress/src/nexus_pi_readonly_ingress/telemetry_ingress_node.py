@@ -42,8 +42,9 @@ class TelemetryIngressNode(Node):
             self.socket.setblocking(False)
         self.imu_pub = self.create_publisher(Imu, "/nexus/fcu/imu", 100)
         self.uwb_pub = self.create_publisher(String, "/nexus/uwb/ranges", 20)
+        self.vendor_2d_position_pub = self.create_publisher(String, "/nexus/fcu/vendor_2d_position", 20)
         self.health_pub = self.create_publisher(String, "/nexus/pi/telemetry_health", 10)
-        self.received = self.invalid = self.imu_count = self.uwb_count = 0
+        self.received = self.invalid = self.imu_count = self.uwb_count = self.vendor_2d_position_count = 0
         self.started_ns = time.time_ns()
         self.last_imu_latency_ms = None
         self.last_receive_ns = 0
@@ -112,6 +113,10 @@ class TelemetryIngressNode(Node):
             if packet:
                 self.uwb_pub.publish(String(data=json.dumps(packet, allow_nan=False)))
                 self.uwb_count += 1
+            packet = self.codec.vendor_2d_position_packet(state, arrival)
+            if packet:
+                self.vendor_2d_position_pub.publish(String(data=json.dumps(packet, allow_nan=False)))
+                self.vendor_2d_position_count += 1
         except (UnicodeDecodeError, json.JSONDecodeError, TypeError, ValueError, KeyError):
             self.invalid += 1
 
@@ -137,8 +142,10 @@ class TelemetryIngressNode(Node):
         data = {"schema_version": 1, "valid": bool(self.last_receive_ns and now - self.last_receive_ns < 3_000_000_000),
                 "received_datagrams": self.received, "invalid_datagrams": self.invalid,
                 "published_imu": self.imu_count, "published_uwb": self.uwb_count,
+                "published_vendor_2d_position": self.vendor_2d_position_count,
                 "boot_clock_resets": self.codec.aligner.reset_count,
                 "pi_clock_resets": self.codec.uwb_clock_aligner.reset_count,
+                "position_clock_resets": self.codec.position_clock_aligner.reset_count,
                 "input_hz": self.received / elapsed, "imu_hz": self.imu_count / elapsed,
                 "uwb_hz": self.uwb_count / elapsed,
                 "estimated_missing_imu_samples": self.codec.estimated_missing_imu_samples,

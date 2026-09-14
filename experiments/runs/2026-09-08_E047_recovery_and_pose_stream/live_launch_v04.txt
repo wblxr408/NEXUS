@@ -1,0 +1,18 @@
+[INFO] [launch]: All log files can be found below /root/.ros/log/2026-09-08-18-44-56-377556-wblxr-44653
+[INFO] [launch]: Default logging verbosity is set to INFO
+[INFO] [camera_file_node.py-1]: process started with pid [44673]
+[INFO] [range_smoothing_node.py-2]: process started with pid [44675]
+[INFO] [approximate_initial_pose_node-3]: process started with pid [44677]
+[INFO] [platform_localization_node-4]: process started with pid [44679]
+[INFO] [object_detection_node-5]: process started with pid [44681]
+[INFO] [superpoint_motion_node-6]: process started with pid [44683]
+[INFO] [target_metric_node-7]: process started with pid [44685]
+[INFO] [target_kinematic_fusion_node-8]: process started with pid [44687]
+[INFO] [adaptive_observation_node-9]: process started with pid [44689]
+[INFO] [localization_dashboard_node-10]: process started with pid [44691]
+[INFO] [rosbridge_websocket-11]: process started with pid [44693]
+[INFO] [python3-12]: process started with pid [44695]
+[rosbridge_websocket-11] [WARN] [1788864299.550017658] [rosbridge_websocket]: The 'default_call_service_timeout' parameter is currently set to 0.0, which means service calls will block indefinitely if no response is received. Please note that in the Jazzy and later releases, the default value for this parameter will be updated to 5.0 seconds.
+[rosbridge_websocket-11] [WARN] [1788864299.550455064] [rosbridge_websocket]: The 'call_services_in_new_thread' parameter is currently set to False, which means service calls will block the main thread. Please note that in the Jazzy and later releases, the default value for this parameter will be updated to True.
+[rosbridge_websocket-11] [WARN] [1788864299.550731999] [rosbridge_websocket]: The 'send_action_goals_in_new_thread' parameter is currently set to False, which means sending action goals will block the main thread. Please note that in the Jazzy and later releases, the default value for this parameter will be updated to True.
+[rosbridge_websocket-11] [INFO] [1788864299.613910293] [rosbridge_websocket]: Rosbridge WebSocket server started on port 9091

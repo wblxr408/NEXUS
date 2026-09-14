@@ -19,11 +19,19 @@ FEATURE_NAMES = (
     "anchor_count", "uwb_jump_m", "gdop", "imu_motion_residual",
     "blur_metric", "occlusion_ratio", "dt_s", "network_latency_s", "speed_mps",
 )
+# These are valid observation diagnostics used by the target-fusion and
+# adaptive-scheduling paths.  They deliberately do not enter the fixed
+# 20-dimensional learned-reliability model, so an existing checkpoint keeps
+# its declared feature schema and dimensionality.
+SUPPLEMENTAL_FEATURE_NAMES = (
+    "identity_confidence", "outlier_probability", "vibration_quality",
+    "exposure_rotation_sigma_rad",
+)
 OUTPUT_NAMES = ("vision_reliability", "uwb_reliability", "imu_reliability", "outlier_probability")
 
 
 def feature_row(values):
-    unknown = set(values) - set(FEATURE_NAMES)
+    unknown = set(values) - set(FEATURE_NAMES) - set(SUPPLEMENTAL_FEATURE_NAMES)
     if unknown:
         raise ValueError(f"unknown quality features: {sorted(unknown)}")
     result = np.array([np.nan if values.get(name) is None else float(values[name])

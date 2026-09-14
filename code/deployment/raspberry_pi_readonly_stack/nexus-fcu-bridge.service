@@ -1,0 +1,18 @@
+[Unit]
+Description=NEXUS existing FC serial ROS bridge
+After=docker.service
+Requires=docker.service
+Before=nexus-fcu-stream.service nexus-uwb-smoothing.service
+
+[Service]
+Type=simple
+ExecStartPre=/usr/bin/docker start fcu_ros2
+ExecStartPre=-/usr/bin/docker exec fcu_ros2 pkill -KILL -x fcu_bridge_001
+ExecStartPre=/bin/sleep 1
+ExecStart=/usr/bin/python3 /home/pi/nexus_readonly_stack/run_existing_fcu_bridge.py
+ExecStop=-/usr/bin/docker exec fcu_ros2 pkill -INT -x fcu_bridge_001
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

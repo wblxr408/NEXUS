@@ -1,0 +1,94 @@
+Starting >>> nexus_viz_dashboard
+Finished <<< nexus_viz_dashboard [0.75s]
+Starting >>> nexus_bringup
+Finished <<< nexus_bringup [2.42s]
+
+Summary: 2 packages finished [3.41s]
+Starting >>> nexus_viz_dashboard
+Finished <<< nexus_viz_dashboard [3.03s]
+Starting >>> nexus_bringup
+Finished <<< nexus_bringup [10.4s]
+
+Summary: 2 packages finished [13.8s]
+TAP version 13
+# Subtest: dual ownership separates platform, selected target, and historical positions
+ok 1 - dual ownership separates platform, selected target, and historical positions
+  ---
+  duration_ms: 1.91535
+  type: 'test'
+  ...
+# Subtest: nanosecond order, invalid snapshots and explicit session reset
+ok 2 - nanosecond order, invalid snapshots and explicit session reset
+  ---
+  duration_ms: 0.32715
+  type: 'test'
+  ...
+# Subtest: ROS snapshot gateway subscribes read-only and times out on transport silence
+ok 3 - ROS snapshot gateway subscribes read-only and times out on transport silence
+  ---
+  duration_ms: 1.004403
+  type: 'test'
+  ...
+# Subtest: stationary mean progress and stale state are visible
+ok 4 - stationary mean progress and stale state are visible
+  ---
+  duration_ms: 0.878805
+  type: 'test'
+  ...
+# Subtest: CSS scaling, reverse drag and bounds stay in original image coordinates
+ok 5 - CSS scaling, reverse drag and bounds stay in original image coordinates
+  ---
+  duration_ms: 0.482594
+  type: 'test'
+  ...
+# Subtest: exact nanosecond integer and explicit static reference, no assumed class
+ok 6 - exact nanosecond integer and explicit static reference, no assumed class
+  ---
+  duration_ms: 0.48002
+  type: 'test'
+  ...
+# Subtest: raw images reject corrupt payloads and support padded rows
+ok 7 - raw images reject corrupt payloads and support padded rows
+  ---
+  duration_ms: 0.405358
+  type: 'test'
+  ...
+# Subtest: freeze unsubscribes and publishes unchanged original image only on explicit confirmation
+ok 8 - freeze unsubscribes and publishes unchanged original image only on explicit confirmation
+  ---
+  duration_ms: 3.186549
+  type: 'test'
+  ...
+# Subtest: backend rejection and disconnect are never successful registrations
+ok 9 - backend rejection and disconnect are never successful registrations
+  ---
+  duration_ms: 0.439804
+  type: 'test'
+  ...
+# Subtest: camera cancellation and rosbridge permissions errors release pending operations
+ok 10 - camera cancellation and rosbridge permissions errors release pending operations
+  ---
+  duration_ms: 0.36977
+  type: 'test'
+  ...
+# Subtest: sensor receipt is separate from localization validity and browser arrival age
+ok 11 - sensor receipt is separate from localization validity and browser arrival age
+  ---
+  duration_ms: 0.317081
+  type: 'test'
+  ...
+# Subtest: rosbridge full-image fragments reassemble out of order without losing nanoseconds
+ok 12 - rosbridge full-image fragments reassemble out of order without losing nanoseconds
+  ---
+  duration_ms: 1.464231
+  type: 'test'
+  ...
+1..12
+# tests 12
+# suites 0
+# pass 12
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 60.099411

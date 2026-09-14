@@ -1,0 +1,17 @@
+[Unit]
+Description=NEXUS onboard FCU mission controller
+After=docker.service nexus-fcu-bridge.service
+Requires=docker.service nexus-fcu-bridge.service
+
+[Service]
+Type=simple
+ExecStartPre=-/usr/bin/docker exec fcu_ros2 pkill -KILL -x fcu_mission
+ExecStartPre=/bin/sleep 1
+ExecStart=/usr/bin/docker exec -e ROS_DOMAIN_ID=20 fcu_ros2 bash -lc "source /opt/ros/humble/setup.bash && source /root/fcu_core_onboard/install/setup.bash && exec /root/fcu_core_onboard/install/fcu_core/lib/fcu_core/fcu_mission --ros-args -r command:=/command -r odom_global_001:=/odom_global_001 -r mission_001:=/mission_001"
+ExecStop=-/usr/bin/docker exec fcu_ros2 pkill -INT -x fcu_mission
+Restart=on-failure
+RestartSec=5
+TimeoutStopSec=10
+
+[Install]
+WantedBy=multi-user.target

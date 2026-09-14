@@ -1,0 +1,72 @@
+schema_version: 1
+artifact: physical_sandbox_metric_reference
+run_id: 2026-09-07_E030
+status: operational_ground_truth_user_accepted
+
+# This is the physical-table reference.  It intentionally separates quantities
+# measured on the actual sandbox from legacy positions inferred from a photo.
+coordinate_frame:
+  name: physical_sandbox_map_v01
+  unit: m
+  handedness: right
+  axes: {x: table_width, y: table_length, z: up}
+  origin: [0.0, 0.0, 0.0]
+  origin_definition: >-
+    The table corner represented by [0, 0] in simulation/sandbox_scene.yaml.
+    Mark this corner physically before using this frame for an experiment.
+  board_boundary_xy_m: [[0.0, 0.0], [3.94, 0.0], [3.94, 4.94], [0.0, 4.94]]
+
+measured_table_geometry:
+  width_x_m: 3.94
+  length_y_m: 4.94
+  source: user_manual_measurement_2026-09-07
+  truth_class: measured
+
+# The previous layout had x=4.000 m and y=4.700 m.  Apply this formula only
+# to its XY centre/extent values.  It is the frozen operational-map transform
+# for this project; its image/layout provenance remains recorded below.
+legacy_layout_xy_transform:
+  source_file: simulation/sandbox_scene.yaml
+  source_frame: sandbox_4000x4700_v03
+  source_boundary_m: {width_x: 4.0, length_y: 4.7}
+  scale: {x: 0.985, y: 1.051063829787234}
+  formula: {x_m: '0.985 * x_legacy_m', y_m: '1.051063829787234 * y_legacy_m'}
+  applies_to: [xy_positions, xy_sizes, road_centerlines]
+  does_not_apply_to: [z, object_height, road_width]
+  truth_class: operational_ground_truth_xy
+
+measured_vertical_and_width_references:
+  - {id: tree_tall, kind: object_height, value_m: 0.12, reference_point: ground_to_top}
+  - {id: tree_short, kind: object_height, value_m: 0.06, reference_point: ground_to_top}
+  - {id: building_brown_base_white_top, kind: object_height, value_m: 0.23, reference_point: ground_to_top}
+  - {id: building_pink_low, kind: object_height, value_m: 0.13, reference_point: ground_to_top}
+  - {id: building_blue_highest, kind: object_height, value_m: 0.32, reference_point: ground_to_top}
+  - {id: building_yellow_unique, kind: object_height, value_m: 0.20, reference_point: ground_to_top}
+  - {id: building_yellow_white_roof_near_tank, kind: object_height, value_m: 0.09, reference_point: ground_to_top}
+  - {id: tank, kind: object_height, value_m: 0.16, reference_point: ground_to_top}
+  - {id: traffic_light_tall, kind: object_height, value_m: 0.22, reference_point: ground_to_top}
+  - {id: traffic_light_short, kind: object_height, value_m: 0.12, reference_point: ground_to_top}
+  - {id: road_right_far, kind: road_width, value_m: 0.56}
+  - {id: road_other, kind: road_width, value_m: 0.52}
+
+source_boundary:
+  archive:
+    path: C:/Users/wblxr/xwechat_files/wxid_o0p5nz74gzek22_9838/msg/file/2026-08/uav_uwb_mono_rrd.tar.gz
+    sha256: 7759de118d35e834e3a8a03107bd5f927d55bfebc90ba5c15d9abdd27c17d052
+    role: simulation_interface_reference_only
+    exclusion_reason: >-
+      Its manifest identifies CustomMaps/roadrunne3/RRD, three CARLA vehicle
+      targets, and synthetic UWB.  It has no correspondence to the physical
+      building/tank layout and is not a source of physical object coordinates.
+  physical_measurements: user_manual_measurement_2026-09-07
+
+known_evidence_limits:
+  - Individual physical object-centre XY coordinates have not been surveyed.
+  - The physical identity-to-legacy-layout-ID correspondence has not been confirmed.
+  - The physical table corner/direction has not yet been tied to the existing UWB raw frame.
+  - Existing hardware UWB coordinates are deliberately not rescaled here; they require an anchor survey.
+
+survey_enhancement_rule: >-
+  A future overhead map or tape/laser survey may independently validate or
+  refine this frozen operational ground truth. It does not change the current
+  project evaluation baseline unless a new version is explicitly accepted.

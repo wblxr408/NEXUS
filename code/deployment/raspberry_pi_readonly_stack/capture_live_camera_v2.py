@@ -21,7 +21,7 @@ def request_stop(*_):
     STOP = True
 
 
-def write_frame(output_dir, frame, rotation_deg, captured_unix_ns=None):
+def write_frame(output_dir, frame, rotation_deg, captured_unix_ns=None, frame_sequence=None):
     from PIL import Image
 
     captured_unix_ns = time.time_ns() if captured_unix_ns is None else int(captured_unix_ns)
@@ -42,6 +42,8 @@ def write_frame(output_dir, frame, rotation_deg, captured_unix_ns=None):
         "exposure_time_us": frame.exposure_time_us,
         "analogue_gain": frame.analogue_gain,
     }
+    if frame_sequence is not None:
+        metadata["frame_sequence"] = int(frame_sequence)
     meta_tmp.write_text(json.dumps(metadata, indent=2) + "\n", encoding="utf-8")
     os.replace(image_tmp, output_dir / "latest.jpg")
     os.replace(meta_tmp, output_dir / "latest.json")
@@ -68,7 +70,7 @@ def main():
                            rotation_deg=args.rotation) as camera:
         while not STOP:
             frame = camera.capture()
-            write_frame(output_dir, frame, args.rotation)
+            write_frame(output_dir, frame, args.rotation, frame_sequence=count)
             count += 1
             if args.frames and count >= args.frames:
                 break

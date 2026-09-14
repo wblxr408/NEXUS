@@ -1,0 +1,217 @@
+REGISTERED via real SuperPoint reference inference
+{
+  "synthetic_inputs": true,
+  "real_model_inference": true,
+  "domain": 89,
+  "registration": [
+    {
+      "schema_version": 1,
+      "request_id": "gpu_chain_selection",
+      "target_id": "selected_patch",
+      "state": "pending",
+      "reason": ""
+    },
+    {
+      "schema_version": 1,
+      "request_id": "gpu_chain_selection",
+      "target_id": "selected_patch",
+      "state": "registered",
+      "reason": ""
+    }
+  ],
+  "track_packets": 24,
+  "valid_geometry": 20,
+  "valid_fused": 20,
+  "displayed_samples": 24,
+  "geometry_status": [
+    {
+      "schema_version": 1,
+      "sample_timestamp_ns": 1788858541899994835,
+      "target_id": "selected_patch",
+      "reason": "",
+      "valid": true,
+      "inlier_stamps": [
+        1788858540425487200,
+        1788858540548443159,
+        1788858540794907552,
+        1788858540922175399,
+        1788858541044244643,
+        1788858541167341837,
+        1788858541290306578,
+        1788858541412408104,
+        1788858541534146882,
+        1788858541656297642,
+        1788858541777801335,
+        1788858541899994835
+      ],
+      "parallax_deg": 3.3124281481844,
+      "condition_number": 55.49008942802776,
+      "runtime_ms": 10.376164998888271,
+      "interpolated_platform": false
+    },
+    {
+      "schema_version": 1,
+      "sample_timestamp_ns": 1788858542021412905,
+      "target_id": "selected_patch",
+      "reason": "",
+      "valid": true,
+      "inlier_stamps": [
+        1788858540548443159,
+        1788858540794907552,
+        1788858540922175399,
+        1788858541044244643,
+        1788858541167341837,
+        1788858541290306578,
+        1788858541412408104,
+        1788858541534146882,
+        1788858541656297642,
+        1788858541777801335,
+        1788858541899994835,
+        1788858542021412905
+      ],
+      "parallax_deg": 3.365703184858308,
+      "condition_number": 58.130982559459305,
+      "runtime_ms": 10.255495999444975,
+      "interpolated_platform": false
+    },
+    {
+      "schema_version": 1,
+      "sample_timestamp_ns": 1788858542142738280,
+      "target_id": "selected_patch",
+      "reason": "",
+      "valid": true,
+      "inlier_stamps": [
+        1788858540794907552,
+        1788858540922175399,
+        1788858541044244643,
+        1788858541167341837,
+        1788858541290306578,
+        1788858541412408104,
+        1788858541534146882,
+        1788858541656297642,
+        1788858541777801335,
+        1788858541899994835,
+        1788858542021412905,
+        1788858542142738280
+      ],
+      "parallax_deg": 3.089935964273258,
+      "condition_number": 59.097721033189636,
+      "runtime_ms": 10.297566001099767,
+      "interpolated_platform": false
+    },
+    {
+      "schema_version": 1,
+      "sample_timestamp_ns": 1788858542265023655,
+      "target_id": "selected_patch",
+      "reason": "",
+      "valid": true,
+      "inlier_stamps": [
+        1788858540922175399,
+        1788858541044244643,
+        1788858541167341837,
+        1788858541290306578,
+        1788858541412408104,
+        1788858541534146882,
+        1788858541656297642,
+        1788858541777801335,
+        1788858541899994835,
+        1788858542021412905,
+        1788858542142738280,
+        1788858542265023655
+      ],
+      "parallax_deg": 3.1200538513270417,
+      "condition_number": 58.52048966979802,
+      "runtime_ms": 10.517954000533791,
+      "interpolated_platform": false
+    },
+    {
+      "schema_version": 1,
+      "sample_timestamp_ns": 1788858542387087188,
+      "target_id": "selected_patch",
+      "reason": "",
+      "valid": true,
+      "inlier_stamps": [
+        1788858541044244643,
+        1788858541167341837,
+        1788858541290306578,
+        1788858541412408104,
+        1788858541534146882,
+        1788858541656297642,
+        1788858541777801335,
+        1788858541899994835,
+        1788858542021412905,
+        1788858542142738280,
+        1788858542265023655,
+        1788858542387087188
+      ],
+      "parallax_deg": 3.2205414402467234,
+      "condition_number": 56.700465970767006,
+      "runtime_ms": 9.849236001173267,
+      "interpolated_platform": false
+    },
+    {
+      "schema_version": 1,
+      "sample_timestamp_ns": 1788858542509191139,
+      "target_id": "selected_patch",
+      "reason": "",
+      "valid": true,
+      "inlier_stamps": [
+        1788858541167341837,
+        1788858541290306578,
+        1788858541412408104,
+        1788858541534146882,
+        1788858541656297642,
+        1788858541777801335,
+        1788858541899994835,
+        1788858542021412905,
+        1788858542142738280,
+        1788858542265023655,
+        1788858542387087188,
+        1788858542509191139
+      ],
+      "parallax_deg": 3.2017942735652105,
+      "condition_number": 57.02523248558059,
+      "runtime_ms": 10.535397002968239,
+      "interpolated_platform": false
+    },
+    {
+      "schema_version": 1,
+      "sample_timestamp_ns": 1788858542632048577,
+      "target_id": "selected_patch",
+      "reason": "target_reference_anchor_not_visible",
+      "valid": false
+    },
+    {
+      "schema_version": 1,
+      "sample_timestamp_ns": 1788858542754023593,
+      "target_id": "selected_patch",
+      "reason": "",
+      "valid": true,
+      "inlier_stamps": [
+        1788858541290306578,
+        1788858541412408104,
+        1788858541534146882,
+        1788858541656297642,
+        1788858541777801335,
+        1788858541899994835,
+        1788858542021412905,
+        1788858542142738280,
+        1788858542265023655,
+        1788858542387087188,
+        1788858542509191139,
+        1788858542754023593
+      ],
+      "parallax_deg": 3.4871124343930515,
+      "condition_number": 56.06377105746242,
+      "runtime_ms": 10.501433000172256,
+      "interpolated_platform": false
+    }
+  ],
+  "last_position_m": [
+    -0.012080205420256526,
+    -0.0537186708060198,
+    2.9843706003344317
+  ],
+  "depth_error_m": 0.01562939966556831,
+  "passed": true
+}

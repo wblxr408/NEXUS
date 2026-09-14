@@ -30,7 +30,8 @@ def rig(tmp_path, monkeypatch):
         def __init__(self, _):
             pass
 
-        def infer(self, pixels):
+        def infer(self, pixels, *, image_scale=1.):
+            assert .25 <= image_scale <= 1.
             marker = int(pixels[0, 0, 0])
             features = candidate(40 if marker == 1 else 240 + 6 * (marker - 2), y=100).features
             if marker == 9:

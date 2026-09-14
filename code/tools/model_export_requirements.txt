@@ -1,0 +1,4 @@
+# Export-only additions to the existing Windows gdr_net training environment.
+# Install in a separate --target directory; use existing torch/ultralytics/numpy.
+onnx==1.17.0
+onnxslim==0.1.34

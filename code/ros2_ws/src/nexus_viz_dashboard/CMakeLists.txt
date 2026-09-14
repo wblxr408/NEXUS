@@ -14,5 +14,6 @@ ament_add_pytest_test(test_localization_dashboard test/test_localization_dashboa
   ENV "ROS_LOCALHOST_ONLY=1" "ROS_DOMAIN_ID=229")
 find_program(NEXUS_NODE_EXECUTABLE node REQUIRED)
 add_test(NAME test_localization_web COMMAND ${NEXUS_NODE_EXECUTABLE} --experimental-default-type=module --test
-  ${CMAKE_CURRENT_SOURCE_DIR}/web/test/localization.test.mjs)
+  ${CMAKE_CURRENT_SOURCE_DIR}/web/test/localization.test.mjs
+  ${CMAKE_CURRENT_SOURCE_DIR}/web/test/registration.test.mjs)
 ament_package()

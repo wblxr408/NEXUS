@@ -1,0 +1,14 @@
+[Errno 113] No route to host sleeping
+[Errno 113] No route to host sleeping
+Traceback (most recent call last):
+  File "<stdin>", line 3, in <module>
+  File "/home/pi/mavlink_env/lib/python3.11/site-packages/pymavlink/mavutil.py", line 2028, in mavlink_connection
+    return mavtcp(device[4:],
+           ^^^^^^^^^^^^^^^^^^
+  File "/home/pi/mavlink_env/lib/python3.11/site-packages/pymavlink/mavutil.py", line 1231, in __init__
+    self.do_connect()
+  File "/home/pi/mavlink_env/lib/python3.11/site-packages/pymavlink/mavutil.py", line 1254, in do_connect
+    raise e
+  File "/home/pi/mavlink_env/lib/python3.11/site-packages/pymavlink/mavutil.py", line 1247, in do_connect
+    self.port.connect(self.destination_addr)
+OSError: [Errno 113] No route to host

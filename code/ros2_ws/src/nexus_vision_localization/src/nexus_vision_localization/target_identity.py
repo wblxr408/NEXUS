@@ -1,10 +1,12 @@
 """Per-instance image tracks with geometric appearance and ambiguity handling."""
 
-from dataclasses import dataclass, replace
+from dataclasses import dataclass, field, replace
 import hashlib
 
 import cv2
 import numpy as np
+
+from .lightweight_identity import LightweightIdentityTransformer
 from scipy.optimize import linear_sum_assignment
 
 from .superpoint_frontend import FeatureSet, match_features, roi_mask
@@ -79,11 +81,13 @@ class IdentityConfig:
     lost_after_s: float = .3
     automatic_retention_s: float = 5.
     maximum_tracks: int = 64
+    attention_weight: float = .15
 
     def __post_init__(self):
         if (any(not np.isfinite(value) or value <= 0 for value in self.__dict__.values())
                 or self.minimum_geometric_matches < 4 or self.association_threshold > 1
                 or self.ambiguity_margin >= self.association_threshold
+                or not 0 <= self.attention_weight <= .5
                 or any(not isinstance(value, int) for value in (self.confirmation_hits, self.minimum_geometric_matches, self.maximum_tracks))):
             raise ValueError("invalid identity tracking configuration")
 
@@ -108,6 +112,8 @@ class _Track:
     anchor_feature_id: int | None = None
     motion_model: str = "static"
     reference_id: str = ""
+    identity_history: list = field(default_factory=list)
+    temporal_kv_cache: list = field(default_factory=list)
 
 
 @dataclass(frozen=True)
@@ -158,8 +164,9 @@ def geometric_match(reference, candidate_features, minimum_matches=8, *, return_
 
 
 class TargetIdentityTracker:
-    def __init__(self, config=None):
+    def __init__(self, config=None, attention=None):
         self.config = config or IdentityConfig()
+        self.attention = attention or LightweightIdentityTransformer()
         self.tracks = {}
         self.last_stamp_ns = 0
         self._next_id = 1
@@ -276,6 +283,9 @@ class TargetIdentityTracker:
         if track.last_observed_ns is None and match is None:
             return np.inf, 0
         scale_cost = min(1., float(np.linalg.norm(np.log(candidate.bbox_xywh_px[2:] / template.bbox_xywh_px[2:]))) / 2)
+        attention = self.attention.compare(track.reference.features, candidate.features, track.identity_history,
+                                           temporal_cache=track.temporal_kv_cache)
+        attention_cost = 1 - attention.score
         terms = [(appearance, .25), (scale_cost, .1)]
         inliers = 0
         if match is not None:
@@ -285,6 +295,8 @@ class TargetIdentityTracker:
             return np.inf, 0  # textured but geometrically incompatible
         if not use_reference and track.last_observed_ns is not None:
             terms.append((min(1., motion_d2 / self.config.maximum_motion_d2), .25))
+        if self.config.attention_weight:
+            terms.append((attention_cost, self.config.attention_weight))
         return sum(value * weight for value, weight in terms) / sum(weight for _, weight in terms), inliers
 
     def update(self, stamp_ns, candidates, camera_homography=None):
@@ -299,7 +311,8 @@ class TargetIdentityTracker:
             camera_homography = np.asarray(camera_homography, dtype=float)
             if camera_homography.shape != (3, 3) or not np.all(np.isfinite(camera_homography)) or abs(np.linalg.det(camera_homography)) < 1e-9:
                 raise ValueError("camera image transform must be finite and nonsingular")
-        working = {identifier: replace(track, x=track.x.copy(), covariance=track.covariance.copy())
+        working = {identifier: replace(track, x=track.x.copy(), covariance=track.covariance.copy(),
+                                       identity_history=list(track.identity_history), temporal_kv_cache=list(track.temporal_kv_cache))
                    for identifier, track in self.tracks.items()}
         for identifier, track in list(working.items()):
             if not track.registered and track.last_observed_ns is not None and (stamp_ns - track.last_observed_ns) / 1e9 > self.config.automatic_retention_s:
@@ -355,6 +368,11 @@ class TargetIdentityTracker:
                     correction[:, :2] -= gain
                     track.covariance = correction @ track.covariance @ correction.T + gain @ measurement_covariance @ gain.T
                 track.latest, track.last_observed_ns, track.observed = candidate, stamp_ns, True
+                embedding, _ = self.attention.embed(candidate.features)
+                track.identity_history.append(embedding)
+                del track.identity_history[:-self.attention.maximum_history]
+                track.temporal_kv_cache.append(self.attention.kv_cache(candidate.features))
+                del track.temporal_kv_cache[:-self.attention.maximum_history]
                 track.hits += int(fresh)
                 track.feature_inliers = int(inliers[i, j])
                 track.ambiguous = False

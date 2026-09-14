@@ -1,0 +1,1 @@
+bash: line 1: /home/pi/fcu_core_onboard/nexus_range_smoothing/fcu_ros_stream_server.py: Permission denied

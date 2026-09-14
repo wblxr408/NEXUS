@@ -1,0 +1,7 @@
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "/root/nexus_workspace/NEXUS/code/ros2_ws/install/nexus_fusion_localization/local/lib/python3.10/dist-packages/nexus_fusion_localization/platform_node.py", line 41, in load_platform_calibration
+    raise ValueError("platform requires measured calibration; test calibration needs explicit opt-in")
+ValueError: platform requires measured calibration; test calibration needs explicit opt-in
+
+exit_code=1

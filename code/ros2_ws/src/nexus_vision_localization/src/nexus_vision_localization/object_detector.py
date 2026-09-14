@@ -1,4 +1,4 @@
-"""Local YOLO detection-only ONNX adapter, independent of ROS and target IDs."""
+"""Manifest-based YOLO GPU inference, independent of ROS and target IDs."""
 
 from dataclasses import dataclass
 import hashlib
@@ -7,6 +7,8 @@ from pathlib import Path
 
 import cv2
 import numpy as np
+
+from nexus_vision_localization.edge_model import create_model
 
 
 @dataclass(frozen=True)
@@ -38,7 +40,7 @@ def letterbox(image, input_size_wh, padding_value=114):
 
 def decode_yolo(output, image_size_wh, transform, class_names, *, architecture, layout,
                 confidence_threshold=.35, iou_threshold=.5, maximum_detections=100):
-    if architecture not in {"yolo_v8_detection", "yolo_v5_detection"} or layout not in {"channels_first", "anchors_first"}:
+    if architecture not in {"yolo_v8_detection", "yolo_v11_detection", "yolo_v5_detection"} or layout not in {"channels_first", "anchors_first"}:
         raise ValueError("unsupported YOLO output format")
     if (not 0 < confidence_threshold <= 1 or not 0 < iou_threshold <= 1
             or not isinstance(maximum_detections, int) or maximum_detections < 1):
@@ -47,7 +49,7 @@ def decode_yolo(output, image_size_wh, transform, class_names, *, architecture, 
     if raw.ndim != 3 or raw.shape[0] != 1 or not np.all(np.isfinite(raw)):
         raise ValueError("YOLO output must be finite with batch size one")
     rows = raw[0].T if layout == "channels_first" else raw[0]
-    offset = 4 if architecture == "yolo_v8_detection" else 5
+    offset = 5 if architecture == "yolo_v5_detection" else 4
     if rows.shape[1] != offset + len(class_names) or not class_names:
         raise ValueError("YOLO class names do not match model output channels")
     probabilities = rows[:, 4:]
@@ -87,6 +89,8 @@ def decode_yolo(output, image_size_wh, transform, class_names, *, architecture, 
 
 
 class ObjectDetectorOnnx:
+    """Keep the public adapter name while executing the GPU manifest asset."""
+
     def __init__(self, manifest_path):
         path = Path(manifest_path)
         with path.open(encoding="utf-8") as stream:
@@ -96,7 +100,7 @@ class ObjectDetectorOnnx:
                     "input_size_wh", "padding_value", "layout", "class_names", "source", "license"}
         if not isinstance(manifest, dict) or not required.issubset(manifest):
             raise ValueError("YOLO model manifest is incomplete")
-        if (manifest["schema_version"] != 1 or manifest["architecture"] not in {"yolo_v8_detection", "yolo_v5_detection"}
+        if (manifest["schema_version"] != 1 or manifest["architecture"] not in {"yolo_v8_detection", "yolo_v11_detection", "yolo_v5_detection"}
                 or manifest["layout"] not in {"channels_first", "anchors_first"}):
             raise ValueError("unsupported YOLO model format")
         size = manifest["input_size_wh"]
@@ -113,13 +117,22 @@ class ObjectDetectorOnnx:
         model = path.parent / manifest["model_file"]
         if hashlib.sha256(model.read_bytes()).hexdigest() != manifest["sha256"].lower():
             raise ValueError("YOLO model SHA256 mismatch")
-        self.network = cv2.dnn.readNetFromONNX(str(model))
-        self.network.setPreferableBackend(cv2.dnn.DNN_BACKEND_OPENCV)
-        self.network.setPreferableTarget(cv2.dnn.DNN_TARGET_CPU)
+        self.network = create_model(model, manifest)
 
-    def infer(self, image, **settings):
+    def infer(self, image, *, image_scale=1., **settings):
+        image = np.asarray(image)
+        if not np.isfinite(image_scale) or not .25 <= image_scale <= 1.:
+            raise ValueError("YOLO image scale must be in [0.25, 1]")
+        original_size = (image.shape[1], image.shape[0])
+        if image_scale < 1.:
+            scaled_size = tuple(max(1, int(round(value * image_scale))) for value in original_size)
+            image = cv2.resize(image, scaled_size, interpolation=cv2.INTER_AREA)
         blob, transform = letterbox(image, self.manifest["input_size_wh"], self.manifest["padding_value"])
-        self.network.setInput(blob, self.manifest["input_name"])
-        output = self.network.forward(self.manifest["output_name"])
-        return decode_yolo(output, (image.shape[1], image.shape[0]), transform, self.manifest["class_names"],
-                           architecture=self.manifest["architecture"], layout=self.manifest["layout"], **settings)
+        output = self.network.run(blob)[0]
+        detections = decode_yolo(output, (image.shape[1], image.shape[0]), transform, self.manifest["class_names"],
+                                 architecture=self.manifest["architecture"], layout=self.manifest["layout"], **settings)
+        if image_scale == 1.:
+            return detections
+        return [Detection2D(item.class_id, item.label, item.confidence,
+                            tuple(float(value / image_scale) for value in item.bbox_xywh_px))
+                for item in detections]

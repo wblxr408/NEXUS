@@ -1,3 +1,6 @@
+import { createEnvelopeDecoder } from "./rosbridge_fragments.js";
+import { createRegistrationClient, REQUEST_STATUS_TOPIC } from "./target_registration.js";
+import { INPUT_TOPICS, inputSummary } from "./input_status.js";
 /** Minimal browser-side ROS2 bridge for live hardware and Gazebo inputs. */
 const SOURCE_MODES = Object.freeze({ 1: "UWB", 2: "VISION", 3: "PLATFORM_RELATIVE", 4: "FUSED" });
 const IMX219_COMPRESSED_TOPIC = "/nexus/camera/imx219/image_raw/compressed";
@@ -106,10 +109,25 @@ function observationToStore(store, message, kind) {
 
 export function installRosbridgeGateway(store) {
   const socket = new WebSocket(websocketUrl());
+  const decodeEnvelope = createEnvelopeDecoder();
   let sequence = 0;
+  let connected = false;
+  const query = new URLSearchParams(window.location.search);
+  const legacy = query.get("legacy") === "carla";
+  const imageTopic = query.get("image_topic") || "/camera/image_rect";
+  const inputs = INPUT_TOPICS.map(spec => spec.key === "camera_info"
+    ? { ...spec, topic: query.get("camera_info_topic") || spec.topic } : spec);
+  const send = message => socket.send(JSON.stringify(message));
+  const registration = createRegistrationClient(send, () => connected, imageTopic);
+  let lastCameraMs = null;
   let lastCameraDecodeMs = 0;
   let lastLocalizationMs = null;
   const watchdog = window.setInterval(() => {
+    store.ageInputs(performance.now(), connected);
+    if (lastCameraMs !== null && performance.now() - lastCameraMs > 2000) {
+      lastCameraMs = null;
+      store.updateCamera({ image: null, status: "STALE", imageAge: null });
+    }
     if (lastLocalizationMs !== null && performance.now() - lastLocalizationMs > 1000)
       store.localizationDisconnected("STALE_CONNECTION");
   }, 250);
@@ -118,28 +136,41 @@ export function installRosbridgeGateway(store) {
   }));
 
   socket.addEventListener("open", () => {
+    connected = true;
+    subscribe(REQUEST_STATUS_TOPIC, "std_msgs/msg/String");
+    inputs.forEach(spec => subscribe(spec.topic, spec.type, 500));
     subscribe("/nexus/viz/localization_state", "std_msgs/msg/String", 100);
-    subscribe("/nexus/target/pose", "nexus_msgs/msg/TargetObservation");
-    subscribe("/nexus/vision/map_target_observation", "nexus_msgs/msg/TargetObservation");
-    subscribe("/nexus/uwb/target_observation", "nexus_msgs/msg/TargetObservation");
-    subscribe("/nexus/gazebo/uav/odom", "nav_msgs/msg/Odometry", 100);
+    if (legacy) subscribe("/nexus/target/pose", "nexus_msgs/msg/TargetObservation");
+    if (legacy) subscribe("/nexus/vision/map_target_observation", "nexus_msgs/msg/TargetObservation");
+    if (legacy) subscribe("/nexus/uwb/target_observation", "nexus_msgs/msg/TargetObservation");
+    if (legacy) subscribe("/nexus/gazebo/uav/odom", "nav_msgs/msg/Odometry", 100);
     // JPEG avoids expanding an 8 MP raw image to a >30 MB WebSocket JSON message.
     subscribe(IMX219_COMPRESSED_TOPIC, "sensor_msgs/msg/CompressedImage", CAMERA_INTERVAL_MS);
     store.updateHealth({ bridge: { status: "CONNECTED", sequence } });
-    store.updateStatus({ mode: "SIMULATION", session: "GAZEBO_LIVE" });
+    // Input mode comes from the localization snapshot, never connection alone.
   });
   socket.addEventListener("close", () => {
+    connected = false; registration.disconnect(); store.ageInputs(performance.now(), false);
+    store.updateCamera({ image: null, status: "DISCONNECTED", imageAge: null });
     store.updateHealth({ bridge: { status: "DISCONNECTED", sequence } });
     store.localizationDisconnected();
   });
   socket.addEventListener("error", () => {
+    connected = false; registration.disconnect(); store.ageInputs(performance.now(), false);
     store.updateHealth({ bridge: { status: "ERROR", sequence } });
     store.localizationDisconnected("ERROR");
   });
   socket.addEventListener("message", (event) => {
-    let envelope;
-    try { envelope = JSON.parse(event.data); } catch (_) { return; }
+    const envelope = decodeEnvelope(event.data);
+    if (!envelope) return;
+    registration.handle(envelope);
     if (envelope.op !== "publish") return;
+    const spec = inputs.find(item => item.topic === envelope.topic);
+    if (spec) {
+      try { store.updateInput(spec.key, inputSummary(spec, envelope.msg), performance.now()); }
+      catch (_) { store.updateInput(spec.key, { accepted: false, detail: "消息格式无效" }, performance.now()); }
+      return;
+    }
     sequence += 1;
     store.updateHealth({ bridge: { status: "CONNECTED", sequence } });
     const message = envelope.msg || {};
@@ -157,6 +188,7 @@ export function installRosbridgeGateway(store) {
       const now = performance.now();
       if (now - lastCameraDecodeMs < CAMERA_INTERVAL_MS) return;
       lastCameraDecodeMs = now;
+      lastCameraMs = now;
       const image = previewFromCompressedImage(message);
       store.updateCamera({
         image,
@@ -165,5 +197,5 @@ export function installRosbridgeGateway(store) {
       });
     }
   });
-  return Object.freeze({ close: () => { window.clearInterval(watchdog); socket.close(); }, url: websocketUrl() });
+  return Object.freeze({ close: () => { window.clearInterval(watchdog); socket.close(); }, url: websocketUrl(), registration });
 }

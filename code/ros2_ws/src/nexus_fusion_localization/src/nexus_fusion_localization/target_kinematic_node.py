@@ -12,7 +12,7 @@ from std_msgs.msg import String
 
 from nexus_msgs.msg import TargetKinematicState
 from nexus_fusion_localization.kinematic_filter import KinematicEstimate, KinematicFilterConfig, KinematicTargetFilter
-from nexus_fusion_localization.reliability import ReliabilityMLP, covariance_scales, feature_row
+from nexus_fusion_localization.reliability import FEATURE_NAMES, ReliabilityMLP, covariance_scales, feature_row
 
 
 class TargetKinematicFusionNode(Node):
@@ -186,7 +186,10 @@ class TargetKinematicFusionNode(Node):
                     or not isinstance(key[3], int) or isinstance(key[3], bool) or not 0 < key[3] <= now
                     or now - key[3] > self.config.max_age_ns or not isinstance(data["features"], dict)):
                 raise ValueError("target_quality_identity_or_time_invalid")
-            feature_row(data["features"])
+            # Quality packets can carry extra diagnostics for the scheduler;
+            # the fixed learned-reliability feature contract consumes only its
+            # declared subset rather than rejecting the whole observation.
+            feature_row({name: data["features"].get(name) for name in FEATURE_NAMES})
             self._quality[key] = dict(data["features"])
             while len(self._quality) > self._queue_size:
                 del self._quality[min(self._quality, key=lambda item: item[3])]
@@ -196,14 +199,22 @@ class TargetKinematicFusionNode(Node):
     def _scale(self, record, values):
         if self._mode == "fixed":
             return 1.
+        outlier = float(values.get("outlier_probability", 0.))
+        if not np.isfinite(outlier) or not 0. <= outlier <= 1.:
+            raise ValueError("invalid target outlier_probability")
         if self._mode == "rule":
-            return float(1. + 99. * (1. - record.confidence) ** 2)
-        features = dict(values)
+            # Identity confidence and geometric outlier risk measure different
+            # failure modes. Both may only inflate observation covariance.
+            return float(1. + 99. * (1. - record.confidence) ** 2 + 99. * outlier ** 2)
+        features = {name: values.get(name) for name in FEATURE_NAMES}
         features["network_latency_s"] = (record.receive_ns - record.stamp_ns) / 1e9
         track = self.estimator.tracks.get(record.target_id)
         if track is not None:
             features["dt_s"] = (record.stamp_ns - track.estimate.stamp_ns) / 1e9
-        return float(covariance_scales(self._model.predict(features))[0])
+        learned = float(covariance_scales(self._model.predict(features))[0])
+        # Preserve the learned model's feature contract while making an
+        # explicit online geometric rejection risk effective in all modes.
+        return max(learned, 1. + 99. * outlier ** 2)
 
     def _drain(self):
         now = self.get_clock().now().nanoseconds

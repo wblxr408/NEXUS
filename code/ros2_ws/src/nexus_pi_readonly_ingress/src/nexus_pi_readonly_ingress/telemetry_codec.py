@@ -23,8 +23,10 @@ class TelemetryCodec:
             raise ValueError("anchor IDs and variances must have equal length")
         self.aligner = BootTimeAligner()
         self.uwb_clock_aligner = BootTimeAligner(reset_threshold_ns=1_000_000_000)
+        self.position_clock_aligner = BootTimeAligner(reset_threshold_ns=1_000_000_000)
         self.last_imu_source_us = None
         self.last_uwb_stamp_ns = None
+        self.last_position_source = None
         self.expected_imu_period_us = int(expected_imu_period_us)
         self.estimated_missing_imu_samples = 0
         self.nonmonotonic_imu_samples = 0
@@ -79,3 +81,49 @@ class TelemetryCodec:
                 "tag_id": self.expected_tag_id, "anchor_ids": self.anchor_ids,
                 "ranges_m": ranges, "variances_m2": self.range_variance_m2,
                 "timestamp_domain": "ros_unix_ns_aligned_from_pi_receive"}
+
+    def vendor_2d_position_packet(self, state, arrival_unix_ns):
+        """Preserve the FC vendor's planar observation without making map odometry.
+
+        ``GLOBAL_VISION_POSITION_ESTIMATE`` is documented by the adapter as a
+        proprietary x/y value in ``uwb_raw``.  It has no trustworthy height or
+        map-frame transform, so this JSON contract deliberately cannot be
+        mistaken for the `/nexus/fcu/odom` input used by the localizer.
+        """
+        if state.get("online") is not True:
+            return None
+        position = state.get("position") or {}
+        x_m, y_m = finite(position.get("x_m")), finite(position.get("y_m"))
+        source_stamp = finite(position.get("sample_timestamp_ns"))
+        source_domain = str(position.get("sample_timestamp_domain") or "")
+        source_frame = str(position.get("frame_id") or "").strip()
+        if x_m is None or y_m is None or source_stamp is None or source_stamp <= 0 or not source_frame:
+            return None
+        source_key = (source_domain, int(source_stamp))
+        if source_key == self.last_position_source:
+            return None
+
+        packet = {
+            "schema_version": 1,
+            "frame_id": "vendor_2d/" + source_frame,
+            "source_frame_id": source_frame,
+            "unit": "m",
+            "dimensions": 2,
+            "position_m": [x_m, y_m],
+            "coordinate_frame_status": "vendor_proprietary_2d_not_map",
+            "source_sample_timestamp_ns": int(source_stamp),
+            "source_timestamp_domain": source_domain,
+            "edge_receive_timestamp_ns": int(arrival_unix_ns),
+        }
+        if source_domain == "flight_boot_unverified":
+            packet["sample_timestamp_ns"] = self.position_clock_aligner.align_ns(
+                int(source_stamp), arrival_unix_ns)
+            packet["timestamp_domain"] = "ros_unix_ns_aligned_from_flight_boot"
+        else:
+            # The record is still useful for live vendor-position display, but
+            # an unspecified vendor timebase must not become a ROS measurement
+            # timestamp for fusion or time synchronization.
+            packet["sample_timestamp_ns"] = None
+            packet["timestamp_domain"] = "unavailable_unverified_vendor_timebase"
+        self.last_position_source = source_key
+        return packet

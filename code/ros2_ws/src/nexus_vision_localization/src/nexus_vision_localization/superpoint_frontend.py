@@ -1,4 +1,4 @@
-"""Local dense SuperPoint ONNX inference and geometry-neutral correspondences.
+"""Local dense SuperPoint GPU inference and geometry-neutral correspondences.
 
 The network asset is external and mandatory. Postprocessing follows the
 explicit dense-head and descriptor sampling contract in the architecture doc.
@@ -12,6 +12,8 @@ from pathlib import Path
 
 import cv2
 import numpy as np
+
+from nexus_vision_localization.edge_model import create_model
 
 
 @dataclass(frozen=True)
@@ -89,8 +91,11 @@ class DenseSuperPoint:
     logits: np.ndarray
     descriptor_map: np.ndarray
     image_size_wh: tuple
+    descriptor_sampling: str = "lightglue_v1"
 
     def __post_init__(self):
+        if self.descriptor_sampling not in {"lightglue_v1", "superpoint_mit_v1"}:
+            raise ValueError("unsupported descriptor sampling")
         logits = np.asarray(self.logits, dtype=np.float32)
         descriptors = np.asarray(self.descriptor_map, dtype=np.float32)
         if len(self.image_size_wh) != 2 or any(not isinstance(v, (int, np.integer)) or v <= 0 for v in self.image_size_wh):
@@ -98,7 +103,7 @@ class DenseSuperPoint:
         if (logits.ndim != 4 or logits.shape[:2] != (1, 65) or min(logits.shape[2:]) < 1
                 or descriptors.shape != (1, 256, *logits.shape[2:])
                 or not np.all(np.isfinite(logits)) or not np.all(np.isfinite(descriptors))):
-            raise ValueError("SuperPoint ONNX must output finite 65-channel logits and 256-channel descriptor maps")
+            raise ValueError("SuperPoint dense model must output finite 65-channel logits and 256-channel descriptor maps")
         object.__setattr__(self, "logits", logits.copy())
         norms = np.linalg.norm(descriptors, axis=1, keepdims=True)
         object.__setattr__(self, "descriptor_map", descriptors / np.maximum(norms, 1e-12))
@@ -109,7 +114,8 @@ class DenseSuperPoint:
         _, _, height, width = self.descriptor_map.shape
         scale = np.array([width - 1, height - 1], dtype=float)
         denominator = np.array([width * 8 - 4.5, height * 8 - 4.5])
-        coarse = (points - 3.5) / denominator * scale
+        coarse = ((points + .5) / 8 - .5 if self.descriptor_sampling == "superpoint_mit_v1"
+                  else (points - 3.5) / denominator * scale)
         low = np.floor(coarse).astype(int)
         fraction = coarse - low
         output = np.zeros((len(points), 256), dtype=np.float32)
@@ -187,12 +193,14 @@ class SuperPointOnnx:
         if not isinstance(manifest, dict) or not required.issubset(manifest):
             raise ValueError("SuperPoint model manifest is incomplete")
         if (manifest["schema_version"] != 1 or manifest["architecture"] != "superpoint_dense_v1"
-                or manifest["descriptor_sampling"] != "lightglue_v1"):
+                or manifest["descriptor_sampling"] not in {"lightglue_v1", "superpoint_mit_v1"}):
             raise ValueError("unsupported SuperPoint model/head/sampling format")
         size = manifest["input_size_wh"]
         if (not isinstance(size, list) or len(size) != 2
                 or any(isinstance(v, bool) or not isinstance(v, int) or v < 8 or v % 8 for v in size)):
             raise ValueError("SuperPoint input dimensions must be positive multiples of eight")
+        if "dynamic_input" in manifest and not isinstance(manifest["dynamic_input"], bool):
+            raise ValueError("SuperPoint dynamic_input must be boolean when declared")
         if any(not isinstance(manifest[name], str) or not manifest[name].strip()
                for name in required - {"schema_version", "input_size_wh"}):
             raise ValueError("SuperPoint manifest names/provenance must be nonempty strings")
@@ -201,26 +209,41 @@ class SuperPointOnnx:
         if digest != manifest["sha256"].lower():
             raise ValueError("SuperPoint model SHA256 mismatch")
         self.manifest = manifest
-        self.network = cv2.dnn.readNetFromONNX(str(model))
-        self.network.setPreferableBackend(cv2.dnn.DNN_BACKEND_OPENCV)
-        self.network.setPreferableTarget(cv2.dnn.DNN_TARGET_CPU)
+        self.network = create_model(model, manifest)
 
-    def infer(self, image):
+    def infer(self, image, *, image_scale=1.):
         image = np.asarray(image)
         if image.dtype != np.uint8 or image.ndim not in (2, 3) or min(image.shape[:2]) < 8:
             raise ValueError("SuperPoint requires an 8-bit grayscale or BGR image")
+        if not np.isfinite(image_scale) or not .25 <= image_scale <= 1.:
+            raise ValueError("SuperPoint image scale must be in [0.25, 1]")
         if image.ndim == 3:
             if image.shape[2] != 3:
                 raise ValueError("SuperPoint color input must be BGR with three channels")
             image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
-        size = tuple(self.manifest["input_size_wh"])
-        resized = cv2.resize(image, size, interpolation=cv2.INTER_AREA)
+        original_size = (image.shape[1], image.shape[0])
+        if self.manifest.get("dynamic_input", False):
+            # A dynamic Tiny-SuperPoint graph receives the scheduled size
+            # directly.  Unlike a fixed graph, this lowers its tensor shape
+            # and MAC count rather than merely discarding image information.
+            size = tuple(max(8, 8 * max(1, int(round(value * image_scale / 8.))))
+                         for value in original_size)
+            resized = image if size == original_size else cv2.resize(image, size, interpolation=cv2.INTER_AREA)
+        else:
+            if image_scale < 1.:
+                scaled_size = tuple(max(8, int(round(value * image_scale))) for value in original_size)
+                image = cv2.resize(image, scaled_size, interpolation=cv2.INTER_AREA)
+            size = tuple(self.manifest["input_size_wh"])
+            resized = cv2.resize(image, size, interpolation=cv2.INTER_AREA)
         blob = (resized.astype(np.float32) / 255.)[None, None]
-        self.network.setInput(blob, self.manifest["input_name"])
-        logits, descriptors = self.network.forward([self.manifest["detector_output"], self.manifest["descriptor_output"]])
+        logits, descriptors = self.network.run(blob)
         if np.shape(logits)[2:] != (size[1] // 8, size[0] // 8):
             raise ValueError("SuperPoint output resolution does not match declared input size")
-        return DenseSuperPoint(logits, descriptors, (image.shape[1], image.shape[0]))
+        # DenseSuperPoint maps the fixed model grid directly back to the
+        # original camera pixels.  Downsampling therefore reduces real input
+        # work/information while preserving all downstream image coordinates.
+        return DenseSuperPoint(logits, descriptors, original_size,
+                               self.manifest["descriptor_sampling"])
 
 
 @dataclass(frozen=True)

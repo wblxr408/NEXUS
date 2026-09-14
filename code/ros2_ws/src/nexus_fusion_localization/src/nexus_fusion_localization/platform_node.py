@@ -4,6 +4,7 @@
 from dataclasses import replace
 import heapq
 import json
+import uuid
 from pathlib import Path
 
 import numpy as np
@@ -17,7 +18,7 @@ from sensor_msgs.msg import Imu
 from std_msgs.msg import String
 from tf2_ros import TransformBroadcaster
 
-from nexus_fusion_localization.imu_preintegration import ImuNoise, ImuReading
+from nexus_fusion_localization.imu_preintegration import ImuNoise, ImuReading, PreintegratedImu
 from nexus_fusion_localization.platform_measurements import (
     PoseMeasurement, PositionMeasurement, RangeMeasurement, RelativeMotionMeasurement,
 )
@@ -25,16 +26,19 @@ from nexus_fusion_localization.platform_state import (
     BodyState, pose_covariance_from_ros, pose_covariance_to_ros, rotation_matrix, skew, vector,
 )
 from nexus_fusion_localization.platform_window import PlatformConfig, PlatformWindow
-from nexus_fusion_localization.reliability import ReliabilityMLP, covariance_scales, feature_row
+from nexus_fusion_localization.reliability import FEATURE_NAMES, ReliabilityMLP, covariance_scales, feature_row
 
 
-def load_platform_calibration(path, allow_test=False):
+def load_platform_calibration(path, allow_test=False, allow_approximate=False):
     with Path(path).open(encoding="utf-8") as stream:
         data = yaml.safe_load(stream)
     if not isinstance(data, dict) or data.get("schema_version") != 1 or not data.get("calibration_id"):
         raise ValueError("platform calibration requires schema_version=1 and calibration_id")
     status = data.get("calibration_status")
-    if status != "measured" and not (allow_test and status == "synthetic_test"):
+    approximate = status == "experimental_approximation" and allow_approximate
+    if approximate and not data.get("approximations"):
+        raise ValueError("experimental calibration must document approximations")
+    if status != "measured" and not (allow_test and status == "synthetic_test") and not approximate:
         raise ValueError("platform requires measured calibration; test calibration needs explicit opt-in")
     if data.get("map_frame") != "map" or data.get("body_frame") != "base_link":
         raise ValueError("platform calibration must name map and base_link")
@@ -46,6 +50,9 @@ def load_platform_calibration(path, allow_test=False):
     if set(imu["noise"]) != required_noise:
         raise ValueError(f"calibration must specify all IMU noise fields: {sorted(required_noise)}")
     ImuNoise(**imu["noise"])
+    for name in ("initial_accel_bias_mps2", "initial_gyro_bias_rps"):
+        if name in imu:
+            vector(imu[name], 3, name)
     for name in ("initial_velocity_sigma_mps", "initial_accel_bias_sigma_mps2", "initial_gyro_bias_sigma_rps"):
         if not np.isfinite(data[name]) or data[name] <= 0:
             raise ValueError(f"{name} must be positive")
@@ -62,14 +69,17 @@ class PlatformLocalizationNode(Node):
         super().__init__("nexus_platform_localization")
         self.declare_parameter("calibration_file", "")
         self.declare_parameter("allow_test_calibration", False)
+        self.declare_parameter("allow_approximate_calibration", False)
         self.declare_parameter("max_observation_age_ms", 300.0)
         self.declare_parameter("reorder_delay_ms", 30.0)
         self.declare_parameter("publish_tf", False)
         self.declare_parameter("reliability_mode", "fixed")
         self.declare_parameter("reliability_model", "")
         self.declare_parameter("imu_buffer_s", 5.0)
+        self.declare_parameter("prediction_output_hz", 0.0)
         self.calibration = load_platform_calibration(
-            str(self.get_parameter("calibration_file").value), bool(self.get_parameter("allow_test_calibration").value))
+            str(self.get_parameter("calibration_file").value), bool(self.get_parameter("allow_test_calibration").value),
+            bool(self.get_parameter("allow_approximate_calibration").value))
         self._rotation_body_imu = rotation_matrix(self.calibration["imu"]["rotation_body_imu"])
         options = dict(self.calibration.get("window", {}))
         self.estimator = PlatformWindow(PlatformConfig(
@@ -89,8 +99,24 @@ class PlatformLocalizationNode(Node):
         self._quality = {}
         self._pending, self._sequence = [], 0
         self._last_imu_ns, self._last_status_reason = 0, None
+        self._session_id = str(uuid.uuid4())
+        self._initialization_generation = 0
+        self._initialization_reason = "startup"
+        self._minimum_initial_stamp = 0
+        self._prediction = None
+        self._last_output_stamp = 0
+        self._last_prediction_status_ns = 0
+        self._request_publisher = self.create_publisher(String, "/nexus/platform/initialization_request", 10)
+        rate = float(self.get_parameter("prediction_output_hz").value)
+        if not np.isfinite(rate) or rate < 0 or rate > 100:
+            raise ValueError("prediction_output_hz must be between 0 and 100")
+        self._prediction_enabled = rate > 0
+        if rate > 0:
+            self.create_timer(1. / rate, self._publish_prediction)
+        self.create_timer(.1, self._initialization_request)
         self._odom_publisher = self.create_publisher(Odometry, "/nexus/platform/odom", 20)
         self._status_publisher = self.create_publisher(String, "/nexus/platform/status", 20)
+        self._quality_publisher = self.create_publisher(String, "/nexus/observations/quality", 20)
         self._tf = TransformBroadcaster(self) if self.get_parameter("publish_tf").value else None
         self.create_subscription(Imu, "/nexus/fcu/imu", self._imu_callback, 100)
         self.create_subscription(Odometry, "/nexus/fcu/odom", self._position_callback, 20)
@@ -100,6 +126,58 @@ class PlatformLocalizationNode(Node):
         self.create_subscription(String, "/nexus/vision/body_motion", self._motion_callback, 20)
         self.create_subscription(String, "/nexus/observations/quality", self._quality_callback, 50)
         self.create_timer(.01, self._drain)
+
+    def _initialization_request(self):
+        if not self.estimator.states:
+            self._request_publisher.publish(String(data=json.dumps({
+                "request_id": f"{self._session_id}:{self._initialization_generation}",
+                "reason": self._initialization_reason,
+                "minimum_sample_timestamp_ns": self._minimum_initial_stamp})))
+
+    def _request_reinitialization(self, reason, stamp):
+        if not self.estimator.states:
+            return
+        self._initialization_generation += 1
+        self._initialization_reason = reason
+        self._minimum_initial_stamp = int(stamp)
+        self.estimator = PlatformWindow(self.estimator.config)
+        self._pending.clear()
+        self._last_imu_ns = 0
+        self._prediction = None
+        self._status("reinitialization_required:" + reason, valid=False)
+        self._initialization_request()
+
+    def _publish_prediction(self):
+        if not self.estimator.states or not self._last_imu_ns:
+            return
+        now = self.get_clock().now().nanoseconds
+        stamp = self._last_imu_ns
+        if (stamp <= self._last_output_stamp or not 0 <= now - stamp <= self._max_age_ns
+                or (stamp - self.estimator.last_external_ns) / 1e9 > self.estimator.config.prediction_horizon_s):
+            return
+        latest = next(reversed(self.estimator.states.values()))
+        if self._prediction is None:
+            state, covariance = latest, self.estimator.joint_covariance[-15:, -15:]
+        else:
+            state, covariance = self._prediction
+        if stamp <= state.stamp_ns:
+            return
+        try:
+            integrated = PreintegratedImu.from_buffer(self.estimator.imu, state.stamp_ns, stamp,
+                state.accel_bias_mps2, state.gyro_bias_rps, self.estimator.config.imu_noise)
+            predicted = integrated.predict(state, self.estimator.config.gravity)
+            covariance = integrated.predict_covariance(state, covariance)
+            if np.linalg.norm(predicted.velocity_mps) > self.estimator.config.maximum_speed_mps:
+                raise ValueError("platform_speed_limit")
+        except ValueError as error:
+            self._status("prediction_unavailable:" + str(error), valid=False, stamp_ns=stamp)
+            return
+        self._prediction = (predicted, covariance)
+        self._publish_odom(predicted, covariance)
+        if now - self._last_prediction_status_ns >= 100_000_000:
+            self._status("bounded_imu_prediction", valid=True, stamp_ns=stamp,
+                         extra={"prediction_only": True, "last_external_ns": self.estimator.last_external_ns})
+            self._last_prediction_status_ns = now
 
     @staticmethod
     def _stamp(header):
@@ -114,6 +192,8 @@ class PlatformLocalizationNode(Node):
         self._last_status_reason = reason
         data = {"schema_version": 1, "subject": "platform", "valid": bool(valid), "reason": reason,
                 "sample_timestamp_ns": stamp_ns, "calibration_id": self.calibration["calibration_id"],
+                "calibration_status": self.calibration["calibration_status"],
+                "approximations": self.calibration.get("approximations", []),
                 "reliability_mode": self._reliability_mode,
                 "source_last_sample_ns": self.estimator.last_source_stamps, **(extra or {})}
         self._status_publisher.publish(String(data=json.dumps(data, allow_nan=False)))
@@ -130,7 +210,7 @@ class PlatformLocalizationNode(Node):
             self._check_time(stamp)
             if not isinstance(data["features"], dict):
                 raise ValueError("quality features must be an object")
-            feature_row(data["features"])
+            feature_row({name: data["features"].get(name) for name in FEATURE_NAMES})
             now = self.get_clock().now().nanoseconds
             self._quality = {key: value for key, value in self._quality.items() if now - key[1] <= self._max_age_ns}
             self._quality[(data["source"], stamp)] = dict(data["features"])
@@ -143,11 +223,18 @@ class PlatformLocalizationNode(Node):
             return 1.
         if self._reliability_mode == "rule":
             if source.startswith("uwb"):
-                return float(np.clip(1. + max(0., float(features.get("gdop", 1.)) - 1.) ** 2, 1., 100.))
+                geometry = max(0., float(features.get("gdop", 1.)) - 1.) ** 2
+                innovation = max(0., float(features.get("uwb_innovation_m", 0.)))
+                jump = max(0., float(features.get("uwb_jump_m", 0.)))
+                nlos = max(0., min(1., float(features.get("nlos_probability", 0.))))
+                # Range residuals are a direct NLOS proxy under the current
+                # platform hypothesis.  They only inflate UWB covariance.
+                return float(np.clip(1. + geometry + 4. * innovation ** 2 + 2. * jump ** 2 + 25. * nlos, 1., 100.))
             ratio = float(features.get("inlier_ratio", 1.))
             if not np.isfinite(ratio) or not 0 <= ratio <= 1:
                 raise ValueError("invalid inlier_ratio for rule reliability")
             return 1. + 99. * (1. - ratio) ** 2
+        features = {name: features.get(name) for name in FEATURE_NAMES}
         features["network_latency_s"] = (self.get_clock().now().nanoseconds - stamp) / 1e9
         if self.estimator.states:
             previous = next(reversed(self.estimator.states.values()))
@@ -171,10 +258,13 @@ class PlatformLocalizationNode(Node):
                 raise ValueError("IMU acceleration or angular velocity is marked unavailable")
             accel = vector([message.linear_acceleration.x, message.linear_acceleration.y, message.linear_acceleration.z], 3, "IMU acceleration")
             gyro = vector([message.angular_velocity.x, message.angular_velocity.y, message.angular_velocity.z], 3, "IMU angular velocity")
+            if self._last_imu_ns and (stamp < self._last_imu_ns or
+                    stamp - self._last_imu_ns > self.estimator.config.imu_noise.maximum_gap_s * 1e9):
+                self._request_reinitialization("imu_discontinuity", stamp)
             self.estimator.add_imu(ImuReading(stamp, self._rotation_body_imu @ accel, self._rotation_body_imu @ gyro))
             self._last_imu_ns = stamp
             if not self.estimator.states:
-                self.estimator.imu.discard_before(stamp - self._max_age_ns)
+                self.estimator.imu.discard_before(stamp - self._imu_buffer_ns)
             else:
                 self.estimator.imu.discard_before(stamp - self._imu_buffer_ns)
         except (ValueError, TypeError, OverflowError) as error:
@@ -194,7 +284,28 @@ class PlatformLocalizationNode(Node):
         return PoseMeasurement(stamp, [pose.position.x, pose.position.y, pose.position.z], rotation, covariance)
 
     def _initialize(self, measurement, source):
-        body = BodyState(measurement.stamp_ns, measurement.position_m, np.zeros(3), measurement.rotation_map_body)
+        imu = self.calibration["imu"]
+        accel_bias = imu.get("initial_accel_bias_mps2", np.zeros(3))
+        gyro_bias = imu.get("initial_gyro_bias_rps", np.zeros(3))
+        if source == "initial_pose" and self.calibration.get("initialization", {}).get("estimate_stationary_bias", False):
+            samples = list(self.estimator.imu.samples)[-200:]
+            if len(samples) < 50:
+                raise ValueError("stationary bias needs fresh IMU samples")
+            acceleration = np.array([row.acceleration_mps2 for row in samples])
+            angular = np.array([row.angular_velocity_rps for row in samples])
+            gaps = np.diff([row.stamp_ns for row in samples])
+            if (np.max(acceleration.std(axis=0)) > .2 or np.max(np.abs(angular)) > .05
+                    or np.any(gaps <= 0) or np.max(gaps) > self.estimator.config.imu_noise.maximum_gap_s * 1e9):
+                raise ValueError("stationary bias window is moving or discontinuous")
+            average = acceleration.mean(axis=0)
+            magnitude = np.linalg.norm(average)
+            if not 7 < magnitude < 12:
+                raise ValueError("stationary gravity magnitude is unavailable")
+            gyro_bias = angular.mean(axis=0)
+            # Only gravity-axis magnitude is identifiable from one static pose.
+            accel_bias = average * (1. - 9.80665 / magnitude)
+        body = BodyState(measurement.stamp_ns, measurement.position_m, np.zeros(3), measurement.rotation_map_body,
+                         accel_bias, gyro_bias)
         indices = [0, 1, 2, 6, 7, 8]
         covariance = np.zeros((15, 15))
         covariance[np.ix_(indices, indices)] = measurement.covariance
@@ -202,13 +313,19 @@ class PlatformLocalizationNode(Node):
         covariance[9:12, 9:12] = np.eye(3) * self.calibration["initial_accel_bias_sigma_mps2"] ** 2
         covariance[12:15, 12:15] = np.eye(3) * self.calibration["initial_gyro_bias_sigma_rps"] ** 2
         self.estimator.initialize(body, covariance, source)
+        self._prediction = None
         self._pending = [entry for entry in self._pending if entry[0] > measurement.stamp_ns]
         heapq.heapify(self._pending)
-        self._status("initialized", valid=True, stamp_ns=measurement.stamp_ns)
+        self._status("initialized", valid=True, stamp_ns=measurement.stamp_ns,
+                     extra={"initialization_request_id": f"{self._session_id}:{self._initialization_generation}",
+                            "initial_gyro_bias_rps": body.gyro_bias_rps.tolist(),
+                            "initial_accel_bias_mps2": body.accel_bias_mps2.tolist()})
         self._publish_odom(body, covariance)
 
     def _initial_callback(self, message):
         try:
+            if self._stamp(message.header) < self._minimum_initial_stamp:
+                raise ValueError("initial pose predates recovery request")
             self._initialize(self._pose_measurement(message), "initial_pose")
         except (TypeError, ValueError) as error:
             self._status(f"initial_pose_rejected:{error}")
@@ -253,8 +370,32 @@ class PlatformLocalizationNode(Node):
             surveyed = self.calibration["uwb"]["anchors_map_m"]
             anchors = [surveyed[identifier] for identifier in ids]
             variances = vector(data["variances_m2"], len(ids), "range variances")
-            self._enqueue(RangeMeasurement(int(data["sample_timestamp_ns"]), anchors, data["ranges_m"],
+            stamp = int(data["sample_timestamp_ns"])
+            self._enqueue(RangeMeasurement(stamp, anchors, data["ranges_m"],
                                            np.diag(variances), self.calibration["uwb"]["tag_body_m"]))
+            features = {"anchor_count": len(anchors)}
+            if self.estimator.states:
+                state = next(reversed(self.estimator.states.values()))
+                tag_position = state.position_m + state.rotation_map_body @ np.asarray(self.calibration["uwb"]["tag_body_m"], dtype=float)
+                directions = np.asarray(anchors, dtype=float) - tag_position
+                distances = np.linalg.norm(directions, axis=1)
+                measured = vector(data["ranges_m"], len(anchors), "ranges")
+                residuals = np.abs(distances - measured)
+                features["uwb_innovation_m"] = float(np.median(residuals))
+                features["uwb_jump_m"] = float(np.max(residuals))
+                features["nlos_probability"] = float(np.clip(
+                    .55 * min(1., features["uwb_innovation_m"] / .5)
+                    + .45 * min(1., features["uwb_jump_m"] / 1.), 0., 1.))
+                valid = distances > 1e-6
+                jacobian = directions[valid] / distances[valid, None]
+                if len(jacobian) >= 3 and np.linalg.matrix_rank(jacobian) == 3:
+                    covariance = np.linalg.inv(jacobian.T @ jacobian)
+                    gdop = float(np.sqrt(np.trace(covariance)))
+                    if np.isfinite(gdop):
+                        features["gdop"] = gdop
+            self._quality_publisher.publish(String(data=json.dumps({
+                "schema_version": 1, "subject": "platform", "source": "uwb_ranges",
+                "sample_timestamp_ns": stamp, "features": features}, allow_nan=False)))
         except (TypeError, ValueError, KeyError, OverflowError) as error:
             self._status(f"ranges_rejected:{error}")
 
@@ -303,6 +444,11 @@ class PlatformLocalizationNode(Node):
             except (TypeError, ValueError) as error:
                 self._status(f"quality_inference_failed:{error}", stamp_ns=stamp)
                 continue
+            if not result.valid and "IMU gap" in result.reason:
+                self._request_reinitialization("imu_discontinuity", self._last_imu_ns)
+                return
+            if result.valid:
+                self._prediction = None
             now = self.get_clock().now().nanoseconds
             fresh = 0 <= now - result.state.stamp_ns <= self._max_age_ns
             reason = result.reason if fresh else "solution_stale"
@@ -315,10 +461,16 @@ class PlatformLocalizationNode(Node):
                 self._publish_odom(result.state, result.covariance)
         last_constraint = self.estimator.last_external_ns
         if (now - last_constraint) / 1e9 > self.estimator.config.prediction_horizon_s:
+            if self.calibration.get("initialization", {}).get("use_fc_attitude", False):
+                self._request_reinitialization("external_constraints_lost", self._last_imu_ns)
+                return
             if self._last_status_reason not in {"external_constraints_lost", "imu_stale"}:
                 self._status("external_constraints_lost", stamp_ns=last_constraint)
 
     def _publish_odom(self, state, covariance):
+        if self._prediction_enabled and state.stamp_ns <= self._last_output_stamp:
+            return
+        self._last_output_stamp = state.stamp_ns
         output = Odometry()
         output.header.stamp.sec, output.header.stamp.nanosec = divmod(state.stamp_ns, 1_000_000_000)
         output.header.frame_id, output.child_frame_id = "map", "base_link"

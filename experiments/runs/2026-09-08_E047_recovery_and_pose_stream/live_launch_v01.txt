@@ -1,0 +1,198 @@
+[INFO] [launch]: All log files can be found below /root/.ros/log/2026-09-08-18-40-17-361544-wblxr-72642
+[INFO] [launch]: Default logging verbosity is set to INFO
+[INFO] [camera_file_node.py-1]: process started with pid [72662]
+[INFO] [range_smoothing_node.py-2]: process started with pid [72664]
+[INFO] [approximate_initial_pose_node-3]: process started with pid [72666]
+[INFO] [platform_localization_node-4]: process started with pid [72668]
+[INFO] [object_detection_node-5]: process started with pid [72670]
+[INFO] [superpoint_motion_node-6]: process started with pid [72672]
+[INFO] [target_metric_node-7]: process started with pid [72674]
+[INFO] [target_kinematic_fusion_node-8]: process started with pid [72676]
+[INFO] [adaptive_observation_node-9]: process started with pid [72678]
+[INFO] [localization_dashboard_node-10]: process started with pid [72680]
+[INFO] [rosbridge_websocket-11]: process started with pid [72682]
+[INFO] [python3-12]: process started with pid [72684]
+[rosbridge_websocket-11] [WARN] [1788864024.022073576] [rosbridge_websocket]: The 'default_call_service_timeout' parameter is currently set to 0.0, which means service calls will block indefinitely if no response is received. Please note that in the Jazzy and later releases, the default value for this parameter will be updated to 5.0 seconds.
+[rosbridge_websocket-11] [WARN] [1788864024.022648598] [rosbridge_websocket]: The 'call_services_in_new_thread' parameter is currently set to False, which means service calls will block the main thread. Please note that in the Jazzy and later releases, the default value for this parameter will be updated to True.
+[rosbridge_websocket-11] [WARN] [1788864024.022936685] [rosbridge_websocket]: The 'send_action_goals_in_new_thread' parameter is currently set to False, which means sending action goals will block the main thread. Please note that in the Jazzy and later releases, the default value for this parameter will be updated to True.
+[rosbridge_websocket-11] [WARN] [1788864024.068851456] [rosbridge_websocket]: Unable to start server: [Errno 98] Address already in use Retrying in 2.0s.
+[rosbridge_websocket-11] [WARN] [1788864026.075094917] [rosbridge_websocket]: Unable to start server: [Errno 98] Address already in use Retrying in 2.0s.
+[rosbridge_websocket-11] [WARN] [1788864028.079868483] [rosbridge_websocket]: Unable to start server: [Errno 98] Address already in use Retrying in 2.0s.
+[rosbridge_websocket-11] [WARN] [1788864030.086242067] [rosbridge_websocket]: Unable to start server: [Errno 98] Address already in use Retrying in 2.0s.
+[rosbridge_websocket-11] [WARN] [1788864032.090451106] [rosbridge_websocket]: Unable to start server: [Errno 98] Address already in use Retrying in 2.0s.
+[rosbridge_websocket-11] [WARN] [1788864034.095402485] [rosbridge_websocket]: Unable to start server: [Errno 98] Address already in use Retrying in 2.0s.
+[rosbridge_websocket-11] [WARN] [1788864036.100200129] [rosbridge_websocket]: Unable to start server: [Errno 98] Address already in use Retrying in 2.0s.
+[rosbridge_websocket-11] [WARN] [1788864038.104331775] [rosbridge_websocket]: Unable to start server: [Errno 98] Address already in use Retrying in 2.0s.
+[rosbridge_websocket-11] [WARN] [1788864040.108618844] [rosbridge_websocket]: Unable to start server: [Errno 98] Address already in use Retrying in 2.0s.
+[rosbridge_websocket-11] [WARN] [1788864042.113061423] [rosbridge_websocket]: Unable to start server: [Errno 98] Address already in use Retrying in 2.0s.
+[rosbridge_websocket-11] [WARN] [1788864044.117416154] [rosbridge_websocket]: Unable to start server: [Errno 98] Address already in use Retrying in 2.0s.
+[rosbridge_websocket-11] [WARN] [1788864046.141418027] [rosbridge_websocket]: Unable to start server: [Errno 98] Address already in use Retrying in 2.0s.
+[rosbridge_websocket-11] [WARN] [1788864048.146054912] [rosbridge_websocket]: Unable to start server: [Errno 98] Address already in use Retrying in 2.0s.
+[rosbridge_websocket-11] [WARN] [1788864050.150872593] [rosbridge_websocket]: Unable to start server: [Errno 98] Address already in use Retrying in 2.0s.
+[rosbridge_websocket-11] [WARN] [1788864052.154158933] [rosbridge_websocket]: Unable to start server: [Errno 98] Address already in use Retrying in 2.0s.
+[rosbridge_websocket-11] [WARN] [1788864054.159125857] [rosbridge_websocket]: Unable to start server: [Errno 98] Address already in use Retrying in 2.0s.
+[rosbridge_websocket-11] [WARN] [1788864056.161676518] [rosbridge_websocket]: Unable to start server: [Errno 98] Address already in use Retrying in 2.0s.
+[rosbridge_websocket-11] [WARN] [1788864058.166333399] [rosbridge_websocket]: Unable to start server: [Errno 98] Address already in use Retrying in 2.0s.
+[rosbridge_websocket-11] [WARN] [1788864060.171213053] [rosbridge_websocket]: Unable to start server: [Errno 98] Address already in use Retrying in 2.0s.
+[rosbridge_websocket-11] [WARN] [1788864062.174170036] [rosbridge_websocket]: Unable to start server: [Errno 98] Address already in use Retrying in 2.0s.
+[rosbridge_websocket-11] [WARN] [1788864064.179990083] [rosbridge_websocket]: Unable to start server: [Errno 98] Address already in use Retrying in 2.0s.
+[rosbridge_websocket-11] [WARN] [1788864066.184271451] [rosbridge_websocket]: Unable to start server: [Errno 98] Address already in use Retrying in 2.0s.
+[rosbridge_websocket-11] [WARN] [1788864068.189084232] [rosbridge_websocket]: Unable to start server: [Errno 98] Address already in use Retrying in 2.0s.
+[rosbridge_websocket-11] [WARN] [1788864070.193704646] [rosbridge_websocket]: Unable to start server: [Errno 98] Address already in use Retrying in 2.0s.
+[rosbridge_websocket-11] [WARN] [1788864072.197223585] [rosbridge_websocket]: Unable to start server: [Errno 98] Address already in use Retrying in 2.0s.
+[rosbridge_websocket-11] [WARN] [1788864074.201680232] [rosbridge_websocket]: Unable to start server: [Errno 98] Address already in use Retrying in 2.0s.
+[rosbridge_websocket-11] [WARN] [1788864076.204639335] [rosbridge_websocket]: Unable to start server: [Errno 98] Address already in use Retrying in 2.0s.
+[rosbridge_websocket-11] [WARN] [1788864078.209372582] [rosbridge_websocket]: Unable to start server: [Errno 98] Address already in use Retrying in 2.0s.
+[rosbridge_websocket-11] [WARN] [1788864080.213875468] [rosbridge_websocket]: Unable to start server: [Errno 98] Address already in use Retrying in 2.0s.
+[rosbridge_websocket-11] [WARN] [1788864082.218401006] [rosbridge_websocket]: Unable to start server: [Errno 98] Address already in use Retrying in 2.0s.
+[rosbridge_websocket-11] [WARN] [1788864084.222769826] [rosbridge_websocket]: Unable to start server: [Errno 98] Address already in use Retrying in 2.0s.
+[rosbridge_websocket-11] [WARN] [1788864086.226913227] [rosbridge_websocket]: Unable to start server: [Errno 98] Address already in use Retrying in 2.0s.
+[rosbridge_websocket-11] [WARN] [1788864088.229584729] [rosbridge_websocket]: Unable to start server: [Errno 98] Address already in use Retrying in 2.0s.
+[rosbridge_websocket-11] [WARN] [1788864090.233224128] [rosbridge_websocket]: Unable to start server: [Errno 98] Address already in use Retrying in 2.0s.
+[rosbridge_websocket-11] [WARN] [1788864092.236138170] [rosbridge_websocket]: Unable to start server: [Errno 98] Address already in use Retrying in 2.0s.
+[rosbridge_websocket-11] [WARN] [1788864094.238965497] [rosbridge_websocket]: Unable to start server: [Errno 98] Address already in use Retrying in 2.0s.
+[rosbridge_websocket-11] [WARN] [1788864096.259013889] [rosbridge_websocket]: Unable to start server: [Errno 98] Address already in use Retrying in 2.0s.
+[rosbridge_websocket-11] [WARN] [1788864098.263607380] [rosbridge_websocket]: Unable to start server: [Errno 98] Address already in use Retrying in 2.0s.
+[rosbridge_websocket-11] [WARN] [1788864100.268099114] [rosbridge_websocket]: Unable to start server: [Errno 98] Address already in use Retrying in 2.0s.
+[rosbridge_websocket-11] [WARN] [1788864102.273070723] [rosbridge_websocket]: Unable to start server: [Errno 98] Address already in use Retrying in 2.0s.
+[rosbridge_websocket-11] [WARN] [1788864104.278082787] [rosbridge_websocket]: Unable to start server: [Errno 98] Address already in use Retrying in 2.0s.
+[rosbridge_websocket-11] [WARN] [1788864106.282690147] [rosbridge_websocket]: Unable to start server: [Errno 98] Address already in use Retrying in 2.0s.
+[rosbridge_websocket-11] [WARN] [1788864108.287753311] [rosbridge_websocket]: Unable to start server: [Errno 98] Address already in use Retrying in 2.0s.
+[rosbridge_websocket-11] [WARN] [1788864110.292512454] [rosbridge_websocket]: Unable to start server: [Errno 98] Address already in use Retrying in 2.0s.
+[rosbridge_websocket-11] [WARN] [1788864112.297420296] [rosbridge_websocket]: Unable to start server: [Errno 98] Address already in use Retrying in 2.0s.
+[rosbridge_websocket-11] [WARN] [1788864114.301727177] [rosbridge_websocket]: Unable to start server: [Errno 98] Address already in use Retrying in 2.0s.
+[rosbridge_websocket-11] [WARN] [1788864116.306323796] [rosbridge_websocket]: Unable to start server: [Errno 98] Address already in use Retrying in 2.0s.
+[rosbridge_websocket-11] [WARN] [1788864118.310708019] [rosbridge_websocket]: Unable to start server: [Errno 98] Address already in use Retrying in 2.0s.
+[rosbridge_websocket-11] [WARN] [1788864120.315890312] [rosbridge_websocket]: Unable to start server: [Errno 98] Address already in use Retrying in 2.0s.
+[rosbridge_websocket-11] [WARN] [1788864122.318717911] [rosbridge_websocket]: Unable to start server: [Errno 98] Address already in use Retrying in 2.0s.
+[rosbridge_websocket-11] [WARN] [1788864124.324827554] [rosbridge_websocket]: Unable to start server: [Errno 98] Address already in use Retrying in 2.0s.
+[WARNING] [launch]: user interrupted with ctrl-c (SIGINT)
+[INFO] [python3-12]: sending signal 'SIGINT' to process[python3-12]
+[INFO] [rosbridge_websocket-11]: sending signal 'SIGINT' to process[rosbridge_websocket-11]
+[INFO] [localization_dashboard_node-10]: sending signal 'SIGINT' to process[localization_dashboard_node-10]
+[INFO] [adaptive_observation_node-9]: sending signal 'SIGINT' to process[adaptive_observation_node-9]
+[INFO] [target_kinematic_fusion_node-8]: sending signal 'SIGINT' to process[target_kinematic_fusion_node-8]
+[INFO] [target_metric_node-7]: sending signal 'SIGINT' to process[target_metric_node-7]
+[INFO] [superpoint_motion_node-6]: sending signal 'SIGINT' to process[superpoint_motion_node-6]
+[INFO] [object_detection_node-5]: sending signal 'SIGINT' to process[object_detection_node-5]
+[INFO] [platform_localization_node-4]: sending signal 'SIGINT' to process[platform_localization_node-4]
+[INFO] [approximate_initial_pose_node-3]: sending signal 'SIGINT' to process[approximate_initial_pose_node-3]
+[INFO] [range_smoothing_node.py-2]: sending signal 'SIGINT' to process[range_smoothing_node.py-2]
+[INFO] [camera_file_node.py-1]: sending signal 'SIGINT' to process[camera_file_node.py-1]
+[python3-12] Serving HTTP on 127.0.0.1 port 8766 (http://127.0.0.1:8766/) ...
+[python3-12] 
+[python3-12] Keyboard interrupt received, exiting.
+[rosbridge_websocket-11] registered capabilities (classes):
+[rosbridge_websocket-11]  - <class 'rosbridge_library.capabilities.advertise.Advertise'>
+[rosbridge_websocket-11]  - <class 'rosbridge_library.capabilities.publish.Publish'>
+[rosbridge_websocket-11]  - <class 'rosbridge_library.capabilities.subscribe.Subscribe'>
+[rosbridge_websocket-11]  - <class 'rosbridge_library.capabilities.defragmentation.Defragment'>
+[rosbridge_websocket-11]  - <class 'rosbridge_library.capabilities.advertise_service.AdvertiseService'>
+[rosbridge_websocket-11]  - <class 'rosbridge_library.capabilities.call_service.CallService'>
+[rosbridge_websocket-11]  - <class 'rosbridge_library.capabilities.service_response.ServiceResponse'>
+[rosbridge_websocket-11]  - <class 'rosbridge_library.capabilities.unadvertise_service.UnadvertiseService'>
+[rosbridge_websocket-11]  - <class 'rosbridge_library.capabilities.advertise_action.AdvertiseAction'>
+[rosbridge_websocket-11]  - <class 'rosbridge_library.capabilities.action_feedback.ActionFeedback'>
+[rosbridge_websocket-11]  - <class 'rosbridge_library.capabilities.action_result.ActionResult'>
+[rosbridge_websocket-11]  - <class 'rosbridge_library.capabilities.send_action_goal.SendActionGoal'>
+[rosbridge_websocket-11]  - <class 'rosbridge_library.capabilities.unadvertise_action.UnadvertiseAction'>
+[rosbridge_websocket-11] Traceback (most recent call last):
+[rosbridge_websocket-11]   File "/opt/ros/humble/lib/rosbridge_server/rosbridge_websocket", line 230, in _start_server
+[rosbridge_websocket-11]     sockets = bind_sockets(self.port, self.address)
+[rosbridge_websocket-11]   File "/usr/lib/python3/dist-packages/tornado/netutil.py", line 161, in bind_sockets
+[rosbridge_websocket-11]     sock.bind(sockaddr)
+[rosbridge_websocket-11] OSError: [Errno 98] Address already in use
+[rosbridge_websocket-11] 
+[rosbridge_websocket-11] During handling of the above exception, another exception occurred:
+[rosbridge_websocket-11] 
+[rosbridge_websocket-11] Traceback (most recent call last):
+[rosbridge_websocket-11]   File "/opt/ros/humble/lib/rosbridge_server/rosbridge_websocket", line 308, in <module>
+[rosbridge_websocket-11]     main()
+[rosbridge_websocket-11]   File "/opt/ros/humble/lib/rosbridge_server/rosbridge_websocket", line 304, in main
+[rosbridge_websocket-11]     asyncio.run(async_main())
+[rosbridge_websocket-11]   File "/usr/lib/python3.10/asyncio/runners.py", line 44, in run
+[rosbridge_websocket-11]     return loop.run_until_complete(main)
+[rosbridge_websocket-11]   File "/usr/lib/python3.10/asyncio/base_events.py", line 636, in run_until_complete
+[rosbridge_websocket-11]     self.run_forever()
+[rosbridge_websocket-11]   File "/usr/lib/python3.10/asyncio/base_events.py", line 603, in run_forever
+[rosbridge_websocket-11]     self._run_once()
+[rosbridge_websocket-11]   File "/usr/lib/python3.10/asyncio/base_events.py", line 1909, in _run_once
+[rosbridge_websocket-11]     handle._run()
+[rosbridge_websocket-11]   File "/usr/lib/python3.10/asyncio/events.py", line 80, in _run
+[rosbridge_websocket-11]     self._context.run(self._callback, *self._args)
+[rosbridge_websocket-11]   File "/opt/ros/humble/lib/rosbridge_server/rosbridge_websocket", line 272, in async_main
+[rosbridge_websocket-11]     node = RosbridgeWebsocketNode()
+[rosbridge_websocket-11]   File "/opt/ros/humble/lib/rosbridge_server/rosbridge_websocket", line 145, in __init__
+[rosbridge_websocket-11]     self._start_server()
+[rosbridge_websocket-11]   File "/opt/ros/humble/lib/rosbridge_server/rosbridge_websocket", line 241, in _start_server
+[rosbridge_websocket-11]     time.sleep(self.retry_startup_delay)
+[rosbridge_websocket-11] KeyboardInterrupt
+[approximate_initial_pose_node-3] Traceback (most recent call last):
+[approximate_initial_pose_node-3]   File "/root/nexus_workspace/NEXUS/code/ros2_ws/install/nexus_bringup/lib/nexus_bringup/approximate_initial_pose_node", line 158, in <module>
+[approximate_initial_pose_node-3]     main()
+[approximate_initial_pose_node-3]   File "/root/nexus_workspace/NEXUS/code/ros2_ws/install/nexus_bringup/lib/nexus_bringup/approximate_initial_pose_node", line 150, in main
+[approximate_initial_pose_node-3]     rclpy.spin(node)
+[approximate_initial_pose_node-3]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/__init__.py", line 229, in spin
+[approximate_initial_pose_node-3]     executor.spin_once()
+[approximate_initial_pose_node-3]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 808, in spin_once
+[approximate_initial_pose_node-3]     self._spin_once_impl(timeout_sec)
+[approximate_initial_pose_node-3]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 797, in _spin_once_impl
+[approximate_initial_pose_node-3]     handler, entity, node = self.wait_for_ready_callbacks(timeout_sec=timeout_sec)
+[approximate_initial_pose_node-3]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 780, in wait_for_ready_callbacks
+[approximate_initial_pose_node-3]     return next(self._cb_iter)
+[approximate_initial_pose_node-3]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 677, in _wait_for_ready_callbacks
+[approximate_initial_pose_node-3]     wait_set.wait(timeout_nsec)
+[approximate_initial_pose_node-3] KeyboardInterrupt
+[INFO] [python3-12]: process has finished cleanly [pid 72684]
+[localization_dashboard_node-10] Traceback (most recent call last):
+[localization_dashboard_node-10]   File "/root/nexus_workspace/NEXUS/code/ros2_ws/install/nexus_viz_dashboard/lib/nexus_viz_dashboard/localization_dashboard_node", line 201, in <module>
+[localization_dashboard_node-10]     main()
+[localization_dashboard_node-10]   File "/root/nexus_workspace/NEXUS/code/ros2_ws/install/nexus_viz_dashboard/lib/nexus_viz_dashboard/localization_dashboard_node", line 197, in main
+[localization_dashboard_node-10]     rclpy.shutdown()
+[localization_dashboard_node-10]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/__init__.py", line 130, in shutdown
+[localization_dashboard_node-10]     _shutdown(context=context)
+[localization_dashboard_node-10]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/utilities.py", line 58, in shutdown
+[range_smoothing_node.py-2] Traceback (most recent call last):
+[range_smoothing_node.py-2]   File "/root/nexus_workspace/NEXUS/code/ros2_ws/install/nexus_pi_readonly_ingress/lib/nexus_pi_readonly_ingress/range_smoothing_node.py", line 57, in main
+[range_smoothing_node.py-2]     rclpy.spin(node)
+[range_smoothing_node.py-2]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/__init__.py", line 229, in spin
+[range_smoothing_node.py-2]     executor.spin_once()
+[range_smoothing_node.py-2]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 808, in spin_once
+[range_smoothing_node.py-2]     self._spin_once_impl(timeout_sec)
+[range_smoothing_node.py-2]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 797, in _spin_once_impl
+[range_smoothing_node.py-2]     handler, entity, node = self.wait_for_ready_callbacks(timeout_sec=timeout_sec)
+[range_smoothing_node.py-2]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 780, in wait_for_ready_callbacks
+[range_smoothing_node.py-2]     return next(self._cb_iter)
+[range_smoothing_node.py-2]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/executors.py", line 677, in _wait_for_ready_callbacks
+[range_smoothing_node.py-2]     wait_set.wait(timeout_nsec)
+[range_smoothing_node.py-2] KeyboardInterrupt
+[range_smoothing_node.py-2] 
+[range_smoothing_node.py-2] During handling of the above exception, another exception occurred:
+[range_smoothing_node.py-2] 
+[range_smoothing_node.py-2] Traceback (most recent call last):
+[range_smoothing_node.py-2]   File "/root/nexus_workspace/NEXUS/code/ros2_ws/install/nexus_pi_readonly_ingress/lib/nexus_pi_readonly_ingress/range_smoothing_node.py", line 64, in <module>
+[range_smoothing_node.py-2]     main()
+[range_smoothing_node.py-2]   File "/root/nexus_workspace/NEXUS/code/ros2_ws/install/nexus_pi_readonly_ingress/lib/nexus_pi_readonly_ingress/range_smoothing_node.py", line 60, in main
+[range_smoothing_node.py-2]     rclpy.shutdown()
+[range_smoothing_node.py-2]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/__init__.py", line 130, in shutdown
+[range_smoothing_node.py-2]     _shutdown(context=context)
+[range_smoothing_node.py-2]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/utilities.py", line 58, in shutdown
+[range_smoothing_node.py-2]     return context.shutdown()
+[range_smoothing_node.py-2]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/context.py", line 102, in shutdown
+[localization_dashboard_node-10]     return context.shutdown()
+[localization_dashboard_node-10]   File "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/context.py", line 102, in shutdown
+[localization_dashboard_node-10]     self.__context.shutdown()
+[localization_dashboard_node-10] rclpy._rclpy_pybind11.RCLError: failed to shutdown: rcl_shutdown already called on the given context, at ./src/rcl/init.c:241
+[range_smoothing_node.py-2]     self.__context.shutdown()
+[range_smoothing_node.py-2] rclpy._rclpy_pybind11.RCLError: failed to shutdown: rcl_shutdown already called on the given context, at ./src/rcl/init.c:241
+[INFO] [camera_file_node.py-1]: process has finished cleanly [pid 72662]
+[ERROR] [rosbridge_websocket-11]: process has died [pid 72682, exit code -2, cmd '/opt/ros/humble/lib/rosbridge_server/rosbridge_websocket --ros-args --params-file /tmp/launch_params_5yh4o98x'].
+[ERROR] [approximate_initial_pose_node-3]: process has died [pid 72666, exit code -2, cmd '/root/nexus_workspace/NEXUS/code/ros2_ws/install/nexus_bringup/lib/nexus_bringup/approximate_initial_pose_node --ros-args --params-file /tmp/launch_params_kawoymk0'].
+[INFO] [target_metric_node-7]: process has finished cleanly [pid 72674]
+[INFO] [adaptive_observation_node-9]: process has finished cleanly [pid 72678]
+[INFO] [target_kinematic_fusion_node-8]: process has finished cleanly [pid 72676]
+[INFO] [platform_localization_node-4]: process has finished cleanly [pid 72668]
+[ERROR] [localization_dashboard_node-10]: process has died [pid 72680, exit code 1, cmd '/root/nexus_workspace/NEXUS/code/ros2_ws/install/nexus_viz_dashboard/lib/nexus_viz_dashboard/localization_dashboard_node --ros-args --params-file /tmp/launch_params_g35atqi9'].
+[ERROR] [range_smoothing_node.py-2]: process has died [pid 72664, exit code 1, cmd '/root/nexus_workspace/NEXUS/code/ros2_ws/install/nexus_pi_readonly_ingress/lib/nexus_pi_readonly_ingress/range_smoothing_node.py --ros-args --params-file /tmp/launch_params_m0nk8wkg'].
+[INFO] [superpoint_motion_node-6]: process has finished cleanly [pid 72672]
+[INFO] [object_detection_node-5]: process has finished cleanly [pid 72670]

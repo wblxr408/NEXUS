@@ -1,3 +1,11 @@
+# 当前网页入口（2026-09-07）
+
+已适配双对象定位输入输出，支持“定格 → 框选 → 参考点 → 命名 → 后端确认注册”。操作和验证限制见[当前使用说明](../../../../../docs/2026-09-07_guide_web_target_registration.md)。
+
+默认接入当前 ROS2 定位与输入状态；下方 CARLA 说明作为旧模式参考，仅在 URL 使用 legacy=carla 时连接。静态 HTTP 服务本身不启动相机或算法。
+
+---
+
 # Dashboard 前端骨架
 
 此目录预留给浏览器端的 Dashboard。页面部署在 ROS2 Ubuntu 主机，由 `nexus_viz_dashboard` 的后续网关提供 HTTP/WebSocket；浏览器可在同网段的 Ubuntu 或 Windows 上访问。

@@ -68,6 +68,7 @@ def camera(duration):
                 "captured_unix_ns": now,
                 "sample_timestamp_domain": "ros_unix_ns_receive",
                 "sensor_timestamp_ns": 1_000_000_000 + index * 200_000_000,
+                "frame_sequence": index,
                 "width": 1640,
                 "height": 1232,
                 "encoding": "rgb8",

@@ -15,6 +15,8 @@ from typing import Any
 
 import rclpy
 from nav_msgs.msg import Odometry
+from rclpy._rclpy_pybind11 import RCLError
+from rclpy.executors import ExternalShutdownException
 from rclpy.node import Node
 from sensor_msgs.msg import Imu
 
@@ -135,7 +137,9 @@ def main(args=None):
     node = TelemetryUdpNode()
     try:
         rclpy.spin(node)
-    except KeyboardInterrupt:
+    # launch may shut down the ROS context before spin() returns.  Treat that
+    # normal lifecycle event the same as Ctrl-C so the process exits cleanly.
+    except (KeyboardInterrupt, ExternalShutdownException, RCLError):
         pass
     finally:
         node.destroy_node()

@@ -6,6 +6,7 @@ from launch.conditions import IfCondition
 from ament_index_python.packages import get_package_share_directory
 import os
 
+
 def generate_launch_description():
 
     # 模式参数: rviz=启动rviz面板控制, cli=启动命令行控制

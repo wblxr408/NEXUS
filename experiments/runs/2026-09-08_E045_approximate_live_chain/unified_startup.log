@@ -1,0 +1,3 @@
+[INFO] [launch]: All log files can be found below /root/.ros/log/2026-09-08-17-09-55-187116-wblxr-9170
+[INFO] [launch]: Default logging verbosity is set to INFO
+[ERROR] [launch]: Caught exception in launch (see debug for traceback): executable 'range_smoothing_node.py' not found on the libexec directory '/root/nexus_workspace/NEXUS/code/ros2_ws/install/nexus_pi_readonly_ingress/lib/nexus_pi_readonly_ingress' 

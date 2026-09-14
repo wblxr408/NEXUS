@@ -6,6 +6,7 @@ import numpy as np
 
 from .superpoint_frontend import roi_mask
 from .target_identity import IdentityConfig, TargetCandidate, TargetIdentityTracker, appearance_descriptor, geometric_match
+from .lightweight_identity import LightweightIdentityTransformer
 
 
 def _overlap(first, second):
@@ -16,8 +17,21 @@ def _overlap(first, second):
 
 
 class TargetVisualFrontend:
-    def __init__(self, config=None):
-        self.tracker = TargetIdentityTracker(config or IdentityConfig())
+    def __init__(self, config=None, identity_transformer_checkpoint=""):
+        transformer = LightweightIdentityTransformer(identity_transformer_checkpoint or None)
+        self.tracker = TargetIdentityTracker(config or IdentityConfig(), attention=transformer)
+
+    def configure_compute_budget(self, *, maximum_rois, transformer_tokens, transformer_history):
+        """Apply a bounded runtime budget without changing model coordinates."""
+        if not all(isinstance(value, int) and value >= 0
+                   for value in (maximum_rois, transformer_tokens, transformer_history)):
+            raise ValueError("target compute budget must contain nonnegative integers")
+        if not 1 <= maximum_rois <= 32 or not 4 <= transformer_tokens <= 128 or not 1 <= transformer_history <= 32:
+            raise ValueError("target compute budget is outside supported limits")
+        attention = self.tracker.attention
+        attention.maximum_tokens = transformer_tokens
+        attention.maximum_history = transformer_history
+        self.maximum_rois = maximum_rois
 
     def register(self, identifier, dense, image, bbox_xywh_px, feature_options, *, class_id=None, existing_track_id=None,
                  motion_model="static", anchor_reference_px=None):
@@ -29,11 +43,19 @@ class TargetVisualFrontend:
         return self.tracker.register_reference(identifier, candidate, existing_track_id=existing_track_id,
                                                motion_model=motion_model, anchor_reference_px=anchor_reference_px)
 
-    def prepare(self, dense, image, stamp_ns, detections, feature_options, camera_homography=None):
+    def prepare(self, dense, image, stamp_ns, detections, feature_options, camera_homography=None,
+                maximum_rois=None, image_quality=None):
         """Return a candidate tracker; caller commits only while frame is fresh."""
         size = (image.shape[1], image.shape[0])
         candidates = []
-        for detection in detections:
+        budget = getattr(self, "maximum_rois", 32) if maximum_rois is None else maximum_rois
+        if not isinstance(budget, int) or not 1 <= budget <= 32:
+            raise ValueError("maximum_rois must be an integer in [1, 32]")
+        # Detection order is not a confidence contract.  Spend the ROI budget on
+        # the strongest candidates deterministically, then retain registered
+        # reference proposals below.
+        ranked = sorted(detections, key=lambda item: (-float(item["confidence"]), int(item["class_id"])))[:budget]
+        for detection in ranked:
             bbox = np.asarray(detection["bbox_xywh_px"], dtype=float)
             if not roi_mask(size, bbox).any():
                 continue
@@ -64,7 +86,8 @@ class TargetVisualFrontend:
         return pending, observations, exclusions
 
     @staticmethod
-    def packet(stamp_ns, frame_id, image_size_wh, observations, diagnostics=(), *, expired=False, tracker=None):
+    def packet(stamp_ns, frame_id, image_size_wh, observations, diagnostics=(), *, expired=False, tracker=None,
+               image_quality=None, exposure_rotation_sigma_rad=None):
         tracks = []
         for item in observations:
             geometry = {}
@@ -74,6 +97,7 @@ class TargetVisualFrontend:
                                    track.reference.features.points_px[track.anchor_feature_id].tolist())
                 geometry = {"reference_id": track.reference_id, "motion_model": track.motion_model,
                             "anchor_feature_id": track.anchor_feature_id, "anchor_reference_px": reference_pixel,
+                            "reference_feature_count": len(track.reference.features.points_px),
                             "feature_observations": []}
                 if item.observed and not item.identity_ambiguous and not expired:
                     match = geometric_match(track.reference, track.latest.features, tracker.config.minimum_geometric_matches, return_matches=True)
@@ -88,6 +112,11 @@ class TargetVisualFrontend:
                            "velocity_px_s": item.velocity_px_s.tolist(), "covariance_px": item.covariance.reshape(-1).tolist(),
                            "last_observed_ns": item.last_observed_ns, "feature_inliers": item.feature_inliers,
                            "world_position_observed": False, "orientation_observed": False, **geometry})
-        return {"schema_version": 1, "sample_timestamp_ns": stamp_ns, "frame_id": frame_id,
+        packet = {"schema_version": 1, "sample_timestamp_ns": stamp_ns, "frame_id": frame_id,
                 "image_size_wh": list(image_size_wh), "unit": "px", "valid": not expired,
                 "tracks": tracks, "diagnostics": list(diagnostics)}
+        if image_quality is not None:
+            packet["image_quality"] = float(image_quality)
+        if exposure_rotation_sigma_rad is not None:
+            packet["exposure_rotation_sigma_rad"] = float(exposure_rotation_sigma_rad)
+        return packet

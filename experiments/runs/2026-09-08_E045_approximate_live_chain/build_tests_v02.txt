@@ -1,0 +1,17 @@
+Starting >>> nexus_vision_localization
+Starting >>> nexus_viz_dashboard
+Finished <<< nexus_viz_dashboard [0.56s]
+Finished <<< nexus_vision_localization [0.58s]
+Starting >>> nexus_bringup
+Finished <<< nexus_bringup [2.67s]
+
+Summary: 3 packages finished [3.44s]
+Starting >>> nexus_vision_localization
+Starting >>> nexus_viz_dashboard
+Finished <<< nexus_viz_dashboard [2.18s]
+Finished <<< nexus_vision_localization [13.6s]
+Starting >>> nexus_bringup
+Finished <<< nexus_bringup [10.6s]
+
+Summary: 3 packages finished [24.4s]
+Summary: 272 tests, 0 errors, 0 failures, 6 skipped

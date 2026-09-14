@@ -79,7 +79,8 @@ def test_image_detection_motion_platform_pipeline_with_synthetic_network_boundar
         def __init__(self, _):
             pass
 
-        def infer(self, image):
+        def infer(self, image, *, image_scale=1.):
+            assert .25 <= image_scale <= 1.
             return SyntheticDense(first if image[0, 0, 0] == 1 else second)
 
     monkeypatch.setattr(detection_node, "ObjectDetectorOnnx", SyntheticDetector)
@@ -87,7 +88,8 @@ def test_image_detection_motion_platform_pipeline_with_synthetic_network_boundar
     path = calibration(tmp_path)
     rclpy.init(args=["--ros-args", "-p", f"calibration_file:={path}", "-p", "allow_test_calibration:=true",
                      "-p", "model_manifest:=synthetic_network_boundary", "-p", "max_age_ms:=3000.0",
-                     "-p", "max_observation_age_ms:=3000.0", "-p", "reorder_delay_ms:=0.0"])
+                     "-p", "max_observation_age_ms:=3000.0", "-p", "reorder_delay_ms:=0.0",
+                     "-p", "default_detector_period_s:=0.05"])
     detector, motion, platform = detection_node.ObjectDetectionNode(), superpoint_node.SuperPointMotionNode(), PlatformLocalizationNode()
     driver = Node("visual_pipeline_regression_driver")
     executor = SingleThreadedExecutor()
@@ -157,15 +159,27 @@ def test_image_detection_motion_platform_pipeline_with_synthetic_network_boundar
         actual = [output.pose.pose.position.x, output.pose.pose.position.y, output.pose.pose.position.z]
         np.testing.assert_allclose(actual, true_translation, atol=.02)
         assert output.header.frame_id == "map" and output.child_frame_id == "base_link"
+        # Between scheduled detector runs, the low-latency path intentionally
+        # publishes a tracking-only packet.  Once its configured period elapses
+        # the next true detector call must surface the synthetic failure.
         images.publish(image_message(3, start + 120_000_000))
+        spin_until(lambda: any(d["mode"] == "tracking_only" and d["sample_timestamp_ns"] == start + 120_000_000
+                               for d in detections))
+        time.sleep(.05)
+        failure_stamp = driver.get_clock().now().nanoseconds - 5_000_000
+        images.publish(image_message(3, failure_stamp))
         spin_until(lambda: any(s["reason"] == "dynamic_detection_failed" for s in statuses))
-        assert len(observations) == 1 and len(selected_masks) == 2
+        # The tracking-only frame is deliberately passed through the cheap
+        # feature path with its predicted dynamic exclusion; the failed detector
+        # frame must not add a motion observation or a feature extraction.
+        assert len(observations) == 1 and len(selected_masks) == 3
+        assert not selected_masks[-1][:240].any() and selected_masks[-1][300:].all()
         assert any(not d["valid"] and d["reason"] == "synthetic_detector_failure" for d in detections)
         # An unmatched later image cannot reuse an old frame's mask.
-        unmatched = image_message(4, start + 130_000_000)
+        unmatched = image_message(4, start + 610_000_000)
         motion._image_callback(unmatched)
         motion._drain()
-        assert len(selected_masks) == 2
+        assert len(selected_masks) == 3
     finally:
         executor.shutdown()
         for node in (driver, platform, motion, detector):

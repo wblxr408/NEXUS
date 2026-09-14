@@ -1,0 +1,14 @@
+[Unit]
+Description=NEXUS read-only ROS IMU and UWB TCP stream
+After=docker.service
+Requires=docker.service
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/docker exec -e ROS_DOMAIN_ID=20 fcu_ros2 bash -c "source /opt/ros/humble/setup.bash && exec python3 /root/fcu_core_onboard/nexus_range_smoothing/fcu_ros_stream_server.py"
+ExecStop=-/usr/bin/docker exec fcu_ros2 pkill -TERM -f fcu_ros_stream_server.py
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

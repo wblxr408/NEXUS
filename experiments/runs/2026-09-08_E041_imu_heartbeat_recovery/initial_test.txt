@@ -1,0 +1,25 @@
+Internal ctest changing into directory: /root/fcu_core_onboard/build/fcu_core
+Test project /root/fcu_core_onboard/build/fcu_core
+    Start 1: control_packets
+Errors while running CTest
+1/1 Test #1: control_packets ..................***Failed    0.13 sec
+[INFO] [1788850643.315600963] [test_control_packets]: fcu_bridge 001 init done
+[WARN] [1788850643.315713091] [test_control_packets]: Control command not sent: waiting for flight-controller heartbeat
+[WARN] [1788850643.315727054] [test_control_packets]: Control command not sent: waiting for flight-controller heartbeat
+[WARN] [1788850643.315738610] [test_control_packets]: Control command not sent: waiting for flight-controller heartbeat
+[WARN] [1788850643.315750424] [test_control_packets]: Control command not sent: waiting for flight-controller heartbeat
+[WARN] [1788850643.315760832] [test_control_packets]: Control command not sent: waiting for flight-controller heartbeat
+[WARN] [1788850643.315772387] [test_control_packets]: Control command not sent: waiting for flight-controller heartbeat
+[WARN] [1788850643.315783517] [test_control_packets]: Control command not sent: waiting for flight-controller heartbeat
+[INFO] [1788850643.315806442] [test_control_packets]: Flight controller discovered: system=7 component=42
+[INFO] [1788850643.315821553] [test_control_packets]: 001 Received heartbeat time: 1788850643.315821s, voltage:0.000000V, current:0.000000A, sat:0, gnss:0
+[INFO] [1788850643.315855571] [test_control_packets]: Requested SCALED_IMU telemetry at 50 Hz (message interval and RAW_SENSORS fallback)
+FAIL: FC heartbeat must produce one heartbeat reply
+
+
+0% tests passed, 1 tests failed out of 1
+
+Total Test time (real) =   0.14 sec
+
+The following tests FAILED:
+	  1 - control_packets (Failed)

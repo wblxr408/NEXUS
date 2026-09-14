@@ -63,7 +63,8 @@ class Imx219FrameSource:
         )
         camera = Picamera2()
         configuration = camera.create_video_configuration(
-            main={"size": (self.width, self.height), "format": "RGB888"},
+            # libcamera BGR888 produces byte-ordered RGB arrays on the Pi.
+            main={"size": (self.width, self.height), "format": "BGR888"},
             transform=transform,
             controls={"FrameDurationLimits": (period_us, period_us)},
             buffer_count=4,

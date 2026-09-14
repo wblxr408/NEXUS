@@ -1,0 +1,8 @@
+Starting >>> nexus_pi_readonly_ingress
+Starting >>> nexus_fusion_localization
+Finished <<< nexus_pi_readonly_ingress [0.78s]
+Finished <<< nexus_fusion_localization [0.97s]
+Starting >>> nexus_bringup
+Finished <<< nexus_bringup [3.90s]
+
+Summary: 3 packages finished [5.39s]

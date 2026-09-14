@@ -1,0 +1,3 @@
+Verified disarmed heartbeat
+final_stationary {'BAD_DATA': 17, 'SCALED_IMU': 92943, 'GLOBAL_VISION_POSITION_ESTIMATE': 4916, 'GLOBAL_POSITION_INT': 4917, 'HEARTBEAT': 490, 'BATTERY_STATUS': 490}
+Original bridge restarted
